@@ -16,7 +16,7 @@ export function About() {
           {sobreMi.foto ? (
             <Image
               src={sobreMi.foto}
-              alt={`Foto de ${sobreMi.nombre}`}
+              alt={sobreMi.nombre ? `Foto de ${sobreMi.nombre}` : "Foto del desarrollador"}
               fill
               className="object-cover"
               sizes="192px"
@@ -27,9 +27,13 @@ export function About() {
         </div>
 
         <div className="max-w-2xl">
-          <h3 className="text-2xl font-semibold">{sobreMi.nombre}</h3>
+          {/* Si no hay nombre en data/sobre-mi.ts, el rol hace de título */}
+          <h3 className="text-2xl font-semibold">
+            {sobreMi.nombre || sobreMi.rol}
+          </h3>
           <p className="mt-1 text-sm text-muted">
-            {sobreMi.rol} · {sobreMi.ubicacion}
+            {sobreMi.nombre ? `${sobreMi.rol} · ` : ""}
+            {sobreMi.ubicacion}
           </p>
 
           <div className="mt-5 space-y-4">
