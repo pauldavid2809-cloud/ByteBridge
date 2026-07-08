@@ -1,0 +1,25 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "bytebridge-dev",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev"],
+      "port": 3000,
+      "autoPort": true
+    },
+    {
+      "name": "bytebridge-prod",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "start"],
+      "port": 3000,
+      "autoPort": true
+    },
+    {
+      "name": "amanecer",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "http.server", "8123"],
+      "port": 8123
+    }
+  ]
+}

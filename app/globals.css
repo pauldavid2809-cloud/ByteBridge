@@ -1,0 +1,68 @@
+@import "tailwindcss";
+
+/* ============================================================
+   TOKENS DE DISEÑO — byte/bridge
+   Identidad: fondo negro casi puro, acento verde esmeralda,
+   texto blanco/gris. Modo oscuro único (sin toggle).
+   ============================================================ */
+@theme {
+  /* Colores de marca */
+  --color-background: #0a0e0d; /* fondo principal (negro casi puro, tinte verde) */
+  --color-surface: #101714; /* tarjetas y superficies elevadas */
+  --color-foreground: #f5f5f5; /* títulos y texto principal */
+  --color-muted: #9ca3af; /* texto secundario */
+  --color-accent: #2ebd85; /* verde esmeralda — usar con moderación */
+  --color-accent-strong: #36d698; /* hover / brillo del acento */
+  --color-accent-ink: #052e20; /* texto oscuro sobre botones verdes */
+  --color-line: rgba(245, 245, 245, 0.08); /* bordes sutiles */
+
+  /* Tipografía: Space Grotesk (títulos) + Inter (cuerpo), cargadas en layout.tsx */
+  --font-sans: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-display), var(--font-body), ui-sans-serif, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-sans);
+}
+
+/* Títulos siempre en la fuente display */
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  letter-spacing: -0.02em;
+}
+
+/* Selección de texto en verde de marca */
+::selection {
+  background: var(--color-accent);
+  color: var(--color-accent-ink);
+}
+
+/* Accesibilidad: foco visible consistente en todo el sitio */
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Accesibilidad: respetar prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
