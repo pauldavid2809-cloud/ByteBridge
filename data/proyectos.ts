@@ -70,50 +70,6 @@ export const proyectos: Proyecto[] = [
     // ✏️ Guarda una captura en /public/proyectos/quiniela.png y cambia esto a "/proyectos/quiniela.png"
     imagen: "",
   },
-
-  /* ✏️ CASO DE EJEMPLO 2 — reemplaza todos los textos por un proyecto real */
-  {
-    slug: "web-restaurante",
-    nombre: "Web para restaurante (ejemplo)",
-    resultado: "El menú dejó de ser un PDF pesado y las reservas llegan solas por WhatsApp",
-    tags: ["Web completa", "Negocio local"],
-    descripcion:
-      "Sitio de 5 páginas para un restaurante: menú siempre actualizado, galería, ubicación y botón directo de reservas por WhatsApp.",
-    problema:
-      "El menú era un PDF que tardaba en abrir desde Instagram, los precios estaban desactualizados y cada reserva requería una conversación larga por mensajes.",
-    solucion:
-      "Una web rápida con el menú como página real (no PDF), fotos optimizadas, horarios y un botón de reserva que abre WhatsApp con un mensaje prellenado con fecha y número de personas.",
-    resultadoDetalle:
-      "El cliente actualiza precios en minutos, la página abre al instante desde el perfil de Instagram y las reservas llegan con los datos completos, sin ida y vuelta de mensajes.",
-    metricas: [
-      { valor: "5", etiqueta: "páginas con diseño propio" },
-      { valor: "<1s", etiqueta: "de carga desde Instagram" },
-    ],
-    stack: ["Next.js", "TypeScript", "Tailwind CSS"],
-    imagen: "",
-  },
-
-  /* ✏️ CASO DE EJEMPLO 3 — reemplaza todos los textos por un proyecto real */
-  {
-    slug: "portal-pedidos",
-    nombre: "Portal de pedidos mayoristas (ejemplo)",
-    resultado: "Los pedidos pasaron del cuaderno a un portal con historial y precios por cliente",
-    tags: ["Sistema a medida", "Portal con login"],
-    descripcion:
-      "Portal privado para una distribuidora: cada cliente mayorista entra con su usuario, ve sus precios y arma su pedido sin llamadas.",
-    problema:
-      "Los pedidos entraban por llamadas y notas de voz, se transcribían a un cuaderno y de ahí a facturación: errores de cantidades, precios viejos y horas perdidas cada semana.",
-    solucion:
-      "Un portal con login donde cada cliente ve el catálogo con sus precios asignados, arma el pedido y lo envía. El dueño recibe todo ordenado en un panel, con historial por cliente.",
-    resultadoDetalle:
-      "Se acabaron los errores de transcripción y las horas al teléfono. El dueño revisa los pedidos del día en una sola pantalla y el historial le sirve para planificar compras.",
-    metricas: [
-      { valor: "0", etiqueta: "errores de transcripción" },
-      { valor: "1", etiqueta: "panel para todos los pedidos" },
-    ],
-    stack: ["Next.js", "Supabase", "TypeScript", "Tailwind CSS"],
-    imagen: "",
-  },
 ];
 
 /** Busca un proyecto por su slug (usado por la ruta /proyectos/[slug]) */

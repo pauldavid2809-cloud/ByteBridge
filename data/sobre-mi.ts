@@ -10,7 +10,7 @@
 
 export const sobreMi = {
   // ✏️ Tu nombre (déjalo vacío "" para no mostrarlo)
-  nombre: "",
+  nombre: "ByteBridge",
   rol: "Desarrollador full stack",
   ubicacion: "Venezuela · trabajo remoto",
   /** 2-3 líneas humanas y directas — nada de CV corporativo */
