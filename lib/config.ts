@@ -17,7 +17,7 @@ export const WHATSAPP_DEFAULT_MESSAGE =
   "Hola, vi tu página de byte/bridge y quiero cotizar un proyecto.";
 
 /** URL pública del sitio (cámbiala cuando tengas dominio propio) */
-export const SITE_URL = "https://bytebridge.vercel.app";
+export const SITE_URL = "https://byte-bridge-tau.vercel.app";
 
 export const SITE_NAME = "ByteBridge";
 
