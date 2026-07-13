@@ -98,6 +98,17 @@ export default async function ProyectoPage({ params }: Props) {
               {proyecto.nombre}
             </h1>
             <p className="mt-5 max-w-2xl text-lg text-muted">{proyecto.descripcion}</p>
+            {proyecto.demo && (
+              <div className="mt-7">
+                <Button href={proyecto.demo} variant="secondary">
+                  <span
+                    aria-hidden="true"
+                    className="h-2 w-2 rounded-full bg-accent"
+                  />
+                  Ver demo en vivo
+                </Button>
+              </div>
+            )}
           </header>
 
           {/* Imagen del caso (o placeholder de marca) */}

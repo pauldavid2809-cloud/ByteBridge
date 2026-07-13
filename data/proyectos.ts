@@ -45,6 +45,8 @@ export type Proyecto = {
   stack: string[];
   /** Ruta de la imagen en /public, o "" para el placeholder */
   imagen: string;
+  /** URL pública del proyecto en producción (opcional) — muestra el botón "Ver demo en vivo" */
+  demo?: string;
 };
 
 export const proyectos: Proyecto[] = [
@@ -69,6 +71,7 @@ export const proyectos: Proyecto[] = [
     stack: ["Next.js", "Supabase", "TypeScript", "Tailwind CSS"],
     // ✏️ Guarda una captura en /public/proyectos/quiniela.png y cambia esto a "/proyectos/quiniela.png"
     imagen: "",
+    demo: "https://quiniela-mundial-sand.vercel.app/",
   },
 ];
 
