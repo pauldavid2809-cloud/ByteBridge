@@ -1,13 +1,20 @@
+"use client";
+
 import { Logo } from "@/components/Logo";
 import { WhatsAppIcon } from "@/components/icons/WhatsAppIcon";
 import { Button } from "@/components/ui/Button";
 import { whatsappLink } from "@/lib/config";
+import { useLanguage } from "@/context/LanguageContext";
+import { dictionary } from "@/data/dictionary";
 
 /**
  * Hero: responde en 5 segundos qué hago y qué gana el cliente.
- * ✏️ EDITA AQUÍ el titular y subtítulo si quieres ajustar el copy.
+ * Consume el diccionario bilingüe según el idioma activo.
  */
 export function Hero() {
+  const { lang } = useLanguage();
+  const t = dictionary.hero;
+
   return (
     <section
       id="inicio"
@@ -28,26 +35,25 @@ export function Hero() {
             <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-60" />
             <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
           </span>
-          Esta página carga en menos de 1s · Lighthouse 90+
+          {t.badge[lang]}
         </p>
 
         <h1 className="max-w-3xl text-4xl font-semibold text-balance sm:text-5xl md:text-6xl">
-          Webs y sistemas a medida que convierten visitantes en{" "}
-          <span className="text-accent">clientes</span>
+          {t.titleLine1[lang]}
+          <span className="text-accent">{t.titleHighlight[lang]}</span>
         </h1>
 
         <p className="mt-6 max-w-xl text-lg text-muted sm:text-xl">
-          Construyo tu página desde cero con tecnología moderna. Nada de
-          plantillas: diseño propio, carga instantánea y código que es tuyo.
+          {t.subtitle[lang]}
         </p>
 
         <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center">
           <Button href={whatsappLink()} size="lg">
             <WhatsAppIcon className="h-4.5 w-4.5" />
-            Cotiza por WhatsApp
+            {t.ctaWhatsapp[lang]}
           </Button>
           <Button href="#proyectos" variant="secondary" size="lg">
-            Ver proyectos
+            {t.ctaProjects[lang]}
           </Button>
         </div>
       </div>

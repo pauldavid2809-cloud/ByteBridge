@@ -1,15 +1,21 @@
+"use client";
+
 import Image from "next/image";
 import { Logo } from "@/components/Logo";
 import { Section } from "@/components/ui/Section";
 import { sobreMi } from "@/data/sobre-mi";
+import { useLanguage } from "@/context/LanguageContext";
+import { dictionary } from "@/data/dictionary";
 
 /**
- * Sección "Sobre mí". Los textos, el stack y la foto
- * se editan en data/sobre-mi.ts — no aquí.
+ * Sección "Sobre mí" con soporte bilingüe.
  */
 export function About() {
+  const { lang } = useLanguage();
+  const t = dictionary.about;
+
   return (
-    <Section id="sobre-mi" eyebrow="Sobre mí" title="Quién está detrás">
+    <Section id="sobre-mi" eyebrow={t.eyebrow[lang]} title={t.title[lang]} subtitle={t.subtitle[lang]}>
       <div className="flex flex-col gap-10 md:flex-row md:items-start md:gap-14">
         {/* Foto (o placeholder de marca mientras no haya foto) */}
         <div className="relative flex aspect-square w-40 shrink-0 items-center justify-center overflow-hidden rounded-2xl border border-line bg-surface sm:w-48">
@@ -27,21 +33,16 @@ export function About() {
         </div>
 
         <div className="max-w-2xl">
-          {/* Si no hay nombre en data/sobre-mi.ts, el rol hace de título */}
           <h3 className="text-2xl font-semibold">
-            {sobreMi.nombre || sobreMi.rol}
+            {sobreMi.nombre || t.role[lang]}
           </h3>
           <p className="mt-1 text-sm text-muted">
-            {sobreMi.nombre ? `${sobreMi.rol} · ` : ""}
-            {sobreMi.ubicacion}
+            {t.role[lang]} · {t.location[lang]}
           </p>
 
           <div className="mt-5 space-y-4">
-            {sobreMi.bio.map((parrafo) => (
-              <p key={parrafo} className="leading-relaxed text-foreground/90">
-                {parrafo}
-              </p>
-            ))}
+            <p className="leading-relaxed text-foreground/90">{t.bio1[lang]}</p>
+            <p className="leading-relaxed text-foreground/90">{t.bio2[lang]}</p>
           </div>
 
           <div className="mt-7 flex flex-wrap gap-2">

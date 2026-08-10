@@ -1,9 +1,17 @@
+"use client";
+
 import { WhatsAppIcon } from "@/components/icons/WhatsAppIcon";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { Section } from "@/components/ui/Section";
 import { whatsappLink } from "@/lib/config";
-import { mantenimiento, notaPago, paquetes } from "@/data/servicios";
+import {
+  mantenimientoMultiLang,
+  notaPagoMultiLang,
+  paquetesMultiLang,
+} from "@/data/servicios";
+import { useLanguage } from "@/context/LanguageContext";
+import { dictionary } from "@/data/dictionary";
 
 /** Check verde para las listas de "incluye" */
 function CheckIcon() {
@@ -26,83 +34,110 @@ function CheckIcon() {
 }
 
 /**
- * Paquetes y precios. El contenido vive en data/servicios.ts —
- * este componente solo lo pinta.
+ * Paquetes y precios renovados (iniciando en $100) y bilingües.
  */
 export function Services() {
+  const { lang } = useLanguage();
+  const t = dictionary.services;
+
   return (
     <Section
       id="servicios"
-      eyebrow="Servicios"
-      title="Precios claros, sin sorpresas"
-      subtitle="Tres formas de trabajar juntos. Todas incluyen diseño propio y una web que carga al instante."
+      eyebrow={t.eyebrow[lang]}
+      title={t.title[lang]}
+      subtitle={t.subtitle[lang]}
     >
       <div className="grid items-start gap-6 lg:grid-cols-3">
-        {paquetes.map((paquete) => (
-          <Card
-            key={paquete.nombre}
-            className={`relative flex h-full flex-col p-7 ${
-              paquete.destacado
-                ? "border-accent/60 bg-accent/[0.04] lg:-mt-4 lg:mb-[-1rem] lg:py-11"
-                : ""
-            }`}
-          >
-            {paquete.destacado && (
-              <span className="absolute -top-3 left-7 rounded-full bg-accent px-3 py-1 text-xs font-medium text-accent-ink">
-                Recomendado
-              </span>
-            )}
+        {paquetesMultiLang.map((paquete) => {
+          const nombre = paquete.nombre[lang];
+          const precio = paquete.precio[lang];
+          const notaPrecio = paquete.notaPrecio[lang];
+          const descripcion = paquete.descripcion[lang];
+          const incluyeList = paquete.incluye[lang];
+          const ctaMensaje = paquete.ctaMensaje[lang];
+          const badgeText = paquete.badge ? paquete.badge[lang] : undefined;
 
-            <h3 className="text-lg font-semibold">{paquete.nombre}</h3>
-            <p className="mt-3 font-display text-3xl font-semibold text-foreground">
-              {paquete.precio}
-              <span className="ml-2 align-middle text-sm font-normal text-muted">
-                {paquete.notaPrecio}
-              </span>
-            </p>
-            <p className="mt-3 text-sm leading-relaxed text-muted">{paquete.descripcion}</p>
-
-            <ul className="mt-6 flex flex-1 flex-col gap-3">
-              {paquete.incluye.map((item) => (
-                <li key={item} className="flex gap-2.5 text-sm text-foreground/90">
-                  <CheckIcon />
-                  {item}
-                </li>
-              ))}
-            </ul>
-
-            <Button
-              href={whatsappLink(paquete.ctaMensaje)}
-              variant={paquete.destacado ? "primary" : "secondary"}
-              className="mt-8 w-full"
+          return (
+            <Card
+              key={nombre}
+              className={`relative flex h-full flex-col p-7 ${
+                paquete.destacado
+                  ? "border-accent/60 bg-accent/[0.04] lg:-mt-4 lg:mb-[-1rem] lg:py-11 shadow-lg shadow-accent/5"
+                  : ""
+              }`}
             >
-              <WhatsAppIcon className="h-4 w-4" />
-              Cotizar este paquete
-            </Button>
-          </Card>
-        ))}
+              {badgeText && (
+                <span
+                  className={`absolute -top-3 left-7 rounded-full px-3 py-1 text-xs font-semibold ${
+                    paquete.destacado
+                      ? "bg-accent text-accent-ink"
+                      : "border border-accent/40 bg-surface text-accent"
+                  }`}
+                >
+                  {badgeText}
+                </span>
+              )}
+
+              <h3 className="text-xl font-semibold">{nombre}</h3>
+              <p className="mt-3 font-display text-3xl font-bold text-foreground">
+                {precio}
+                <span className="ml-2 align-middle text-sm font-normal text-muted">
+                  / {notaPrecio}
+                </span>
+              </p>
+              <p className="mt-3 text-sm leading-relaxed text-muted">{descripcion}</p>
+
+              <div className="mt-6 font-medium text-xs text-muted uppercase tracking-wider">
+                {t.includes[lang]}
+              </div>
+              <ul className="mt-3 flex flex-1 flex-col gap-3">
+                {incluyeList.map((item) => (
+                  <li key={item} className="flex gap-2.5 text-sm text-foreground/90">
+                    <CheckIcon />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+
+              <Button
+                href={whatsappLink(ctaMensaje)}
+                variant={paquete.destacado ? "primary" : "secondary"}
+                className="mt-8 w-full"
+              >
+                <WhatsAppIcon className="h-4 w-4" />
+                {t.selectPackage[lang]}
+              </Button>
+            </Card>
+          );
+        })}
       </div>
 
-      {/* Mantenimiento mensual */}
+      {/* Mantenimiento mensual opcional */}
       <Card className="mt-10 flex flex-col gap-4 p-7 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <h3 className="font-semibold">
-            {mantenimiento.nombre}{" "}
-            <span className="ml-1 font-display text-accent">{mantenimiento.precio}</span>
+            {mantenimientoMultiLang.nombre[lang]}{" "}
+            <span className="ml-1 font-display text-accent">
+              {mantenimientoMultiLang.precio[lang]}
+            </span>
           </h3>
-          <p className="mt-1.5 text-sm text-muted">{mantenimiento.descripcion}</p>
+          <p className="mt-1.5 text-sm text-muted">
+            {mantenimientoMultiLang.descripcion[lang]}
+          </p>
         </div>
         <Button
-          href={whatsappLink(mantenimiento.ctaMensaje)}
+          href={whatsappLink(mantenimientoMultiLang.ctaMensaje[lang])}
           variant="secondary"
           className="shrink-0"
         >
-          Me interesa
+          {t.selectPackage[lang]}
         </Button>
       </Card>
 
-      {/* Condiciones de pago — visibles, sin letra pequeña escondida */}
-      <p className="mt-8 text-center text-sm text-muted">{notaPago}</p>
+      {/* Condiciones de pago */}
+      <p className="mt-8 text-center text-sm text-muted">
+        {notaPagoMultiLang[lang]}
+      </p>
     </Section>
   );
 }
