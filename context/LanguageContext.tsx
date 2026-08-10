@@ -16,6 +16,15 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
   const [lang, setLangState] = useState<Language>("es");
 
   useEffect(() => {
+    // Parámetro URL tiene prioridad: ?lang=en o ?lang=es
+    const params = new URLSearchParams(window.location.search);
+    const urlLang = params.get("lang") as Language;
+    if (urlLang === "es" || urlLang === "en") {
+      setLangState(urlLang);
+      localStorage.setItem("bytebridge_lang", urlLang);
+      return;
+    }
+    // Si no hay parámetro, usar lo guardado en localStorage
     const saved = localStorage.getItem("bytebridge_lang") as Language;
     if (saved === "es" || saved === "en") {
       setLangState(saved);
