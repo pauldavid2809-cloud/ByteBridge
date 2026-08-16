@@ -27,9 +27,12 @@ const jsonLd = {
   knowsAbout: ["Next.js", "React", "TypeScript", "Supabase", "Tailwind CSS"],
 };
 
+import { Calculator } from "@/components/sections/Calculator";
+import { Faq } from "@/components/sections/Faq";
+
 /**
  * Página principal (one-page):
- * Hero → Proyectos → Servicios → Por qué a medida → Sobre mí → Contacto
+ * Hero → Proyectos → Soluciones → Servicios → Calculadora → Por qué a medida → Sobre mí → FAQ → Contacto
  */
 export default function Home() {
   return (
@@ -44,8 +47,10 @@ export default function Home() {
         <Projects />
         <Soluciones />
         <Services />
+        <Calculator />
         <WhyCustom />
         <About />
+        <Faq />
         <Contact />
       </main>
       <Footer />

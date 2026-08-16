@@ -19,6 +19,8 @@ export function Header() {
     { href: "/#proyectos", label: t.projects[lang] },
     { href: "/#soluciones", label: t.solutions[lang] },
     { href: "/#servicios", label: t.services[lang] },
+    { href: "/#calculadora", label: t.calculator[lang] },
+    { href: "/#faq", label: t.faq[lang] },
     { href: "/#sobre-mi", label: t.about[lang] },
     { href: "/#contacto", label: t.contact[lang] },
   ];

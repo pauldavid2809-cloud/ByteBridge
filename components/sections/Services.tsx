@@ -13,6 +13,8 @@ import {
 import { useLanguage } from "@/context/LanguageContext";
 import { dictionary } from "@/data/dictionary";
 import { useCurrency } from "@/context/CurrencyContext";
+import { PaymentMethods } from "@/components/PaymentMethods";
+
 
 /** Check verde para las listas de "incluye" */
 function CheckIcon() {
@@ -167,10 +169,8 @@ export function Services() {
         </Button>
       </Card>
 
-      {/* Condiciones de pago */}
-      <p className="mt-8 text-center text-sm text-muted">
-        {notaPagoMultiLang[lang]}
-      </p>
+      {/* Métodos de pago adaptables según país */}
+      <PaymentMethods />
     </Section>
   );
 }
