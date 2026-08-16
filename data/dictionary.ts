@@ -7,6 +7,7 @@
 export const dictionary = {
   header: {
     projects: { es: "Proyectos", en: "Projects" },
+    solutions: { es: "Soluciones", en: "Solutions" },
     services: { es: "Servicios y Precios", en: "Services & Pricing" },
     whyCustom: { es: "Por qué a medida", en: "Why Custom" },
     about: { es: "Sobre mí", en: "About" },

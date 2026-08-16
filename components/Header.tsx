@@ -16,8 +16,8 @@ export function Header() {
 
   const navLinks = [
     { href: "/#proyectos", label: t.projects[lang] },
+    { href: "/#soluciones", label: t.solutions[lang] },
     { href: "/#servicios", label: t.services[lang] },
-    { href: "/#por-que-a-medida", label: t.whyCustom[lang] },
     { href: "/#sobre-mi", label: t.about[lang] },
     { href: "/#contacto", label: t.contact[lang] },
   ];
