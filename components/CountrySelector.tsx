@@ -59,9 +59,9 @@ export function PreferencesPanel() {
         </svg>
       </button>
 
-      {/* Dropdown unificado */}
+      {/* Dropdown unificado — adaptable a cualquier pantalla móvil */}
       {abierto && (
-        <div className="absolute right-0 top-full mt-2 z-50 w-72 rounded-2xl border border-line bg-background shadow-2xl shadow-black/50 overflow-hidden">
+        <div className="absolute right-0 top-full mt-2 z-50 w-[calc(100vw-2.5rem)] sm:w-72 max-w-[320px] rounded-2xl border border-line bg-background shadow-2xl shadow-black/50 overflow-hidden max-h-[82vh] flex flex-col">
 
           {/* ── Sección Idioma ── */}
           <div className="px-4 pt-4 pb-3">
