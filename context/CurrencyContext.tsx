@@ -8,6 +8,7 @@ interface CurrencyContextType {
   setPais: (pais: PaisMoneda) => void;
   tasas: Record<string, number>;
   cargando: boolean;
+  ocultarPrecios: boolean;
   convertir: (usd: number) => string;
   mostrarDual: (usd: number) => string; // "$100 USD ≈ $1,700 MXN"
 }
@@ -18,8 +19,26 @@ export function CurrencyProvider({ children }: { children: React.ReactNode }) {
   const [pais, setPaisState] = useState<PaisMoneda>(getPaisPorCodigo("US"));
   const [tasas, setTasas] = useState<Record<string, number>>({});
   const [cargando, setCargando] = useState(true);
+  const [ocultarPrecios, setOcultarPrecios] = useState(false);
 
-  // 1. Detectar país por IP al montar
+  // 1. Detectar parámetro de URL noprice / noprices / prices=false
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const nopriceParam = params.get("noprice") || params.get("noprices") || params.get("hideprice");
+    const pricesParam = params.get("prices");
+
+    if (nopriceParam === "true" || nopriceParam === "1" || pricesParam === "false" || pricesParam === "0") {
+      setOcultarPrecios(true);
+      sessionStorage.setItem("bytebridge_noprice", "true");
+    } else if (pricesParam === "true" || pricesParam === "1") {
+      setOcultarPrecios(false);
+      sessionStorage.removeItem("bytebridge_noprice");
+    } else if (sessionStorage.getItem("bytebridge_noprice") === "true") {
+      setOcultarPrecios(true);
+    }
+  }, []);
+
+  // 2. Detectar país por IP al montar
   useEffect(() => {
     const savedCode = localStorage.getItem("bytebridge_pais");
     if (savedCode) {
@@ -83,7 +102,7 @@ export function CurrencyProvider({ children }: { children: React.ReactNode }) {
   };
 
   return (
-    <CurrencyContext.Provider value={{ pais, setPais, tasas, cargando, convertir, mostrarDual }}>
+    <CurrencyContext.Provider value={{ pais, setPais, tasas, cargando, ocultarPrecios, convertir, mostrarDual }}>
       {children}
     </CurrencyContext.Provider>
   );
@@ -97,6 +116,7 @@ export function useCurrency() {
       setPais: () => {},
       tasas: {},
       cargando: false,
+      ocultarPrecios: false,
       convertir: (usd: number) => `$${usd} USD`,
       mostrarDual: (usd: number) => `$${usd} USD`,
     };

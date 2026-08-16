@@ -126,7 +126,7 @@ const soluciones = [
 
 export function Soluciones() {
   const { lang } = useLanguage();
-  const { mostrarDual, pais, cargando } = useCurrency();
+  const { mostrarDual, pais, cargando, ocultarPrecios } = useCurrency();
   const [activa, setActiva] = useState("menu");
   const idx = soluciones.findIndex((s) => s.id === activa);
   const solucionActiva = soluciones[idx];
@@ -137,7 +137,7 @@ export function Soluciones() {
   };
 
   function getPrecioLocal(id: string): string | null {
-    if (pais.moneda === "USD" || cargando) return null;
+    if (ocultarPrecios || pais.moneda === "USD" || cargando) return null;
     const base = preciosBase[id];
     if (!base) return null;
     return mostrarDual(base).split("≈")[1]?.trim() ?? null;
@@ -184,9 +184,11 @@ export function Soluciones() {
             }`}>
               {s.nombre[lang]}
             </p>
-            <p className={`text-[10px] font-bold ${activa === s.id ? "text-accent" : "text-muted/60"}`}>
-              {s.precio[lang]}
-            </p>
+            {!ocultarPrecios && (
+              <p className={`text-[10px] font-bold ${activa === s.id ? "text-accent" : "text-muted/60"}`}>
+                {s.precio[lang]}
+              </p>
+            )}
             {/* Precio local si aplica */}
             {getPrecioLocal(s.id) && (
               <p className="text-[9px] text-accent/60 font-medium leading-none">
@@ -207,7 +209,9 @@ export function Soluciones() {
               <span className="text-4xl">{solucionActiva.icon}</span>
               <div>
                 <h3 className="text-lg font-bold">{solucionActiva.nombre[lang]}</h3>
-                <p className="text-xs text-accent font-bold">{solucionActiva.precio[lang]}</p>
+                {!ocultarPrecios && (
+                  <p className="text-xs text-accent font-bold">{solucionActiva.precio[lang]}</p>
+                )}
                 {getPrecioLocal(solucionActiva.id) && (
                   <p className="text-xs text-accent/70 font-semibold">
                     ≈ {getPrecioLocal(solucionActiva.id)}{" "}

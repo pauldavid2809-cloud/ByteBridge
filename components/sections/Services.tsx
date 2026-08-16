@@ -39,7 +39,7 @@ function CheckIcon() {
  */
 export function Services() {
   const { lang } = useLanguage();
-  const { pais, mostrarDual, cargando } = useCurrency();
+  const { pais, mostrarDual, cargando, ocultarPrecios } = useCurrency();
   const t = dictionary.services;
 
   // Precios base en USD para conversión
@@ -50,7 +50,7 @@ export function Services() {
   };
 
   function getPrecioLocal(nombre: string): string | null {
-    if (pais.moneda === "USD" || cargando) return null;
+    if (ocultarPrecios || pais.moneda === "USD" || cargando) return null;
     const enKey = Object.keys(preciosUSD).find((k) =>
       nombre.toLowerCase().includes(k.split(" ")[0].toLowerCase()) ||
       k.toLowerCase().includes(nombre.split(" ")[0].toLowerCase())
@@ -102,10 +102,12 @@ export function Services() {
 
               <h3 className="text-xl font-semibold">{nombre}</h3>
               <p className="mt-3 font-display text-3xl font-bold text-foreground">
-                {precio}
-                <span className="ml-2 align-middle text-sm font-normal text-muted">
-                  / {notaPrecio}
-                </span>
+                {ocultarPrecios ? (lang === "es" ? "A medida" : "Custom quote") : precio}
+                {!ocultarPrecios && (
+                  <span className="ml-2 align-middle text-sm font-normal text-muted">
+                    / {notaPrecio}
+                  </span>
+                )}
               </p>
               {/* Precio en moneda local */}
               {getPrecioLocal(nombre) && (
@@ -146,9 +148,11 @@ export function Services() {
         <div>
           <h3 className="font-semibold">
             {mantenimientoMultiLang.nombre[lang]}{" "}
-            <span className="ml-1 font-display text-accent">
-              {mantenimientoMultiLang.precio[lang]}
-            </span>
+            {!ocultarPrecios && (
+              <span className="ml-1 font-display text-accent">
+                {mantenimientoMultiLang.precio[lang]}
+              </span>
+            )}
           </h3>
           <p className="mt-1.5 text-sm text-muted">
             {mantenimientoMultiLang.descripcion[lang]}
