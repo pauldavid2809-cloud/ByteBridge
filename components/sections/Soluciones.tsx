@@ -16,6 +16,8 @@ const soluciones = [
   {
     id: "menu",
     icon: "🍽️",
+    color: "from-amber-500/20 to-orange-500/10",
+    borderActive: "border-amber-500/60 bg-amber-500/5",
     precio: { es: "Desde $100", en: "From $100" },
     nombre: { es: "Menú Digital", en: "Digital Menu" },
     sectores: { es: "Restaurantes · Cafeterías · Bares", en: "Restaurants · Cafés · Bars" },
@@ -32,6 +34,8 @@ const soluciones = [
   {
     id: "citas",
     icon: "💈",
+    color: "from-violet-500/20 to-purple-500/10",
+    borderActive: "border-violet-500/60 bg-violet-500/5",
     precio: { es: "Desde $150", en: "From $150" },
     nombre: { es: "Agenda de Citas", en: "Appointment Booking" },
     sectores: { es: "Barberías · Salones · Spas · Clínicas", en: "Barbershops · Salons · Spas · Clinics" },
@@ -48,6 +52,8 @@ const soluciones = [
   {
     id: "reservas",
     icon: "🍷",
+    color: "from-emerald-500/20 to-teal-500/10",
+    borderActive: "border-emerald-500/60 bg-emerald-500/5",
     precio: { es: "Desde $150", en: "From $150" },
     nombre: { es: "Reservas Online", en: "Online Reservations" },
     sectores: { es: "Restaurantes · Hoteles · Eventos · Coworkings", en: "Restaurants · Hotels · Events · Coworkings" },
@@ -64,6 +70,8 @@ const soluciones = [
   {
     id: "catalogo",
     icon: "🛒",
+    color: "from-blue-500/20 to-indigo-500/10",
+    borderActive: "border-blue-500/60 bg-blue-500/5",
     precio: { es: "Desde $200", en: "From $200" },
     nombre: { es: "Tienda / Catálogo", en: "Shop / Catalog" },
     sectores: { es: "Tiendas · Marcas · Distribuidores · Artesanos", en: "Stores · Brands · Distributors · Artisans" },
@@ -80,6 +88,8 @@ const soluciones = [
   {
     id: "delivery",
     icon: "🛵",
+    color: "from-red-500/20 to-orange-500/10",
+    borderActive: "border-red-500/60 bg-red-500/5",
     precio: { es: "Desde $300", en: "From $300" },
     nombre: { es: "Sistema Delivery", en: "Delivery System" },
     sectores: { es: "Restaurantes · Dark Kitchens · Farmacias · Tiendas", en: "Restaurants · Dark Kitchens · Pharmacies · Stores" },
@@ -96,6 +106,8 @@ const soluciones = [
   {
     id: "dashboard",
     icon: "📊",
+    color: "from-slate-500/20 to-zinc-500/10",
+    borderActive: "border-slate-400/60 bg-slate-500/5",
     precio: { es: "Desde $500", en: "From $500" },
     nombre: { es: "Dashboard Empresarial", en: "Business Dashboard" },
     sectores: { es: "PyMEs · Franquicias · Distribuidores · Startups", en: "SMBs · Franchises · Distributors · Startups" },
@@ -114,8 +126,11 @@ const soluciones = [
 export function Soluciones() {
   const { lang } = useLanguage();
   const [activa, setActiva] = useState("menu");
+  const idx = soluciones.findIndex((s) => s.id === activa);
+  const solucionActiva = soluciones[idx];
 
-  const solucionActiva = soluciones.find((s) => s.id === activa)!;
+  const prev = () => setActiva(soluciones[(idx - 1 + soluciones.length) % soluciones.length].id);
+  const next = () => setActiva(soluciones[(idx + 1) % soluciones.length].id);
 
   return (
     <Section
@@ -124,74 +139,117 @@ export function Soluciones() {
       title={lang === "es" ? "Demos en vivo · Pruébalos ahora" : "Live Demos · Try them now"}
       subtitle={
         lang === "es"
-          ? "No son mockups: son demos funcionales. Interactúa con cada uno y luego pídeme el tuyo."
-          : "These aren't mockups: they're functional demos. Interact with each one and then order yours."
+          ? "No son mockups: son demos funcionales. Selecciona cualquier solución e interactúa con ella."
+          : "These aren't mockups: they're functional demos. Select any solution and interact with it."
       }
     >
-      <div className="flex flex-col gap-10 lg:flex-row lg:gap-12">
-        {/* Lista de soluciones */}
-        <div className="flex flex-row gap-2 overflow-x-auto pb-2 lg:flex-col lg:w-72 lg:shrink-0 lg:overflow-x-visible lg:pb-0">
-          {soluciones.map((s) => (
-            <button
-              key={s.id}
-              onClick={() => setActiva(s.id)}
-              className={`shrink-0 flex items-start gap-3 rounded-2xl border px-4 py-3 text-left transition-all duration-200 lg:w-full ${
-                activa === s.id
-                  ? "border-accent bg-accent/5 shadow-sm"
-                  : "border-line hover:border-accent/40 hover:bg-surface"
-              }`}
-            >
-              <span className="text-2xl leading-none mt-0.5">{s.icon}</span>
-              <div className="min-w-0">
-                <p className="text-sm font-semibold truncate">{s.nombre[lang]}</p>
-                <p className="text-xs text-muted truncate hidden lg:block">{s.sectores[lang]}</p>
-                <p className={`text-xs font-bold mt-0.5 ${activa === s.id ? "text-accent" : "text-muted"}`}>
-                  {s.precio[lang]}
-                </p>
+      {/* ── GRID DE SELECCIÓN — visible completo en móvil y desktop ── */}
+      <div className="grid grid-cols-3 gap-3 sm:grid-cols-6 mb-10">
+        {soluciones.map((s, i) => (
+          <button
+            key={s.id}
+            onClick={() => setActiva(s.id)}
+            className={`group relative flex flex-col items-center gap-2 rounded-2xl border p-3 sm:p-4 text-center transition-all duration-200 ${
+              activa === s.id
+                ? `${s.borderActive} shadow-md scale-[1.04]`
+                : "border-line hover:border-accent/40 hover:bg-surface hover:scale-[1.02]"
+            }`}
+          >
+            {/* Número de posición — visible en inactivos para que sea obvio que hay más */}
+            {activa !== s.id && (
+              <span className="absolute top-1.5 right-2 text-[10px] font-bold text-muted/50">
+                {i + 1}
+              </span>
+            )}
+            {activa === s.id && (
+              <span className="absolute top-1.5 right-2 h-2 w-2 rounded-full bg-accent animate-pulse" />
+            )}
+            <span className="text-2xl sm:text-3xl leading-none">{s.icon}</span>
+            <p className={`text-[11px] sm:text-xs font-semibold leading-tight transition-colors ${
+              activa === s.id ? "text-foreground" : "text-muted group-hover:text-foreground"
+            }`}>
+              {s.nombre[lang]}
+            </p>
+            <p className={`text-[10px] font-bold ${activa === s.id ? "text-accent" : "text-muted/60"}`}>
+              {s.precio[lang]}
+            </p>
+          </button>
+        ))}
+      </div>
+
+      {/* ── PANEL DEL DEMO ── */}
+      <div className="flex flex-col gap-8 lg:flex-row lg:gap-12 lg:items-start">
+
+        {/* Info de la solución activa */}
+        <div className="lg:w-80 lg:shrink-0 space-y-4">
+          <div className={`rounded-2xl bg-gradient-to-br ${solucionActiva.color} border border-line p-5`}>
+            <div className="flex items-center gap-3 mb-3">
+              <span className="text-4xl">{solucionActiva.icon}</span>
+              <div>
+                <h3 className="text-lg font-bold">{solucionActiva.nombre[lang]}</h3>
+                <span className="text-xs text-accent font-bold">{solucionActiva.precio[lang]}</span>
               </div>
+            </div>
+            <p className="text-xs text-muted leading-relaxed mb-1">{solucionActiva.sectores[lang]}</p>
+            <p className="text-sm text-foreground/85 leading-relaxed">{solucionActiva.descripcion[lang]}</p>
+          </div>
+
+          <a
+            href={whatsappLink(solucionActiva.ctaMensaje[lang])}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex w-full items-center justify-center gap-2 rounded-2xl bg-accent px-5 py-3 text-sm font-semibold text-accent-ink hover:bg-accent-strong transition-colors duration-200"
+          >
+            <WhatsAppIcon className="h-4 w-4" />
+            {lang === "es" ? "Quiero este para mi negocio" : "I want this for my business"}
+          </a>
+
+          {/* Navegación anterior / siguiente */}
+          <div className="flex items-center justify-between gap-3">
+            <button
+              onClick={prev}
+              className="flex flex-1 items-center justify-center gap-2 rounded-xl border border-line py-2.5 text-sm text-muted hover:border-accent/50 hover:text-foreground transition-all"
+            >
+              ← {lang === "es" ? "Anterior" : "Previous"}
             </button>
-          ))}
+            {/* Dots */}
+            <div className="flex gap-1.5">
+              {soluciones.map((s) => (
+                <button
+                  key={s.id}
+                  onClick={() => setActiva(s.id)}
+                  className={`rounded-full transition-all duration-200 ${
+                    activa === s.id ? "w-5 h-2 bg-accent" : "w-2 h-2 bg-line hover:bg-muted"
+                  }`}
+                  aria-label={s.nombre[lang]}
+                />
+              ))}
+            </div>
+            <button
+              onClick={next}
+              className="flex flex-1 items-center justify-center gap-2 rounded-xl border border-line py-2.5 text-sm text-muted hover:border-accent/50 hover:text-foreground transition-all"
+            >
+              {lang === "es" ? "Siguiente" : "Next"} →
+            </button>
+          </div>
+
+          <p className="text-center text-xs text-muted">
+            {lang === "es"
+              ? `Solución ${idx + 1} de ${soluciones.length}`
+              : `Solution ${idx + 1} of ${soluciones.length}`}
+          </p>
         </div>
 
-        {/* Panel derecho: descripción + demo */}
+        {/* Demo interactivo */}
         <div className="flex-1 min-w-0">
-          <div className="mb-5">
-            <div className="flex items-center gap-3 mb-2">
-              <span className="text-3xl">{solucionActiva.icon}</span>
-              <div>
-                <h3 className="text-xl font-bold">{solucionActiva.nombre[lang]}</h3>
-                <p className="text-xs text-muted">{solucionActiva.sectores[lang]}</p>
-              </div>
-              <span className="ml-auto rounded-full border border-accent/40 bg-accent/10 px-3 py-1 text-xs font-bold text-accent">
-                {solucionActiva.precio[lang]}
-              </span>
-            </div>
-            <p className="text-sm text-muted leading-relaxed max-w-xl">
-              {solucionActiva.descripcion[lang]}
-            </p>
-            <a
-              href={whatsappLink(solucionActiva.ctaMensaje[lang])}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-4 inline-flex items-center gap-2 rounded-full bg-accent px-5 py-2 text-sm font-semibold text-accent-ink hover:bg-accent-strong transition-colors duration-200"
-            >
-              <WhatsAppIcon className="h-4 w-4" />
-              {lang === "es" ? "Quiero este para mi negocio" : "I want this for my business"}
-            </a>
-          </div>
-
-          {/* Demo interactivo */}
           <div className="relative">
             <div className="absolute -inset-1 rounded-3xl bg-accent/5 blur-xl pointer-events-none" />
-            <div className="relative">
-              {solucionActiva.demo}
-            </div>
+            <div className="relative">{solucionActiva.demo}</div>
           </div>
-
           <p className="mt-3 text-center text-xs text-muted">
             {lang === "es"
-              ? "👆 Demo interactivo — pruébalo tú mismo"
-              : "👆 Interactive demo — try it yourself"}
+              ? "👆 Demo 100% interactivo — pruébalo tú mismo"
+              : "👆 100% interactive demo — try it yourself"}
           </p>
         </div>
       </div>
