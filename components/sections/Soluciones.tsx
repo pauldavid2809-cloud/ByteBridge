@@ -153,8 +153,8 @@ export function Soluciones() {
       title={lang === "es" ? "Demos en vivo · Pruébalos ahora" : "Live Demos · Try them now"}
       subtitle={
         lang === "es"
-          ? "No son mockups: son demos funcionales. Selecciona cualquier solución e interactúa con ella."
-          : "These aren't mockups: they're functional demos. Select any solution and interact with it."
+          ? "Demos 100% funcionales. Elige cualquier opción y pruébala en vivo."
+          : "100% functional live demos. Select any option and test it out."
       }
     >
       {/* ── GRID DE SELECCIÓN — visible completo en móvil y desktop ── */}

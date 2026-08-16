@@ -30,12 +30,12 @@ export const dictionary = {
       en: "customers",
     },
     subtitle: {
-      es: "Construyo tu página desde cero con tecnología moderna. Sin plantillas, sin intermediarios: diseño propio, carga instantánea y código que es tuyo. Trabajo con negocios de toda Latinoamérica, 100% remoto.",
-      en: "I build your web presence from scratch using modern technology. Zero bloated templates, zero middlemen: bespoke design, instant load times, and clean code you own. Serving businesses across Latin America, fully remote.",
+      es: "Páginas web y sistemas desde cero, sin plantillas lentas ni intermediarios. Carga en menos de 1 segundo, diseño único y código 100% tuyo. Servicio para toda Latinoamérica.",
+      en: "Websites and custom systems built from scratch, without slow templates or middlemen. Instant load speed under 1 second, custom design, and 100% code ownership. Serving Latin America.",
     },
     ctaWhatsapp: {
-      es: "Cotiza por WhatsApp",
-      en: "Get a quote via WhatsApp",
+      es: "Cotizar por WhatsApp",
+      en: "Get quote on WhatsApp",
     },
     ctaProjects: {
       es: "Ver proyectos",
@@ -46,8 +46,8 @@ export const dictionary = {
     eyebrow: { es: "Casos reales", en: "Featured Work" },
     title: { es: "Proyectos recientes", en: "Recent Projects" },
     subtitle: {
-      es: "Casos de estudio reales donde la velocidad, el diseño propio y la lógica a medida marcaron la diferencia para negocios en Latinoamérica.",
-      en: "Real case studies where custom design, performance, and tailored logic made the difference for businesses across Latin America.",
+      es: "Proyectos reales construidos a medida para negocios de Latinoamérica.",
+      en: "Real custom projects built for businesses across Latin America.",
     },
     viewDemo: { es: "Ver demo en vivo", en: "View live demo" },
     backToHome: { es: "← Volver a inicio", en: "← Back to home" },
@@ -67,7 +67,7 @@ export const dictionary = {
       },
       problemaTitle: { es: "El problema", en: "The Challenge" },
       problema: {
-        es: "Las quinielas entre amigos y comunidades se manejaban con planillas de Excel y capturas por WhatsApp: resultados cargados a mano, errores de cálculo, discusiones por puntos y predicciones enviadas tarde.",
+        es: "Las quinielas entre amigos y comunidades se manejaban con planillas de Excel y capturas por WhatsApp: resultados cargados a mano, errores de cálculo, disputas por puntos y predicciones enviadas tarde.",
         en: "Community prediction leagues relied on manual Excel sheets and WhatsApp screenshots: manual score keeping, calculation errors, point disputes, and late predictions.",
       },
       solucionTitle: { es: "La solución", en: "The Solution" },
@@ -107,10 +107,10 @@ export const dictionary = {
   },
   services: {
     eyebrow: { es: "Planes y Precios", en: "Packages & Pricing" },
-    title: { es: "Inversión clara desde el primer día", en: "Clear investment from day one" },
+    title: { es: "Precios claros desde el primer día", en: "Clear pricing from day one" },
     subtitle: {
-      es: "Sin costos ocultos. Precios en USD accesibles para toda Latinoamérica. Webs hechas a mano que se pagan solas con los clientes que captas.",
-      en: "No hidden fees. USD pricing accessible across Latin America. Custom-crafted websites built to generate leads and pay for themselves.",
+      es: "Sin cargos ocultos ni sorpresas. Programación limpia enfocada en conseguirte clientes.",
+      en: "No hidden fees or surprises. Clean code focused on getting you customers.",
     },
     recommended: { es: "Recomendado", en: "Recommended" },
     includes: { es: "Qué incluye:", en: "What's included:" },
@@ -119,75 +119,75 @@ export const dictionary = {
   },
   whyCustom: {
     eyebrow: { es: "Por qué a medida", en: "Why Custom" },
-    title: { es: "¿Reconoces alguna de estas señales?", en: "Do you recognize any of these signs?" },
+    title: { es: "¿Te pasa algo de esto con tu web actual?", en: "Struggling with your current website?" },
     subtitle: {
-      es: "No es culpa tuya ni de tu negocio: es el límite natural de las webs genéricas con plantillas.",
-      en: "It's not your business's fault: it's the natural limitation of generic template websites.",
+      es: "Por qué las plantillas lentas de WordPress o Wix hacen que pierdas clientes.",
+      en: "Why slow WordPress or Wix templates lose you potential clients.",
     },
-    customLabel: { es: "A medida: ", en: "Custom solution: " },
+    customLabel: { es: "Con código a medida: ", en: "With custom code: " },
     signals: [
       {
-        señal: { es: "Tu página tarda en abrir", en: "Your page takes long to open" },
+        señal: { es: "Tu página tarda en cargar", en: "Your page takes long to load" },
         diagnostico: {
-          es: "Cada segundo de espera son visitantes que cierran la pestaña antes de ver lo que ofreces. Las plantillas cargan código innecesario.",
-          en: "Every second of loading delay drives visitors away before seeing your offer. Templates carry heavy unused code.",
+          es: "Si tarda más de 3 segundos, los visitantes cierran la pestaña antes de ver lo que ofreces. Las plantillas traen código pesado innecesario.",
+          en: "If it takes over 3 seconds, visitors close the tab before seeing your offer. Templates carry heavy unused code.",
         },
         aMedida: {
-          es: "Una web a medida carga solo lo necesario: menos de 1 segundo.",
-          en: "A custom site loads only what is essential: under 1 second.",
+          es: "Carga en menos de 1 segundo al incluir solo lo que tu proyecto necesita.",
+          en: "Loads in under 1 second by including only what your project needs.",
         },
       },
       {
-        señal: { es: "Se parece a la de tu competencia", en: "It looks just like competitors" },
+        señal: { es: "Se ve igual a las de tus competidores", en: "It looks just like competitors" },
         diagnostico: {
-          es: "Cuando el diseño sale de un catálogo, otros negocios de tu rubro tienen el mismo. El cliente no distingue quién es quién.",
-          en: "When design comes off the shelf, competitors end up looking identical. Customers can't distinguish your brand.",
+          es: "Al usar plantillas genéricas de catálogo, otros negocios terminan usando el mismo diseño. Tu negocio no destaca.",
+          en: "When using stock templates, competitors end up looking identical. Your brand doesn't stand out.",
         },
         aMedida: {
-          es: "El diseño propio hace que tu marca se reconozca a la primera.",
-          en: "Bespoke design ensures your brand stands out immediately.",
+          es: "Diseño propio creado para que tu negocio sea reconocido al instante.",
+          en: "Custom design built so your business stands out immediately.",
         },
       },
       {
-        señal: { es: "No apareces en Google", en: "Not ranking on Google search" },
+        señal: { es: "No apareces en las búsquedas de Google", en: "Not ranking on Google search" },
         diagnostico: {
-          es: "Si tus clientes te buscan y encuentran a otro, la web no está haciendo su trabajo. La estructura de una plantilla entorpece el SEO.",
-          en: "If prospects search and find competitors instead, the site fails. Bloated template code hinders SEO indexing.",
+          es: "Si te buscan y aparece tu competencia, tu web no funciona. El código pesado de las plantillas perjudica tu SEO.",
+          en: "If prospects search and find competitors instead, your site fails. Heavy template code hinders your SEO.",
         },
         aMedida: {
-          es: "Código limpio, semántico y rápido que Google premia en los resultados.",
-          en: "Clean, semantic, ultra-fast code that Google rewards with higher rankings.",
+          es: "Código limpio, rápido y estructurado que Google posiciona mejor.",
+          en: "Clean, fast, structured code that Google ranks higher.",
         },
       },
       {
-        señal: { es: "No puede crecer contigo", en: "Can't scale with your growth" },
+        señal: { es: "No puedes agregarle funciones nuevas", en: "Can't add new custom features" },
         diagnostico: {
-          es: "Llega el momento de recibir pedidos, reservas o pagos en línea, y la plantilla se queda corta o te cobra plugins caros.",
-          en: "When you need online bookings, user logins, or custom payment logic, templates break or demand expensive plugins.",
+          es: "Cuando necesitas recibir reservas, catálogo interactivo o pagos, la plantilla se rompe o te exige plugins costosos.",
+          en: "When you need bookings, custom catalogs, or payments, templates break or demand expensive plugins.",
         },
         aMedida: {
-          es: "El código es tuyo y se extiende: hoy una web, mañana un sistema completo.",
-          en: "You own the codebase: start with a landing page, expand into a full portal.",
+          es: "El código es tuyo: puedes expandirlo cuando tu negocio lo necesite.",
+          en: "You own the code: expand it whenever your business needs it.",
         },
       },
     ],
   },
   about: {
     eyebrow: { es: "Sobre mí", en: "About Me" },
-    title: { es: "Sin intermediarios ni agencias", en: "Direct engagement, zero middleman" },
+    title: { es: "Sin intermediarios ni agencias costosas", en: "Direct work, zero agencies" },
     subtitle: {
-      es: "Trabajas directamente con el desarrollador que diseña y programa tu proyecto. Trabajo con negocios de toda Latinoamérica, 100% remoto.",
-      en: "You deal directly with the engineer who designs and builds your project. Serving businesses across Latin America, fully remote.",
+      es: "Hablas directamente con el desarrollador que diseña, programa y entrega tu proyecto.",
+      en: "You speak directly with the developer who designs, codes, and delivers your project.",
     },
     role: { es: "Desarrollador Full Stack", en: "Full Stack Developer" },
     location: { es: "Latinoamérica · Trabajo 100% remoto", en: "Latin America · 100% Remote Work" },
     bio1: {
-      es: "Construyo webs y sistemas desde cero, sin plantillas. Me contratas y hablas directo conmigo: la persona que diseña, programa y entrega tu proyecto. Trabajo con negocios de México, Colombia, Argentina, Chile, Perú y toda la región.",
-      en: "I build custom web apps from the ground up without templates. You speak directly with the developer building your software. I work with businesses across Mexico, Colombia, Argentina, Chile, Peru, and the entire region.",
+      es: "Construyo webs y sistemas desde cero, sin plantillas. Al contratarme tratas directamente conmigo: la persona que escribe el código y resuelve lo que necesitas.",
+      en: "I build websites and custom systems from scratch, without templates. When you hire me, you deal directly with the developer writing the code and solving your needs.",
     },
     bio2: {
-      es: "Esta misma página es mi carta de presentación: fíjate en lo rápido que carga. Así es exactamente como trabajo.",
-      en: "This website is my proof of concept: notice how fast it loads. That is the standard I bring to your project.",
+      es: "Esta misma página es mi carta de presentación: prueba lo rápido que carga. Ese mismo estándar aplico a tu proyecto.",
+      en: "This website is my proof: test how fast it loads. That's the exact standard I bring to your project.",
     },
   },
   contact: {
