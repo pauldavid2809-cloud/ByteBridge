@@ -6,13 +6,13 @@ import { WhatsAppIcon } from "@/components/icons/WhatsAppIcon";
 import { whatsappLink } from "@/lib/config";
 import { useLanguage } from "@/context/LanguageContext";
 import { dictionary } from "@/data/dictionary";
-import { CountrySelector } from "@/components/CountrySelector";
+import { PreferencesPanel } from "@/components/CountrySelector";
 
 /**
- * Barra de navegación fija: logo + anclas traducidas + selector ES/EN + CTA de WhatsApp.
+ * Barra de navegación fija: logo + anclas traducidas + panel de preferencias unificado + CTA WhatsApp.
  */
 export function Header() {
-  const { lang, setLang } = useLanguage();
+  const { lang } = useLanguage();
   const t = dictionary.header;
 
   const navLinks = [
@@ -43,37 +43,9 @@ export function Header() {
           ))}
         </nav>
 
-        <div className="flex items-center gap-2">
-          {/* Selector de País / Moneda */}
-          <CountrySelector />
-
-          {/* Selector de Idioma ES | EN */}
-          <div className="flex items-center rounded-full border border-line bg-surface p-1 text-xs">
-            <button
-              type="button"
-              onClick={() => setLang("es")}
-              className={`rounded-full px-2.5 py-1 font-semibold transition-all duration-200 ${
-                lang === "es"
-                  ? "bg-accent text-accent-ink shadow-sm"
-                  : "text-muted hover:text-foreground"
-              }`}
-              aria-label="Cambiar idioma a Español"
-            >
-              ES
-            </button>
-            <button
-              type="button"
-              onClick={() => setLang("en")}
-              className={`rounded-full px-2.5 py-1 font-semibold transition-all duration-200 ${
-                lang === "en"
-                  ? "bg-accent text-accent-ink shadow-sm"
-                  : "text-muted hover:text-foreground"
-              }`}
-              aria-label="Switch language to English"
-            >
-              EN
-            </button>
-          </div>
+        <div className="flex items-center gap-3">
+          {/* Panel unificado de Preferencias (País, Moneda e Idioma) */}
+          <PreferencesPanel />
 
           <a
             href={whatsappLink()}
@@ -86,7 +58,6 @@ export function Header() {
             <span className="sm:hidden">WhatsApp</span>
           </a>
         </div>
-
       </div>
     </header>
   );

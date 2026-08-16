@@ -2,17 +2,20 @@
 
 import { useState, useRef, useEffect } from "react";
 import { useCurrency } from "@/context/CurrencyContext";
-import { useLanguage } from "@/context/LanguageContext";
+import { useLanguage, type Language } from "@/context/LanguageContext";
 import { PAISES_LATAM } from "@/data/currencies";
 
-export function CountrySelector() {
+/**
+ * Panel unificado de preferencias: bandera/moneda + idioma (ES|EN)
+ * Todo en un solo dropdown compacto, sin saturar el header.
+ */
+export function PreferencesPanel() {
   const { pais, setPais, cargando } = useCurrency();
-  const { lang } = useLanguage();
+  const { lang, setLang } = useLanguage();
   const [abierto, setAbierto] = useState(false);
   const [busqueda, setBusqueda] = useState("");
   const ref = useRef<HTMLDivElement>(null);
 
-  // Cerrar al hacer clic fuera
   useEffect(() => {
     function onClickOutside(e: MouseEvent) {
       if (ref.current && !ref.current.contains(e.target as Node)) {
@@ -31,43 +34,76 @@ export function CountrySelector() {
 
   return (
     <div className="relative" ref={ref}>
-      {/* Botón disparador */}
+      {/* Botón disparador — compacto, solo bandera + código */}
       <button
         onClick={() => setAbierto(!abierto)}
-        className="flex items-center gap-1.5 rounded-full border border-line bg-surface px-2.5 py-1.5 text-xs font-semibold transition-all duration-200 hover:border-accent/50 hover:bg-surface"
-        aria-label={lang === "es" ? "Cambiar país / moneda" : "Change country / currency"}
-        title={lang === "es" ? "Precios en tu moneda" : "Prices in your currency"}
+        className={`flex items-center gap-1.5 rounded-full border px-2.5 py-1.5 text-xs font-semibold transition-all duration-200 ${
+          abierto
+            ? "border-accent/60 bg-accent/5 text-foreground"
+            : "border-line bg-surface text-muted hover:border-accent/40 hover:text-foreground"
+        }`}
+        aria-label="Preferencias de idioma y moneda"
       >
         {cargando ? (
           <span className="h-3 w-3 rounded-full border-2 border-accent border-t-transparent animate-spin" />
         ) : (
           <span className="text-base leading-none">{pais.bandera}</span>
         )}
-        <span className="hidden sm:inline text-muted">{pais.moneda}</span>
-        <svg viewBox="0 0 10 6" className="h-2.5 w-2.5 text-muted" fill="none">
+        <span className="text-[11px] font-bold uppercase">{lang}</span>
+        <svg
+          viewBox="0 0 10 6"
+          className={`h-2 w-2 transition-transform duration-200 ${abierto ? "rotate-180" : ""}`}
+          fill="none"
+        >
           <path d="M1 1l4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
       </button>
 
-      {/* Dropdown */}
+      {/* Dropdown unificado */}
       {abierto && (
-        <div className="absolute right-0 top-full mt-2 z-50 w-64 rounded-2xl border border-line bg-background shadow-2xl shadow-black/40 overflow-hidden">
-          {/* Header del dropdown */}
-          <div className="px-4 py-3 border-b border-line bg-surface">
-            <p className="text-xs font-bold text-foreground mb-2">
-              {lang === "es" ? "🌎 Tu país y moneda" : "🌎 Your country & currency"}
+        <div className="absolute right-0 top-full mt-2 z-50 w-72 rounded-2xl border border-line bg-background shadow-2xl shadow-black/50 overflow-hidden">
+
+          {/* ── Sección Idioma ── */}
+          <div className="px-4 pt-4 pb-3">
+            <p className="text-[10px] font-bold uppercase tracking-widest text-muted mb-2">
+              {lang === "es" ? "Idioma" : "Language"}
+            </p>
+            <div className="grid grid-cols-2 gap-2">
+              {(["es", "en"] as Language[]).map((l) => (
+                <button
+                  key={l}
+                  onClick={() => setLang(l)}
+                  className={`flex items-center gap-2 rounded-xl border px-3 py-2 text-sm transition-all duration-200 ${
+                    lang === l
+                      ? "border-accent bg-accent/10 font-bold text-accent"
+                      : "border-line text-muted hover:border-accent/40 hover:text-foreground"
+                  }`}
+                >
+                  <span className="text-base">{l === "es" ? "🇪🇸" : "🇺🇸"}</span>
+                  <span>{l === "es" ? "Español" : "English"}</span>
+                  {lang === l && <span className="ml-auto text-accent text-xs">✓</span>}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div className="border-t border-line" />
+
+          {/* ── Sección País / Moneda ── */}
+          <div className="px-4 py-3">
+            <p className="text-[10px] font-bold uppercase tracking-widest text-muted mb-2">
+              {lang === "es" ? "País y moneda" : "Country & currency"}
             </p>
             <input
               autoFocus
               value={busqueda}
               onChange={(e) => setBusqueda(e.target.value)}
               placeholder={lang === "es" ? "Buscar país..." : "Search country..."}
-              className="w-full rounded-xl border border-line bg-background px-3 py-1.5 text-xs placeholder:text-muted/50 focus:outline-none focus:border-accent transition-colors"
+              className="w-full rounded-xl border border-line bg-surface px-3 py-1.5 text-xs placeholder:text-muted/40 focus:outline-none focus:border-accent transition-colors mb-2"
             />
           </div>
 
-          {/* Lista de países */}
-          <ul className="max-h-64 overflow-y-auto py-1">
+          <ul className="max-h-48 overflow-y-auto pb-2">
             {paisesFiltrados.map((p) => (
               <li key={p.codigo}>
                 <button
@@ -76,17 +112,17 @@ export function CountrySelector() {
                     setAbierto(false);
                     setBusqueda("");
                   }}
-                  className={`w-full flex items-center gap-3 px-4 py-2.5 text-left text-sm transition-colors hover:bg-surface ${
-                    pais.codigo === p.codigo ? "bg-accent/10 font-semibold" : ""
+                  className={`w-full flex items-center gap-3 px-4 py-2 text-left transition-colors hover:bg-surface ${
+                    pais.codigo === p.codigo ? "bg-accent/5" : ""
                   }`}
                 >
-                  <span className="text-xl leading-none">{p.bandera}</span>
+                  <span className="text-lg leading-none">{p.bandera}</span>
                   <div className="flex-1 min-w-0">
                     <p className="text-xs font-semibold truncate">{p.nombre}</p>
                     <p className="text-[10px] text-muted">{p.simbolo} {p.nombreMoneda}</p>
                   </div>
                   {pais.codigo === p.codigo && (
-                    <span className="text-accent text-xs">✓</span>
+                    <span className="text-accent text-xs shrink-0">✓</span>
                   )}
                 </button>
               </li>
@@ -94,11 +130,11 @@ export function CountrySelector() {
           </ul>
 
           {/* Nota de tasas */}
-          <div className="px-4 py-2 border-t border-line bg-surface">
+          <div className="mx-4 mb-3 mt-1 rounded-xl bg-surface border border-line px-3 py-2">
             <p className="text-[10px] text-muted text-center">
               {lang === "es"
-                ? "💱 Tasas en tiempo real · Referencial"
-                : "💱 Live exchange rates · Approximate"}
+                ? "💱 Tasas en tiempo real · Precios referenciales en USD"
+                : "💱 Live exchange rates · USD is the base price"}
             </p>
           </div>
         </div>
@@ -106,3 +142,5 @@ export function CountrySelector() {
     </div>
   );
 }
+
+export const CountrySelector = PreferencesPanel;
