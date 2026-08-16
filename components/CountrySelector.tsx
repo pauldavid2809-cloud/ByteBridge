@@ -59,9 +59,13 @@ export function PreferencesPanel() {
         </svg>
       </button>
 
-      {/* Dropdown unificado — adaptable a cualquier pantalla móvil */}
+      {/* Dropdown unificado — Modal centrado en móvil, dropdown anclado en desktop */}
       {abierto && (
-        <div className="absolute right-0 top-full mt-2 z-50 w-[calc(100vw-2.5rem)] sm:w-72 max-w-[320px] rounded-2xl border border-line bg-background shadow-2xl shadow-black/50 overflow-hidden max-h-[82vh] flex flex-col">
+        <>
+          {/* Backdrop invisible en móvil para detectar toque fuera y evitar scroll conflicto */}
+          <div className="fixed inset-0 z-40 bg-black/40 backdrop-blur-xs sm:hidden" onClick={() => setAbierto(false)} />
+
+          <div className="fixed top-16 left-4 right-4 mx-auto z-50 max-w-xs rounded-2xl border border-line bg-background shadow-2xl shadow-black/60 overflow-hidden max-h-[80vh] flex flex-col sm:absolute sm:top-full sm:right-0 sm:left-auto sm:mx-0 sm:w-72 sm:max-w-none">
 
           {/* ── Sección Idioma ── */}
           <div className="px-4 pt-4 pb-3">
@@ -137,7 +141,8 @@ export function PreferencesPanel() {
                 : "💱 Live exchange rates · USD is the base price"}
             </p>
           </div>
-        </div>
+          </div>
+        </>
       )}
     </div>
   );
