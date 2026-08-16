@@ -6,6 +6,7 @@ import { WhatsAppIcon } from "@/components/icons/WhatsAppIcon";
 import { whatsappLink } from "@/lib/config";
 import { useLanguage } from "@/context/LanguageContext";
 import { dictionary } from "@/data/dictionary";
+import { CountrySelector } from "@/components/CountrySelector";
 
 /**
  * Barra de navegación fija: logo + anclas traducidas + selector ES/EN + CTA de WhatsApp.
@@ -42,7 +43,10 @@ export function Header() {
           ))}
         </nav>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2">
+          {/* Selector de País / Moneda */}
+          <CountrySelector />
+
           {/* Selector de Idioma ES | EN */}
           <div className="flex items-center rounded-full border border-line bg-surface p-1 text-xs">
             <button
@@ -82,6 +86,7 @@ export function Header() {
             <span className="sm:hidden">WhatsApp</span>
           </a>
         </div>
+
       </div>
     </header>
   );

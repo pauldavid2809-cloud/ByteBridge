@@ -12,6 +12,7 @@ import {
 } from "@/data/servicios";
 import { useLanguage } from "@/context/LanguageContext";
 import { dictionary } from "@/data/dictionary";
+import { useCurrency } from "@/context/CurrencyContext";
 
 /** Check verde para las listas de "incluye" */
 function CheckIcon() {
@@ -38,7 +39,28 @@ function CheckIcon() {
  */
 export function Services() {
   const { lang } = useLanguage();
+  const { pais, mostrarDual, cargando } = useCurrency();
   const t = dictionary.services;
+
+  // Precios base en USD para conversión
+  const preciosUSD: Record<string, [number, number]> = {
+    "Landing Express": [100, 180],
+    "Full Website":    [250, 450],
+    "Custom Web App":  [800, 800],
+  };
+
+  function getPrecioLocal(nombre: string): string | null {
+    if (pais.moneda === "USD" || cargando) return null;
+    const enKey = Object.keys(preciosUSD).find((k) =>
+      nombre.toLowerCase().includes(k.split(" ")[0].toLowerCase()) ||
+      k.toLowerCase().includes(nombre.split(" ")[0].toLowerCase())
+    );
+    const rango = enKey ? preciosUSD[enKey] : null;
+    if (!rango) return null;
+    const min = mostrarDual(rango[0]).split("≈")[1]?.trim() ?? "";
+    const max = rango[1] !== rango[0] ? mostrarDual(rango[1]).split("≈")[1]?.trim() ?? "" : "";
+    return max ? `≈ ${min} – ${max}` : `≈ ${min}`;
+  }
 
   return (
     <Section
@@ -85,6 +107,13 @@ export function Services() {
                   / {notaPrecio}
                 </span>
               </p>
+              {/* Precio en moneda local */}
+              {getPrecioLocal(nombre) && (
+                <p className="mt-1 text-sm font-semibold text-accent/80">
+                  {getPrecioLocal(nombre)}
+                  <span className="ml-1 text-xs font-normal text-muted">{pais.moneda}</span>
+                </p>
+              )}
               <p className="mt-3 text-sm leading-relaxed text-muted">{descripcion}</p>
 
               <div className="mt-6 font-medium text-xs text-muted uppercase tracking-wider">

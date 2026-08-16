@@ -5,6 +5,7 @@ import { Section } from "@/components/ui/Section";
 import { WhatsAppIcon } from "@/components/icons/WhatsAppIcon";
 import { whatsappLink } from "@/lib/config";
 import { useLanguage } from "@/context/LanguageContext";
+import { useCurrency } from "@/context/CurrencyContext";
 import { MenuDemo } from "@/components/demos/MenuDemo";
 import { CitasDemo } from "@/components/demos/CitasDemo";
 import { ReservasDemo } from "@/components/demos/ReservasDemo";
@@ -125,9 +126,22 @@ const soluciones = [
 
 export function Soluciones() {
   const { lang } = useLanguage();
+  const { mostrarDual, pais, cargando } = useCurrency();
   const [activa, setActiva] = useState("menu");
   const idx = soluciones.findIndex((s) => s.id === activa);
   const solucionActiva = soluciones[idx];
+
+  // Precio base en USD por solución para conversión
+  const preciosBase: Record<string, number> = {
+    menu: 100, citas: 150, reservas: 150, catalogo: 200, delivery: 300, dashboard: 500,
+  };
+
+  function getPrecioLocal(id: string): string | null {
+    if (pais.moneda === "USD" || cargando) return null;
+    const base = preciosBase[id];
+    if (!base) return null;
+    return mostrarDual(base).split("≈")[1]?.trim() ?? null;
+  }
 
   const prev = () => setActiva(soluciones[(idx - 1 + soluciones.length) % soluciones.length].id);
   const next = () => setActiva(soluciones[(idx + 1) % soluciones.length].id);
@@ -173,6 +187,12 @@ export function Soluciones() {
             <p className={`text-[10px] font-bold ${activa === s.id ? "text-accent" : "text-muted/60"}`}>
               {s.precio[lang]}
             </p>
+            {/* Precio local si aplica */}
+            {getPrecioLocal(s.id) && (
+              <p className="text-[9px] text-accent/60 font-medium leading-none">
+                ≈ {getPrecioLocal(s.id)}
+              </p>
+            )}
           </button>
         ))}
       </div>
@@ -187,7 +207,13 @@ export function Soluciones() {
               <span className="text-4xl">{solucionActiva.icon}</span>
               <div>
                 <h3 className="text-lg font-bold">{solucionActiva.nombre[lang]}</h3>
-                <span className="text-xs text-accent font-bold">{solucionActiva.precio[lang]}</span>
+                <p className="text-xs text-accent font-bold">{solucionActiva.precio[lang]}</p>
+                {getPrecioLocal(solucionActiva.id) && (
+                  <p className="text-xs text-accent/70 font-semibold">
+                    ≈ {getPrecioLocal(solucionActiva.id)}{" "}
+                    <span className="text-muted font-normal">{pais.moneda}</span>
+                  </p>
+                )}
               </div>
             </div>
             <p className="text-xs text-muted leading-relaxed mb-1">{solucionActiva.sectores[lang]}</p>
