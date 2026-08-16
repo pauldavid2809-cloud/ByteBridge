@@ -29,18 +29,18 @@ const bodyFont = Inter({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "Página web a medida en Venezuela — byte/bridge",
+    default: "Página web a medida para tu negocio — byte/bridge",
     template: "%s — byte/bridge",
   },
   description:
-    "Desarrollo web en Venezuela: páginas, portales y sistemas a medida con Next.js y Supabase. Diseño propio, carga en menos de 1 segundo, sin plantillas. Precios en USD para Venezuela y Latinoamérica.",
+    "Desarrollo web para Latinoamérica: páginas, portales y sistemas a medida con Next.js y Supabase. Diseño propio, carga en menos de 1 segundo, sin plantillas. Precios en USD, trabajo 100% remoto.",
   openGraph: {
     type: "website",
-    locale: "es_VE",
+    locale: "es_419",
     siteName: "byte/bridge",
-    title: "Página web a medida en Venezuela — byte/bridge",
+    title: "Página web a medida para tu negocio — byte/bridge",
     description:
-      "Webs y sistemas a medida que convierten visitantes en clientes. Diseño propio, sin plantillas, carga en menos de 1 segundo.",
+      "Webs y sistemas a medida que convierten visitantes en clientes. Diseño propio, sin plantillas, carga en menos de 1 segundo. Servicio para toda Latinoamérica.",
   },
   twitter: {
     card: "summary_large_image",

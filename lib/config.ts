@@ -14,7 +14,7 @@ export const WHATSAPP_NUMBER = "584120308674";
 
 /** Mensaje por defecto al abrir WhatsApp desde el sitio */
 export const WHATSAPP_DEFAULT_MESSAGE =
-  "Hola, vi tu página de byte/bridge y quiero cotizar un proyecto.";
+  "Hola, vi tu página de byte/bridge y quiero cotizar un proyecto para mi negocio.";
 
 /** URL pública del sitio (cámbiala cuando tengas dominio propio) */
 export const SITE_URL = "https://byte-bridge-tau.vercel.app";

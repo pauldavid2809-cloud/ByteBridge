@@ -27,8 +27,8 @@ export const dictionary = {
       en: "customers",
     },
     subtitle: {
-      es: "Construyo tu página desde cero con tecnología moderna. Nada de plantillas: diseño propio, carga instantánea y código que es tuyo.",
-      en: "I build your web presence from scratch using modern technology. Zero bloated templates: bespoke design, instant load times, and clean code you own.",
+      es: "Construyo tu página desde cero con tecnología moderna. Sin plantillas, sin intermediarios: diseño propio, carga instantánea y código que es tuyo. Trabajo con negocios de toda Latinoamérica, 100% remoto.",
+      en: "I build your web presence from scratch using modern technology. Zero bloated templates, zero middlemen: bespoke design, instant load times, and clean code you own. Serving businesses across Latin America, fully remote.",
     },
     ctaWhatsapp: {
       es: "Cotiza por WhatsApp",
@@ -43,8 +43,8 @@ export const dictionary = {
     eyebrow: { es: "Casos reales", en: "Featured Work" },
     title: { es: "Proyectos recientes", en: "Recent Projects" },
     subtitle: {
-      es: "Casos de estudio reales donde la velocidad, el diseño propio y la lógica a medida hicieron la diferencia.",
-      en: "Real case studies where custom design, performance, and tailored logic made the difference.",
+      es: "Casos de estudio reales donde la velocidad, el diseño propio y la lógica a medida marcaron la diferencia para negocios en Latinoamérica.",
+      en: "Real case studies where custom design, performance, and tailored logic made the difference for businesses across Latin America.",
     },
     viewDemo: { es: "Ver demo en vivo", en: "View live demo" },
     backToHome: { es: "← Volver a inicio", en: "← Back to home" },
@@ -106,8 +106,8 @@ export const dictionary = {
     eyebrow: { es: "Planes y Precios", en: "Packages & Pricing" },
     title: { es: "Inversión clara desde el primer día", en: "Clear investment from day one" },
     subtitle: {
-      es: "Sin costos ocultos. Webs hechas a mano que se pagan solas con los clientes que captas.",
-      en: "No hidden fees. Custom-crafted websites built to generate leads and pay for themselves.",
+      es: "Sin costos ocultos. Precios en USD accesibles para toda Latinoamérica. Webs hechas a mano que se pagan solas con los clientes que captas.",
+      en: "No hidden fees. USD pricing accessible across Latin America. Custom-crafted websites built to generate leads and pay for themselves.",
     },
     recommended: { es: "Recomendado", en: "Recommended" },
     includes: { es: "Qué incluye:", en: "What's included:" },
@@ -173,14 +173,14 @@ export const dictionary = {
     eyebrow: { es: "Sobre mí", en: "About Me" },
     title: { es: "Sin intermediarios ni agencias", en: "Direct engagement, zero middleman" },
     subtitle: {
-      es: "Trabajas directamente con el desarrollador que diseña y programa tu proyecto.",
-      en: "You deal directly with the engineer who designs and builds your project.",
+      es: "Trabajas directamente con el desarrollador que diseña y programa tu proyecto. Trabajo con negocios de toda Latinoamérica, 100% remoto.",
+      en: "You deal directly with the engineer who designs and builds your project. Serving businesses across Latin America, fully remote.",
     },
     role: { es: "Desarrollador Full Stack", en: "Full Stack Developer" },
-    location: { es: "Venezuela · Trabajo remoto global", en: "Venezuela · Worldwide Remote Work" },
+    location: { es: "Latinoamérica · Trabajo 100% remoto", en: "Latin America · 100% Remote Work" },
     bio1: {
-      es: "Construyo webs y sistemas desde cero, sin plantillas. Me contratas y hablas directo conmigo: la persona que diseña, programa y entrega tu proyecto.",
-      en: "I build custom web apps from the ground up without templates. You speak directly with the developer building your software.",
+      es: "Construyo webs y sistemas desde cero, sin plantillas. Me contratas y hablas directo conmigo: la persona que diseña, programa y entrega tu proyecto. Trabajo con negocios de México, Colombia, Argentina, Chile, Perú y toda la región.",
+      en: "I build custom web apps from the ground up without templates. You speak directly with the developer building your software. I work with businesses across Mexico, Colombia, Argentina, Chile, Peru, and the entire region.",
     },
     bio2: {
       es: "Esta misma página es mi carta de presentación: fíjate en lo rápido que carga. Así es exactamente como trabajo.",
@@ -196,8 +196,8 @@ export const dictionary = {
     },
     directTitle: { es: "¿Prefieres hablar directo?", en: "Prefer direct messaging?" },
     directDesc: {
-      es: "Sin formularios: escríbeme por WhatsApp y hablamos de tu proyecto hoy mismo.",
-      en: "Skip the form: message me on WhatsApp to discuss your project today.",
+      es: "Sin formularios: escríbeme por WhatsApp y hablamos de tu proyecto hoy mismo. Trabajo con clientes de toda Latinoamérica.",
+      en: "Skip the form: message me on WhatsApp to discuss your project today. I work with clients across Latin America.",
     },
     directBtn: { es: "Escríbeme por WhatsApp", en: "Chat on WhatsApp" },
     receivedTitle: { es: "Recibido ✓", en: "Message Received ✓" },
@@ -235,8 +235,8 @@ export const dictionary = {
   },
   footer: {
     copyright: {
-      es: "© {year} · Hecho a medida, como todo lo que entrego",
-      en: "© {year} · Custom crafted, like every solution I deliver",
+      es: "© {year} · byte/bridge · Desarrollo web para Latinoamérica",
+      en: "© {year} · byte/bridge · Web development for Latin America",
     },
   },
   whatsappFloat: {

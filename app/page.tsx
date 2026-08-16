@@ -11,7 +11,7 @@ import { SITE_URL, WHATSAPP_NUMBER } from "@/lib/config";
 
 /**
  * Datos estructurados (JSON-LD) para Google: negocio de servicios
- * profesionales de desarrollo web con base en Venezuela.
+ * profesionales de desarrollo web para clientes en Latinoamérica.
  */
 const jsonLd = {
   "@context": "https://schema.org",
@@ -19,10 +19,10 @@ const jsonLd = {
   name: "byte/bridge",
   url: SITE_URL,
   description:
-    "Desarrollo de páginas web, portales y sistemas a medida con Next.js y Supabase para negocios en Venezuela y Latinoamérica.",
+    "Desarrollo de páginas web, portales y sistemas a medida con Next.js y Supabase para negocios en Latinoamérica. Trabajo 100% remoto.",
   telephone: `+${WHATSAPP_NUMBER}`,
-  areaServed: ["Venezuela", "Latinoamérica"],
-  priceRange: "$150 - $1000+",
+  areaServed: ["Latinoamérica", "México", "Colombia", "Argentina", "Chile", "Perú", "Ecuador", "Bolivia", "Uruguay", "Paraguay", "Costa Rica", "Panamá", "Guatemala", "Honduras", "El Salvador", "Nicaragua", "República Dominicana"],
+  priceRange: "$100 - $1000+",
   knowsAbout: ["Next.js", "React", "TypeScript", "Supabase", "Tailwind CSS"],
 };
 
