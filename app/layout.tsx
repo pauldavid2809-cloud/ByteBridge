@@ -1,24 +1,26 @@
 import type { Metadata } from "next";
-import { Inter, Space_Grotesk } from "next/font/google";
+import { Montserrat, Plus_Jakarta_Sans } from "next/font/google";
 import { SITE_URL } from "@/lib/config";
 import "./globals.css";
 
 /*
  * Tipografía de marca:
- * - Space Grotesk: sans geométrica con personalidad, para títulos y wordmark.
- * - Inter: cuerpo de texto, máxima legibilidad en móvil.
+ * - Montserrat: sans geométrica moderna, elegante y de alto impacto para títulos y wordmark.
+ * - Plus Jakarta Sans: perfecta armonía con Montserrat para el cuerpo de texto en pantallas móviles.
  * next/font las sirve auto-hospedadas (self-hosted): cero requests externos, mejor Lighthouse.
  */
-const displayFont = Space_Grotesk({
+const displayFont = Montserrat({
   variable: "--font-display",
   subsets: ["latin"],
   display: "swap",
+  weight: ["500", "600", "700", "800"],
 });
 
-const bodyFont = Inter({
+const bodyFont = Plus_Jakarta_Sans({
   variable: "--font-body",
   subsets: ["latin"],
   display: "swap",
+  weight: ["400", "500", "600", "700"],
 });
 
 /**

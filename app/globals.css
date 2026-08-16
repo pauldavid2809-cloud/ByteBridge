@@ -16,7 +16,7 @@
   --color-accent-ink: #052e20; /* texto oscuro sobre botones verdes */
   --color-line: rgba(245, 245, 245, 0.08); /* bordes sutiles */
 
-  /* Tipografía: Space Grotesk (títulos) + Inter (cuerpo), cargadas en layout.tsx */
+  /* Tipografía: Montserrat (títulos y marca) + Plus Jakarta Sans (cuerpo de texto) */
   --font-sans: var(--font-body), ui-sans-serif, system-ui, sans-serif;
   --font-display: var(--font-display), var(--font-body), ui-sans-serif, sans-serif;
 }
