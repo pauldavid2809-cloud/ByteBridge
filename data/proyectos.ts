@@ -60,8 +60,6 @@ export type Proyecto = {
   imagen: string;
   /** URL pública del proyecto en producción (opcional) — muestra el botón "Ver demo en vivo" */
   demo?: string;
-  /** URL del repositorio en GitHub (opcional) — muestra el botón "Ver código en GitHub" */
-  github?: string;
   /** Credenciales de acceso de prueba (opcional) */
   credencialesDemo?: CredencialesDemo;
   /** Módulos y recursos adicionales con enlaces directos (opcional) */
@@ -362,7 +360,6 @@ export const proyectos: Proyecto[] = [
     ],
     imagen: "/proyectos/psicoconsulta-online.png",
     demo: "https://psiccarmen-jordan.vercel.app/",
-    github: "https://github.com/pauldavid2809-cloud/CarmenJordan",
     credencialesDemo: {
       url: "https://psiccarmen-jordan.vercel.app/login",
       email: "demo@psicologia.com",
@@ -384,11 +381,6 @@ export const proyectos: Proyecto[] = [
         nombre: "Panel Administrativo (Dashboard)",
         url: "https://psiccarmen-jordan.vercel.app/login",
         descripcion: "Gestión de citas, visor de comprobantes de pago y métricas de ingresos.",
-      },
-      {
-        nombre: "Código Fuente en GitHub",
-        url: "https://github.com/pauldavid2809-cloud/CarmenJordan",
-        descripcion: "Repositorio con la arquitectura Next.js 16, Supabase y TypeScript.",
       },
     ],
     caracteristicas: [
@@ -430,7 +422,6 @@ export const proyectos: Proyecto[] = [
     ],
     imagen: "/proyectos/taqueria-digital.png",
     demo: "https://la-unica-taqueria.vercel.app/",
-    github: "https://github.com/pauldavid2809-cloud/LaUnicaTaqueria",
     modulos: [
       {
         nombre: "Webapp Cliente (Principal)",
@@ -446,11 +437,6 @@ export const proyectos: Proyecto[] = [
         nombre: "Manual Operativo PDF (Ejecutivo)",
         url: "https://la-unica-taqueria.vercel.app/manual.html",
         descripcion: "Documento de presentación técnica y comercial para dueños.",
-      },
-      {
-        nombre: "Código Fuente en GitHub",
-        url: "https://github.com/pauldavid2809-cloud/LaUnicaTaqueria",
-        descripcion: "Repositorio oficial con todo el código fuente del proyecto.",
       },
     ],
     caracteristicas: [

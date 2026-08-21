@@ -7,7 +7,6 @@ import { Header } from "@/components/Header";
 import { WhatsAppFloat } from "@/components/WhatsAppFloat";
 import { Logo } from "@/components/Logo";
 import { WhatsAppIcon } from "@/components/icons/WhatsAppIcon";
-import { GitHubIcon } from "@/components/icons/GitHubIcon";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { getProyecto, proyectos } from "@/data/proyectos";
@@ -100,23 +99,15 @@ export default async function ProyectoPage({ params }: Props) {
             </h1>
             <p className="mt-5 max-w-2xl text-lg text-muted">{proyecto.descripcion}</p>
             
-            {(proyecto.demo || proyecto.github) && (
+            {proyecto.demo && (
               <div className="mt-7 flex flex-wrap gap-3">
-                {proyecto.demo && (
-                  <Button href={proyecto.demo} variant="secondary">
-                    <span
-                      aria-hidden="true"
-                      className="h-2 w-2 rounded-full bg-accent"
-                    />
-                    Ver demo en vivo
-                  </Button>
-                )}
-                {proyecto.github && (
-                  <Button href={proyecto.github} variant="secondary">
-                    <GitHubIcon className="h-4 w-4" />
-                    Código en GitHub
-                  </Button>
-                )}
+                <Button href={proyecto.demo} variant="secondary">
+                  <span
+                    aria-hidden="true"
+                    className="h-2 w-2 rounded-full bg-accent"
+                  />
+                  Ver demo en vivo
+                </Button>
               </div>
             )}
           </header>
