@@ -99,7 +99,7 @@ export const proyectos: Proyecto[] = [
       "Lucide Icons",
       "Vercel",
     ],
-    imagen: "",
+    imagen: "/proyectos/canon-ia.png",
     demo: "https://canon-ia.vercel.app/",
     modulos: [
       {
@@ -158,7 +158,7 @@ export const proyectos: Proyecto[] = [
       "WhatsApp API",
       "Vercel",
     ],
-    imagen: "",
+    imagen: "/proyectos/pau-cookies.png",
     demo: "https://pau-cookies.vercel.app/",
     modulos: [
       {
@@ -217,7 +217,7 @@ export const proyectos: Proyecto[] = [
       "Headless Architecture",
       "Vercel CDN",
     ],
-    imagen: "",
+    imagen: "/proyectos/arquidiocesis-maracaibo.png",
     demo: "https://arquimcbo.com/",
     modulos: [
       {
@@ -277,7 +277,7 @@ export const proyectos: Proyecto[] = [
       "WhatsApp API (Baileys)",
       "Vercel",
     ],
-    imagen: "",
+    imagen: "/proyectos/parrandon-navideno.png",
     demo: "https://parrandon.vercel.app/",
     credencialesDemo: {
       url: "https://parrandon.vercel.app/admin",
@@ -360,7 +360,7 @@ export const proyectos: Proyecto[] = [
       "Google Meet API",
       "Vercel",
     ],
-    imagen: "",
+    imagen: "/proyectos/psicoconsulta-online.png",
     demo: "https://psiccarmen-jordan.vercel.app/",
     github: "https://github.com/pauldavid2809-cloud/CarmenJordan",
     credencialesDemo: {
@@ -428,7 +428,7 @@ export const proyectos: Proyecto[] = [
       "PDFKit",
       "Vercel",
     ],
-    imagen: "",
+    imagen: "/proyectos/taqueria-digital.png",
     demo: "https://la-unica-taqueria.vercel.app/",
     github: "https://github.com/pauldavid2809-cloud/LaUnicaTaqueria",
     modulos: [
@@ -482,7 +482,7 @@ export const proyectos: Proyecto[] = [
       { valor: "En vivo", etiqueta: "ranking actualizado tras cada partido" },
     ],
     stack: ["Next.js", "Supabase", "TypeScript", "Tailwind CSS"],
-    imagen: "",
+    imagen: "/proyectos/quiniela-mundial-2026.png",
     demo: "https://quiniela-mundial-sand.vercel.app/",
   },
 ];
