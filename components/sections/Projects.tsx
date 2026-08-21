@@ -25,11 +25,25 @@ export function Projects() {
     >
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {proyectos.map((proyecto) => {
-          const quinielaDict = t.quiniela;
-          const isQuiniela = proyecto.slug === "quiniela-mundial-2026";
-          const nombre = isQuiniela ? quinielaDict.nombre[lang] : proyecto.nombre;
-          const resultado = isQuiniela ? quinielaDict.resultado[lang] : proyecto.resultado;
-          const tags = isQuiniela ? quinielaDict.tags[lang] : proyecto.tags;
+          const projectDict =
+            proyecto.slug === "canon-ia"
+              ? t.canonia
+              : proyecto.slug === "pau-cookies"
+                ? t.pauCookies
+                : proyecto.slug === "arquidiocesis-maracaibo"
+                  ? t.arquidiocesis
+                  : proyecto.slug === "parrandon-navideno"
+                    ? t.parrandon
+                    : proyecto.slug === "psicoconsulta-online"
+                      ? t.psicoconsulta
+                      : proyecto.slug === "taqueria-digital"
+                        ? t.taqueria
+                        : proyecto.slug === "quiniela-mundial-2026"
+                          ? t.quiniela
+                          : null;
+          const nombre = projectDict?.nombre[lang] ?? proyecto.nombre;
+          const resultado = projectDict?.resultado[lang] ?? proyecto.resultado;
+          const tags = projectDict?.tags[lang] ?? proyecto.tags;
 
           return (
             <Link

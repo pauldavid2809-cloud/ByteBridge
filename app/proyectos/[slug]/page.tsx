@@ -7,6 +7,7 @@ import { Header } from "@/components/Header";
 import { WhatsAppFloat } from "@/components/WhatsAppFloat";
 import { Logo } from "@/components/Logo";
 import { WhatsAppIcon } from "@/components/icons/WhatsAppIcon";
+import { GitHubIcon } from "@/components/icons/GitHubIcon";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { getProyecto, proyectos } from "@/data/proyectos";
@@ -98,15 +99,24 @@ export default async function ProyectoPage({ params }: Props) {
               {proyecto.nombre}
             </h1>
             <p className="mt-5 max-w-2xl text-lg text-muted">{proyecto.descripcion}</p>
-            {proyecto.demo && (
-              <div className="mt-7">
-                <Button href={proyecto.demo} variant="secondary">
-                  <span
-                    aria-hidden="true"
-                    className="h-2 w-2 rounded-full bg-accent"
-                  />
-                  Ver demo en vivo
-                </Button>
+            
+            {(proyecto.demo || proyecto.github) && (
+              <div className="mt-7 flex flex-wrap gap-3">
+                {proyecto.demo && (
+                  <Button href={proyecto.demo} variant="secondary">
+                    <span
+                      aria-hidden="true"
+                      className="h-2 w-2 rounded-full bg-accent"
+                    />
+                    Ver demo en vivo
+                  </Button>
+                )}
+                {proyecto.github && (
+                  <Button href={proyecto.github} variant="secondary">
+                    <GitHubIcon className="h-4 w-4" />
+                    Código en GitHub
+                  </Button>
+                )}
               </div>
             )}
           </header>
@@ -153,6 +163,110 @@ export default async function ProyectoPage({ params }: Props) {
               )}
             </Bloque>
           </div>
+
+          {/* Credenciales de Acceso Demo (si existen) */}
+          {proyecto.credencialesDemo && (
+            <div className="mt-16 border-t border-line pt-12">
+              <div className="rounded-2xl border border-accent/30 bg-accent/5 p-6 sm:p-8">
+                <div className="flex items-center gap-3">
+                  <span className="flex h-8 w-8 items-center justify-center rounded-full bg-accent text-accent-ink font-bold text-sm">
+                    🔑
+                  </span>
+                  <div>
+                    <h2 className="text-lg font-semibold text-foreground sm:text-xl">
+                      Credenciales de Acceso para la Demo
+                    </h2>
+                    <p className="text-xs text-muted">
+                      {proyecto.credencialesDemo.nota ||
+                        "Usa estos datos para iniciar sesión y explorar el panel administrativo:"}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="mt-6 grid gap-4 sm:grid-cols-3">
+                  <div className="rounded-xl border border-line/60 bg-surface p-4">
+                    <span className="block text-xs text-muted">URL de Acceso</span>
+                    <a
+                      href={proyecto.credencialesDemo.url || proyecto.demo}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-1 block font-mono text-xs text-accent hover:underline break-all"
+                    >
+                      {proyecto.credencialesDemo.url || proyecto.demo} ↗
+                    </a>
+                  </div>
+                  <div className="rounded-xl border border-line/60 bg-surface p-4">
+                    <span className="block text-xs text-muted">Email Demo</span>
+                    <span className="mt-1 block font-mono text-xs text-foreground select-all font-semibold">
+                      {proyecto.credencialesDemo.email}
+                    </span>
+                  </div>
+                  <div className="rounded-xl border border-line/60 bg-surface p-4">
+                    <span className="block text-xs text-muted">Contraseña Demo</span>
+                    <span className="mt-1 block font-mono text-xs text-foreground select-all font-semibold">
+                      {proyecto.credencialesDemo.password}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Módulos y Enlaces Directos (si existen) */}
+          {proyecto.modulos && proyecto.modulos.length > 0 && (
+            <div className="mt-16 border-t border-line pt-12">
+              <h2 className="text-xl font-semibold sm:text-2xl">Módulos y Enlaces del Proyecto</h2>
+              <p className="mt-2 text-sm text-muted">
+                Acceso directo a todos los entornos funcionales y recursos del proyecto:
+              </p>
+              <div className="mt-6 grid gap-4 sm:grid-cols-2">
+                {proyecto.modulos.map((modulo) => (
+                  <a
+                    key={modulo.url}
+                    href={modulo.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group"
+                  >
+                    <Card interactive className="flex h-full flex-col justify-between p-5">
+                      <div>
+                        <div className="flex items-center justify-between gap-2">
+                          <h3 className="font-medium text-foreground group-hover:text-accent transition-colors">
+                            {modulo.nombre}
+                          </h3>
+                          <span className="text-xs text-muted group-hover:text-accent transition-colors">↗</span>
+                        </div>
+                        <p className="mt-2 text-xs leading-relaxed text-muted">
+                          {modulo.descripcion}
+                        </p>
+                      </div>
+                      <span className="mt-4 font-mono text-[11px] text-accent/80 break-all">
+                        {modulo.url}
+                      </span>
+                    </Card>
+                  </a>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Características Destacadas (si existen) */}
+          {proyecto.caracteristicas && proyecto.caracteristicas.length > 0 && (
+            <div className="mt-16 border-t border-line pt-12">
+              <h2 className="text-xl font-semibold sm:text-2xl">Características Destacadas</h2>
+              <ul className="mt-6 grid gap-3">
+                {proyecto.caracteristicas.map((item, idx) => (
+                  <li
+                    key={idx}
+                    className="flex items-start gap-3 rounded-xl border border-line/60 bg-surface/50 p-4 text-sm text-foreground/90"
+                  >
+                    <span className="mt-0.5 inline-flex h-2 w-2 shrink-0 rounded-full bg-accent" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
 
           {/* Stack usado */}
           <p className="mt-14 text-sm text-muted">
