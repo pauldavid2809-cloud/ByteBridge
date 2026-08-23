@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { QrModal } from "@/components/ui/QrModal";
 
 const servicios = ["Corte de cabello", "Barba", "Corte + Barba", "Coloración", "Tratamiento"];
 const horarios = ["9:00", "9:30", "10:00", "10:30", "11:00", "11:30", "14:00", "14:30", "15:00", "15:30", "16:00", "16:30"];
@@ -21,6 +22,7 @@ export function CitasDemo() {
   const [dia, setDia] = useState<number | null>(null);
   const [hora, setHora] = useState("");
   const [confirmado, setConfirmado] = useState(false);
+  const [mostrarQr, setMostrarQr] = useState(false);
 
   const horariosOcupados = ["10:00", "14:30", "16:00"];
   const hoy = new Date().getDay(); // 0 = domingo
@@ -29,8 +31,28 @@ export function CitasDemo() {
     <div className="rounded-2xl border border-line bg-background overflow-hidden">
       {/* Header */}
       <div className="bg-gradient-to-r from-violet-900/80 to-purple-900/80 px-5 py-4">
-        <p className="text-xs text-violet-300 font-medium uppercase tracking-wider">Agenda de Citas</p>
-        <h3 className="text-white font-bold text-lg">💈 Barbería Elite</h3>
+        <div className="flex items-center justify-between">
+          <div>
+            <p className="text-xs text-violet-300 font-medium uppercase tracking-wider">Agenda de Citas</p>
+            <h3 className="text-white font-bold text-lg">Barbería Elite</h3>
+          </div>
+          <button
+            onClick={() => setMostrarQr(true)}
+            className="inline-flex items-center gap-1 rounded-full border border-violet-300/40 bg-violet-400/20 px-2.5 py-1 text-[11px] font-bold text-violet-200 hover:bg-violet-400/30 transition-colors"
+          >
+            📲 QR Pase Cita
+          </button>
+        </div>
+
+        <QrModal
+          isOpen={mostrarQr}
+          onClose={() => setMostrarQr(false)}
+          title="Pase QR · Agenda Online"
+          subtitle="Escanea con tu teléfono para agendar y sincronizar tu cita directamente en tu calendario"
+          tableOrContextLabel="Pase Digital · Barbería Elite"
+          qrValue="https://bytebridge.cloud/#soluciones"
+        />
+
         {/* Progreso */}
         <div className="mt-3 flex gap-1.5">
           {[1, 2, 3, 4].map((n) => (

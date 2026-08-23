@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { QrModal } from "@/components/ui/QrModal";
 
 const categorias = [
   { id: "entradas", label: "Entradas" },
@@ -25,6 +26,7 @@ export function MenuDemo() {
   const [catActiva, setCatActiva] = useState("entradas");
   const [carrito, setCarrito] = useState<{ id: number; cantidad: number }[]>([]);
   const [mostrarCarrito, setMostrarCarrito] = useState(false);
+  const [mostrarQr, setMostrarQr] = useState(false);
 
   const platosVisibles = platos.filter((p) => p.cat === catActiva);
 
@@ -47,14 +49,22 @@ export function MenuDemo() {
       {/* Header del restaurante */}
       <div className="bg-gradient-to-r from-amber-900/80 to-orange-900/80 px-5 py-4 flex items-center justify-between">
         <div>
-          <p className="text-xs text-amber-300 font-medium uppercase tracking-wider">Menú Digital</p>
-          <h3 className="text-white font-bold text-lg">🍽️ La Casa Criolla</h3>
+          <div className="flex items-center gap-2">
+            <p className="text-xs text-amber-300 font-medium uppercase tracking-wider">Menú Digital</p>
+            <button
+              onClick={() => setMostrarQr(true)}
+              className="inline-flex items-center gap-1 rounded-full border border-amber-300/40 bg-amber-400/20 px-2 py-0.5 text-[10px] font-bold text-amber-200 hover:bg-amber-400/30 transition-colors"
+            >
+              📲 QR Mesa 4
+            </button>
+          </div>
+          <h3 className="text-white font-bold text-lg">La Casa Criolla</h3>
         </div>
         <button
           onClick={() => setMostrarCarrito(!mostrarCarrito)}
           className="relative flex items-center gap-2 rounded-full bg-white/10 border border-white/20 px-3 py-1.5 text-white text-sm hover:bg-white/20 transition-colors"
         >
-          🛒 Pedido
+          Pedido
           {totalItems > 0 && (
             <span className="absolute -top-1.5 -right-1.5 h-5 w-5 rounded-full bg-accent text-accent-ink text-xs font-bold flex items-center justify-center">
               {totalItems}
@@ -62,6 +72,15 @@ export function MenuDemo() {
           )}
         </button>
       </div>
+
+      <QrModal
+        isOpen={mostrarQr}
+        onClose={() => setMostrarQr(false)}
+        title="Menú Digital · Mesa 4"
+        subtitle="Escanea con la cámara de tu móvil para ordenar directamente desde la mesa"
+        tableOrContextLabel="Mesa 4 · Restaurante La Casa Criolla"
+        qrValue="https://bytebridge.cloud/#soluciones"
+      />
 
       {/* Carrito */}
       {mostrarCarrito && (
