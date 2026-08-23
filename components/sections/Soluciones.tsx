@@ -166,44 +166,51 @@ export function Soluciones() {
           : "100% functional systems. Select any solution and test it in real time."
       }
     >
-      {/* ── GRID DE SELECCIÓN — visible completo en móvil y desktop ── */}
-      <div className="grid grid-cols-3 gap-2.5 sm:gap-3 sm:grid-cols-6 mb-10">
+      {/* ── SELECCIÓN DE DEMOS — Carrusel táctil snap en móvil, grid en desktop ── */}
+      <div className="flex gap-2.5 overflow-x-auto pb-4 pt-1 px-1 -mx-2 sm:mx-0 sm:grid sm:grid-cols-6 sm:gap-3 sm:overflow-visible sm:pb-0 mb-8 scrollbar-hide snap-x snap-mandatory touch-manipulation">
         {soluciones.map((s, i) => {
           const IconComp = s.icon;
+          const isActiva = activa === s.id;
           return (
             <button
               key={s.id}
               onClick={() => setActiva(s.id)}
-              className={`group relative flex flex-col items-center gap-2 rounded-2xl border p-3 sm:p-4 text-center transition-[border-color,background-color,transform,box-shadow] duration-200 active:scale-[0.96] ${
-                activa === s.id
-                  ? `${s.borderActive} shadow-lg shadow-accent/5 scale-[1.03]`
+              className={`group relative flex min-w-[125px] sm:min-w-0 flex-1 shrink-0 snap-center flex-col items-center gap-2 rounded-2xl border p-3 sm:p-4 text-center transition-[border-color,background-color,transform,box-shadow] duration-200 active:scale-[0.95] ${
+                isActiva
+                  ? `${s.borderActive} shadow-lg shadow-accent/10 ring-1 ring-accent/30 scale-[1.02]`
                   : "border-line bg-surface/80 hover:border-accent/40 hover:bg-surface [@media(hover:hover)_and_(pointer:fine)]:hover:scale-[1.02]"
               }`}
             >
-              {/* Número de posición */}
-              {activa !== s.id && (
-                <span className="absolute top-1.5 right-2 text-[10px] font-bold text-muted/50">
-                  {i + 1}
+              {/* Indicador de posición / estado activo */}
+              {isActiva ? (
+                <span className="absolute top-2 right-2 flex h-2 w-2">
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-60" />
+                  <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
+                </span>
+              ) : (
+                <span className="absolute top-2 right-2 text-[10px] font-mono text-muted/40">
+                  0{i + 1}
                 </span>
               )}
-              {activa === s.id && (
-                <span className="absolute top-1.5 right-2 h-2 w-2 rounded-full bg-accent animate-pulse" />
-              )}
-              <div className={`flex h-9 w-9 items-center justify-center rounded-xl transition-colors duration-200 ${
-                activa === s.id ? "bg-accent/15 text-accent" : "bg-background/80 text-muted group-hover:text-foreground"
+
+              <div className={`flex h-10 w-10 sm:h-9 sm:w-9 items-center justify-center rounded-xl transition-all duration-200 ${
+                isActiva ? "bg-accent text-accent-ink shadow-sm scale-105" : "bg-background/80 text-muted group-hover:text-foreground"
               }`}>
                 <IconComp className="h-5 w-5" />
               </div>
-              <p className={`text-[11px] sm:text-xs font-semibold leading-tight transition-colors ${
-                activa === s.id ? "text-foreground" : "text-muted group-hover:text-foreground"
+
+              <p className={`text-xs font-bold leading-tight transition-colors ${
+                isActiva ? "text-foreground" : "text-muted group-hover:text-foreground"
               }`}>
                 {s.nombre[lang]}
               </p>
+
               {!ocultarPrecios && (
-                <p className={`text-[10px] font-bold ${activa === s.id ? "text-accent" : "text-muted/60"}`}>
+                <p className={`text-[10px] font-bold ${isActiva ? "text-accent" : "text-muted/60"}`}>
                   {s.precio[lang]}
                 </p>
               )}
+
               {/* Precio local si aplica */}
               {getPrecioLocal(s.id) && (
                 <p className="text-[9px] text-accent/70 font-medium leading-none">
