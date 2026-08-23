@@ -10,7 +10,7 @@ import { useLanguage } from "@/context/LanguageContext";
 import { dictionary } from "@/data/dictionary";
 
 const inputClass =
-  "w-full rounded-xl border border-line bg-background/80 px-4 py-3 text-sm " +
+  "w-full rounded-xl border border-line bg-background/80 px-4 py-3 text-base sm:text-sm " +
   "text-foreground placeholder:text-muted/60 transition-[border-color,box-shadow] duration-150 " +
   "hover:border-foreground/20 focus:border-accent focus:ring-1 focus:ring-accent/40 focus:outline-none";
 

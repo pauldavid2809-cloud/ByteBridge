@@ -43,12 +43,12 @@ export function Projects() {
       subtitle={t.subtitle[lang]}
     >
       {/* Barra de Filtros por Categoría */}
-      <div className="mb-8 flex flex-wrap items-center gap-2">
+      <div className="mb-8 flex items-center gap-2 overflow-x-auto pb-2 scrollbar-hide sm:flex-wrap sm:pb-0 touch-manipulation">
         {(["all", "apps", "ecommerce", "landing"] as Category[]).map((cat) => (
           <button
             key={cat}
             onClick={() => setCategoria(cat)}
-            className={`rounded-full px-4 py-1.5 text-xs font-semibold transition-[background-color,border-color,color,transform] duration-150 active:scale-95 ${
+            className={`shrink-0 rounded-full px-4 py-2 text-xs font-semibold transition-[background-color,border-color,color,transform] duration-150 active:scale-95 ${
               categoria === cat
                 ? "bg-accent text-accent-ink shadow-sm ring-1 ring-accent/40"
                 : "border border-line bg-surface text-muted hover:border-accent/40 hover:text-foreground"
