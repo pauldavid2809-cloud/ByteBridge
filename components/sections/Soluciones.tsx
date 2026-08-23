@@ -230,16 +230,21 @@ export function Soluciones() {
                 {s.nombre[lang]}
               </p>
 
-              {!ocultarPrecios && (
-                <p className={`text-[11px] font-extrabold ${isActiva ? "text-accent" : "text-muted/70"}`}>
-                  {s.precio[lang]}
-                </p>
-              )}
-
-              {/* Precio local si aplica */}
-              {getPrecioLocal(s.id) && (
-                <p className="text-[10px] text-accent/80 font-semibold leading-none">
-                  ≈ {getPrecioLocal(s.id)}
+              {!ocultarPrecios ? (
+                <>
+                  <p className={`text-[11px] font-extrabold ${isActiva ? "text-accent" : "text-muted/70"}`}>
+                    {s.precio[lang]}
+                  </p>
+                  {/* Precio local si aplica */}
+                  {getPrecioLocal(s.id) && (
+                    <p className="text-[10px] text-accent/80 font-semibold leading-none">
+                      ≈ {getPrecioLocal(s.id)}
+                    </p>
+                  )}
+                </>
+              ) : (
+                <p className={`text-[10px] font-semibold ${isActiva ? "text-accent" : "text-muted/60"}`}>
+                  {lang === "es" ? "A medida" : "Bespoke"}
                 </p>
               )}
             </button>
@@ -260,13 +265,19 @@ export function Soluciones() {
               </div>
               <div>
                 <h3 className="text-lg font-bold text-foreground">{solucionActiva.nombre[lang]}</h3>
-                {!ocultarPrecios && (
-                  <p className="text-xs font-bold text-accent">{solucionActiva.precio[lang]}</p>
-                )}
-                {getPrecioLocal(solucionActiva.id) && (
-                  <p className="text-xs text-accent/90 font-semibold">
-                    ≈ {getPrecioLocal(solucionActiva.id)}{" "}
-                    <span className="text-muted font-normal">{pais.moneda}</span>
+                {!ocultarPrecios ? (
+                  <>
+                    <p className="text-xs font-bold text-accent">{solucionActiva.precio[lang]}</p>
+                    {getPrecioLocal(solucionActiva.id) && (
+                      <p className="text-xs text-accent/90 font-semibold">
+                        ≈ {getPrecioLocal(solucionActiva.id)}{" "}
+                        <span className="text-muted font-normal">{pais.moneda}</span>
+                      </p>
+                    )}
+                  </>
+                ) : (
+                  <p className="text-xs font-semibold text-accent">
+                    {lang === "es" ? "Desarrollo a medida" : "Custom development"}
                   </p>
                 )}
               </div>

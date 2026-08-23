@@ -10,7 +10,7 @@ import { PAISES_LATAM } from "@/data/currencies";
  * Todo en un solo dropdown compacto, sin saturar el header.
  */
 export function PreferencesPanel() {
-  const { pais, setPais, cargando } = useCurrency();
+  const { pais, setPais, cargando, ocultarPrecios } = useCurrency();
   const { lang, setLang } = useLanguage();
   const [abierto, setAbierto] = useState(false);
   const [busqueda, setBusqueda] = useState("");
@@ -138,9 +138,13 @@ export function PreferencesPanel() {
             {/* Nota de tasas */}
             <div className="mx-4 mb-3 mt-1 rounded-xl bg-surface/70 border border-line px-3 py-2">
               <p className="text-[10px] text-muted text-center leading-relaxed font-medium">
-                {lang === "es"
-                  ? "Tasas de cambio actualizadas · Precios base fijados en USD"
-                  : "Live exchange rates · USD is default base currency"}
+                {!ocultarPrecios
+                  ? (lang === "es"
+                      ? "Tasas de cambio actualizadas · Precios base fijados en USD"
+                      : "Live exchange rates · USD is default base currency")
+                  : (lang === "es"
+                      ? "Modo cotización personalizada · Atención directa"
+                      : "Custom quote mode · Direct advisory")}
               </p>
             </div>
           </div>

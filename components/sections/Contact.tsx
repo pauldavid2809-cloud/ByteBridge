@@ -7,6 +7,7 @@ import { Card } from "@/components/ui/Card";
 import { Section } from "@/components/ui/Section";
 import { whatsappLink } from "@/lib/config";
 import { useLanguage } from "@/context/LanguageContext";
+import { useCurrency } from "@/context/CurrencyContext";
 import { dictionary } from "@/data/dictionary";
 
 const inputClass =
@@ -18,6 +19,7 @@ type Estado = "idle" | "enviando" | "enviado" | "error";
 
 export function Contact() {
   const { lang } = useLanguage();
+  const { ocultarPrecios } = useCurrency();
   const t = dictionary.contact;
 
   const [estado, setEstado] = useState<Estado>("idle");
@@ -162,11 +164,17 @@ export function Contact() {
                 defaultValue="no sé todavía"
                 className={`${inputClass} appearance-none cursor-pointer`}
               >
-                {t.types.map((tipo) => (
-                  <option key={tipo.value} value={tipo.value} className="bg-surface text-foreground">
-                    {tipo.label[lang]}
-                  </option>
-                ))}
+                {t.types.map((tipo) => {
+                  let labelTexto = tipo.label[lang];
+                  if (ocultarPrecios) {
+                    labelTexto = labelTexto.replace(/\s*\([^)]*\)/g, "");
+                  }
+                  return (
+                    <option key={tipo.value} value={tipo.value} className="bg-surface text-foreground">
+                      {labelTexto}
+                    </option>
+                  );
+                })}
               </select>
             </div>
 

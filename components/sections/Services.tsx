@@ -108,15 +108,19 @@ export function Services() {
                   <span className="font-display text-3xl sm:text-4xl font-black text-foreground">
                     {ocultarPrecios ? (lang === "es" ? "A medida" : "Custom quote") : precio}
                   </span>
-                  {!ocultarPrecios && (
+                  {!ocultarPrecios ? (
                     <span className="text-xs font-medium text-muted">
                       / {notaPrecio}
+                    </span>
+                  ) : (
+                    <span className="text-xs font-semibold text-accent/80">
+                      / {lang === "es" ? "Presupuesto personalizado" : "Bespoke plan"}
                     </span>
                   )}
                 </div>
 
                 {/* Precio en moneda local */}
-                {getPrecioLocal(nombre) && (
+                {!ocultarPrecios && getPrecioLocal(nombre) && (
                   <p className="mt-1 text-xs font-bold text-accent">
                     {getPrecioLocal(nombre)}
                     <span className="ml-1 text-[11px] font-normal text-muted">{pais.moneda}</span>
@@ -141,7 +145,13 @@ export function Services() {
 
               <div className="mt-8 pt-4">
                 <Button
-                  href={whatsappLink(ctaMensaje)}
+                  href={whatsappLink(
+                    ocultarPrecios
+                      ? (lang === "es"
+                          ? `Hola! Me interesa cotizar el paquete "${nombre}" para mi negocio.`
+                          : `Hi! I'm interested in a custom quote for the "${nombre}" package.`)
+                      : ctaMensaje
+                  )}
                   variant={paquete.destacado ? "primary" : "secondary"}
                   className="w-full shadow-md"
                 >
@@ -159,9 +169,13 @@ export function Services() {
         <div>
           <h3 className="text-base sm:text-lg font-bold text-foreground">
             {mantenimientoMultiLang.nombre[lang]}{" "}
-            {!ocultarPrecios && (
+            {!ocultarPrecios ? (
               <span className="ml-1 font-display text-accent font-extrabold">
                 {mantenimientoMultiLang.precio[lang]}
+              </span>
+            ) : (
+              <span className="ml-1 text-xs font-bold text-accent">
+                ({lang === "es" ? "Módulo Opcional" : "Optional Add-on"})
               </span>
             )}
           </h3>
@@ -170,7 +184,13 @@ export function Services() {
           </p>
         </div>
         <Button
-          href={whatsappLink(mantenimientoMultiLang.ctaMensaje[lang])}
+          href={whatsappLink(
+            ocultarPrecios
+              ? (lang === "es"
+                  ? "Hola! Me interesa información sobre el soporte y mantenimiento web mensual."
+                  : "Hi! I'm interested in info about monthly web support & maintenance.")
+              : mantenimientoMultiLang.ctaMensaje[lang]
+          )}
           variant="secondary"
           className="shrink-0 text-xs sm:text-sm"
         >

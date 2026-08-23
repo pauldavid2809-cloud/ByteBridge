@@ -80,8 +80,10 @@ export function Calculator() {
                   }`}
                 >
                   <p className="text-sm font-bold text-foreground">{t.nombre[lang]}</p>
-                  {!ocultarPrecios && (
+                  {!ocultarPrecios ? (
                     <p className="text-xs text-accent font-extrabold">Desde ${t.base} USD</p>
+                  ) : (
+                    <p className="text-xs text-accent font-semibold">{lang === "es" ? "A medida" : "Bespoke"}</p>
                   )}
                   <p className="inline-flex items-center gap-1.5 text-[11px] text-muted">
                     <ClockIcon className="h-3.5 w-3.5 text-accent/80" />
@@ -118,8 +120,12 @@ export function Calculator() {
                       </span>
                       <span className="truncate">{e.nombre[lang]}</span>
                     </div>
-                    {!ocultarPrecios && (
+                    {!ocultarPrecios ? (
                       <span className="text-accent font-extrabold shrink-0 ml-2">+${e.precio}</span>
+                    ) : (
+                      <span className="text-[11px] font-semibold text-accent/80 shrink-0 ml-2">
+                        {activo ? (lang === "es" ? "Incluido" : "Selected") : (lang === "es" ? "+ Módulo" : "+ Add-on")}
+                      </span>
                     )}
                   </button>
                 );
@@ -155,8 +161,36 @@ export function Calculator() {
               )}
             </div>
           ) : (
-            <div className="py-4 border-y border-line">
-              <p className="text-sm font-semibold text-accent">{lang === "es" ? "Cotización personalizada a medida" : "Bespoke custom quote"}</p>
+            <div className="py-4 border-y border-line/80 space-y-3">
+              <div>
+                <p className="text-xs font-bold uppercase tracking-wider text-muted mb-2">
+                  {lang === "es" ? "Alcance seleccionado:" : "Selected scope:"}
+                </p>
+                <div className="flex flex-wrap gap-1.5">
+                  <span className="rounded-lg bg-accent/20 border border-accent/40 px-2.5 py-1 text-xs font-bold text-accent">
+                    {tipo.nombre[lang]}
+                  </span>
+                  {extrasSel.map((id) => {
+                    const item = opcionesExtra.find((o) => o.id === id);
+                    if (!item) return null;
+                    return (
+                      <span key={id} className="rounded-lg bg-surface border border-line px-2.5 py-1 text-xs font-medium text-foreground/90">
+                        + {item.nombre[lang]}
+                      </span>
+                    );
+                  })}
+                  {extrasSel.length === 0 && (
+                    <span className="text-xs text-muted italic">
+                      {lang === "es" ? "Versión base sin módulos adicionales" : "Base version without add-ons"}
+                    </span>
+                  )}
+                </div>
+              </div>
+              <p className="text-xs text-accent font-medium leading-relaxed">
+                {lang === "es"
+                  ? "💡 Recibe la cotización formal y tiempos exactos en menos de 15 minutos."
+                  : "💡 Receive a formal quote and exact timeline in under 15 minutes."}
+              </p>
             </div>
           )}
 
