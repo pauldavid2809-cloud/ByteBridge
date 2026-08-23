@@ -56,7 +56,8 @@ export function Reveal({
   return (
     <div
       ref={ref}
-      className={`translate-y-6 opacity-0 transition-[opacity,transform] duration-700 ease-out motion-reduce:translate-y-0 motion-reduce:opacity-100 motion-reduce:transition-none ${className}`}
+      style={{ transitionTimingFunction: "cubic-bezier(0.23, 1, 0.32, 1)" }}
+      className={`translate-y-6 opacity-0 transition-[opacity,transform] duration-700 motion-reduce:translate-y-0 motion-reduce:opacity-100 motion-reduce:transition-none ${className}`}
     >
       {children}
     </div>

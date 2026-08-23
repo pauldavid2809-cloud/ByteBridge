@@ -94,18 +94,31 @@ export function Faq() {
             >
               <button
                 onClick={() => toggle(faq.id)}
-                className="w-full flex items-center justify-between p-5 text-left text-sm sm:text-base font-semibold text-foreground hover:text-accent transition-colors"
+                className="w-full flex items-center justify-between p-5 text-left text-sm sm:text-base font-semibold text-foreground hover:text-accent transition-colors duration-200"
               >
                 <span>{faq.q[lang]}</span>
-                <span className={`ml-3 text-lg font-bold text-accent transition-transform duration-200 shrink-0 ${abierto ? "rotate-45" : ""}`}>
+                <span
+                  className={`ml-3 text-lg font-bold text-accent shrink-0 transition-transform duration-300 motion-reduce:transition-none`}
+                  style={{ transform: abierto ? "rotate(45deg)" : "rotate(0deg)" }}
+                >
                   +
                 </span>
               </button>
-              {abierto && (
-                <div className="px-5 pb-5 pt-0 text-xs sm:text-sm text-muted leading-relaxed border-t border-line/40">
-                  <p className="mt-3">{faq.a[lang]}</p>
+              {/* Accordion animado: grid-rows es la forma correcta de animar height en CSS */}
+              <div
+                className="grid transition-[grid-template-rows,opacity] duration-300 motion-reduce:transition-none"
+                style={{
+                  gridTemplateRows: abierto ? "1fr" : "0fr",
+                  opacity: abierto ? 1 : 0,
+                  transitionTimingFunction: "cubic-bezier(0.23, 1, 0.32, 1)",
+                }}
+              >
+                <div className="overflow-hidden">
+                  <div className="px-5 pb-5 pt-0 text-xs sm:text-sm text-muted leading-relaxed border-t border-line/40">
+                    <p className="mt-3">{faq.a[lang]}</p>
+                  </div>
                 </div>
-              )}
+              </div>
             </div>
           );
         })}

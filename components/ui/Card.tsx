@@ -16,7 +16,7 @@ export function Card({ children, className = "", interactive = false }: CardProp
     <div
       className={`rounded-2xl border border-line bg-surface ${
         interactive
-          ? "transition-colors duration-200 hover:border-accent/40"
+          ? "transition-[border-color,transform,box-shadow] duration-200 [transition-timing-function:cubic-bezier(0.23,1,0.32,1)] [@media(hover:hover)_and_(pointer:fine)]:hover:border-accent/40 [@media(hover:hover)_and_(pointer:fine)]:hover:-translate-y-0.5 [@media(hover:hover)_and_(pointer:fine)]:hover:shadow-lg [@media(hover:hover)_and_(pointer:fine)]:hover:shadow-accent/5"
           : ""
       } ${className}`}
     >

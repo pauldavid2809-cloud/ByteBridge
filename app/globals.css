@@ -19,6 +19,11 @@
   /* Tipografía: Montserrat (títulos y marca) + Plus Jakarta Sans (cuerpo de texto) */
   --font-sans: var(--font-body), ui-sans-serif, system-ui, sans-serif;
   --font-display: var(--font-display), var(--font-body), ui-sans-serif, sans-serif;
+
+  /* Curvas de easing — Emil Kowalski animation vocabulary */
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
 }
 
 html {
@@ -64,5 +69,56 @@ h4 {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+}
+
+/* ============================================================
+   KEYFRAMES DE ANIMACIÓN
+   ============================================================ */
+
+/* Entrada desde abajo con fade — usada en el Hero con stagger */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Entrada del botón flotante: pop desde abajo */
+@keyframes float-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Clases de animación del Hero con stagger */
+.hero-animate {
+  animation: fade-up 0.6s var(--ease-out) both;
+}
+.hero-animate-1 { animation-delay: 0ms; }
+.hero-animate-2 { animation-delay: 80ms; }
+.hero-animate-3 { animation-delay: 160ms; }
+.hero-animate-4 { animation-delay: 240ms; }
+
+/* Entrada del botón flotante de WhatsApp */
+.float-animate {
+  animation: float-in 0.5s var(--ease-out) 0.8s both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-animate,
+  .float-animate {
+    animation: none;
+    opacity: 1;
+    transform: none;
   }
 }

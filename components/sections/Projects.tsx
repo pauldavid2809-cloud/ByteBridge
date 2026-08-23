@@ -53,13 +53,13 @@ export function Projects() {
             >
               <Card interactive className="flex h-full flex-col overflow-hidden">
                 {/* Imagen del caso, o placeholder con el logo si no hay */}
-                <div className="relative flex aspect-[16/10] items-center justify-center border-b border-line bg-background">
+                <div className="relative flex aspect-[16/10] items-center justify-center border-b border-line bg-background overflow-hidden">
                   {proyecto.imagen ? (
                     <Image
                       src={proyecto.imagen}
                       alt={`Captura del proyecto ${nombre}`}
                       fill
-                      className="object-cover"
+                      className="object-cover transition-transform duration-500 [transition-timing-function:cubic-bezier(0.23,1,0.32,1)] [@media(hover:hover)_and_(pointer:fine)]:group-hover:scale-[1.04]"
                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     />
                   ) : (

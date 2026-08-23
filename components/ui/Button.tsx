@@ -14,7 +14,8 @@ type ButtonProps = {
 
 const base =
   "inline-flex items-center justify-center gap-2 rounded-full font-medium " +
-  "transition-colors duration-200 select-none " +
+  "transition-[colors,transform] duration-150 select-none " +
+  "active:scale-[0.97] " +
   "disabled:opacity-50 disabled:pointer-events-none";
 
 const variants = {
