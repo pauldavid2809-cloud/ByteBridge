@@ -3,6 +3,14 @@
 import { useState } from "react";
 import { Section } from "@/components/ui/Section";
 import { WhatsAppIcon } from "@/components/icons/WhatsAppIcon";
+import {
+  MenuIcon,
+  CalendarClockIcon,
+  TableReservationIcon,
+  StoreIcon,
+  DeliveryBikeIcon,
+  AnalyticsIcon,
+} from "@/components/icons/AppIcons";
 import { whatsappLink } from "@/lib/config";
 import { useLanguage } from "@/context/LanguageContext";
 import { useCurrency } from "@/context/CurrencyContext";
@@ -16,7 +24,7 @@ import { DashboardDemo } from "@/components/demos/DashboardDemo";
 const soluciones = [
   {
     id: "menu",
-    icon: "🍽️",
+    icon: MenuIcon,
     color: "from-amber-500/20 to-orange-500/10",
     borderActive: "border-amber-500/60 bg-amber-500/5",
     precio: { es: "Desde $100", en: "From $100" },
@@ -34,7 +42,7 @@ const soluciones = [
   },
   {
     id: "citas",
-    icon: "💈",
+    icon: CalendarClockIcon,
     color: "from-violet-500/20 to-purple-500/10",
     borderActive: "border-violet-500/60 bg-violet-500/5",
     precio: { es: "Desde $150", en: "From $150" },
@@ -52,7 +60,7 @@ const soluciones = [
   },
   {
     id: "reservas",
-    icon: "🍷",
+    icon: TableReservationIcon,
     color: "from-emerald-500/20 to-teal-500/10",
     borderActive: "border-emerald-500/60 bg-emerald-500/5",
     precio: { es: "Desde $150", en: "From $150" },
@@ -70,7 +78,7 @@ const soluciones = [
   },
   {
     id: "catalogo",
-    icon: "🛒",
+    icon: StoreIcon,
     color: "from-blue-500/20 to-indigo-500/10",
     borderActive: "border-blue-500/60 bg-blue-500/5",
     precio: { es: "Desde $200", en: "From $200" },
@@ -88,7 +96,7 @@ const soluciones = [
   },
   {
     id: "delivery",
-    icon: "🛵",
+    icon: DeliveryBikeIcon,
     color: "from-red-500/20 to-orange-500/10",
     borderActive: "border-red-500/60 bg-red-500/5",
     precio: { es: "Desde $300", en: "From $300" },
@@ -106,7 +114,7 @@ const soluciones = [
   },
   {
     id: "dashboard",
-    icon: "📊",
+    icon: AnalyticsIcon,
     color: "from-slate-500/20 to-zinc-500/10",
     borderActive: "border-slate-400/60 bg-slate-500/5",
     precio: { es: "Desde $500", en: "From $500" },
@@ -149,54 +157,60 @@ export function Soluciones() {
   return (
     <Section
       id="soluciones"
-      eyebrow={lang === "es" ? "Lo que puedo construir" : "What I can build"}
-      title={lang === "es" ? "Demos en vivo · Pruébalos ahora" : "Live Demos · Try them now"}
+      title={lang === "es" ? "Demos interactivos en vivo" : "Live interactive demos"}
       subtitle={
         lang === "es"
-          ? "Demos 100% funcionales. Elige cualquier opción y pruébala en vivo."
-          : "100% functional live demos. Select any option and test it out."
+          ? "Sistemas 100% funcionales. Elige cualquier solución y pruébala en tiempo real."
+          : "100% functional systems. Select any solution and test it in real time."
       }
     >
       {/* ── GRID DE SELECCIÓN — visible completo en móvil y desktop ── */}
       <div className="grid grid-cols-3 gap-2.5 sm:gap-3 sm:grid-cols-6 mb-10">
-        {soluciones.map((s, i) => (
-          <button
-            key={s.id}
-            onClick={() => setActiva(s.id)}
-            className={`group relative flex flex-col items-center gap-2 rounded-2xl border p-3 sm:p-4 text-center transition-[border-color,background-color,transform,box-shadow] duration-200 active:scale-[0.96] ${
-              activa === s.id
-                ? `${s.borderActive} shadow-lg shadow-accent/5 scale-[1.03]`
-                : "border-line bg-surface/80 hover:border-accent/40 hover:bg-surface [@media(hover:hover)_and_(pointer:fine)]:hover:scale-[1.02]"
-            }`}
-          >
-            {/* Número de posición — visible en inactivos para que sea obvio que hay más */}
-            {activa !== s.id && (
-              <span className="absolute top-1.5 right-2 text-[10px] font-bold text-muted/50">
-                {i + 1}
-              </span>
-            )}
-            {activa === s.id && (
-              <span className="absolute top-1.5 right-2 h-2 w-2 rounded-full bg-accent animate-pulse" />
-            )}
-            <span className="text-2xl sm:text-3xl leading-none transition-transform duration-200 group-hover:scale-110">{s.icon}</span>
-            <p className={`text-[11px] sm:text-xs font-semibold leading-tight transition-colors ${
-              activa === s.id ? "text-foreground" : "text-muted group-hover:text-foreground"
-            }`}>
-              {s.nombre[lang]}
-            </p>
-            {!ocultarPrecios && (
-              <p className={`text-[10px] font-bold ${activa === s.id ? "text-accent" : "text-muted/60"}`}>
-                {s.precio[lang]}
+        {soluciones.map((s, i) => {
+          const IconComp = s.icon;
+          return (
+            <button
+              key={s.id}
+              onClick={() => setActiva(s.id)}
+              className={`group relative flex flex-col items-center gap-2 rounded-2xl border p-3 sm:p-4 text-center transition-[border-color,background-color,transform,box-shadow] duration-200 active:scale-[0.96] ${
+                activa === s.id
+                  ? `${s.borderActive} shadow-lg shadow-accent/5 scale-[1.03]`
+                  : "border-line bg-surface/80 hover:border-accent/40 hover:bg-surface [@media(hover:hover)_and_(pointer:fine)]:hover:scale-[1.02]"
+              }`}
+            >
+              {/* Número de posición */}
+              {activa !== s.id && (
+                <span className="absolute top-1.5 right-2 text-[10px] font-bold text-muted/50">
+                  {i + 1}
+                </span>
+              )}
+              {activa === s.id && (
+                <span className="absolute top-1.5 right-2 h-2 w-2 rounded-full bg-accent animate-pulse" />
+              )}
+              <div className={`flex h-9 w-9 items-center justify-center rounded-xl transition-colors duration-200 ${
+                activa === s.id ? "bg-accent/15 text-accent" : "bg-background/80 text-muted group-hover:text-foreground"
+              }`}>
+                <IconComp className="h-5 w-5" />
+              </div>
+              <p className={`text-[11px] sm:text-xs font-semibold leading-tight transition-colors ${
+                activa === s.id ? "text-foreground" : "text-muted group-hover:text-foreground"
+              }`}>
+                {s.nombre[lang]}
               </p>
-            )}
-            {/* Precio local si aplica */}
-            {getPrecioLocal(s.id) && (
-              <p className="text-[9px] text-accent/70 font-medium leading-none">
-                ≈ {getPrecioLocal(s.id)}
-              </p>
-            )}
-          </button>
-        ))}
+              {!ocultarPrecios && (
+                <p className={`text-[10px] font-bold ${activa === s.id ? "text-accent" : "text-muted/60"}`}>
+                  {s.precio[lang]}
+                </p>
+              )}
+              {/* Precio local si aplica */}
+              {getPrecioLocal(s.id) && (
+                <p className="text-[9px] text-accent/70 font-medium leading-none">
+                  ≈ {getPrecioLocal(s.id)}
+                </p>
+              )}
+            </button>
+          );
+        })}
       </div>
 
       {/* ── PANEL DEL DEMO ── */}
@@ -206,7 +220,9 @@ export function Soluciones() {
         <div className="lg:w-80 lg:shrink-0 space-y-4">
           <div className={`rounded-2xl bg-gradient-to-br ${solucionActiva.color} border border-line p-5 transition-all duration-300`}>
             <div className="flex items-center gap-3 mb-3">
-              <span className="text-4xl">{solucionActiva.icon}</span>
+              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-surface/80 border border-line text-accent">
+                <solucionActiva.icon className="h-6 w-6" />
+              </div>
               <div>
                 <h3 className="text-lg font-bold text-foreground">{solucionActiva.nombre[lang]}</h3>
                 {!ocultarPrecios && (
@@ -280,8 +296,8 @@ export function Soluciones() {
           </div>
           <p className="mt-3 text-center text-xs text-muted">
             {lang === "es"
-              ? "👆 Demo 100% interactivo — pruébalo tú mismo"
-              : "👆 100% interactive demo — try it yourself"}
+              ? "Prueba las funciones del demo interactivo en tiempo real"
+              : "Test all live interactive demo features in real time"}
           </p>
         </div>
       </div>

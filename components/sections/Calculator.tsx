@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Section } from "@/components/ui/Section";
 import { WhatsAppIcon } from "@/components/icons/WhatsAppIcon";
+import { ClockIcon, LockIcon } from "@/components/icons/AppIcons";
 import { whatsappLink } from "@/lib/config";
 import { useLanguage } from "@/context/LanguageContext";
 import { useCurrency } from "@/context/CurrencyContext";
@@ -50,12 +51,11 @@ export function Calculator() {
   return (
     <Section
       id="calculadora"
-      eyebrow={lang === "es" ? "Presupuesto transparente" : "Transparent Pricing"}
-      title={lang === "es" ? "Calculadora de Proyecto" : "Project Cost Calculator"}
+      title={lang === "es" ? "Calculadora de presupuesto" : "Project cost calculator"}
       subtitle={
         lang === "es"
-          ? "Selecciona lo que necesita tu negocio y obtén un estimado claro al instante."
-          : "Select what your business needs and get a clear instant estimate."
+          ? "Selecciona los requerimientos de tu negocio y obtén un estimado claro al instante."
+          : "Select your project requirements and get a clear instant estimate."
       }
     >
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
@@ -81,7 +81,10 @@ export function Calculator() {
                   {!ocultarPrecios && (
                     <p className="text-xs text-accent font-bold">Desde ${t.base} USD</p>
                   )}
-                  <p className="text-[11px] text-muted">⏱️ {t.tiempo}</p>
+                  <p className="inline-flex items-center gap-1.5 text-[11px] text-muted">
+                    <ClockIcon className="h-3.5 w-3.5 text-accent/80" />
+                    {t.tiempo}
+                  </p>
                 </button>
               ))}
             </div>
@@ -130,7 +133,10 @@ export function Calculator() {
               {lang === "es" ? "Resumen de Estimación" : "Estimated Quote"}
             </p>
             <h3 className="text-2xl font-bold text-foreground mt-1">{tipo.nombre[lang]}</h3>
-            <p className="text-xs text-muted mt-1">⏱️ {lang === "es" ? `Entrega estimada: ${tipo.tiempo}` : `Estimated delivery: ${tipo.tiempo}`}</p>
+            <p className="inline-flex items-center gap-1.5 text-xs text-muted mt-1">
+              <ClockIcon className="h-3.5 w-3.5 text-accent" />
+              {lang === "es" ? `Entrega estimada: ${tipo.tiempo}` : `Estimated delivery: ${tipo.tiempo}`}
+            </p>
           </div>
 
           {!ocultarPrecios ? (
@@ -159,14 +165,16 @@ export function Calculator() {
             {lang === "es" ? "Solicitar esta cotización por WhatsApp" : "Request this quote on WhatsApp"}
           </a>
 
-          <p className="text-[11px] text-muted text-center leading-relaxed">
+          <p className="inline-flex items-center justify-center gap-1.5 w-full text-[11px] text-muted text-center leading-relaxed">
+            <LockIcon className="h-3.5 w-3.5 text-accent/80" />
             {lang === "es"
-              ? "🔒 Sin compromiso · Incluye 30 días de soporte post-entrega"
-              : "🔒 No obligation · Includes 30 days post-launch support"}
+              ? "Sin compromiso · Incluye 30 días de soporte post-entrega"
+              : "No obligation · Includes 30 days post-launch support"}
           </p>
         </div>
       </div>
     </Section>
   );
 }
+
 

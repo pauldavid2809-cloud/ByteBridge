@@ -13,24 +13,25 @@ type ButtonProps = {
 };
 
 const base =
-  "inline-flex items-center justify-center gap-2 rounded-full font-medium " +
-  "transition-[colors,transform] duration-150 select-none " +
+  "group inline-flex items-center justify-center gap-2.5 rounded-full font-semibold " +
+  "transition-[background-color,border-color,color,transform,box-shadow] duration-150 select-none " +
   "active:scale-[0.97] " +
   "disabled:opacity-50 disabled:pointer-events-none";
 
 const variants = {
-  /* CTA principal: verde de marca con texto oscuro (contraste AA) */
-  primary: "bg-accent text-accent-ink hover:bg-accent-strong",
-  /* CTA secundario: borde sutil que se enciende en hover */
+  /* CTA principal: verde de marca con texto oscuro, resplandor sutil y hover responsivo */
+  primary:
+    "bg-accent text-accent-ink shadow-md shadow-accent/20 hover:bg-accent-strong hover:shadow-lg hover:shadow-accent/25",
+  /* CTA secundario: superficie con borde sutil y reflejo interior */
   secondary:
-    "border border-line text-foreground hover:border-accent/60 hover:text-accent-strong",
+    "border border-line bg-surface/60 text-foreground hover:border-accent/60 hover:text-accent-strong hover:bg-surface active:bg-accent/5",
   /* Enlaces con forma de botón, sin borde */
-  ghost: "text-muted hover:text-foreground",
+  ghost: "text-muted hover:text-foreground active:text-accent",
 };
 
 const sizes = {
   md: "h-11 px-6 text-sm",
-  lg: "h-13 px-8 text-base",
+  lg: "h-12 sm:h-13 px-7 sm:px-8 text-sm sm:text-base",
 };
 
 export function Button({

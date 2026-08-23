@@ -15,7 +15,7 @@ export function About() {
   const t = dictionary.about;
 
   return (
-    <Section id="sobre-mi" eyebrow={t.eyebrow[lang]} title={t.title[lang]} subtitle={t.subtitle[lang]}>
+    <Section id="sobre-mi" title={t.title[lang]} subtitle={t.subtitle[lang]}>
       <div className="flex flex-col gap-10 md:flex-row md:items-start md:gap-14">
         {/* Foto (o placeholder de marca mientras no haya foto) */}
         <div className="relative flex aspect-square w-40 shrink-0 items-center justify-center overflow-hidden rounded-2xl border border-line bg-surface sm:w-48">

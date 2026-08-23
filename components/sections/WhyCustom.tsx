@@ -42,7 +42,6 @@ export function WhyCustom() {
   return (
     <Section
       id="por-que-a-medida"
-      eyebrow={t.eyebrow[lang]}
       title={t.title[lang]}
       subtitle={t.subtitle[lang]}
     >
