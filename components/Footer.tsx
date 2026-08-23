@@ -16,11 +16,11 @@ export function Footer() {
   };
 
   return (
-    <footer className="border-t border-line bg-background px-5 pt-12 pb-24 sm:px-8 sm:pb-12">
+    <footer className="border-t border-line bg-background/90 px-5 pt-12 pb-12 sm:px-8">
       <div className="mx-auto flex w-full max-w-6xl flex-col gap-8">
         <div className="flex flex-col items-center justify-between gap-6 sm:flex-row">
           <Link href="/#inicio" className="flex items-center gap-2" aria-label="byte/bridge">
-            <Wordmark className="text-lg text-foreground" />
+            <Wordmark className="text-lg text-foreground font-bold" />
           </Link>
 
           <nav aria-label="Enlaces del pie de página" className="flex flex-wrap items-center justify-center gap-5 text-xs text-muted">
@@ -46,18 +46,18 @@ export function Footer() {
 
           <button
             onClick={scrollToTop}
-            className="flex items-center gap-1.5 rounded-full border border-line bg-surface px-3 py-1.5 text-xs text-muted transition-[border-color,color,transform] duration-150 hover:border-accent/40 hover:text-foreground active:scale-95"
+            className="flex items-center gap-1.5 rounded-full border border-line bg-surface/80 px-3.5 py-1.5 text-xs text-muted transition-all duration-150 hover:border-accent/40 hover:text-foreground active:scale-95 shadow-sm"
             aria-label={lang === "es" ? "Volver arriba" : "Back to top"}
           >
-            <span>↑</span>
+            <span className="text-accent font-bold">↑</span>
             <span>{lang === "es" ? "Arriba" : "Top"}</span>
           </button>
         </div>
 
         <div className="flex flex-col items-center justify-between gap-2 border-t border-line/40 pt-6 text-xs text-muted/70 sm:flex-row">
           <p>{text}</p>
-          <p className="text-[11px] text-muted/50">
-            {lang === "es" ? "Hecho con Next.js & Tailwind CSS" : "Crafted with Next.js & Tailwind CSS"}
+          <p className="text-[11px] text-muted/60">
+            {lang === "es" ? "Desarrollo web a medida · Toda Latinoamérica" : "Custom web development · All Latin America"}
           </p>
         </div>
       </div>

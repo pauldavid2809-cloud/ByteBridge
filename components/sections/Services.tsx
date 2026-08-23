@@ -71,7 +71,7 @@ export function Services() {
       title={t.title[lang]}
       subtitle={t.subtitle[lang]}
     >
-      <div className="grid items-start gap-6 lg:grid-cols-3">
+      <div className="grid items-stretch gap-6 lg:grid-cols-3">
         {paquetesMultiLang.map((paquete) => {
           const nombre = paquete.nombre[lang];
           const precio = paquete.precio[lang];
@@ -84,17 +84,17 @@ export function Services() {
           return (
             <Card
               key={nombre}
-              className={`relative flex h-full flex-col p-7 transition-[border-color,transform,box-shadow] duration-200 [@media(hover:hover)_and_(pointer:fine)]:hover:-translate-y-1 [@media(hover:hover)_and_(pointer:fine)]:hover:shadow-xl [@media(hover:hover)_and_(pointer:fine)]:hover:shadow-accent/5 ${
+              className={`relative flex h-full flex-col p-7 sm:p-8 transition-all duration-300 rounded-[2rem] ${
                 paquete.destacado
-                  ? "border-accent/70 bg-accent/[0.04] lg:-mt-4 lg:mb-[-1rem] lg:py-11 shadow-lg shadow-accent/10 hover:border-accent"
-                  : "hover:border-accent/40"
+                  ? "border-accent bg-surface/95 lg:-mt-4 lg:mb-[-1rem] lg:py-10 shadow-2xl shadow-accent/15 ring-2 ring-accent/30 card-bezel-active"
+                  : "border-line bg-surface/80 hover:border-accent/40 card-bezel"
               }`}
             >
               {badgeText && (
                 <span
-                  className={`absolute -top-3 left-7 rounded-full px-3 py-1 text-xs font-semibold shadow-sm ${
+                  className={`absolute -top-3.5 left-8 rounded-full px-3.5 py-1 text-xs font-bold shadow-md ${
                     paquete.destacado
-                      ? "bg-accent text-accent-ink"
+                      ? "bg-accent text-accent-ink ring-2 ring-background"
                       : "border border-accent/40 bg-surface text-accent"
                   }`}
                 >
@@ -102,68 +102,77 @@ export function Services() {
                 </span>
               )}
 
-              <h3 className="text-xl font-semibold">{nombre}</h3>
-              <p className="mt-3 font-display text-3xl font-bold text-foreground">
-                {ocultarPrecios ? (lang === "es" ? "A medida" : "Custom quote") : precio}
-                {!ocultarPrecios && (
-                  <span className="ml-2 align-middle text-sm font-normal text-muted">
-                    / {notaPrecio}
+              <div>
+                <h3 className="text-xl font-bold text-foreground">{nombre}</h3>
+                <div className="mt-3 flex items-baseline gap-2">
+                  <span className="font-display text-3xl sm:text-4xl font-black text-foreground">
+                    {ocultarPrecios ? (lang === "es" ? "A medida" : "Custom quote") : precio}
                   </span>
+                  {!ocultarPrecios && (
+                    <span className="text-xs font-medium text-muted">
+                      / {notaPrecio}
+                    </span>
+                  )}
+                </div>
+
+                {/* Precio en moneda local */}
+                {getPrecioLocal(nombre) && (
+                  <p className="mt-1 text-xs font-bold text-accent">
+                    {getPrecioLocal(nombre)}
+                    <span className="ml-1 text-[11px] font-normal text-muted">{pais.moneda}</span>
+                  </p>
                 )}
-              </p>
-              {/* Precio en moneda local */}
-              {getPrecioLocal(nombre) && (
-                <p className="mt-1 text-sm font-semibold text-accent/80">
-                  {getPrecioLocal(nombre)}
-                  <span className="ml-1 text-xs font-normal text-muted">{pais.moneda}</span>
-                </p>
-              )}
-              <p className="mt-3 text-sm leading-relaxed text-muted">{descripcion}</p>
-
-              <div className="mt-6 font-medium text-xs text-muted uppercase tracking-wider">
-                {t.includes[lang]}
+                <p className="mt-3 text-sm leading-relaxed text-muted">{descripcion}</p>
               </div>
-              <ul className="mt-3 flex flex-1 flex-col gap-3">
-                {incluyeList.map((item) => (
-                  <li key={item} className="flex gap-2.5 text-sm text-foreground/90">
-                    <CheckIcon />
-                    {item}
-                  </li>
-                ))}
-              </ul>
 
-              <Button
-                href={whatsappLink(ctaMensaje)}
-                variant={paquete.destacado ? "primary" : "secondary"}
-                className="mt-8 w-full"
-              >
-                <WhatsAppIcon className="h-4 w-4" />
-                {t.selectPackage[lang]}
-              </Button>
+              <div className="mt-6 border-t border-line/60 pt-5">
+                <div className="font-bold text-xs text-foreground/80 uppercase tracking-wider mb-3">
+                  {t.includes[lang]}
+                </div>
+                <ul className="flex flex-1 flex-col gap-3">
+                  {incluyeList.map((item) => (
+                    <li key={item} className="flex items-start gap-2.5 text-xs sm:text-sm text-foreground/90 leading-tight">
+                      <CheckIcon />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="mt-8 pt-4">
+                <Button
+                  href={whatsappLink(ctaMensaje)}
+                  variant={paquete.destacado ? "primary" : "secondary"}
+                  className="w-full shadow-md"
+                >
+                  <WhatsAppIcon className="h-4 w-4" />
+                  {t.selectPackage[lang]}
+                </Button>
+              </div>
             </Card>
           );
         })}
       </div>
 
       {/* Mantenimiento mensual opcional */}
-      <Card className="mt-10 flex flex-col gap-4 p-7 sm:flex-row sm:items-center sm:justify-between">
+      <Card className="mt-10 flex flex-col gap-4 p-6 sm:p-7 sm:flex-row sm:items-center sm:justify-between rounded-3xl border-line bg-surface/70 card-bezel">
         <div>
-          <h3 className="font-semibold">
+          <h3 className="text-base sm:text-lg font-bold text-foreground">
             {mantenimientoMultiLang.nombre[lang]}{" "}
             {!ocultarPrecios && (
-              <span className="ml-1 font-display text-accent">
+              <span className="ml-1 font-display text-accent font-extrabold">
                 {mantenimientoMultiLang.precio[lang]}
               </span>
             )}
           </h3>
-          <p className="mt-1.5 text-sm text-muted">
+          <p className="mt-1 text-xs sm:text-sm text-muted">
             {mantenimientoMultiLang.descripcion[lang]}
           </p>
         </div>
         <Button
           href={whatsappLink(mantenimientoMultiLang.ctaMensaje[lang])}
           variant="secondary"
-          className="shrink-0"
+          className="shrink-0 text-xs sm:text-sm"
         >
           {t.selectPackage[lang]}
         </Button>

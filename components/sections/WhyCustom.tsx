@@ -33,7 +33,7 @@ const icons = [
 ];
 
 /**
- * Sección "Por qué a medida" con soporte bilingüe.
+ * Sección "Por qué a medida" con soporte bilingüe y cards de alta conversión.
  */
 export function WhyCustom() {
   const { lang } = useLanguage();
@@ -42,19 +42,29 @@ export function WhyCustom() {
   return (
     <Section
       id="por-que-a-medida"
+      eyebrow={lang === "es" ? "Diferencial de valor" : "Key Advantage"}
       title={t.title[lang]}
       subtitle={t.subtitle[lang]}
     >
       <div className="grid gap-6 sm:grid-cols-2">
         {t.signals.map((item, idx) => (
-          <Card key={idx} interactive className="p-7">
-            <div className="text-accent">{icons[idx]}</div>
-            <h3 className="mt-4 text-lg font-semibold">{item.señal[lang]}</h3>
-            <p className="mt-2.5 text-sm leading-relaxed text-muted">{item.diagnostico[lang]}</p>
-            <p className="mt-4 border-t border-line pt-4 text-sm text-foreground/90">
-              <span className="font-medium text-accent">{t.customLabel[lang]}</span>
+          <Card
+            key={idx}
+            interactive
+            className="p-7 sm:p-8 rounded-[2rem] border-line bg-surface/80 card-bezel flex flex-col justify-between"
+          >
+            <div>
+              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-accent/10 border border-accent/20 text-accent">
+                {icons[idx]}
+              </div>
+              <h3 className="mt-5 text-lg sm:text-xl font-bold text-foreground">{item.señal[lang]}</h3>
+              <p className="mt-2.5 text-sm leading-relaxed text-muted">{item.diagnostico[lang]}</p>
+            </div>
+
+            <div className="mt-6 rounded-2xl border border-accent/30 bg-accent/5 p-4 text-xs sm:text-sm text-foreground/90">
+              <span className="font-bold text-accent block mb-1">{t.customLabel[lang]}</span>
               {item.aMedida[lang]}
-            </p>
+            </div>
           </Card>
         ))}
       </div>

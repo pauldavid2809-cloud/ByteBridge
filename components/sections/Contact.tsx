@@ -72,25 +72,33 @@ export function Contact() {
       eyebrow={t.eyebrow[lang]}
       title={t.title[lang]}
       subtitle={t.subtitle[lang]}
-      className="pb-32 md:pb-36"
+      className="pb-16 sm:pb-20 md:pb-24"
     >
-      <div className="grid gap-8 lg:grid-cols-[2fr_3fr] lg:gap-14">
+      <div className="grid gap-8 lg:grid-cols-[2fr_3fr] lg:gap-12 items-start">
         {/* Alternativa directa: WhatsApp */}
-        <Card className="h-fit p-7 space-y-2">
-          <h3 className="text-lg font-semibold text-foreground">{t.directTitle[lang]}</h3>
+        <Card className="p-7 sm:p-8 space-y-4 rounded-[2rem] border-line bg-surface/80 card-bezel">
+          <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-accent/10 border border-accent/20 text-accent">
+            <WhatsAppIcon className="h-6 w-6" />
+          </div>
+          <h3 className="text-xl font-bold text-foreground">{t.directTitle[lang]}</h3>
           <p className="text-sm leading-relaxed text-muted">
             {t.directDesc[lang]}
           </p>
-          <Button href={whatsappLink()} variant="secondary" className="mt-6 w-full">
-            <WhatsAppIcon className="h-4 w-4 text-accent" />
-            {t.directBtn[lang]}
-          </Button>
+          <div className="pt-2">
+            <Button href={whatsappLink()} size="lg" className="w-full shadow-lg shadow-accent/15">
+              <WhatsAppIcon className="h-4.5 w-4.5" />
+              {t.directBtn[lang]}
+            </Button>
+          </div>
+          <p className="text-[11px] text-muted text-center pt-2">
+            {lang === "es" ? "Respuesta promedio: menos de 15 minutos" : "Average reply: under 15 minutes"}
+          </p>
         </Card>
 
         {/* Formulario */}
         {estado === "enviado" ? (
-          <Card className="flex flex-col items-start justify-center gap-3 p-8 border-accent/40 bg-accent/5">
-            <p className="font-display text-2xl font-semibold text-accent">
+          <Card className="flex flex-col items-start justify-center gap-3 p-8 rounded-[2rem] border-accent/40 bg-accent/5 card-bezel-active">
+            <p className="font-display text-2xl font-bold text-accent">
               {t.receivedTitle[lang]}
             </p>
             <p className="text-foreground/90">
@@ -99,13 +107,13 @@ export function Contact() {
             <button
               type="button"
               onClick={() => setEstado("idle")}
-              className="mt-2 text-sm text-accent underline-offset-4 hover:underline"
+              className="mt-2 text-sm font-semibold text-accent underline-offset-4 hover:underline"
             >
               {t.sendAnother[lang]}
             </button>
           </Card>
         ) : (
-          <form onSubmit={handleSubmit} noValidate className="flex flex-col gap-5">
+          <form onSubmit={handleSubmit} noValidate className="flex flex-col gap-5 p-7 sm:p-8 rounded-[2rem] border border-line bg-surface/70 card-bezel">
             {/* Honeypot */}
             <input
               type="text"
@@ -118,7 +126,7 @@ export function Contact() {
 
             <div className="grid gap-5 sm:grid-cols-2">
               <div>
-                <label htmlFor="nombre" className="mb-2 block text-sm font-medium text-foreground">
+                <label htmlFor="nombre" className="mb-2 block text-xs font-bold uppercase tracking-wider text-muted">
                   {t.labelName[lang]} <span className="text-accent">*</span>
                 </label>
                 <input
@@ -131,7 +139,7 @@ export function Contact() {
                 />
               </div>
               <div>
-                <label htmlFor="negocio" className="mb-2 block text-sm font-medium text-foreground">
+                <label htmlFor="negocio" className="mb-2 block text-xs font-bold uppercase tracking-wider text-muted">
                   {t.labelBusiness[lang]}
                 </label>
                 <input
@@ -145,7 +153,7 @@ export function Contact() {
             </div>
 
             <div>
-              <label htmlFor="tipo_proyecto" className="mb-2 block text-sm font-medium text-foreground">
+              <label htmlFor="tipo_proyecto" className="mb-2 block text-xs font-bold uppercase tracking-wider text-muted">
                 {t.labelProjectType[lang]}
               </label>
               <select
@@ -163,7 +171,7 @@ export function Contact() {
             </div>
 
             <div>
-              <label htmlFor="mensaje" className="mb-2 block text-sm font-medium text-foreground">
+              <label htmlFor="mensaje" className="mb-2 block text-xs font-bold uppercase tracking-wider text-muted">
                 {t.labelMessage[lang]} <span className="text-accent">*</span>
               </label>
               <textarea
@@ -177,7 +185,7 @@ export function Contact() {
             </div>
 
             {errorValidacion && (
-              <p role="alert" className="text-sm text-red-400">
+              <p role="alert" className="text-sm font-semibold text-red-400">
                 {errorValidacion}
               </p>
             )}
@@ -193,7 +201,7 @@ export function Contact() {
               </div>
             )}
 
-            <Button type="submit" disabled={estado === "enviando"} className="sm:self-start">
+            <Button type="submit" size="lg" disabled={estado === "enviando"} className="w-full sm:w-auto shadow-md">
               {estado === "enviando" ? (
                 <>
                   <span className="h-4 w-4 rounded-full border-2 border-accent-ink border-t-transparent animate-spin" />

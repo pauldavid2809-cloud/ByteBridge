@@ -137,10 +137,10 @@ export function PreferencesPanel() {
 
             {/* Nota de tasas */}
             <div className="mx-4 mb-3 mt-1 rounded-xl bg-surface/70 border border-line px-3 py-2">
-              <p className="text-[10px] text-muted text-center leading-relaxed">
+              <p className="text-[10px] text-muted text-center leading-relaxed font-medium">
                 {lang === "es"
-                  ? "💱 Tasas en tiempo real · Precios referenciales en USD"
-                  : "💱 Live exchange rates · USD is base price"}
+                  ? "Tasas de cambio actualizadas · Precios base fijados en USD"
+                  : "Live exchange rates · USD is default base currency"}
               </p>
             </div>
           </div>

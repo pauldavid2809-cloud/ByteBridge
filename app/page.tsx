@@ -30,7 +30,6 @@ const jsonLd = {
 import { Calculator } from "@/components/sections/Calculator";
 import { Faq } from "@/components/sections/Faq";
 import { Testimonials } from "@/components/sections/Testimonials";
-import { MobileNav } from "@/components/MobileNav";
 
 /**
  * Página principal (one-page):
@@ -44,7 +43,7 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <Header />
-      <main className="pb-16 md:pb-0">
+      <main className="w-full">
         <Hero />
         <Projects />
         <Soluciones />
@@ -58,7 +57,6 @@ export default function Home() {
       </main>
       <Footer />
       <WhatsAppFloat />
-      <MobileNav />
     </>
   );
 }
