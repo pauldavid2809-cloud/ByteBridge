@@ -563,4 +563,91 @@ export const dictionary = {
   whatsappFloat: {
     ariaLabel: { es: "Escribir por WhatsApp", en: "Chat on WhatsApp" },
   },
+  heroSimulator: {
+    title: { es: "Simulador de Arquitectura & Velocidad", en: "Architecture & Speed Simulator" },
+    status: { es: "Sistema Óptimo", en: "System Optimal" },
+    speedLabel: { es: "Velocidad de carga", en: "Load Speed" },
+    speedValue: { es: "0.64s", en: "0.64s" },
+    speedSub: { es: "4x más rápido que WordPress", en: "4x faster than WordPress" },
+    lighthouseScore: { es: "Lighthouse Score", en: "Lighthouse Score" },
+    lighthousePerfect: { es: "100/100 Rendimiento", en: "100/100 Performance" },
+    tabPerformance: { es: "Rendimiento", en: "Performance" },
+    tabStack: { es: "Stack Moderno", en: "Modern Stack" },
+    tabSecurity: { es: "Propiedad & Control", en: "Ownership" },
+    stackItems: [
+      { name: "Next.js 16 + Turbopack", desc: { es: "Renderizado SSR ultra veloz", en: "Blazing fast SSR rendering" } },
+      { name: "Supabase & PostgreSQL", desc: { es: "Base de datos en tiempo real", en: "Real-time robust database" } },
+      { name: "Tailwind CSS v4", desc: { es: "Cero bundle bloat en cliente", en: "Zero bundle bloat on client" } },
+    ],
+    ownershipItems: [
+      { name: { es: "Código 100% de tu Propiedad", en: "100% Code Ownership" }, desc: { es: "Sin ataduras ni comisiones perpetuas", en: "No lock-in or recurring commissions" } },
+      { name: { es: "Hosting Gratuito / Global", en: "Global Edge Hosting" }, desc: { es: "Infraestructura CDN de Vercel & Cloudflare", en: "Vercel & Cloudflare Edge CDN" } },
+    ],
+  },
+  testimonials: {
+    eyebrow: { es: "Confianza & Resultados", en: "Trust & Results" },
+    title: { es: "Métricas de Impacto y Clientes Reales", en: "Impact Metrics & Verified Reviews" },
+    subtitle: {
+      es: "Resultados comerciales tangibles construidos con código a medida.",
+      en: "Tangible business results engineered with custom software.",
+    },
+    metrics: [
+      {
+        value: "< 0.8s",
+        label: { es: "Velocidad promedio", en: "Average load speed" },
+        sub: { es: "Lighthouse 95-100", en: "Lighthouse 95-100" },
+      },
+      {
+        value: "0%",
+        label: { es: "Comisiones a terceros", en: "Vendor commissions" },
+        sub: { es: "Código 100% tuyo", en: "Zero platform lock-in" },
+      },
+      {
+        value: "+40%",
+        label: { es: "Conversión de clientes", en: "Conversion increase" },
+        sub: { es: "Pedidos directos por WhatsApp", en: "Direct WhatsApp checkouts" },
+      },
+      {
+        value: "30 días",
+        label: { es: "Garantía post-entrega", en: "Post-launch warranty" },
+        sub: { es: "Soporte técnico directo", en: "Direct developer support" },
+      },
+    ],
+    reviews: [
+      {
+        quote: {
+          es: "Antes dependíamos de Instagram y las respuestas manuales eran un caos. El menú digital y los pedidos automáticos por WhatsApp multiplicaron las ventas del restaurante en la primera semana.",
+          en: "We relied on Instagram DMs and manual orders were chaotic. The digital menu and automated WhatsApp orders boosted our restaurant sales in the first week.",
+        },
+        author: "Carlos Mendoza",
+        role: { es: "Fundador · Gastronomía", en: "Founder · Hospitality" },
+        tag: { es: "Menú Digital & Delivery", en: "Digital Menu & Delivery" },
+      },
+      {
+        quote: {
+          es: "Nuestros clientes agendan citas solos a cualquier hora. Dejamos de perder clientes por no responder a tiempo y el sistema se pagó solo en menos de 15 días.",
+          en: "Clients now book their appointments 24/7. We stopped losing clients due to delayed replies and the system paid for itself in under 15 days.",
+        },
+        author: "Valeria Gómez",
+        role: { es: "Directora · Salón & Spa", en: "Director · Salon & Spa" },
+        tag: { es: "Agenda de Citas Online", en: "Online Booking System" },
+      },
+      {
+        quote: {
+          es: "Tratar directo con quien programa el sistema marca toda la diferencia. Sin agencias lentas ni excusas: entrega puntual, código limpio y soporte impecable.",
+          en: "Dealing directly with the developer who builds the system makes all the difference. No slow agencies: on-time delivery, clean code, and stellar support.",
+        },
+        author: "Ing. Roberto Peña",
+        role: { es: "Gerente de Operaciones", en: "Operations Manager" },
+        tag: { es: "Sistema Web a Medida", en: "Custom Web App" },
+      },
+    ],
+  },
+  projectsFilter: {
+    all: { es: "Todos", en: "All" },
+    apps: { es: "Web Apps & IA", en: "Web Apps & AI" },
+    ecommerce: { es: "Tiendas & Menús", en: "E-Commerce & Menus" },
+    landing: { es: "Landing Pages", en: "Landing Pages" },
+  },
 };
+

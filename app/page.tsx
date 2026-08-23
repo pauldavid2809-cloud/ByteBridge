@@ -29,10 +29,11 @@ const jsonLd = {
 
 import { Calculator } from "@/components/sections/Calculator";
 import { Faq } from "@/components/sections/Faq";
+import { Testimonials } from "@/components/sections/Testimonials";
 
 /**
  * Página principal (one-page):
- * Hero → Proyectos → Soluciones → Servicios → Calculadora → Por qué a medida → Sobre mí → FAQ → Contacto
+ * Hero → Proyectos → Soluciones → Servicios → Calculadora → Por qué a medida → Testimonios → Sobre mí → FAQ → Contacto
  */
 export default function Home() {
   return (
@@ -49,6 +50,7 @@ export default function Home() {
         <Services />
         <Calculator />
         <WhyCustom />
+        <Testimonials />
         <About />
         <Faq />
         <Contact />
@@ -58,3 +60,4 @@ export default function Home() {
     </>
   );
 }
+

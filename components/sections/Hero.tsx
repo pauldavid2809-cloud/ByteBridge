@@ -3,13 +3,15 @@
 import { Logo } from "@/components/Logo";
 import { WhatsAppIcon } from "@/components/icons/WhatsAppIcon";
 import { Button } from "@/components/ui/Button";
+import { SpotlightCard } from "@/components/ui/SpotlightCard";
+import { HeroSimulator } from "@/components/sections/HeroSimulator";
 import { whatsappLink } from "@/lib/config";
 import { useLanguage } from "@/context/LanguageContext";
 import { dictionary } from "@/data/dictionary";
 
 /**
  * Hero: responde en 5 segundos qué hago y qué gana el cliente.
- * Consume el diccionario bilingüe según el idioma activo.
+ * Consume el diccionario bilingüe según el idioma activo y presenta el simulador interactivo de rendimiento.
  */
 export function Hero() {
   const { lang } = useLanguage();
@@ -18,7 +20,7 @@ export function Hero() {
   return (
     <section
       id="inicio"
-      className="relative flex min-h-svh items-center overflow-hidden px-5 pt-16 sm:px-8"
+      className="relative flex min-h-[90svh] items-center overflow-hidden px-5 pt-20 sm:px-8"
     >
       {/* Resplandor verde muy sutil detrás del titular (decorativo) */}
       <div
@@ -28,35 +30,48 @@ export function Hero() {
       {/* Símbolo de marca gigante, apenas visible, como textura de fondo */}
       <Logo className="pointer-events-none absolute -right-24 -bottom-16 h-72 w-auto text-accent/[0.03] sm:h-96" />
 
-      <div className="relative mx-auto w-full max-w-6xl py-24 md:py-32">
-        {/* Badge de rendimiento: predicar con el ejemplo */}
-        <p className="hero-animate hero-animate-1 mb-8 inline-flex items-center gap-2 rounded-full border border-line bg-surface px-4 py-1.5 text-xs text-muted">
-          <span className="relative flex h-2 w-2">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-60" />
-            <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
-          </span>
-          {t.badge[lang]}
-        </p>
+      <div className="relative mx-auto w-full max-w-6xl py-16 md:py-24">
+        <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-10">
+          {/* Columna Izquierda: Copy + CTAs */}
+          <div className="lg:col-span-7">
+            {/* Badge de rendimiento */}
+            <p className="hero-animate hero-animate-1 mb-6 inline-flex items-center gap-2 rounded-full border border-line bg-surface px-4 py-1.5 text-xs text-muted">
+              <span className="relative flex h-2 w-2">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-60" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
+              </span>
+              {t.badge[lang]}
+            </p>
 
-        <h1 className="hero-animate hero-animate-2 max-w-3xl text-4xl font-semibold text-balance sm:text-5xl md:text-6xl">
-          {t.titleLine1[lang]}
-          <span className="text-accent">{t.titleHighlight[lang]}</span>
-        </h1>
+            <h1 className="hero-animate hero-animate-2 max-w-2xl text-4xl font-semibold text-balance sm:text-5xl lg:text-6xl tracking-tight leading-[1.1]">
+              {t.titleLine1[lang]}
+              <span className="text-accent">{t.titleHighlight[lang]}</span>
+            </h1>
 
-        <p className="hero-animate hero-animate-3 mt-6 max-w-xl text-lg text-muted sm:text-xl">
-          {t.subtitle[lang]}
-        </p>
+            <p className="hero-animate hero-animate-3 mt-6 max-w-lg text-base text-muted sm:text-lg leading-relaxed">
+              {t.subtitle[lang]}
+            </p>
 
-        <div className="hero-animate hero-animate-4 mt-10 flex flex-col gap-4 sm:flex-row sm:items-center">
-          <Button href={whatsappLink()} size="lg">
-            <WhatsAppIcon className="h-4.5 w-4.5" />
-            {t.ctaWhatsapp[lang]}
-          </Button>
-          <Button href="#proyectos" variant="secondary" size="lg">
-            {t.ctaProjects[lang]}
-          </Button>
+            <div className="hero-animate hero-animate-4 mt-8 flex flex-col gap-3.5 sm:flex-row sm:items-center">
+              <Button href={whatsappLink()} size="lg">
+                <WhatsAppIcon className="h-4.5 w-4.5" />
+                {t.ctaWhatsapp[lang]}
+              </Button>
+              <Button href="#proyectos" variant="secondary" size="lg">
+                {t.ctaProjects[lang]}
+              </Button>
+            </div>
+          </div>
+
+          {/* Columna Derecha: Simulador Interactivo con Spotlight */}
+          <div className="hero-animate hero-animate-3 lg:col-span-5">
+            <SpotlightCard className="p-1">
+              <HeroSimulator />
+            </SpotlightCard>
+          </div>
         </div>
       </div>
     </section>
   );
 }
+
