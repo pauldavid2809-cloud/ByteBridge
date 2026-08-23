@@ -71,10 +71,10 @@ export function Calculator() {
                 <button
                   key={t.id}
                   onClick={() => setTipoSel(t.id)}
-                  className={`flex flex-col items-start gap-2 rounded-2xl border p-4 text-left transition-all duration-200 ${
+                  className={`flex flex-col items-start gap-2 rounded-2xl border p-4 text-left transition-[border-color,background-color,transform,box-shadow] duration-150 active:scale-[0.97] ${
                     tipoSel === t.id
-                      ? "border-accent bg-accent/10 shadow-sm"
-                      : "border-line bg-surface hover:border-accent/40"
+                      ? "border-accent bg-accent/10 shadow-sm ring-1 ring-accent/30"
+                      : "border-line bg-surface hover:border-accent/40 [@media(hover:hover)_and_(pointer:fine)]:hover:scale-[1.01]"
                   }`}
                 >
                   <p className="text-sm font-bold text-foreground">{t.nombre[lang]}</p>
@@ -99,13 +99,20 @@ export function Calculator() {
                   <button
                     key={e.id}
                     onClick={() => toggleExtra(e.id)}
-                    className={`flex items-center justify-between rounded-2xl border p-3.5 text-left text-xs transition-all duration-200 ${
+                    className={`flex items-center justify-between rounded-2xl border p-3.5 text-left text-xs transition-[border-color,background-color,transform] duration-150 active:scale-[0.97] ${
                       activo
-                        ? "border-accent/80 bg-accent/5 font-semibold text-foreground"
-                        : "border-line bg-surface text-muted hover:border-accent/40"
+                        ? "border-accent/80 bg-accent/10 font-semibold text-foreground ring-1 ring-accent/20"
+                        : "border-line bg-surface text-muted hover:border-accent/40 hover:text-foreground"
                     }`}
                   >
-                    <span>{e.nombre[lang]}</span>
+                    <div className="flex items-center gap-2.5 min-w-0">
+                      <span className={`flex h-4 w-4 shrink-0 items-center justify-center rounded-md border text-[10px] font-bold transition-colors ${
+                        activo ? "border-accent bg-accent text-accent-ink" : "border-muted/40 bg-background text-transparent"
+                      }`}>
+                        ✓
+                      </span>
+                      <span className="truncate">{e.nombre[lang]}</span>
+                    </div>
                     {!ocultarPrecios && (
                       <span className="text-accent font-bold shrink-0 ml-2">+${e.precio}</span>
                     )}
@@ -117,7 +124,7 @@ export function Calculator() {
         </div>
 
         {/* Resumen & CTA */}
-        <div className="lg:col-span-5 rounded-3xl border border-accent/40 bg-gradient-to-b from-accent/10 to-surface p-6 sm:p-8 space-y-6">
+        <div className="lg:col-span-5 rounded-3xl border border-accent/40 bg-gradient-to-b from-accent/10 via-surface to-surface p-6 sm:p-8 space-y-6 shadow-xl shadow-accent/5">
           <div>
             <p className="text-xs font-bold uppercase tracking-widest text-accent">
               {lang === "es" ? "Resumen de Estimación" : "Estimated Quote"}
@@ -129,7 +136,7 @@ export function Calculator() {
           {!ocultarPrecios ? (
             <div className="py-4 border-y border-line space-y-1">
               <p className="text-xs text-muted">{lang === "es" ? "Inversión estimada:" : "Estimated investment:"}</p>
-              <p className="text-3xl font-extrabold text-foreground">${totalUSD} <span className="text-sm font-normal text-muted">USD</span></p>
+              <p className="text-3xl font-extrabold text-foreground tracking-tight">${totalUSD} <span className="text-sm font-normal text-muted">USD</span></p>
               {pais.moneda !== "USD" && (
                 <p className="text-sm text-accent font-semibold">
                   ≈ {mostrarDual(totalUSD).split("≈")[1]?.trim()} <span className="text-xs text-muted">{pais.moneda}</span>
@@ -146,7 +153,7 @@ export function Calculator() {
             href={whatsappLink(mensajeWhatsApp)}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex w-full items-center justify-center gap-2 rounded-2xl bg-accent px-5 py-3.5 text-sm font-bold text-accent-ink hover:bg-accent-strong transition-colors duration-200 shadow-md shadow-accent/10"
+            className="flex w-full items-center justify-center gap-2 rounded-2xl bg-accent px-5 py-3.5 text-sm font-bold text-accent-ink hover:bg-accent-strong transition-[background-color,transform] duration-150 active:scale-[0.97] shadow-md shadow-accent/15"
           >
             <WhatsAppIcon className="h-4 w-4" />
             {lang === "es" ? "Solicitar esta cotización por WhatsApp" : "Request this quote on WhatsApp"}
@@ -162,3 +169,4 @@ export function Calculator() {
     </Section>
   );
 }
+

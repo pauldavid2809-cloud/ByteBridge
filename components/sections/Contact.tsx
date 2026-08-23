@@ -10,9 +10,9 @@ import { useLanguage } from "@/context/LanguageContext";
 import { dictionary } from "@/data/dictionary";
 
 const inputClass =
-  "w-full rounded-xl border border-line bg-background px-4 py-3 text-sm " +
-  "text-foreground placeholder:text-muted/60 transition-colors duration-200 " +
-  "hover:border-foreground/20";
+  "w-full rounded-xl border border-line bg-background/80 px-4 py-3 text-sm " +
+  "text-foreground placeholder:text-muted/60 transition-[border-color,box-shadow] duration-150 " +
+  "hover:border-foreground/20 focus:border-accent focus:ring-1 focus:ring-accent/40 focus:outline-none";
 
 type Estado = "idle" | "enviando" | "enviado" | "error";
 
@@ -76,9 +76,9 @@ export function Contact() {
     >
       <div className="grid gap-8 lg:grid-cols-[2fr_3fr] lg:gap-14">
         {/* Alternativa directa: WhatsApp */}
-        <Card className="h-fit p-7">
-          <h3 className="text-lg font-semibold">{t.directTitle[lang]}</h3>
-          <p className="mt-2 text-sm leading-relaxed text-muted">
+        <Card className="h-fit p-7 space-y-2">
+          <h3 className="text-lg font-semibold text-foreground">{t.directTitle[lang]}</h3>
+          <p className="text-sm leading-relaxed text-muted">
             {t.directDesc[lang]}
           </p>
           <Button href={whatsappLink()} variant="secondary" className="mt-6 w-full">
@@ -89,7 +89,7 @@ export function Contact() {
 
         {/* Formulario */}
         {estado === "enviado" ? (
-          <Card className="flex flex-col items-start justify-center gap-3 p-8">
+          <Card className="flex flex-col items-start justify-center gap-3 p-8 border-accent/40 bg-accent/5">
             <p className="font-display text-2xl font-semibold text-accent">
               {t.receivedTitle[lang]}
             </p>
@@ -99,7 +99,7 @@ export function Contact() {
             <button
               type="button"
               onClick={() => setEstado("idle")}
-              className="mt-2 text-sm text-muted underline-offset-4 hover:text-foreground hover:underline"
+              className="mt-2 text-sm text-accent underline-offset-4 hover:underline"
             >
               {t.sendAnother[lang]}
             </button>
@@ -118,7 +118,7 @@ export function Contact() {
 
             <div className="grid gap-5 sm:grid-cols-2">
               <div>
-                <label htmlFor="nombre" className="mb-2 block text-sm font-medium">
+                <label htmlFor="nombre" className="mb-2 block text-sm font-medium text-foreground">
                   {t.labelName[lang]} <span className="text-accent">*</span>
                 </label>
                 <input
@@ -131,7 +131,7 @@ export function Contact() {
                 />
               </div>
               <div>
-                <label htmlFor="negocio" className="mb-2 block text-sm font-medium">
+                <label htmlFor="negocio" className="mb-2 block text-sm font-medium text-foreground">
                   {t.labelBusiness[lang]}
                 </label>
                 <input
@@ -145,17 +145,17 @@ export function Contact() {
             </div>
 
             <div>
-              <label htmlFor="tipo_proyecto" className="mb-2 block text-sm font-medium">
+              <label htmlFor="tipo_proyecto" className="mb-2 block text-sm font-medium text-foreground">
                 {t.labelProjectType[lang]}
               </label>
               <select
                 id="tipo_proyecto"
                 name="tipo_proyecto"
                 defaultValue="no sé todavía"
-                className={`${inputClass} appearance-none`}
+                className={`${inputClass} appearance-none cursor-pointer`}
               >
                 {t.types.map((tipo) => (
-                  <option key={tipo.value} value={tipo.value} className="bg-surface">
+                  <option key={tipo.value} value={tipo.value} className="bg-surface text-foreground">
                     {tipo.label[lang]}
                   </option>
                 ))}
@@ -163,7 +163,7 @@ export function Contact() {
             </div>
 
             <div>
-              <label htmlFor="mensaje" className="mb-2 block text-sm font-medium">
+              <label htmlFor="mensaje" className="mb-2 block text-sm font-medium text-foreground">
                 {t.labelMessage[lang]} <span className="text-accent">*</span>
               </label>
               <textarea
@@ -194,7 +194,14 @@ export function Contact() {
             )}
 
             <Button type="submit" disabled={estado === "enviando"} className="sm:self-start">
-              {estado === "enviando" ? t.sending[lang] : t.sendBtn[lang]}
+              {estado === "enviando" ? (
+                <>
+                  <span className="h-4 w-4 rounded-full border-2 border-accent-ink border-t-transparent animate-spin" />
+                  <span>{t.sending[lang]}</span>
+                </>
+              ) : (
+                t.sendBtn[lang]
+              )}
             </Button>
           </form>
         )}

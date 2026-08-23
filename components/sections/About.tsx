@@ -49,7 +49,7 @@ export function About() {
             {sobreMi.stack.map((tech) => (
               <span
                 key={tech}
-                className="rounded-full border border-line bg-surface px-3 py-1 text-xs text-muted"
+                className="rounded-full border border-line bg-surface px-3 py-1 text-xs text-muted transition-[border-color,color] duration-150 hover:border-accent/40 hover:text-foreground"
               >
                 {tech}
               </span>

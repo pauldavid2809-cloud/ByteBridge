@@ -84,15 +84,15 @@ export function Services() {
           return (
             <Card
               key={nombre}
-              className={`relative flex h-full flex-col p-7 ${
+              className={`relative flex h-full flex-col p-7 transition-[border-color,transform,box-shadow] duration-200 [@media(hover:hover)_and_(pointer:fine)]:hover:-translate-y-1 [@media(hover:hover)_and_(pointer:fine)]:hover:shadow-xl [@media(hover:hover)_and_(pointer:fine)]:hover:shadow-accent/5 ${
                 paquete.destacado
-                  ? "border-accent/60 bg-accent/[0.04] lg:-mt-4 lg:mb-[-1rem] lg:py-11 shadow-lg shadow-accent/5"
-                  : ""
+                  ? "border-accent/70 bg-accent/[0.04] lg:-mt-4 lg:mb-[-1rem] lg:py-11 shadow-lg shadow-accent/10 hover:border-accent"
+                  : "hover:border-accent/40"
               }`}
             >
               {badgeText && (
                 <span
-                  className={`absolute -top-3 left-7 rounded-full px-3 py-1 text-xs font-semibold ${
+                  className={`absolute -top-3 left-7 rounded-full px-3 py-1 text-xs font-semibold shadow-sm ${
                     paquete.destacado
                       ? "bg-accent text-accent-ink"
                       : "border border-accent/40 bg-surface text-accent"

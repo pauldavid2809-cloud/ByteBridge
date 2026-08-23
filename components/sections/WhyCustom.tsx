@@ -48,7 +48,7 @@ export function WhyCustom() {
     >
       <div className="grid gap-6 sm:grid-cols-2">
         {t.signals.map((item, idx) => (
-          <Card key={idx} className="p-7">
+          <Card key={idx} interactive className="p-7">
             <div className="text-accent">{icons[idx]}</div>
             <h3 className="mt-4 text-lg font-semibold">{item.señal[lang]}</h3>
             <p className="mt-2.5 text-sm leading-relaxed text-muted">{item.diagnostico[lang]}</p>

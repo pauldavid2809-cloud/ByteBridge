@@ -158,15 +158,15 @@ export function Soluciones() {
       }
     >
       {/* ── GRID DE SELECCIÓN — visible completo en móvil y desktop ── */}
-      <div className="grid grid-cols-3 gap-3 sm:grid-cols-6 mb-10">
+      <div className="grid grid-cols-3 gap-2.5 sm:gap-3 sm:grid-cols-6 mb-10">
         {soluciones.map((s, i) => (
           <button
             key={s.id}
             onClick={() => setActiva(s.id)}
-            className={`group relative flex flex-col items-center gap-2 rounded-2xl border p-3 sm:p-4 text-center transition-all duration-200 ${
+            className={`group relative flex flex-col items-center gap-2 rounded-2xl border p-3 sm:p-4 text-center transition-[border-color,background-color,transform,box-shadow] duration-200 active:scale-[0.96] ${
               activa === s.id
-                ? `${s.borderActive} shadow-md scale-[1.04]`
-                : "border-line hover:border-accent/40 hover:bg-surface hover:scale-[1.02]"
+                ? `${s.borderActive} shadow-lg shadow-accent/5 scale-[1.03]`
+                : "border-line bg-surface/80 hover:border-accent/40 hover:bg-surface [@media(hover:hover)_and_(pointer:fine)]:hover:scale-[1.02]"
             }`}
           >
             {/* Número de posición — visible en inactivos para que sea obvio que hay más */}
@@ -178,7 +178,7 @@ export function Soluciones() {
             {activa === s.id && (
               <span className="absolute top-1.5 right-2 h-2 w-2 rounded-full bg-accent animate-pulse" />
             )}
-            <span className="text-2xl sm:text-3xl leading-none">{s.icon}</span>
+            <span className="text-2xl sm:text-3xl leading-none transition-transform duration-200 group-hover:scale-110">{s.icon}</span>
             <p className={`text-[11px] sm:text-xs font-semibold leading-tight transition-colors ${
               activa === s.id ? "text-foreground" : "text-muted group-hover:text-foreground"
             }`}>
@@ -191,7 +191,7 @@ export function Soluciones() {
             )}
             {/* Precio local si aplica */}
             {getPrecioLocal(s.id) && (
-              <p className="text-[9px] text-accent/60 font-medium leading-none">
+              <p className="text-[9px] text-accent/70 font-medium leading-none">
                 ≈ {getPrecioLocal(s.id)}
               </p>
             )}
@@ -204,16 +204,16 @@ export function Soluciones() {
 
         {/* Info de la solución activa */}
         <div className="lg:w-80 lg:shrink-0 space-y-4">
-          <div className={`rounded-2xl bg-gradient-to-br ${solucionActiva.color} border border-line p-5`}>
+          <div className={`rounded-2xl bg-gradient-to-br ${solucionActiva.color} border border-line p-5 transition-all duration-300`}>
             <div className="flex items-center gap-3 mb-3">
               <span className="text-4xl">{solucionActiva.icon}</span>
               <div>
-                <h3 className="text-lg font-bold">{solucionActiva.nombre[lang]}</h3>
+                <h3 className="text-lg font-bold text-foreground">{solucionActiva.nombre[lang]}</h3>
                 {!ocultarPrecios && (
                   <p className="text-xs text-accent font-bold">{solucionActiva.precio[lang]}</p>
                 )}
                 {getPrecioLocal(solucionActiva.id) && (
-                  <p className="text-xs text-accent/70 font-semibold">
+                  <p className="text-xs text-accent/80 font-semibold">
                     ≈ {getPrecioLocal(solucionActiva.id)}{" "}
                     <span className="text-muted font-normal">{pais.moneda}</span>
                   </p>
@@ -221,14 +221,14 @@ export function Soluciones() {
               </div>
             </div>
             <p className="text-xs text-muted leading-relaxed mb-1">{solucionActiva.sectores[lang]}</p>
-            <p className="text-sm text-foreground/85 leading-relaxed">{solucionActiva.descripcion[lang]}</p>
+            <p className="text-sm text-foreground/90 leading-relaxed">{solucionActiva.descripcion[lang]}</p>
           </div>
 
           <a
             href={whatsappLink(solucionActiva.ctaMensaje[lang])}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex w-full items-center justify-center gap-2 rounded-2xl bg-accent px-5 py-3 text-sm font-semibold text-accent-ink hover:bg-accent-strong transition-colors duration-200"
+            className="flex w-full items-center justify-center gap-2 rounded-2xl bg-accent px-5 py-3 text-sm font-semibold text-accent-ink hover:bg-accent-strong transition-[background-color,transform] duration-150 active:scale-[0.97]"
           >
             <WhatsAppIcon className="h-4 w-4" />
             {lang === "es" ? "Quiero este para mi negocio" : "I want this for my business"}
@@ -238,7 +238,7 @@ export function Soluciones() {
           <div className="flex items-center justify-between gap-3">
             <button
               onClick={prev}
-              className="flex flex-1 items-center justify-center gap-2 rounded-xl border border-line py-2.5 text-sm text-muted hover:border-accent/50 hover:text-foreground transition-all"
+              className="flex flex-1 items-center justify-center gap-2 rounded-xl border border-line bg-surface/50 py-2.5 text-sm text-muted hover:border-accent/50 hover:text-foreground transition-[color,border-color,transform] duration-150 active:scale-[0.97]"
             >
               ← {lang === "es" ? "Anterior" : "Previous"}
             </button>
@@ -257,7 +257,7 @@ export function Soluciones() {
             </div>
             <button
               onClick={next}
-              className="flex flex-1 items-center justify-center gap-2 rounded-xl border border-line py-2.5 text-sm text-muted hover:border-accent/50 hover:text-foreground transition-all"
+              className="flex flex-1 items-center justify-center gap-2 rounded-xl border border-line bg-surface/50 py-2.5 text-sm text-muted hover:border-accent/50 hover:text-foreground transition-[color,border-color,transform] duration-150 active:scale-[0.97]"
             >
               {lang === "es" ? "Siguiente" : "Next"} →
             </button>
@@ -270,11 +270,13 @@ export function Soluciones() {
           </p>
         </div>
 
-        {/* Demo interactivo */}
+        {/* Demo interactivo con contenedor de transición suave */}
         <div className="flex-1 min-w-0">
           <div className="relative">
             <div className="absolute -inset-1 rounded-3xl bg-accent/5 blur-xl pointer-events-none" />
-            <div className="relative">{solucionActiva.demo}</div>
+            <div key={solucionActiva.id} className="relative transition-opacity duration-300">
+              {solucionActiva.demo}
+            </div>
           </div>
           <p className="mt-3 text-center text-xs text-muted">
             {lang === "es"
@@ -286,3 +288,4 @@ export function Soluciones() {
     </Section>
   );
 }
+

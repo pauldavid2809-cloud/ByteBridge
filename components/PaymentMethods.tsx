@@ -113,8 +113,8 @@ export function PaymentMethods() {
         {metodosGlobales.map((m) => (
           <div
             key={m.id}
-            className={`flex items-start gap-3 rounded-2xl border p-4 transition-colors ${
-              m.destacado ? "border-amber-500/50 bg-amber-500/5" : "border-line bg-background"
+            className={`flex items-start gap-3 rounded-2xl border p-4 transition-[border-color,background-color,transform] duration-150 [@media(hover:hover)_and_(pointer:fine)]:hover:scale-[1.01] ${
+              m.destacado ? "border-amber-500/50 bg-amber-500/5 hover:border-amber-500/80" : "border-line bg-background hover:border-accent/30"
             }`}
           >
             <span className="text-2xl leading-none">{m.icon}</span>
@@ -128,3 +128,4 @@ export function PaymentMethods() {
     </div>
   );
 }
+
