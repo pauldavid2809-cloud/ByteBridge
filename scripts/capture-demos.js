@@ -14,14 +14,6 @@ const projects = [
     url: "https://pau-cookies.vercel.app/",
   },
   {
-    slug: "arquidiocesis-maracaibo",
-    url: "https://arquimcbo.com/",
-  },
-  {
-    slug: "parrandon-navideno",
-    url: "https://parrandon.vercel.app/",
-  },
-  {
     slug: "psicoconsulta-online",
     url: "https://psiccarmen-jordan.vercel.app/",
   },

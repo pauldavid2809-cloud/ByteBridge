@@ -157,112 +157,6 @@ export const dictionary = {
         },
       ],
     },
-    arquidiocesis: {
-      nombre: { es: "Arquidiócesis de Maracaibo", en: "Archdiocese of Maracaibo Portal" },
-      resultado: {
-        es: "Portal institucional centralizado, directorio interactivo de 70+ parroquias y canal de comunicación eclesiástica para 1.5M+ de fieles",
-        en: "Centralized institutional portal, 70+ parish interactive directory & diocesan communications for 1.5M+ believers",
-      },
-      tags: {
-        es: ["Portal Institucional", "Directorio Eclesiástico", "Arquitectura Web"],
-        en: ["Institutional Portal", "Ecclesiastical Directory", "Web Architecture"],
-      },
-      descripcion: {
-        es: "Portal web oficial y hub de comunicación institucional para la Arquidiócesis de Maracaibo: directorio interactivo de parroquias y clero, sala de prensa arzobispal, comisiones pastorales y trámites eclesiásticos.",
-        en: "Official institutional web portal for the Archdiocese of Maracaibo: interactive parish & clergy directory, press room, pastoral commissions, and canonical services.",
-      },
-      problemaTitle: { es: "El problema", en: "The Challenge" },
-      problema: {
-        es: "La dispersión territorial de más de 70 parroquias en el Estado Zulia dificultaba el acceso de los feligreses a horarios de misas y trámites sacramentales, mientras que los comunicados y la labor social de Cáritas carecían de un repositorio digital unificado de alta disponibilidad.",
-        en: "Geographic dispersion across 70+ parishes in Zulia State hindered parishioners from finding mass schedules and sacramental requirements, while pastoral statements and Caritas relief work lacked a high-availability centralized repository.",
-      },
-      solucionTitle: { es: "La solución", en: "The Solution" },
-      solucion: {
-        es: "Un portal web institucional moderno de alto rendimiento: catálogo interactivo de zonas pastorales con búsqueda de parroquias y sacerdotes, sala de prensa con categorización de noticias y decretos del Arzobispado, módulo de servicios canónicos de cancillería y difusión de las obras sociales de Cáritas Maracaibo.",
-        en: "A modern high-performance institutional portal: interactive pastoral zones catalog with parish and priest search, structured press room for Archbishop decrees and news, chancery services guide, and Caritas Maracaibo outreach integration.",
-      },
-      resultadoTitle: { es: "El resultado", en: "The Result" },
-      resultadoDetalle: {
-        es: "100% de la estructura arquidiocesana centralizada en un portal accesible y mobile-first, facilitando la localización inmediata de templos para más de 1.5 millones de personas, agilizando la difusión de comunicados oficiales y fortaleciendo la identidad digital de la Iglesia local.",
-        en: "100% of diocesan services centralized on a mobile-first portal, enabling instant church discovery for 1.5M+ people, accelerating official announcements, and elevating the local Church's digital presence.",
-      },
-      metricas: [
-        {
-          valor: "70+",
-          etiqueta: {
-            es: "parroquias y templos catalogados por zonas",
-            en: "parishes & churches categorized by zone",
-          },
-        },
-        {
-          valor: "100%",
-          etiqueta: {
-            es: "centralización de comunicados y gobierno pastoral",
-            en: "centralized communications & pastoral governance",
-          },
-        },
-        {
-          valor: "< 1s",
-          etiqueta: {
-            es: "carga rápida y navegación optimizada para móviles",
-            en: "instant load speed & mobile-optimized UX",
-          },
-        },
-      ],
-    },
-    parrandon: {
-      nombre: { es: "Parrandón Navideño", en: "Christmas Gala & 2D Ticketing" },
-      resultado: {
-        es: "Ticketing 2D, cobro multimoneda y logística en tiempo real para 500+ asistentes sin duplicidad",
-        en: "2D seat ticketing, multi-currency checkout & live event logistics for 500+ attendees",
-      },
-      tags: {
-        es: ["Ticketing 2D", "Pagos Multimoneda", "Logística en Vivo"],
-        en: ["2D Ticketing", "Multi-currency Payments", "Live Logistics"],
-      },
-      descripcion: {
-        es: "Plataforma web de comercio electrónico y gestión integral de eventos para la Arquidiócesis de Maracaibo: croquis 2D de 500 asientos, pasarela multimoneda con PayPal y tasa BCV, terminal de venta para seminaristas, escáner QR de acceso y pantalla táctil para cocina.",
-        en: "Full-scale e-commerce & live event management platform for the Archdiocese of Maracaibo: 500-seat interactive 2D floor map, multi-currency checkout with PayPal & official BCV rate, mobile POS terminal for sellers, QR access scanner, and kitchen touch dispatch.",
-      },
-      problemaTitle: { es: "El problema", en: "The Challenge" },
-      problema: {
-        es: "La venta manual y en papel de más de 500 entradas para el evento benéfico anual generaba riesgo crítico de duplicidad de asientos, errores en cobros multimoneda (Bs, USD, PayPal, Zelle), cuellos de botella en el acceso y demoras en el despacho de más de 500 cenas en cocina.",
-        en: "Selling 500+ tickets manually on paper led to seat duplication risks, multi-currency payment errors (VES, USD, PayPal, Zelle), entrance bottlenecks, and kitchen delivery delays during banquet service.",
-      },
-      solucionTitle: { es: "La solución", en: "The Solution" },
-      solucion: {
-        es: "Una plataforma a medida orientada a la experiencia de usuario (UX): croquis 2D interactivo con selección de 50 mesas y 500 sillas en tiempo real, pasarela multimoneda con verificación real de fondos vía PayPal Smart Buttons y tasa Euro BCV en vivo, terminal móvil para seminaristas con despacho de pases por WhatsApp en 1 toque, lector óptico continuo para control de acceso en puerta, pantalla táctil de cocina con despacho por mesa de 10 platos y panel administrativo financiero.",
-        en: "A custom UX-driven platform: interactive 2D seat map with real-time locking across 50 tables and 500 numbered seats, multi-currency payments with PayPal server verification and live official BCV rates, mobile POS with 1-tap WhatsApp QR delivery, millisecond barcode access scanning, 10-dish per table kitchen touch system, and financial admin reporting.",
-      },
-      resultadoTitle: { es: "El resultado", en: "The Result" },
-      resultadoDetalle: {
-        es: "100% de trazabilidad de asientos con cero duplicidad, reducción del 90% en tiempos de entrega de pases digitales con QR vía WhatsApp, y despacho fluido de más de 500 platos navideños con control digital en cocina y puerta.",
-        en: "100% seat traceability with zero duplicates, 90% reduction in ticket delivery time via automated WhatsApp QR passes, and seamless dinner service for 500+ guests through synchronized digital stations.",
-      },
-      metricas: [
-        {
-          valor: "500+",
-          etiqueta: {
-            es: "asientos y pases QR gestionados en vivo",
-            en: "seats & QR passes managed live",
-          },
-        },
-        {
-          valor: "100%",
-          etiqueta: {
-            es: "trazabilidad y cero duplicidad de sillas",
-            en: "seat traceability & zero duplicate tickets",
-          },
-        },
-        {
-          valor: "0 esperas",
-          etiqueta: {
-            es: "despacho automático de entradas por WhatsApp",
-            en: "instant WhatsApp automated ticket delivery",
-          },
-        },
-      ],
-    },
     psicoconsulta: {
       nombre: { es: "PsicoConsulta Online", en: "PsicoConsulta Online SaaS" },
       resultado: {
@@ -647,7 +541,6 @@ export const dictionary = {
     all: { es: "Todos", en: "All" },
     apps: { es: "Web Apps & IA", en: "Web Apps & AI" },
     ecommerce: { es: "Tiendas & Menús", en: "E-Commerce & Menus" },
-    landing: { es: "Landing Pages", en: "Landing Pages" },
   },
 };
 

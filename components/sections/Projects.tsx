@@ -10,7 +10,7 @@ import { proyectos } from "@/data/proyectos";
 import { useLanguage } from "@/context/LanguageContext";
 import { dictionary } from "@/data/dictionary";
 
-type Category = "all" | "apps" | "ecommerce" | "landing";
+type Category = "all" | "apps" | "ecommerce";
 
 /**
  * Grid de proyectos destacados con filtros interactivos por categoría y diseño Bento.
@@ -29,9 +29,6 @@ export function Projects() {
     if (categoria === "ecommerce") {
       return ["pau-cookies", "taqueria-digital"].includes(p.slug);
     }
-    if (categoria === "landing") {
-      return ["parrandon-navideno", "arquidiocesis-maracaibo"].includes(p.slug);
-    }
     return true;
   });
 
@@ -44,7 +41,7 @@ export function Projects() {
     >
       {/* Barra de Filtros por Categoría */}
       <div className="mb-8 flex items-center gap-2 overflow-x-auto pb-2 scrollbar-hide sm:flex-wrap sm:pb-0 touch-manipulation">
-        {(["all", "apps", "ecommerce", "landing"] as Category[]).map((cat) => (
+        {(["all", "apps", "ecommerce"] as Category[]).map((cat) => (
           <button
             key={cat}
             onClick={() => setCategoria(cat)}
@@ -66,17 +63,13 @@ export function Projects() {
               ? t.canonia
               : proyecto.slug === "pau-cookies"
                 ? t.pauCookies
-                : proyecto.slug === "arquidiocesis-maracaibo"
-                  ? t.arquidiocesis
-                  : proyecto.slug === "parrandon-navideno"
-                    ? t.parrandon
-                    : proyecto.slug === "psicoconsulta-online"
-                      ? t.psicoconsulta
-                      : proyecto.slug === "taqueria-digital"
-                        ? t.taqueria
-                        : proyecto.slug === "quiniela-mundial-2026"
-                          ? t.quiniela
-                          : null;
+                : proyecto.slug === "psicoconsulta-online"
+                  ? t.psicoconsulta
+                  : proyecto.slug === "taqueria-digital"
+                    ? t.taqueria
+                    : proyecto.slug === "quiniela-mundial-2026"
+                      ? t.quiniela
+                      : null;
           const nombre = projectDict?.nombre[lang] ?? proyecto.nombre;
           const resultado = projectDict?.resultado[lang] ?? proyecto.resultado;
           const tags = projectDict?.tags[lang] ?? proyecto.tags;
