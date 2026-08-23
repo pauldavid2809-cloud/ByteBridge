@@ -20,7 +20,6 @@ import { ReservasDemo } from "@/components/demos/ReservasDemo";
 import { CatalogoDemo } from "@/components/demos/CatalogoDemo";
 import { DeliveryDemo } from "@/components/demos/DeliveryDemo";
 import { DashboardDemo } from "@/components/demos/DashboardDemo";
-import { QrModal } from "@/components/ui/QrModal";
 
 const soluciones = [
   {
@@ -137,7 +136,6 @@ export function Soluciones() {
   const { lang } = useLanguage();
   const { mostrarDual, pais, cargando, ocultarPrecios } = useCurrency();
   const [activa, setActiva] = useState("menu");
-  const [mostrarQr, setMostrarQr] = useState(false);
   const idx = soluciones.findIndex((s) => s.id === activa);
   const solucionActiva = soluciones[idx];
 
@@ -258,25 +256,6 @@ export function Soluciones() {
             <WhatsAppIcon className="h-4 w-4" />
             {lang === "es" ? "Quiero este para mi negocio" : "I want this for my business"}
           </a>
-
-          {/* Botón para escanear y probar en el teléfono */}
-          <button
-            onClick={() => setMostrarQr(true)}
-            className="flex w-full items-center justify-center gap-2 rounded-2xl border border-line bg-surface/80 px-5 py-2.5 text-xs font-semibold text-foreground hover:border-accent/50 hover:bg-surface transition-[background-color,border-color,transform] duration-150 active:scale-[0.97]"
-          >
-            <span>📲</span>
-            {lang === "es" ? "Probar en tu móvil (Código QR)" : "Test on mobile with QR Code"}
-          </button>
-
-          {/* Modal de Código QR para el demo */}
-          <QrModal
-            isOpen={mostrarQr}
-            onClose={() => setMostrarQr(false)}
-            title={`${solucionActiva.nombre[lang]} · Demo Móvil`}
-            subtitle={lang === "es" ? "Escanea con la cámara de tu smartphone para probar la versión móvil" : "Scan with your phone camera to test the mobile version"}
-            tableOrContextLabel={solucionActiva.nombre[lang]}
-            qrValue="https://bytebridge.cloud/#soluciones"
-          />
 
           {/* Navegación anterior / siguiente */}
           <div className="flex items-center justify-between gap-3">
