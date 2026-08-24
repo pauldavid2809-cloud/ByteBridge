@@ -90,15 +90,15 @@ export function Faq() {
           return (
             <div
               key={faq.id}
-              className="rounded-2xl border border-line bg-surface/60 overflow-hidden transition-all duration-200"
+              className="rounded-2xl border border-line bg-surface/60 overflow-hidden transition-[border-color,background-color] duration-150"
             >
               <button
                 onClick={() => toggle(faq.id)}
-                className="w-full flex items-center justify-between p-5 text-left text-sm sm:text-base font-semibold text-foreground hover:text-accent transition-colors duration-200"
+                className="w-full flex items-center justify-between p-5 text-left text-sm sm:text-base font-semibold text-foreground hover:text-accent transition-[color,transform] duration-150 active:scale-[0.99]"
               >
                 <span>{faq.q[lang]}</span>
                 <span
-                  className={`ml-3 text-lg font-bold text-accent shrink-0 transition-transform duration-300 motion-reduce:transition-none`}
+                  className={`ml-3 text-lg font-bold text-accent shrink-0 transition-transform duration-200 [transition-timing-function:cubic-bezier(0.23,1,0.32,1)] motion-reduce:transition-none`}
                   style={{ transform: abierto ? "rotate(45deg)" : "rotate(0deg)" }}
                 >
                   +
@@ -106,7 +106,7 @@ export function Faq() {
               </button>
               {/* Accordion animado: grid-rows es la forma correcta de animar height en CSS */}
               <div
-                className="grid transition-[grid-template-rows,opacity] duration-300 motion-reduce:transition-none"
+                className="grid transition-[grid-template-rows,opacity] duration-200 motion-reduce:transition-none"
                 style={{
                   gridTemplateRows: abierto ? "1fr" : "0fr",
                   opacity: abierto ? 1 : 0,

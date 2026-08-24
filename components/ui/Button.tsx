@@ -14,7 +14,7 @@ type ButtonProps = {
 
 const base =
   "group inline-flex items-center justify-center gap-2.5 rounded-full font-semibold " +
-  "transition-[background-color,border-color,color,transform,box-shadow] duration-150 select-none " +
+  "transition-[background-color,border-color,color,transform,box-shadow] duration-150 [transition-timing-function:cubic-bezier(0.23,1,0.32,1)] select-none " +
   "active:scale-[0.97] " +
   "disabled:opacity-50 disabled:pointer-events-none";
 

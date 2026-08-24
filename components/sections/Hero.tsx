@@ -69,16 +69,16 @@ export function Hero() {
             </div>
 
             {/* Micro-puntos de confianza y conversión */}
-            <div className="hero-animate hero-animate-4 pt-2 border-t border-line/60 grid grid-cols-3 gap-2 sm:gap-4 text-[11px] sm:text-xs text-muted">
-              <div className="flex items-center gap-1.5">
+            <div className="hero-animate hero-animate-4 pt-2 border-t border-line/60 flex flex-wrap items-center justify-between gap-x-4 gap-y-2 sm:grid sm:grid-cols-3 text-[11px] sm:text-xs text-muted">
+              <div className="flex items-center gap-1.5 shrink-0">
                 <span className="text-accent font-bold">✓</span>
                 <span>{lang === "es" ? "Entrega en 3-5 días" : "3-5 days delivery"}</span>
               </div>
-              <div className="flex items-center gap-1.5">
+              <div className="flex items-center gap-1.5 shrink-0">
                 <span className="text-accent font-bold">✓</span>
                 <span>{lang === "es" ? "Código 100% tuyo" : "100% your code"}</span>
               </div>
-              <div className="flex items-center gap-1.5">
+              <div className="flex items-center gap-1.5 shrink-0">
                 <span className="text-accent font-bold">✓</span>
                 <span>{lang === "es" ? "Sin suscripciones" : "0 monthly fees"}</span>
               </div>

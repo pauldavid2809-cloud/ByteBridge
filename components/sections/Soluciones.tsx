@@ -186,7 +186,7 @@ export function Soluciones() {
       }
     >
       {/* ── SELECCIÓN DE DEMOS — Carrusel táctil snap en móvil, grid adaptativo en desktop ── */}
-      <div className="flex gap-2.5 overflow-x-auto pb-4 pt-1 px-1 -mx-2 sm:mx-0 sm:grid sm:grid-cols-4 lg:grid-cols-7 sm:gap-2.5 sm:overflow-visible sm:pb-0 mb-8 scrollbar-hide snap-x snap-mandatory touch-manipulation">
+      <div className="flex gap-2.5 overflow-x-auto pb-4 pt-1 px-5 -mx-5 sm:mx-0 sm:px-0 sm:grid sm:grid-cols-4 lg:grid-cols-7 sm:gap-2.5 sm:overflow-visible sm:pb-0 mb-8 scrollbar-hide snap-x snap-mandatory touch-manipulation">
         {soluciones.map((s, i) => {
           const IconComp = s.icon;
           const isActiva = activa === s.id;
@@ -194,7 +194,7 @@ export function Soluciones() {
             <button
               key={s.id}
               onClick={() => setActiva(s.id)}
-              className={`group relative flex min-w-[130px] sm:min-w-0 flex-1 shrink-0 snap-center flex-col items-center gap-2 rounded-2xl border p-3 sm:p-4 text-center transition-all duration-200 active:scale-[0.95] ${
+              className={`group relative flex min-w-[130px] sm:min-w-0 flex-1 shrink-0 snap-center flex-col items-center gap-2 rounded-2xl border p-3 sm:p-4 text-center transition-[transform,border-color,background-color,box-shadow] duration-200 [transition-timing-function:cubic-bezier(0.23,1,0.32,1)] active:scale-[0.95] ${
                 isActiva
                   ? `${s.borderActive} shadow-xl shadow-accent/10 ring-1 ring-accent/40 scale-[1.02] bg-surface`
                   : "border-line bg-surface/80 hover:border-accent/40 hover:bg-surface [@media(hover:hover)_and_(pointer:fine)]:hover:scale-[1.02]"

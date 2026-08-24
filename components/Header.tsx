@@ -103,34 +103,34 @@ export function Header() {
             href={whatsappLink()}
             target="_blank"
             rel="noopener noreferrer"
-            className="group relative inline-flex h-9 items-center gap-2 rounded-full bg-accent px-3.5 sm:px-4 text-xs sm:text-sm font-bold text-accent-ink transition-[background-color,transform,box-shadow] duration-200 hover:bg-accent-strong hover:shadow-md hover:shadow-accent/20 active:scale-[0.96]"
+            aria-label={t.whatsappCta[lang]}
+            className="group relative inline-flex h-9 items-center justify-center gap-2 rounded-full bg-accent px-2.5 sm:px-4 text-xs sm:text-sm font-bold text-accent-ink transition-[background-color,transform,box-shadow] duration-150 [transition-timing-function:cubic-bezier(0.23,1,0.32,1)] hover:bg-accent-strong hover:shadow-md hover:shadow-accent/20 active:scale-[0.95]"
           >
-            <WhatsAppIcon className="h-3.5 w-3.5 transition-transform duration-200 group-hover:scale-110" />
+            <WhatsAppIcon className="h-4 w-4 transition-transform duration-150 group-hover:scale-110" />
             <span className="hidden sm:inline">{t.whatsappCta[lang]}</span>
-            <span className="sm:hidden text-xs font-bold">WhatsApp</span>
           </a>
 
           {/* Botón Hamburguesa Móvil con Morph animado a X */}
           <button
             type="button"
             onClick={() => setMenuAbierto(!menuAbierto)}
-            className="flex h-9 w-9 items-center justify-center rounded-full border border-line bg-surface/90 text-muted transition-[color,border-color,background-color,transform] duration-150 hover:border-accent/40 hover:text-foreground active:scale-95 md:hidden"
+            className="flex h-9 w-9 items-center justify-center rounded-full border border-line bg-surface/90 text-muted transition-[color,border-color,background-color,transform] duration-150 [transition-timing-function:cubic-bezier(0.23,1,0.32,1)] hover:border-accent/40 hover:text-foreground active:scale-95 md:hidden"
             aria-expanded={menuAbierto}
             aria-label={menuAbierto ? "Cerrar menú" : "Abrir menú"}
           >
             <div className="relative h-4 w-4">
               <span
-                className={`absolute top-0.5 left-0 h-0.5 w-4 rounded-full bg-current transition-all duration-200 ${
+                className={`absolute top-0.5 left-0 h-0.5 w-4 rounded-full bg-current transition-all duration-200 [transition-timing-function:cubic-bezier(0.23,1,0.32,1)] ${
                   menuAbierto ? "top-2 rotate-45" : ""
                 }`}
               />
               <span
-                className={`absolute top-2 left-0 h-0.5 w-4 rounded-full bg-current transition-all duration-150 ${
+                className={`absolute top-2 left-0 h-0.5 w-4 rounded-full bg-current transition-opacity duration-150 ${
                   menuAbierto ? "opacity-0" : "opacity-100"
                 }`}
               />
               <span
-                className={`absolute top-3.5 left-0 h-0.5 w-4 rounded-full bg-current transition-all duration-200 ${
+                className={`absolute top-3.5 left-0 h-0.5 w-4 rounded-full bg-current transition-all duration-200 [transition-timing-function:cubic-bezier(0.23,1,0.32,1)] ${
                   menuAbierto ? "top-2 -rotate-45" : ""
                 }`}
               />
@@ -141,9 +141,9 @@ export function Header() {
 
       {/* Drawer Menú Móvil a pantalla completa con desenfoque de fondo */}
       {menuAbierto && (
-        <div className="fixed inset-0 top-[4.5rem] z-40 p-4 md:hidden pointer-events-auto animate-in fade-in duration-200">
+        <div className="fixed inset-0 top-[4.5rem] z-40 p-4 md:hidden pointer-events-auto animate-in fade-in duration-200 [transition-timing-function:cubic-bezier(0.32,0.72,0,1)]">
           <div
-            className="absolute inset-0 bg-black/60 backdrop-blur-md"
+            className="absolute inset-0 bg-black/60 backdrop-blur-md transition-opacity duration-200"
             onClick={() => setMenuAbierto(false)}
             aria-hidden="true"
           />
@@ -158,7 +158,7 @@ export function Header() {
                   key={link.href}
                   href={link.href}
                   onClick={() => setMenuAbierto(false)}
-                  className="group flex items-center justify-between rounded-2xl px-4 py-3 text-sm font-semibold text-foreground/90 transition-colors duration-150 hover:bg-surface hover:text-accent active:bg-accent/10"
+                  className="group flex items-center justify-between rounded-2xl px-4 py-3 text-sm font-semibold text-foreground/90 transition-[background-color,color,transform] duration-150 hover:bg-surface hover:text-accent active:scale-[0.98] active:bg-accent/10"
                 >
                   <div className="flex items-center gap-3">
                     <span className="font-mono text-xs text-muted/60 group-hover:text-accent/80">
@@ -180,7 +180,7 @@ export function Header() {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setMenuAbierto(false)}
-                className="flex items-center justify-center gap-2 rounded-2xl bg-accent py-3 text-xs font-bold text-accent-ink transition-transform active:scale-95"
+                className="flex items-center justify-center gap-2 rounded-2xl bg-accent py-3 text-xs font-bold text-accent-ink transition-[transform,background-color] duration-150 active:scale-[0.97] hover:bg-accent-strong"
               >
                 <WhatsAppIcon className="h-4 w-4" />
                 <span>{lang === "es" ? "Contactar por WhatsApp" : "Chat on WhatsApp"}</span>

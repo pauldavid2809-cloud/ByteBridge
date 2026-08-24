@@ -34,7 +34,7 @@ export function HeroSimulator() {
       <div className="mt-4 flex rounded-xl border border-line bg-background/70 p-1">
         <button
           onClick={() => setActiveTab("perf")}
-          className={`flex-1 rounded-lg py-1.5 text-xs font-semibold transition-[background-color,color,transform] duration-150 active:scale-95 ${
+          className={`flex-1 rounded-lg py-2 text-xs font-semibold transition-[background-color,color,transform] duration-150 [transition-timing-function:cubic-bezier(0.23,1,0.32,1)] active:scale-[0.97] ${
             activeTab === "perf"
               ? "bg-accent text-accent-ink shadow-sm"
               : "text-muted hover:text-foreground"
@@ -44,7 +44,7 @@ export function HeroSimulator() {
         </button>
         <button
           onClick={() => setActiveTab("stack")}
-          className={`flex-1 rounded-lg py-1.5 text-xs font-semibold transition-[background-color,color,transform] duration-150 active:scale-95 ${
+          className={`flex-1 rounded-lg py-2 text-xs font-semibold transition-[background-color,color,transform] duration-150 [transition-timing-function:cubic-bezier(0.23,1,0.32,1)] active:scale-[0.97] ${
             activeTab === "stack"
               ? "bg-accent text-accent-ink shadow-sm"
               : "text-muted hover:text-foreground"
@@ -54,7 +54,7 @@ export function HeroSimulator() {
         </button>
         <button
           onClick={() => setActiveTab("ownership")}
-          className={`flex-1 rounded-lg py-1.5 text-xs font-semibold transition-[background-color,color,transform] duration-150 active:scale-95 ${
+          className={`flex-1 rounded-lg py-2 text-xs font-semibold transition-[background-color,color,transform] duration-150 [transition-timing-function:cubic-bezier(0.23,1,0.32,1)] active:scale-[0.97] ${
             activeTab === "ownership"
               ? "bg-accent text-accent-ink shadow-sm"
               : "text-muted hover:text-foreground"

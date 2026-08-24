@@ -40,12 +40,12 @@ export function Projects() {
       subtitle={t.subtitle[lang]}
     >
       {/* Barra de Filtros por Categoría */}
-      <div className="mb-8 flex items-center gap-2 overflow-x-auto pb-2 scrollbar-hide sm:flex-wrap sm:pb-0 touch-manipulation">
+      <div className="mb-8 flex items-center gap-2 overflow-x-auto pb-2 px-5 -mx-5 sm:mx-0 sm:px-0 scrollbar-hide sm:flex-wrap sm:pb-0 touch-manipulation">
         {(["all", "apps", "ecommerce"] as Category[]).map((cat) => (
           <button
             key={cat}
             onClick={() => setCategoria(cat)}
-            className={`shrink-0 rounded-full px-4 py-2 text-xs font-semibold transition-[background-color,border-color,color,transform] duration-150 active:scale-95 ${
+            className={`shrink-0 rounded-full px-4 py-2 text-xs font-semibold transition-[background-color,border-color,color,transform] duration-150 [transition-timing-function:cubic-bezier(0.23,1,0.32,1)] active:scale-95 ${
               categoria === cat
                 ? "bg-accent text-accent-ink shadow-sm ring-1 ring-accent/40"
                 : "border border-line bg-surface text-muted hover:border-accent/40 hover:text-foreground"
@@ -81,7 +81,7 @@ export function Projects() {
             <Link
               key={proyecto.slug}
               href={`/proyectos/${proyecto.slug}`}
-              className={`group rounded-2xl ${isFeatured ? "sm:col-span-2 lg:col-span-2" : ""}`}
+              className={`group rounded-2xl transition-transform duration-150 active:scale-[0.98] ${isFeatured ? "sm:col-span-2 lg:col-span-2" : ""}`}
             >
               <Card
                 interactive

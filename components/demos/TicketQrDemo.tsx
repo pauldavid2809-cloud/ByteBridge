@@ -77,22 +77,22 @@ export function TicketQrDemo() {
   return (
     <div className="rounded-2xl border border-line bg-background overflow-hidden">
       {/* Header del Evento */}
-      <div className="bg-gradient-to-r from-emerald-950 via-teal-950 to-background px-5 py-4 border-b border-line flex items-center justify-between">
+      <div className="bg-gradient-to-r from-emerald-950 via-teal-950 to-background px-4 sm:px-5 py-4 border-b border-line flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div className="flex items-center gap-3">
-          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-accent/15 border border-accent/30 text-accent">
+          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-accent/15 border border-accent/30 text-accent">
             <TicketQrIcon className="h-5 w-5" />
           </div>
           <div>
             <p className="text-[10px] font-bold uppercase tracking-widest text-accent">Entradas & QR Validado</p>
-            <h3 className="text-foreground font-bold text-base">Sunset Live Fest 2026</h3>
+            <h3 className="text-foreground font-bold text-sm sm:text-base">Sunset Live Fest 2026</h3>
           </div>
         </div>
 
         {/* Switcher de Vistas del Demo */}
-        <div className="flex rounded-xl border border-line bg-surface/90 p-1 text-xs">
+        <div className="flex w-full sm:w-auto rounded-xl border border-line bg-surface/90 p-1 text-xs">
           <button
             onClick={() => setVista("ticket")}
-            className={`rounded-lg px-2.5 py-1 font-semibold transition-all ${
+            className={`flex-1 sm:flex-initial rounded-lg px-2.5 py-1.5 font-semibold transition-[background-color,color,transform] duration-150 active:scale-95 ${
               vista === "ticket" ? "bg-accent text-accent-ink shadow-xs" : "text-muted hover:text-foreground"
             }`}
           >
@@ -100,7 +100,7 @@ export function TicketQrDemo() {
           </button>
           <button
             onClick={() => setVista("scanner")}
-            className={`rounded-lg px-2.5 py-1 font-semibold transition-all ${
+            className={`flex-1 sm:flex-initial rounded-lg px-2.5 py-1.5 font-semibold transition-[background-color,color,transform] duration-150 active:scale-95 ${
               vista === "scanner" ? "bg-accent text-accent-ink shadow-xs" : "text-muted hover:text-foreground"
             }`}
           >
@@ -108,7 +108,7 @@ export function TicketQrDemo() {
           </button>
           <button
             onClick={() => setVista("comprar")}
-            className={`rounded-lg px-2.5 py-1 font-semibold transition-all ${
+            className={`flex-1 sm:flex-initial rounded-lg px-2.5 py-1.5 font-semibold transition-[background-color,color,transform] duration-150 active:scale-95 ${
               vista === "comprar" ? "bg-accent text-accent-ink shadow-xs" : "text-muted hover:text-foreground"
             }`}
           >

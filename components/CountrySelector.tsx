@@ -101,15 +101,14 @@ export function PreferencesPanel() {
                 {lang === "es" ? "País y moneda" : "Country & currency"}
               </p>
               <input
-                autoFocus
                 value={busqueda}
                 onChange={(e) => setBusqueda(e.target.value)}
                 placeholder={lang === "es" ? "Buscar país o moneda..." : "Search country or currency..."}
-                className="w-full rounded-xl border border-line bg-surface px-3 py-1.5 text-xs text-foreground placeholder:text-muted/50 focus:outline-none focus:border-accent transition-colors mb-1"
+                className="w-full rounded-xl border border-line bg-surface px-3 py-2 text-xs text-foreground placeholder:text-muted/50 focus:outline-none focus:border-accent transition-colors mb-1"
               />
             </div>
 
-            <ul className="max-h-48 overflow-y-auto pb-2 divide-y divide-line/30">
+            <ul className="max-h-52 overflow-y-auto pb-2 divide-y divide-line/30">
               {paisesFiltrados.map((p) => (
                 <li key={p.codigo}>
                   <button
@@ -118,7 +117,7 @@ export function PreferencesPanel() {
                       setAbierto(false);
                       setBusqueda("");
                     }}
-                    className={`w-full flex items-center gap-3 px-4 py-2 text-left transition-[background-color] duration-150 hover:bg-surface active:bg-accent/10 ${
+                    className={`w-full flex items-center gap-3 px-4 py-2.5 text-left transition-[background-color,transform] duration-150 active:scale-[0.98] hover:bg-surface active:bg-accent/10 ${
                       pais.codigo === p.codigo ? "bg-accent/5 font-medium" : ""
                     }`}
                   >

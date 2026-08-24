@@ -33,7 +33,7 @@ export function Testimonials() {
       </div>
 
       {/* ── BENTO GRID / CARRUSEL TÁCTIL DE TESTIMONIOS ── */}
-      <div className="flex overflow-x-auto snap-x snap-mandatory gap-4 pb-4 -mx-2 px-2 md:mx-0 md:px-0 md:grid md:grid-cols-3 md:gap-6 md:overflow-visible md:pb-0 scrollbar-hide touch-manipulation">
+      <div className="flex overflow-x-auto snap-x snap-mandatory gap-4 pb-4 px-5 -mx-5 md:mx-0 md:px-0 md:grid md:grid-cols-3 md:gap-6 md:overflow-visible md:pb-0 scrollbar-hide touch-manipulation">
         {t.reviews.map((rev, idx) => (
           <div key={idx} className="min-w-[290px] sm:min-w-[320px] md:min-w-0 flex-1 shrink-0 snap-center">
             <SpotlightCard className="h-full rounded-[2rem] card-bezel">

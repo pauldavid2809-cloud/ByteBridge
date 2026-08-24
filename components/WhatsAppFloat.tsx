@@ -16,7 +16,7 @@ export function WhatsAppFloat() {
         target="_blank"
         rel="noopener noreferrer"
         aria-label={t.ariaLabel[lang]}
-        className="group relative float-animate flex h-13 w-13 items-center justify-center rounded-full bg-accent text-accent-ink shadow-2xl shadow-accent/25 transition-all duration-300 [transition-timing-function:cubic-bezier(0.23,1,0.32,1)] active:scale-90 [@media(hover:hover)_and_(pointer:fine)]:hover:scale-110 [@media(hover:hover)_and_(pointer:fine)]:hover:bg-accent-strong ring-4 ring-background"
+        className="group relative float-animate flex h-13 w-13 items-center justify-center rounded-full bg-accent text-accent-ink shadow-2xl shadow-accent/25 transition-[transform,background-color,box-shadow] duration-150 [transition-timing-function:cubic-bezier(0.23,1,0.32,1)] active:scale-95 [@media(hover:hover)_and_(pointer:fine)]:hover:scale-105 [@media(hover:hover)_and_(pointer:fine)]:hover:bg-accent-strong ring-4 ring-background"
       >
         {/* Indicador de disponibilidad en línea con pulso */}
         <span className="absolute top-0 right-0 flex h-3.5 w-3.5 -mt-0.5 -mr-0.5">
