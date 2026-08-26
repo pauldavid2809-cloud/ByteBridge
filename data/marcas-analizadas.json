@@ -1,0 +1,222 @@
+[
+  {
+    "slug": "ecoland",
+    "handle": "ecoland.club",
+    "name": "Ecoland Club",
+    "sector": "Club, Hotel & Resort",
+    "instagramUrl": "https://www.instagram.com/ecoland.club/",
+    "logoPath": "/marcas/ecoland.jpg",
+    "colors": {
+      "primary": "#0050B0",
+      "secondary": "#0050A0",
+      "darkBg": "#0040A0",
+      "lightBg": "#F0FFFF",
+      "topPalette": [
+        "#0050B0",
+        "#F0FFFF",
+        "#FFFFFF",
+        "#0050A0",
+        "#1050A0"
+      ]
+    },
+    "bio": "Iniciar sesión · Registrarte · ecoland.club · 26,3 mil seguidores"
+  },
+  {
+    "slug": "grandchef",
+    "handle": "grandchefmaracaibo",
+    "name": "Grand Chef Maracaibo",
+    "sector": "Restaurante Mediterráneo",
+    "instagramUrl": "https://www.instagram.com/grandchefmaracaibo/",
+    "logoPath": "/marcas/grandchef.jpg",
+    "colors": {
+      "primary": "#103050",
+      "secondary": "#102040",
+      "darkBg": "#103050",
+      "lightBg": "#F0D090",
+      "topPalette": [
+        "#103050",
+        "#102040",
+        "#102030",
+        "#103040",
+        "#103060"
+      ]
+    },
+    "bio": "Iniciar sesión · Registrarte · grandchefmaracaibo · 65,4 mil seguidores"
+  },
+  {
+    "slug": "zuhouse",
+    "handle": "zuhousemaracaibo",
+    "name": "Zu House Maracaibo",
+    "sector": "Restaurante & Bar",
+    "instagramUrl": "https://www.instagram.com/zuhousemaracaibo/",
+    "logoPath": "/marcas/zuhouse.jpg",
+    "colors": {
+      "primary": "#F0D090",
+      "secondary": "#E0D090",
+      "darkBg": "#111827",
+      "lightBg": "#F0D090",
+      "topPalette": [
+        "#F0D090",
+        "#E0D090",
+        "#F0D0A0",
+        "#904040",
+        "#E0C090"
+      ]
+    },
+    "bio": "Iniciar sesión · Registrarte · zuhousemaracaibo · 59,6 mil seguidores"
+  },
+  {
+    "slug": "tannous",
+    "handle": "tannous_ve",
+    "name": "Tannous",
+    "sector": "Restaurante & Bar",
+    "instagramUrl": "https://www.instagram.com/tannous_ve/",
+    "logoPath": "/marcas/tannous.jpg",
+    "colors": {
+      "primary": "#104050",
+      "secondary": "#104060",
+      "darkBg": "#104050",
+      "lightBg": "#E0F0F0",
+      "topPalette": [
+        "#104050",
+        "#104060",
+        "#104040",
+        "#004050",
+        "#E0F0F0"
+      ]
+    },
+    "bio": "Iniciar sesión · Registrarte · tannous_ve · 39,5 mil seguidores"
+  },
+  {
+    "slug": "room101",
+    "handle": "room101bar",
+    "name": "Room 101 Bar",
+    "sector": "Restobar & Hookah Lounge",
+    "instagramUrl": "https://www.instagram.com/room101bar/",
+    "logoPath": "/marcas/room101.jpg",
+    "colors": {
+      "primary": "#202010",
+      "secondary": "#202020",
+      "darkBg": "#202010",
+      "lightBg": "#FFFFFF",
+      "topPalette": [
+        "#202010",
+        "#FFFFFF",
+        "#101010",
+        "#202020",
+        "#F0F0F0"
+      ]
+    },
+    "bio": "Iniciar sesión · Registrarte · room101bar · 45,5 mil seguidores"
+  },
+  {
+    "slug": "labarraventura",
+    "handle": "labarraventura",
+    "name": "La Barra Ventura",
+    "sector": "Restaurante & Nightclub",
+    "instagramUrl": "https://www.instagram.com/labarraventura/",
+    "logoPath": "/marcas/labarraventura.jpg",
+    "colors": {
+      "primary": "#202020",
+      "secondary": "#E0E0E0",
+      "darkBg": "#000000",
+      "lightBg": "#FFFFFF",
+      "topPalette": [
+        "#000000",
+        "#FFFFFF",
+        "#F0F0F0",
+        "#101010",
+        "#202020"
+      ]
+    },
+    "bio": "Iniciar sesión · Registrarte · labarraventura · 25,8 mil seguidores"
+  },
+  {
+    "slug": "ciaogastrobar",
+    "handle": "ciaogastrobar",
+    "name": "Ciao Gastrobar",
+    "sector": "Alta Cocina Italiana & Gastrobar",
+    "instagramUrl": "https://www.instagram.com/ciaogastrobar/",
+    "logoPath": "/marcas/ciaogastrobar.jpg",
+    "colors": {
+      "primary": "#202020",
+      "secondary": "#302020",
+      "darkBg": "#202020",
+      "lightBg": "#FFF0E0",
+      "topPalette": [
+        "#202020",
+        "#FFF0E0",
+        "#F0F0E0",
+        "#302020",
+        "#202010"
+      ]
+    },
+    "bio": "Iniciar sesión · Registrarte · ciaogastrobar · 21,5 mil seguidores"
+  },
+  {
+    "slug": "blaomcbo",
+    "handle": "blaomcbo",
+    "name": "Blao Maracaibo",
+    "sector": "Restaurante & Bar",
+    "instagramUrl": "https://www.instagram.com/blaomcbo/",
+    "logoPath": "/marcas/blaomcbo.jpg",
+    "colors": {
+      "primary": "#204060",
+      "secondary": "#203060",
+      "darkBg": "#204060",
+      "lightBg": "#F0FFFF",
+      "topPalette": [
+        "#204060",
+        "#203060",
+        "#203050",
+        "#304060",
+        "#F0FFFF"
+      ]
+    },
+    "bio": "Iniciar sesión · Registrarte · blaomcbo · 76,3 mil seguidores"
+  },
+  {
+    "slug": "pittsbowling",
+    "handle": "pittsbowling",
+    "name": "Pitts Bowling",
+    "sector": "Bowling & Entertainment",
+    "instagramUrl": "https://www.instagram.com/pittsbowling/",
+    "logoPath": "/marcas/pittsbowling.jpg",
+    "colors": {
+      "primary": "#202020",
+      "secondary": "#202010",
+      "darkBg": "#202020",
+      "lightBg": "#F0F0F0",
+      "topPalette": [
+        "#202020",
+        "#202010",
+        "#F0F0F0",
+        "#F0F0E0",
+        "#102010"
+      ]
+    },
+    "bio": "Iniciar sesión · Registrarte · pittsbowling · 52,3 mil seguidores"
+  },
+  {
+    "slug": "corner",
+    "handle": "cornermcbo",
+    "name": "Corner Maracaibo",
+    "sector": "Board Games, Drinks & Entertainment",
+    "instagramUrl": "https://www.instagram.com/cornermcbo/",
+    "logoPath": "/marcas/corner.jpg",
+    "colors": {
+      "primary": "#F05010",
+      "secondary": "#F04010",
+      "darkBg": "#000000",
+      "lightBg": "#FFFFFF",
+      "topPalette": [
+        "#000000",
+        "#FFFFFF",
+        "#F05010",
+        "#F04010",
+        "#200000"
+      ]
+    },
+    "bio": "Iniciar sesión · Registrarte · cornermcbo · 15,1 mil seguidores"
+  }
+]
