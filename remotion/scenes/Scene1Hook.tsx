@@ -1,5 +1,3 @@
-"use client";
-
 import {
   AbsoluteFill,
   interpolate,
@@ -19,126 +17,403 @@ export function Scene1Hook({ demo }: Props) {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
 
-  // Animación de entrada de logo con spring suave
-  const logoScale = spring({
+  // Animación del teléfono entrando desde abajo con rebote suave
+  const phoneY = spring({
     frame,
     fps,
-    config: { damping: 12, stiffness: 100 },
+    config: { damping: 14, stiffness: 90 },
   });
 
-  // Animación de texto
-  const textOpacity = interpolate(frame, [15, 35], [0, 1], {
-    extrapolateLeft: "clamp",
+  // Animación del título superior
+  const titleOpacity = interpolate(frame, [5, 25], [0, 1], {
+    extrapolateRight: "clamp",
+  });
+  const titleY = interpolate(frame, [5, 25], [40, 0], {
     extrapolateRight: "clamp",
   });
 
-  const textY = interpolate(frame, [15, 35], [40, 0], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
-  });
-
-  // Ken Burns zoom en la imagen de fondo
-  const bgScale = interpolate(frame, [0, 105], [1.1, 1.25], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
-  });
-
-  const badgeScale = spring({
-    frame: frame - 10,
+  // Logo zoom pop
+  const logoPop = spring({
+    frame: frame - 15,
     fps,
     config: { damping: 10, stiffness: 120 },
   });
 
-  return (
-    <AbsoluteFill className="bg-black text-white font-sans overflow-hidden">
-      {/* Background Image with Zoom & Dark Gradient */}
-      <AbsoluteFill style={{ transform: `scale(${bgScale})` }}>
-        <Img
-          src={demo.coverImage}
-          alt={demo.name}
-          className="h-full w-full object-cover opacity-35 filter brightness-75"
-        />
-        <AbsoluteFill
-          style={{
-            background: `radial-gradient(circle at 50% 35%, ${demo.palette.glow}, transparent 70%), linear-gradient(to bottom, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0.95) 100%)`,
-          }}
-        />
-      </AbsoluteFill>
+  const logoSrc = demo.logo.startsWith("http") ? demo.logo : staticFile(demo.logo);
 
-      {/* Contenido Central */}
-      <AbsoluteFill className="flex flex-col items-center justify-between p-16 py-24 text-center">
-        {/* Top ByteBridge Pill */}
-        <div className="rounded-full border border-white/20 bg-black/60 px-6 py-2.5 backdrop-blur-xl">
-          <span className="text-xl font-bold tracking-widest text-zinc-300 uppercase">
+  return (
+    <AbsoluteFill
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "space-between",
+        padding: "80px 50px 70px 50px",
+        boxSizing: "border-box",
+      }}
+    >
+      {/* Top Header Section */}
+      <div
+        style={{
+          opacity: titleOpacity,
+          transform: `translateY(${titleY}px)`,
+          textAlign: "center",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          zIndex: 10,
+        }}
+      >
+        {/* ByteBridge Badge */}
+        <div
+          style={{
+            display: "inline-flex",
+            alignItems: "center",
+            gap: "12px",
+            padding: "12px 32px",
+            borderRadius: "9999px",
+            backgroundColor: "rgba(255, 255, 255, 0.08)",
+            border: "1.5px solid rgba(255, 255, 255, 0.2)",
+            backdropFilter: "blur(20px)",
+            boxShadow: "0 10px 30px rgba(0,0,0,0.5)",
+          }}
+        >
+          <span
+            style={{
+              width: "14px",
+              height: "14px",
+              borderRadius: "9999px",
+              backgroundColor: demo.palette.accent,
+              boxShadow: `0 0 15px ${demo.palette.accent}`,
+            }}
+          />
+          <span
+            style={{
+              fontSize: "24px",
+              fontWeight: 800,
+              letterSpacing: "3px",
+              color: "#e2e8f0",
+              textTransform: "uppercase",
+            }}
+          >
             BYTEBRIDGE · PROPUESTA EXCLUSIVA
           </span>
         </div>
 
-        {/* Center: Brand Logo & Headline */}
-        <div className="flex flex-col items-center">
-          {/* Logo con Resplandor */}
-          <div
+        {/* Big Main Headline */}
+        <h1
+          style={{
+            fontSize: "68px",
+            fontWeight: 900,
+            lineHeight: 1.15,
+            marginTop: "24px",
+            marginBottom: "0px",
+            textTransform: "uppercase",
+            letterSpacing: "-1px",
+            color: "#ffffff",
+          }}
+        >
+          La Nueva WebApp de{" "}
+          <span
             style={{
-              transform: `scale(${logoScale})`,
-              boxShadow: `0 0 80px ${demo.palette.glow}`,
+              color: demo.palette.accent,
+              textShadow: `0 0 50px ${demo.palette.glow}`,
             }}
-            className="relative h-44 w-44 overflow-hidden rounded-3xl border-4 border-white/30 bg-zinc-900 shadow-2xl"
           >
-            <Img
-              src={demo.logo.startsWith("http") ? demo.logo : staticFile(demo.logo)}
-              alt={demo.name}
-              className="h-full w-full object-cover"
-            />
-          </div>
+            {demo.name}
+          </span>
+        </h1>
 
-          {/* Badge de la Marca */}
-          <div
-            style={{
-              transform: `scale(${Math.max(0, badgeScale)})`,
-              backgroundColor: demo.palette.accent,
-            }}
-            className="mt-8 rounded-full px-6 py-2 text-xl font-extrabold uppercase tracking-wider text-black shadow-lg"
-          >
-            {demo.category}
-          </div>
+        <p
+          style={{
+            fontSize: "28px",
+            color: "#94a3b8",
+            marginTop: "12px",
+            fontWeight: 500,
+          }}
+        >
+          {demo.tagline}
+        </p>
+      </div>
 
-          {/* Headline de Alto Impacto */}
+      {/* Center: Realistic 3D Smartphone Frame Mockup */}
+      <div
+        style={{
+          transform: `translateY(${(1 - phoneY) * 600}px)`,
+          width: "680px",
+          height: "1160px",
+          borderRadius: "58px",
+          border: "10px solid #27272a",
+          backgroundColor: "#09090b",
+          boxShadow: `0 35px 90px -15px rgba(0,0,0,0.9), 0 0 60px ${demo.palette.glow}`,
+          position: "relative",
+          overflow: "hidden",
+          display: "flex",
+          flexDirection: "column",
+          zIndex: 5,
+        }}
+      >
+        {/* Dynamic Island */}
+        <div
+          style={{
+            position: "absolute",
+            top: "16px",
+            left: "50%",
+            transform: "translateX(-50%)",
+            width: "160px",
+            height: "36px",
+            borderRadius: "20px",
+            backgroundColor: "#000000",
+            border: "1px solid rgba(255,255,255,0.1)",
+            zIndex: 30,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            padding: "0 14px",
+            boxSizing: "border-box",
+          }}
+        >
           <div
             style={{
-              opacity: textOpacity,
-              transform: `translateY(${textY}px)`,
+              width: "10px",
+              height: "10px",
+              borderRadius: "9999px",
+              backgroundColor: "#22c55e",
             }}
-            className="mt-8 max-w-2xl"
+          />
+          <div
+            style={{
+              width: "12px",
+              height: "12px",
+              borderRadius: "9999px",
+              backgroundColor: "#0284c7",
+            }}
+          />
+        </div>
+
+        {/* Inside Phone: WebApp Screen */}
+        <div
+          style={{
+            flex: 1,
+            display: "flex",
+            flexDirection: "column",
+            position: "relative",
+            overflow: "hidden",
+            backgroundColor: "#000000",
+          }}
+        >
+          {/* WebApp Header */}
+          <div
+            style={{
+              height: "100px",
+              paddingTop: "40px",
+              paddingLeft: "28px",
+              paddingRight: "28px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              borderBottom: "1px solid rgba(255,255,255,0.1)",
+              backgroundColor: "rgba(0,0,0,0.85)",
+              zIndex: 20,
+            }}
           >
-            <h1 className="text-6xl font-black leading-tight tracking-tight text-white uppercase">
-              La Nueva WebApp de
-              <span
-                className="block mt-2 text-7xl font-black"
+            <div style={{ display: "flex", alignItems: "center", gap: "14px" }}>
+              <div
                 style={{
-                  color: demo.palette.accent,
-                  textShadow: `0 0 40px ${demo.palette.glow}`,
+                  width: "48px",
+                  height: "48px",
+                  borderRadius: "14px",
+                  overflow: "hidden",
+                  border: "2px solid rgba(255,255,255,0.3)",
                 }}
               >
-                {demo.name}
-              </span>
-            </h1>
-            <p className="mt-6 text-2xl font-medium text-zinc-300">
-              {demo.tagline}
-            </p>
+                <Img
+                  src={logoSrc}
+                  alt={demo.name}
+                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                />
+              </div>
+              <div>
+                <div style={{ fontSize: "20px", fontWeight: 800, color: "#fff" }}>
+                  {demo.name}
+                </div>
+                <div style={{ fontSize: "14px", color: "#22c55e", fontWeight: 600 }}>
+                  ● Abierto Ahora
+                </div>
+              </div>
+            </div>
+
+            {/* Currency Pill */}
+            <div
+              style={{
+                padding: "8px 16px",
+                borderRadius: "12px",
+                backgroundColor: "rgba(255,255,255,0.1)",
+                border: "1px solid rgba(255,255,255,0.2)",
+                fontSize: "14px",
+                fontWeight: 700,
+                color: demo.palette.accent,
+              }}
+            >
+              USD / Bs
+            </div>
+          </div>
+
+          {/* WebApp Hero Screen Content */}
+          <div
+            style={{
+              flex: 1,
+              position: "relative",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              padding: "40px 30px",
+              textAlign: "center",
+            }}
+          >
+            {/* Background Cover Image inside Phone */}
+            <div
+              style={{
+                position: "absolute",
+                inset: 0,
+                zIndex: 0,
+              }}
+            >
+              <Img
+                src={demo.coverImage}
+                alt={demo.name}
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
+                  opacity: 0.35,
+                }}
+              />
+              <div
+                style={{
+                  position: "absolute",
+                  inset: 0,
+                  background:
+                    "linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.5) 50%, #09090b 100%)",
+                }}
+              />
+            </div>
+
+            {/* Content inside Phone */}
+            <div style={{ position: "relative", zIndex: 10, maxWidth: "560px" }}>
+              {/* Floating Big Brand Logo */}
+              <div
+                style={{
+                  transform: `scale(${Math.max(0, logoPop)})`,
+                  width: "140px",
+                  height: "140px",
+                  borderRadius: "32px",
+                  overflow: "hidden",
+                  margin: "0 auto 24px auto",
+                  border: `4px solid ${demo.palette.accent}`,
+                  boxShadow: `0 15px 40px ${demo.palette.glow}`,
+                }}
+              >
+                <Img
+                  src={logoSrc}
+                  alt={demo.name}
+                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                />
+              </div>
+
+              {/* Badge */}
+              <div
+                style={{
+                  display: "inline-block",
+                  padding: "8px 20px",
+                  borderRadius: "9999px",
+                  backgroundColor: "rgba(255,255,255,0.12)",
+                  border: "1px solid rgba(255,255,255,0.25)",
+                  fontSize: "16px",
+                  fontWeight: 700,
+                  color: "#ffffff",
+                  marginBottom: "16px",
+                }}
+              >
+                {demo.badgeText}
+              </div>
+
+              {/* Hero Title */}
+              <div
+                style={{
+                  fontSize: "36px",
+                  fontWeight: 900,
+                  lineHeight: 1.2,
+                  color: "#ffffff",
+                  marginBottom: "16px",
+                }}
+              >
+                {demo.heroTitle}{" "}
+                <span style={{ color: demo.palette.accent }}>
+                  {demo.heroHighlight}
+                </span>
+              </div>
+
+              {/* Booking CTA Button */}
+              <div
+                style={{
+                  marginTop: "24px",
+                  padding: "18px 32px",
+                  borderRadius: "18px",
+                  backgroundColor: demo.palette.primary,
+                  boxShadow: `0 12px 30px ${demo.palette.glow}`,
+                  fontSize: "20px",
+                  fontWeight: 800,
+                  color: "#ffffff",
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: "12px",
+                }}
+              >
+                <span>🎟️</span>
+                <span>Reservar con Pase QR</span>
+              </div>
+            </div>
           </div>
         </div>
+      </div>
 
-        {/* Bottom Feature Teaser */}
-        <div className="flex items-center gap-4 rounded-2xl border border-white/15 bg-white/10 px-8 py-4 backdrop-blur-xl">
-          <div
-            className="h-4 w-4 rounded-full animate-pulse"
-            style={{ backgroundColor: demo.palette.accent }}
-          />
-          <span className="text-xl font-bold text-white tracking-wide">
-            Reservas QR · Menú Digital · Control en Vivo
+      {/* Bottom Features Strip */}
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: "24px",
+          padding: "16px 40px",
+          borderRadius: "24px",
+          backgroundColor: "rgba(255, 255, 255, 0.06)",
+          border: "1px solid rgba(255, 255, 255, 0.12)",
+          backdropFilter: "blur(20px)",
+          zIndex: 10,
+        }}
+      >
+        <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+          <span style={{ color: "#22c55e", fontSize: "24px" }}>✓</span>
+          <span style={{ fontSize: "22px", fontWeight: 700, color: "#f1f5f9" }}>
+            Pases Digitales con QR
           </span>
         </div>
-      </AbsoluteFill>
+        <div
+          style={{
+            width: "6px",
+            height: "6px",
+            borderRadius: "9999px",
+            backgroundColor: "rgba(255,255,255,0.3)",
+          }}
+        />
+        <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+          <span style={{ color: "#22c55e", fontSize: "24px" }}>✓</span>
+          <span style={{ fontSize: "22px", fontWeight: 700, color: "#f1f5f9" }}>
+            Tasa BCV en Tiempo Real
+          </span>
+        </div>
+      </div>
     </AbsoluteFill>
   );
 }

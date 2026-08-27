@@ -1,5 +1,3 @@
-"use client";
-
 import {
   AbsoluteFill,
   interpolate,
@@ -36,90 +34,275 @@ export function Scene3QrPass({ demo }: Props) {
     config: { damping: 8, stiffness: 140 },
   });
 
-  return (
-    <AbsoluteFill className="bg-zinc-950 text-white font-sans overflow-hidden p-14 py-20 flex flex-col justify-between items-center">
-      {/* Background Glow */}
-      <AbsoluteFill
-        style={{
-          background: `radial-gradient(ellipse at 50% 50%, ${demo.palette.glow}, transparent 75%)`,
-        }}
-      />
+  const logoSrc = demo.logo.startsWith("http") ? demo.logo : staticFile(demo.logo);
 
+  return (
+    <AbsoluteFill
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "space-between",
+        padding: "80px 50px 70px 50px",
+        boxSizing: "border-box",
+      }}
+    >
       {/* Top Title */}
-      <div className="text-center max-w-xl z-10">
-        <span
-          className="inline-block rounded-full px-6 py-2 text-lg font-black uppercase tracking-widest text-black shadow-md"
-          style={{ backgroundColor: demo.palette.accent }}
+      <div style={{ textAlign: "center", zIndex: 10 }}>
+        <div
+          style={{
+            display: "inline-block",
+            padding: "10px 28px",
+            borderRadius: "9999px",
+            backgroundColor: demo.palette.accent,
+            color: "#000000",
+            fontSize: "22px",
+            fontWeight: 900,
+            textTransform: "uppercase",
+            letterSpacing: "2px",
+            boxShadow: "0 8px 25px rgba(0,0,0,0.4)",
+          }}
         >
           02 · Reservaciones & Pases VIP
-        </span>
-        <h2 className="mt-4 text-5xl font-black tracking-tight text-white uppercase">
-          Pases Digitales con Código QR
+        </div>
+
+        <h2
+          style={{
+            fontSize: "62px",
+            fontWeight: 900,
+            lineHeight: 1.15,
+            marginTop: "20px",
+            marginBottom: "0px",
+            textTransform: "uppercase",
+            letterSpacing: "-1px",
+            color: "#ffffff",
+          }}
+        >
+          Emisión de Pases con Código QR
         </h2>
-        <p className="mt-2 text-xl text-zinc-400">
+
+        <p
+          style={{
+            fontSize: "26px",
+            color: "#cbd5e1",
+            marginTop: "10px",
+            fontWeight: 500,
+          }}
+        >
           Validación óptica en puerta o mesa en menos de 1 segundo
         </p>
       </div>
 
-      {/* Center: VIP Boarding Pass with Animated QR Scanner */}
+      {/* Center: High-Res VIP Boarding Pass Card */}
       <div
         style={{
           transform: `scale(${Math.max(0, cardScale)})`,
+          width: "720px",
+          borderRadius: "44px",
+          border: "8px solid #27272a",
+          backgroundColor: "rgba(18, 18, 22, 0.95)",
+          padding: "36px",
+          boxShadow: `0 35px 90px -15px rgba(0,0,0,0.9), 0 0 60px ${demo.palette.glow}`,
+          boxSizing: "border-box",
+          position: "relative",
+          zIndex: 5,
         }}
-        className="relative z-10 w-full max-w-md rounded-3xl border-4 border-white/20 bg-gradient-to-b from-zinc-900 via-zinc-900 to-black p-6 shadow-2xl backdrop-blur-2xl"
       >
         {/* Pass Header */}
-        <div className="flex items-center justify-between border-b border-white/10 pb-4">
-          <div className="flex items-center gap-3">
-            <div className="relative h-12 w-12 overflow-hidden rounded-xl border border-white/20">
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            borderBottom: "1.5px solid rgba(255,255,255,0.12)",
+            paddingBottom: "24px",
+          }}
+        >
+          <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
+            <div
+              style={{
+                width: "60px",
+                height: "60px",
+                borderRadius: "18px",
+                overflow: "hidden",
+                border: "2px solid rgba(255,255,255,0.3)",
+              }}
+            >
               <Img
-                src={demo.logo.startsWith("http") ? demo.logo : staticFile(demo.logo)}
+                src={logoSrc}
                 alt={demo.name}
-                className="h-full w-full object-cover"
+                style={{ width: "100%", height: "100%", objectFit: "cover" }}
               />
             </div>
             <div>
-              <h3 className="text-lg font-bold text-white">{demo.name}</h3>
-              <span
-                className="font-mono text-sm font-bold"
-                style={{ color: demo.palette.accent }}
+              <div style={{ fontSize: "28px", fontWeight: 900, color: "#ffffff" }}>
+                {demo.name}
+              </div>
+              <div
+                style={{
+                  fontFamily: "monospace",
+                  fontSize: "18px",
+                  fontWeight: 800,
+                  color: demo.palette.accent,
+                }}
               >
-                #PASS-8492 · VIP
-              </span>
+                #PASS-8492 · ACCESO VIP
+              </div>
             </div>
           </div>
-          <span className="rounded-full bg-emerald-500/20 px-3 py-1 text-xs font-bold text-emerald-400">
-            ACTIVO
-          </span>
-        </div>
 
-        {/* Pass Info Grid */}
-        <div className="mt-4 grid grid-cols-2 gap-3 text-sm">
-          <div>
-            <span className="text-xs text-zinc-400 uppercase">Titular</span>
-            <p className="font-bold text-white">Carlos Mendoza</p>
-          </div>
-          <div>
-            <span className="text-xs text-zinc-400 uppercase">Experiencia</span>
-            <p className="font-bold text-white">{demo.bookingOptions[0]?.name || "Reserva VIP"}</p>
-          </div>
-          <div>
-            <span className="text-xs text-zinc-400 uppercase">Horario</span>
-            <p className="font-bold text-white">Hoy · 08:00 PM</p>
-          </div>
-          <div>
-            <span className="text-xs text-zinc-400 uppercase">Invitados</span>
-            <p className="font-bold text-white">4 Personas</p>
+          <div
+            style={{
+              padding: "8px 20px",
+              borderRadius: "14px",
+              backgroundColor: "rgba(34, 197, 94, 0.2)",
+              border: "1.5px solid rgba(34, 197, 94, 0.4)",
+              color: "#4ade80",
+              fontSize: "18px",
+              fontWeight: 900,
+              textTransform: "uppercase",
+            }}
+          >
+            ● ACTIVO
           </div>
         </div>
 
-        {/* QR Code Box with Laser Scan Effect */}
-        <div className="relative mt-5 flex flex-col items-center justify-center rounded-2xl bg-white p-5">
-          <div className="relative flex h-48 w-48 items-center justify-center bg-zinc-950 p-2 rounded-xl overflow-hidden">
-            {/* SVG QR Code */}
+        {/* Pass Details Grid */}
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "1fr 1fr",
+            gap: "18px",
+            marginTop: "24px",
+          }}
+        >
+          <div
+            style={{
+              padding: "16px 20px",
+              borderRadius: "18px",
+              backgroundColor: "rgba(255,255,255,0.05)",
+            }}
+          >
+            <div
+              style={{
+                fontSize: "14px",
+                color: "#94a3b8",
+                textTransform: "uppercase",
+                fontWeight: 700,
+              }}
+            >
+              Titular de la Reserva
+            </div>
+            <div style={{ fontSize: "22px", fontWeight: 800, color: "#fff", marginTop: "4px" }}>
+              Carlos Mendoza
+            </div>
+          </div>
+
+          <div
+            style={{
+              padding: "16px 20px",
+              borderRadius: "18px",
+              backgroundColor: "rgba(255,255,255,0.05)",
+            }}
+          >
+            <div
+              style={{
+                fontSize: "14px",
+                color: "#94a3b8",
+                textTransform: "uppercase",
+                fontWeight: 700,
+              }}
+            >
+              Invitados
+            </div>
+            <div style={{ fontSize: "22px", fontWeight: 800, color: "#fff", marginTop: "4px" }}>
+              4 Personas
+            </div>
+          </div>
+
+          <div
+            style={{
+              padding: "16px 20px",
+              borderRadius: "18px",
+              backgroundColor: "rgba(255,255,255,0.05)",
+            }}
+          >
+            <div
+              style={{
+                fontSize: "14px",
+                color: "#94a3b8",
+                textTransform: "uppercase",
+                fontWeight: 700,
+              }}
+            >
+              Fecha & Horario
+            </div>
+            <div style={{ fontSize: "22px", fontWeight: 800, color: "#fff", marginTop: "4px" }}>
+              Hoy · 08:00 PM
+            </div>
+          </div>
+
+          <div
+            style={{
+              padding: "16px 20px",
+              borderRadius: "18px",
+              backgroundColor: "rgba(255,255,255,0.05)",
+            }}
+          >
+            <div
+              style={{
+                fontSize: "14px",
+                color: "#94a3b8",
+                textTransform: "uppercase",
+                fontWeight: 700,
+              }}
+            >
+              Total Abonado
+            </div>
+            <div
+              style={{
+                fontSize: "22px",
+                fontWeight: 900,
+                color: "#34d399",
+                marginTop: "4px",
+              }}
+            >
+              $45.00 USD
+            </div>
+          </div>
+        </div>
+
+        {/* QR Code Container with Animated Laser */}
+        <div
+          style={{
+            marginTop: "24px",
+            borderRadius: "28px",
+            backgroundColor: "#ffffff",
+            padding: "24px",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+            position: "relative",
+            overflow: "hidden",
+          }}
+        >
+          <div
+            style={{
+              width: "220px",
+              height: "220px",
+              backgroundColor: "#09090b",
+              borderRadius: "20px",
+              padding: "14px",
+              boxSizing: "border-box",
+              position: "relative",
+              overflow: "hidden",
+            }}
+          >
+            {/* SVG Crisp QR */}
             <svg
               viewBox="0 0 100 100"
-              className="h-full w-full fill-white"
+              style={{ width: "100%", height: "100%", fill: "#ffffff" }}
               shapeRendering="crispEdges"
             >
               <rect x="0" y="0" width="30" height="30" />
@@ -152,35 +335,89 @@ export function Scene3QrPass({ demo }: Props) {
               <rect x="50" y="90" width="15" height="5" />
             </svg>
 
-            {/* Laser Line Animation */}
+            {/* Glowing Laser Scan Line */}
             <div
-              style={{ top: `${laserY}%` }}
-              className="absolute inset-x-0 h-1 bg-gradient-to-r from-transparent via-emerald-400 to-transparent shadow-[0_0_15px_#34d399]"
+              style={{
+                position: "absolute",
+                left: 0,
+                right: 0,
+                top: `${laserY}%`,
+                height: "6px",
+                background: "linear-gradient(90deg, transparent, #22c55e, #86efac, #22c55e, transparent)",
+                boxShadow: "0 0 20px #22c55e, 0 0 10px #4ade80",
+              }}
             />
+          </div>
+
+          <div
+            style={{
+              marginTop: "12px",
+              fontFamily: "monospace",
+              fontSize: "16px",
+              fontWeight: 900,
+              color: "#1e293b",
+              letterSpacing: "2px",
+            }}
+          >
+            ESCÁNER ÓPTICO EN PUERTA
           </div>
 
           {/* Validation Stamp Popup */}
           {frame > 35 && (
             <div
               style={{
-                transform: `scale(${Math.max(0, verifiedStamp)}) rotate(-5deg)`,
+                transform: `scale(${Math.max(0, verifiedStamp)}) rotate(-6deg)`,
+                position: "absolute",
+                inset: "20px 40px",
+                borderRadius: "28px",
+                border: "6px solid #22c55e",
+                backgroundColor: "rgba(5, 46, 22, 0.96)",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+                boxShadow: "0 25px 50px rgba(0,0,0,0.8), 0 0 40px rgba(34,197,94,0.6)",
+                zIndex: 20,
               }}
-              className="absolute inset-x-4 top-1/3 rounded-2xl border-4 border-emerald-400 bg-emerald-950/95 p-4 text-center shadow-2xl backdrop-blur-md"
             >
-              <span className="text-3xl">✅</span>
-              <p className="mt-1 text-2xl font-black text-emerald-400 uppercase tracking-wide">
+              <div style={{ fontSize: "52px" }}>✅</div>
+              <div
+                style={{
+                  fontSize: "36px",
+                  fontWeight: 900,
+                  color: "#4ade80",
+                  textTransform: "uppercase",
+                  letterSpacing: "1px",
+                  marginTop: "6px",
+                }}
+              >
                 Pase Validado
-              </p>
-              <p className="text-sm font-bold text-white">Mesa Asignada en Sala</p>
+              </div>
+              <div style={{ fontSize: "20px", fontWeight: 700, color: "#ffffff", marginTop: "4px" }}>
+                Acceso Concedido · Mesa Asignada
+              </div>
             </div>
           )}
         </div>
       </div>
 
-      {/* Bottom Summary */}
-      <div className="z-10 rounded-2xl border border-white/15 bg-white/5 px-8 py-4 backdrop-blur-md">
-        <span className="text-xl font-bold text-zinc-200">
-          ⚡ Se envía directo al WhatsApp del cliente con confirmación automática
+      {/* Bottom Floating Pill */}
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: "16px",
+          padding: "16px 40px",
+          borderRadius: "24px",
+          backgroundColor: "rgba(255, 255, 255, 0.06)",
+          border: "1px solid rgba(255, 255, 255, 0.12)",
+          backdropFilter: "blur(20px)",
+          zIndex: 10,
+        }}
+      >
+        <span style={{ fontSize: "24px" }}>📲</span>
+        <span style={{ fontSize: "22px", fontWeight: 700, color: "#f1f5f9" }}>
+          Confirmación automática enviada al WhatsApp del cliente
         </span>
       </div>
     </AbsoluteFill>

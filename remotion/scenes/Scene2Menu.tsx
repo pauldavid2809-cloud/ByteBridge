@@ -1,5 +1,3 @@
-"use client";
-
 import {
   AbsoluteFill,
   interpolate,
@@ -17,67 +15,164 @@ export function Scene2Menu({ demo }: Props) {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
 
-  const phoneY = spring({
-    frame,
-    fps,
-    config: { damping: 14, stiffness: 90 },
+  const headerOpacity = interpolate(frame, [0, 20], [0, 1], {
+    extrapolateRight: "clamp",
   });
-
-  const headerOpacity = interpolate(frame, [0, 20], [0, 1]);
+  const headerY = interpolate(frame, [0, 20], [30, 0], {
+    extrapolateRight: "clamp",
+  });
 
   const items = demo.menuItems.slice(0, 3);
 
-  return (
-    <AbsoluteFill className="bg-zinc-950 text-white font-sans overflow-hidden p-14 py-20 flex flex-col justify-between items-center">
-      {/* Background Glow */}
-      <AbsoluteFill
-        style={{
-          background: `radial-gradient(ellipse at 50% 30%, ${demo.palette.glow}, transparent 75%)`,
-        }}
-      />
+  // Currency toggle indicator animation
+  const isVesMode = frame > 45;
 
+  return (
+    <AbsoluteFill
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "space-between",
+        padding: "80px 50px 70px 50px",
+        boxSizing: "border-box",
+      }}
+    >
       {/* Top Header */}
       <div
-        style={{ opacity: headerOpacity }}
-        className="text-center max-w-xl z-10"
+        style={{
+          opacity: headerOpacity,
+          transform: `translateY(${headerY}px)`,
+          textAlign: "center",
+          zIndex: 10,
+        }}
       >
-        <span
-          className="inline-block rounded-full px-6 py-2 text-lg font-black uppercase tracking-widest text-black shadow-md"
-          style={{ backgroundColor: demo.palette.accent }}
+        <div
+          style={{
+            display: "inline-block",
+            padding: "10px 28px",
+            borderRadius: "9999px",
+            backgroundColor: demo.palette.accent,
+            color: "#000000",
+            fontSize: "22px",
+            fontWeight: 900,
+            textTransform: "uppercase",
+            letterSpacing: "2px",
+            boxShadow: "0 8px 25px rgba(0,0,0,0.4)",
+          }}
         >
-          01 · Menú Digital Interactivo
-        </span>
-        <h2 className="mt-4 text-5xl font-black tracking-tight text-white uppercase">
-          Tus Platillos con Cobro en USD y Bolívares
+          01 · Carta Digital Multimoneda
+        </div>
+
+        <h2
+          style={{
+            fontSize: "62px",
+            fontWeight: 900,
+            lineHeight: 1.15,
+            marginTop: "20px",
+            marginBottom: "0px",
+            textTransform: "uppercase",
+            letterSpacing: "-1px",
+            color: "#ffffff",
+          }}
+        >
+          Precios en USD y Bolívares
         </h2>
-        <p className="mt-2 text-xl text-zinc-400">
-          Tasa oficial BCV automatizada en tiempo real ({BCV_RATE.toFixed(2)} Bs/$)
+
+        <p
+          style={{
+            fontSize: "26px",
+            color: "#cbd5e1",
+            marginTop: "10px",
+            fontWeight: 500,
+          }}
+        >
+          Conversión automática a Tasa Oficial BCV:{" "}
+          <strong style={{ color: "#38bdf8", fontWeight: 800 }}>
+            {BCV_RATE.toFixed(2)} Bs / $
+          </strong>
         </p>
       </div>
 
-      {/* Center: Smartphone Mockup con Items del Menú */}
+      {/* Center: Smartphone Container Showing the Menu */}
       <div
         style={{
-          transform: `translateY(${(1 - phoneY) * 100}px)`,
+          width: "720px",
+          borderRadius: "44px",
+          border: "8px solid #27272a",
+          backgroundColor: "rgba(18, 18, 22, 0.95)",
+          padding: "36px",
+          boxShadow: `0 35px 90px -15px rgba(0,0,0,0.9), 0 0 60px ${demo.palette.glow}`,
+          boxSizing: "border-box",
+          zIndex: 5,
         }}
-        className="relative z-10 w-full max-w-md rounded-3xl border-4 border-white/20 bg-zinc-900/90 p-6 shadow-2xl backdrop-blur-2xl"
       >
-        {/* Mockup Header */}
-        <div className="flex items-center justify-between border-b border-white/10 pb-4">
-          <div className="flex items-center gap-3">
+        {/* Menu Navigation Bar */}
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            borderBottom: "1.5px solid rgba(255,255,255,0.12)",
+            paddingBottom: "24px",
+            marginBottom: "24px",
+          }}
+        >
+          <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
             <span
-              className="h-3 w-3 rounded-full"
-              style={{ backgroundColor: demo.palette.accent }}
+              style={{
+                width: "18px",
+                height: "18px",
+                borderRadius: "9999px",
+                backgroundColor: demo.palette.accent,
+                boxShadow: `0 0 15px ${demo.palette.accent}`,
+              }}
             />
-            <span className="text-xl font-bold text-white">Carta Digital</span>
+            <span style={{ fontSize: "28px", fontWeight: 900, color: "#ffffff" }}>
+              Menú Destacado
+            </span>
           </div>
-          <span className="rounded-lg bg-emerald-500/20 px-3 py-1 text-sm font-bold text-emerald-400">
-            Tasa BCV Activa
-          </span>
+
+          {/* Animated Currency Pill Switch */}
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              backgroundColor: "rgba(255,255,255,0.08)",
+              border: "1.5px solid rgba(255,255,255,0.15)",
+              borderRadius: "16px",
+              padding: "4px",
+            }}
+          >
+            <div
+              style={{
+                padding: "8px 18px",
+                borderRadius: "12px",
+                backgroundColor: !isVesMode ? "#ffffff" : "transparent",
+                color: !isVesMode ? "#000000" : "#94a3b8",
+                fontWeight: 800,
+                fontSize: "18px",
+              }}
+            >
+              USD ($)
+            </div>
+            <div
+              style={{
+                padding: "8px 18px",
+                borderRadius: "12px",
+                backgroundColor: isVesMode ? demo.palette.accent : "transparent",
+                color: isVesMode ? "#000000" : "#94a3b8",
+                fontWeight: 800,
+                fontSize: "18px",
+              }}
+            >
+              Bs (VES)
+            </div>
+          </div>
         </div>
 
-        {/* Menu Items Stagger */}
-        <div className="mt-5 space-y-4">
+        {/* Menu Items Cards */}
+        <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
           {items.map((item, idx) => {
             const itemSpring = spring({
               frame: frame - 15 - idx * 12,
@@ -92,38 +187,77 @@ export function Scene2Menu({ demo }: Props) {
                 style={{
                   transform: `scale(${Math.max(0, itemSpring)})`,
                   opacity: Math.min(1, Math.max(0, itemSpring)),
+                  borderRadius: "28px",
+                  border: "2px solid rgba(255, 255, 255, 0.1)",
+                  backgroundColor: "rgba(0, 0, 0, 0.6)",
+                  padding: "24px 28px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  boxShadow: "0 10px 30px rgba(0,0,0,0.5)",
                 }}
-                className="rounded-2xl border border-white/10 bg-black/60 p-4 shadow-lg"
               >
-                <div className="flex items-start justify-between gap-3">
-                  <div className="flex-1">
-                    <span className="text-lg font-bold text-white line-clamp-1">
+                <div style={{ flex: 1, paddingRight: "20px" }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+                    <span
+                      style={{
+                        fontSize: "26px",
+                        fontWeight: 800,
+                        color: "#ffffff",
+                      }}
+                    >
                       {item.name}
                     </span>
-                    <p className="mt-1 text-xs text-zinc-400 line-clamp-1">
-                      {item.description}
-                    </p>
+                    {item.popular && (
+                      <span
+                        style={{
+                          padding: "4px 12px",
+                          borderRadius: "9999px",
+                          backgroundColor: `${demo.palette.accent}30`,
+                          color: demo.palette.accent,
+                          fontSize: "14px",
+                          fontWeight: 800,
+                        }}
+                      >
+                        TOP
+                      </span>
+                    )}
                   </div>
-                  <div className="text-right shrink-0">
-                    <span className="text-xl font-black text-white">
-                      ${item.priceUSD} USD
-                    </span>
-                    <span className="block font-mono text-xs font-semibold text-emerald-400">
-                      ≈ {priceVES.toLocaleString("es-VE", { maximumFractionDigits: 0 })} Bs
-                    </span>
-                  </div>
+                  <p
+                    style={{
+                      fontSize: "18px",
+                      color: "#94a3b8",
+                      marginTop: "6px",
+                      lineHeight: 1.3,
+                      maxHeight: "48px",
+                      overflow: "hidden",
+                    }}
+                  >
+                    {item.description}
+                  </p>
                 </div>
 
-                <div className="mt-3 flex items-center justify-between border-t border-white/5 pt-2">
-                  <span
-                    className="rounded-md px-2 py-0.5 text-[10px] font-bold text-black"
-                    style={{ backgroundColor: demo.palette.accent }}
+                <div style={{ textAlign: "right", flexShrink: 0 }}>
+                  <div
+                    style={{
+                      fontSize: "32px",
+                      fontWeight: 900,
+                      color: "#ffffff",
+                    }}
                   >
-                    {item.badge || "Recomendado"}
-                  </span>
-                  <span className="text-xs font-bold text-zinc-300">
-                    + Añadir a Comanda
-                  </span>
+                    ${item.priceUSD} USD
+                  </div>
+                  <div
+                    style={{
+                      fontSize: "20px",
+                      fontWeight: 700,
+                      color: "#34d399",
+                      marginTop: "4px",
+                      fontFamily: "monospace",
+                    }}
+                  >
+                    ≈ {priceVES.toLocaleString("es-VE", { maximumFractionDigits: 0 })} Bs
+                  </div>
                 </div>
               </div>
             );
@@ -131,10 +265,23 @@ export function Scene2Menu({ demo }: Props) {
         </div>
       </div>
 
-      {/* Bottom Summary Badge */}
-      <div className="z-10 rounded-2xl border border-white/15 bg-white/5 px-8 py-4 backdrop-blur-md">
-        <span className="text-xl font-bold text-zinc-200">
-          💡 El cliente pide desde su mesa sin esperar al mesonero
+      {/* Bottom Floating Pill */}
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: "16px",
+          padding: "16px 40px",
+          borderRadius: "24px",
+          backgroundColor: "rgba(255, 255, 255, 0.06)",
+          border: "1px solid rgba(255, 255, 255, 0.12)",
+          backdropFilter: "blur(20px)",
+          zIndex: 10,
+        }}
+      >
+        <span style={{ fontSize: "24px" }}>💡</span>
+        <span style={{ fontSize: "22px", fontWeight: 700, color: "#f1f5f9" }}>
+          Los clientes piden a comanda y pagan a tasa oficial al instante
         </span>
       </div>
     </AbsoluteFill>

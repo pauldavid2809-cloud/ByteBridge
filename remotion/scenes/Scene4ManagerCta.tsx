@@ -1,12 +1,9 @@
-"use client";
-
 import {
   AbsoluteFill,
   interpolate,
   spring,
   useCurrentFrame,
   useVideoConfig,
-  Img,
 } from "remotion";
 import { BusinessDemo, BCV_RATE } from "../../data/demosData";
 
@@ -33,50 +30,152 @@ export function Scene4ManagerCta({ demo }: Props) {
   const salesVES = salesUSD * BCV_RATE;
 
   return (
-    <AbsoluteFill className="bg-black text-white font-sans overflow-hidden p-14 py-20 flex flex-col justify-between items-center text-center">
-      {/* Background Radial Glow */}
-      <AbsoluteFill
-        style={{
-          background: `radial-gradient(ellipse at 50% 40%, ${demo.palette.glow}, transparent 75%), linear-gradient(to bottom, #000 0%, #0a0a0a 100%)`,
-        }}
-      />
-
+    <AbsoluteFill
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "space-between",
+        padding: "80px 50px 70px 50px",
+        boxSizing: "border-box",
+        textAlign: "center",
+      }}
+    >
       {/* Top Manager Tag */}
-      <div className="z-10 max-w-xl">
-        <span
-          className="inline-block rounded-full px-6 py-2 text-lg font-black uppercase tracking-widest text-black shadow-md"
-          style={{ backgroundColor: demo.palette.accent }}
+      <div style={{ zIndex: 10 }}>
+        <div
+          style={{
+            display: "inline-block",
+            padding: "10px 28px",
+            borderRadius: "9999px",
+            backgroundColor: demo.palette.accent,
+            color: "#000000",
+            fontSize: "22px",
+            fontWeight: 900,
+            textTransform: "uppercase",
+            letterSpacing: "2px",
+            boxShadow: "0 8px 25px rgba(0,0,0,0.4)",
+          }}
         >
           03 · Panel de Control en Vivo
-        </span>
-        <h2 className="mt-4 text-5xl font-black tracking-tight text-white uppercase">
-          Toma el Control de tu Negocio
+        </div>
+
+        <h2
+          style={{
+            fontSize: "62px",
+            fontWeight: 900,
+            lineHeight: 1.15,
+            marginTop: "20px",
+            marginBottom: "0px",
+            textTransform: "uppercase",
+            letterSpacing: "-1px",
+            color: "#ffffff",
+          }}
+        >
+          Control Total para la Gerencia
         </h2>
+
+        <p
+          style={{
+            fontSize: "26px",
+            color: "#cbd5e1",
+            marginTop: "10px",
+            fontWeight: 500,
+          }}
+        >
+          Métricas de aforo, caja y reservas en tiempo real
+        </p>
       </div>
 
-      {/* Center: Live KPI Cards & Pitch */}
-      <div className="z-10 w-full max-w-md space-y-4">
+      {/* Center: Live KPI Cards & ByteBridge Official Pitch Card */}
+      <div
+        style={{
+          width: "720px",
+          display: "flex",
+          flexDirection: "column",
+          gap: "24px",
+          zIndex: 5,
+        }}
+      >
         {/* KPI Row */}
-        <div className="grid grid-cols-2 gap-4">
-          <div className="rounded-3xl border border-white/15 bg-zinc-900/90 p-5 backdrop-blur-xl shadow-xl">
-            <span className="text-sm font-semibold text-zinc-400">Ventas Hoy</span>
-            <p className="mt-1 text-4xl font-black text-emerald-400">
-              ${salesUSD}
-            </p>
-            <span className="font-mono text-xs text-zinc-400">
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "1fr 1fr",
+            gap: "20px",
+          }}
+        >
+          <div
+            style={{
+              padding: "28px 24px",
+              borderRadius: "32px",
+              border: "2px solid rgba(255, 255, 255, 0.15)",
+              backgroundColor: "rgba(18, 18, 22, 0.95)",
+              boxShadow: "0 15px 35px rgba(0,0,0,0.5)",
+              textAlign: "left",
+            }}
+          >
+            <div style={{ fontSize: "18px", fontWeight: 700, color: "#94a3b8" }}>
+              Ventas Estimadas Hoy
+            </div>
+            <div
+              style={{
+                fontSize: "52px",
+                fontWeight: 900,
+                color: "#34d399",
+                marginTop: "6px",
+                lineHeight: 1,
+              }}
+            >
+              ${salesUSD} USD
+            </div>
+            <div
+              style={{
+                fontSize: "18px",
+                fontWeight: 700,
+                color: "#64748b",
+                marginTop: "8px",
+                fontFamily: "monospace",
+              }}
+            >
               ≈ {salesVES.toLocaleString("es-VE", { maximumFractionDigits: 0 })} Bs
-            </span>
+            </div>
           </div>
 
-          <div className="rounded-3xl border border-white/15 bg-zinc-900/90 p-5 backdrop-blur-xl shadow-xl">
-            <span className="text-sm font-semibold text-zinc-400">Aforo en Sala</span>
-            <p
-              className="mt-1 text-4xl font-black"
-              style={{ color: demo.palette.accent }}
+          <div
+            style={{
+              padding: "28px 24px",
+              borderRadius: "32px",
+              border: "2px solid rgba(255, 255, 255, 0.15)",
+              backgroundColor: "rgba(18, 18, 22, 0.95)",
+              boxShadow: "0 15px 35px rgba(0,0,0,0.5)",
+              textAlign: "left",
+            }}
+          >
+            <div style={{ fontSize: "18px", fontWeight: 700, color: "#94a3b8" }}>
+              Aforo en Sala
+            </div>
+            <div
+              style={{
+                fontSize: "52px",
+                fontWeight: 900,
+                color: demo.palette.accent,
+                marginTop: "6px",
+                lineHeight: 1,
+              }}
             >
               {demo.managerKpis.capacityPercentage}%
-            </p>
-            <span className="text-xs text-zinc-400">Capacidad en vivo</span>
+            </div>
+            <div
+              style={{
+                fontSize: "18px",
+                fontWeight: 700,
+                color: "#34d399",
+                marginTop: "8px",
+              }}
+            >
+              ● Capacidad Óptima
+            </div>
           </div>
         </div>
 
@@ -84,36 +183,117 @@ export function Scene4ManagerCta({ demo }: Props) {
         <div
           style={{
             transform: `scale(${Math.max(0, ctaScale)})`,
+            padding: "44px 36px",
+            borderRadius: "36px",
+            border: "3px solid #fbbf24",
+            background:
+              "linear-gradient(135deg, rgba(20, 20, 26, 0.98) 0%, rgba(10, 10, 12, 0.98) 100%)",
+            boxShadow:
+              "0 25px 60px rgba(0,0,0,0.8), 0 0 50px rgba(251, 191, 36, 0.25)",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
           }}
-          className="rounded-3xl border-2 border-amber-400/40 bg-gradient-to-br from-zinc-900 via-black to-zinc-900 p-8 shadow-2xl backdrop-blur-2xl"
         >
-          <div className="flex items-center justify-center gap-3">
-            <div className="h-4 w-4 rounded-full bg-amber-400 animate-ping" />
-            <span className="text-xl font-extrabold tracking-widest text-amber-300 uppercase">
+          <div
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "12px",
+              padding: "8px 24px",
+              borderRadius: "9999px",
+              backgroundColor: "rgba(251, 191, 36, 0.15)",
+              border: "1.5px solid rgba(251, 191, 36, 0.4)",
+            }}
+          >
+            <span
+              style={{
+                width: "12px",
+                height: "12px",
+                borderRadius: "9999px",
+                backgroundColor: "#fbbf24",
+                boxShadow: "0 0 12px #fbbf24",
+              }}
+            />
+            <span
+              style={{
+                fontSize: "20px",
+                fontWeight: 900,
+                color: "#fde047",
+                letterSpacing: "2px",
+                textTransform: "uppercase",
+              }}
+            >
               DESARROLLADO POR BYTEBRIDGE
             </span>
           </div>
 
-          <h3 className="mt-4 text-3xl font-black text-white leading-tight">
-            ¿Listo para activar tu WebApp personalizada?
+          <h3
+            style={{
+              fontSize: "44px",
+              fontWeight: 900,
+              color: "#ffffff",
+              marginTop: "20px",
+              marginBottom: "0px",
+              lineHeight: 1.15,
+            }}
+          >
+            ¿Listo para activar tu WebApp?
           </h3>
 
-          <p className="mt-3 text-base text-zinc-300">
-            Automatiza reservas, agiliza comandas y proyecta tu marca.
+          <p
+            style={{
+              fontSize: "22px",
+              color: "#cbd5e1",
+              marginTop: "12px",
+              fontWeight: 500,
+              maxWidth: "560px",
+            }}
+          >
+            Automatiza reservaciones, agiliza pedidos y fideliza a tus clientes.
           </p>
 
-          {/* WhatsApp Direct Button */}
-          <div className="mt-6 rounded-2xl bg-emerald-500 p-4 text-center shadow-lg shadow-emerald-500/30">
-            <span className="text-xl font-black text-black tracking-wide">
-              📲 Escríbenos al WhatsApp: +58 412-0308674
+          {/* WhatsApp Direct Action Button with Updated Phone */}
+          <div
+            style={{
+              marginTop: "28px",
+              width: "100%",
+              padding: "22px 32px",
+              borderRadius: "22px",
+              backgroundColor: "#22c55e",
+              boxShadow: "0 15px 35px rgba(34, 197, 94, 0.4)",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "14px",
+              boxSizing: "border-box",
+            }}
+          >
+            <span style={{ fontSize: "32px" }}>📲</span>
+            <span
+              style={{
+                fontSize: "26px",
+                fontWeight: 900,
+                color: "#000000",
+                letterSpacing: "0.5px",
+              }}
+            >
+              WhatsApp Oficial: 04120308674
             </span>
           </div>
         </div>
       </div>
 
       {/* Bottom Footer */}
-      <div className="z-10">
-        <p className="text-lg font-bold text-zinc-400">
+      <div style={{ zIndex: 10 }}>
+        <p
+          style={{
+            fontSize: "22px",
+            fontWeight: 700,
+            color: "#64748b",
+            margin: 0,
+          }}
+        >
           bytebridge.cloud · Maracaibo, Venezuela
         </p>
       </div>
