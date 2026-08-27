@@ -69,6 +69,8 @@ export type BusinessDemo = {
   introStats: { label: string; value: string; detail: string }[];
   /** Contextual trust badges (replaces the generic ones) */
   trustBadges: string[];
+  /** Tailored WhatsApp pitch copywriting for client outreach */
+  whatsappPitchCopy: string;
   address: string;
   mapsUrl: string;
   hours: string;
@@ -147,6 +149,7 @@ export const businessDemos: BusinessDemo[] = [
       { label: "Horario Continuo", value: "7AM–10PM", detail: "Los 7 días de la semana" },
     ],
     trustBadges: ["Check-in Digital con QR", "Pagos Multimoneda", "Valet Parking Incluido"],
+    whatsappPitchCopy: "Hola equipo de Ecoland Club! 🌴 Estuvimos analizando cómo optimizar la experiencia de sus visitantes y desarrollamos esta WebApp a medida con reservaciones para Day Pass de piscina con código QR, registro de membresías de gimnasio, reserva de suites y menú digital con tasa BCV automática.\n\nPueden probar la demo interactiva y ver el Reel comercial de 15 segundos aquí:\n👉 https://byte-bridge-tau.vercel.app/demos/ecoland",
     address: "Av. Principal La Rinconada, Maracaibo, Zulia",
     mapsUrl: "https://maps.google.com/?q=Maracaibo",
     hours: "Lunes a Domingo: 7:00 AM - 10:00 PM",
@@ -279,6 +282,7 @@ export const businessDemos: BusinessDemo[] = [
       { label: "Años de Trayectoria", value: "8+", detail: "Referente gastronómico zuliano" },
     ],
     trustBadges: ["Mesa Garantizada con Reserva", "Sommelier en Sala", "Estacionamiento Privado"],
+    whatsappPitchCopy: "Hola equipo de Grand Chef! 🌉 Diseñamos una propuesta y WebApp exclusiva para ustedes: permite a sus comensales reservar mesas en primera fila frente al Puente sobre el Lago, elegir paquetes románticos de degustación y ordenar su carta mediterránea con conversión automática a tasa oficial.\n\nPrueben la demo en vivo y vean su video comercial aquí:\n👉 https://byte-bridge-tau.vercel.app/demos/grandchef",
     address: "San Francisco, Sector El Manzanillo frente al Lago, Edo. Zulia",
     mapsUrl: "https://maps.google.com/?q=Grand+Chef+San+Francisco+Zulia",
     hours: "Miércoles a Domingo: 12:00 PM - 11:30 PM",
@@ -403,6 +407,7 @@ export const businessDemos: BusinessDemo[] = [
       { label: "Ubicación", value: "T-77", detail: "C.C. Terraza 77, 5 de Julio" },
     ],
     trustBadges: ["Acceso Directo sin Cola", "Coctelería de Autor", "Ambiente Nocturno Premium"],
+    whatsappPitchCopy: "Hola amigos de Zu House! 🥩 Estuvimos preparando esta WebApp personalizada para su steakhouse en 5 de Julio (Terraza 77). Automatiza reservas after-work desde las 5:00 PM, comanda directa de cortes de carne a la brasa y control de aforo en tiempo real para el gerente.\n\nMiren la demo interactiva y el Reel vertical aquí:\n👉 https://byte-bridge-tau.vercel.app/demos/zuhouse",
     address: "Calle 77 (5 de Julio), al lado del C.C. Terraza 77, Maracaibo",
     mapsUrl: "https://maps.google.com/?q=Terraza+77+Maracaibo",
     hours: "Todos los días a partir de las 5:00 PM",
@@ -511,6 +516,7 @@ export const businessDemos: BusinessDemo[] = [
       { label: "Capacidad", value: "80+", detail: "Interior climatizado" },
     ],
     trustBadges: ["Servicio Express 20 min", "Coordinador de Eventos", "Factura Digital"],
+    whatsappPitchCopy: "Hola equipo de Tannous! 🥂 Creamos una WebApp especializada para sus dos grandes fortalezas: reserva express de almuerzos ejecutivos de lunes a viernes (en menos de 20 min) y cotización automática de paquetes exclusivos para pedidas de mano y eventos privados con pase QR.\n\nLes comparto la demo y el video promocional:\n👉 https://byte-bridge-tau.vercel.app/demos/tannous",
     address: "Av. 13 con calle 74, C.C. Grupo 3965, Maracaibo",
     mapsUrl: "https://maps.google.com/?q=Maracaibo+Av+13+calle+74",
     hours: "Lunes a Domingo desde las 11:00 AM",
@@ -617,6 +623,7 @@ export const businessDemos: BusinessDemo[] = [
       { label: "Noches Temáticas", value: "3/sem", detail: "Jue-Vie-Sáb rotativos" },
     ],
     trustBadges: ["Reserva de Lounge con QR", "Shisha Master Dedicado", "Acceso VIP sin Fila"],
+    whatsappPitchCopy: "Hola gente de Room 101! 🍸 Desarrollamos una WebApp con su identidad underground: reserva de lounges VIP con hookahs, carta de cócteles insignia (101 Mule, Magic Love) y pases con código QR para noches temáticas sin cola en la entrada.\n\nPueden probar la demo y ver su Reel animado aquí:\n👉 https://byte-bridge-tau.vercel.app/demos/room101",
     address: "Sector Tierra Negra, Maracaibo",
     mapsUrl: "https://maps.google.com/?q=Maracaibo+Tierra+Negra",
     hours: "Dom-Jue: 4:00 PM - 12:00 AM | Vie-Sáb: 4:00 PM - 3:00 AM",
@@ -740,6 +747,7 @@ export const businessDemos: BusinessDemo[] = [
       { label: "Horario", value: "8PM–5AM", detail: "Jueves a Sábado" },
     ],
     trustBadges: ["Pase VIP Express Digital", "Entrada sin Cola", "DJ Residentes Internacionales"],
+    whatsappPitchCopy: "Hola equipo de La Barra Ventura! 🪩 Preparamos una solución para agilizar el acceso nocturno: venta y emisión de pases VIP express con código QR (validación en puerta en 1 segundo), reserva de mesas de discoteca y servicios de botellas sin tickets de papel.\n\nVean la demo en vivo y el video promocional:\n👉 https://byte-bridge-tau.vercel.app/demos/labarraventura",
     address: "Sector Bella Vista / Av. 4, Maracaibo",
     mapsUrl: "https://maps.google.com/?q=Bella+Vista+Maracaibo",
     hours: "Jueves a Sábado: 8:00 PM - 5:00 AM",
@@ -848,6 +856,7 @@ export const businessDemos: BusinessDemo[] = [
       { label: "Especialidad", value: "Napoli", detail: "Pizza al horno de leña" },
     ],
     trustBadges: ["Ingredientes Importados", "Chef Italiano en Cocina", "Terraza con Brisa"],
+    whatsappPitchCopy: "Ciao equipo de Ciao Gastrobar! 🍝 Diseñamos una WebApp a la altura de su cocina italiana en el nivel 2 de Terraza 77: reserva de mesas en terraza, carta interactiva de pastas frescas y pizzas napolitanas con maridaje de vinos y conversión en USD/Bs oficial.\n\nExploren la demo interactiva y el Reel aquí:\n👉 https://byte-bridge-tau.vercel.app/demos/ciaogastrobar",
     address: "C.C. Terraza 77, Nivel 2, Calle 77 (5 de Julio), Maracaibo",
     mapsUrl: "https://maps.google.com/?q=Terraza+77+Nivel+2+Maracaibo",
     hours: "Martes a Domingo: 12:30 PM - 11:00 PM",
@@ -955,6 +964,7 @@ export const businessDemos: BusinessDemo[] = [
       { label: "Blaoke", value: "Vie-Sáb", detail: "Karaoke en vivo + DJ" },
     ],
     trustBadges: ["B-Lunch Express 15 min", "Wi-Fi para Trabajo", "Terraza al Aire Libre"],
+    whatsappPitchCopy: "Hola amigos de BLAO! 🌆 Creamos una WebApp interactiva pensada para su concepto dual en Plaza 75: reservas rápidas de B-Lunch para almuerzos corporativos y mesas de terraza para las noches de Blaoke y fiesta con cócteles de autor.\n\nPrueben la experiencia digital y el Reel aquí:\n👉 https://byte-bridge-tau.vercel.app/demos/blaomcbo",
     address: "Plaza 75, Calle 75 con Av. 3Y, Maracaibo",
     mapsUrl: "https://maps.google.com/?q=Plaza+75+Maracaibo",
     hours: "Lunes a Domingo: 12:00 PM - 2:00 AM",
@@ -1063,6 +1073,7 @@ export const businessDemos: BusinessDemo[] = [
       { label: "Centro Federado", value: "Único", detail: "En toda la ciudad" },
     ],
     trustBadges: ["Calzado Desinfectado", "Comanda a la Pista", "Torneos Oficiales"],
+    whatsappPitchCopy: "Hola equipo de Pitts Bowling! 🎳 Desarrollamos una WebApp a medida para el único centro de bowling federado de Maracaibo (C.C. Costa Verde): reserva de pistas por hora + calzado profesional, comanda de comida directo a la pista y tasa BCV en vivo.\n\nMiren la demo y el video comercial de 15s aquí:\n👉 https://byte-bridge-tau.vercel.app/demos/pittsbowling",
     address: "Planta Alta C.C. Costa Verde, Av. Bella Vista, Maracaibo",
     mapsUrl: "https://maps.google.com/?q=CC+Costa+Verde+Maracaibo",
     hours: "Lunes a Domingo: 2:00 PM - 12:00 AM",
@@ -1179,6 +1190,7 @@ export const businessDemos: BusinessDemo[] = [
       { label: "Eventos", value: "Privados", detail: "Hasta 15 personas" },
     ],
     trustBadges: ["Game Master Incluido", "Sin Límite de Tiempo", "Stand-Up Comedy Semanal"],
+    whatsappPitchCopy: "Hola gente de The Corner! 🎲 Preparamos una WebApp temática con su ludoteca digital interactiva: catálogo de más de 50 juegos de mesa con filtros por jugadores y tiempo, carta de pociones/tragos y reserva de salón para eventos privados.\n\nLes comparto la demo y el Reel animado:\n👉 https://byte-bridge-tau.vercel.app/demos/corner",
     address: "Calle 72 con Av. 10, Maracaibo",
     mapsUrl: "https://maps.google.com/?q=Calle+72+Maracaibo",
     hours: "Miércoles a Domingos: 5:30 PM - 12:00 AM",

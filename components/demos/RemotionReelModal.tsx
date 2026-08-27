@@ -15,6 +15,7 @@ type Props = {
 export function RemotionReelModal({ isOpen, onClose, demo }: Props) {
   const playerRef = useRef<PlayerRef>(null);
   const [isPlaying, setIsPlaying] = useState(true);
+  const [copied, setCopied] = useState(false);
 
   if (!isOpen) return null;
 
@@ -38,12 +39,13 @@ export function RemotionReelModal({ isOpen, onClose, demo }: Props) {
     }
   };
 
-  const whatsappMsg = `🎬 *[REEL COMERCIAL EN VIDEO]*\n\n` +
-    `Hola! Te comparto este video vertical (Reel de 15 segundos) que generamos para la propuesta de *${demo.name}*, mostrando el flujo de reservas con QR, menú multimoneda y validación de pases:\n\n` +
-    `👉 https://bytebridge.cloud/demos/${demo.slug}\n\n` +
-    `_Desarrollado con animación de video programática en tiempo real por ByteBridge._`;
+  const handleCopyPitch = () => {
+    navigator.clipboard.writeText(demo.whatsappPitchCopy);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
 
-  const whatsappUrl = `https://wa.me/584121662998?text=${encodeURIComponent(whatsappMsg)}`;
+  const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(demo.whatsappPitchCopy)}`;
 
   return (
     <AnimatePresence>
@@ -63,7 +65,7 @@ export function RemotionReelModal({ isOpen, onClose, demo }: Props) {
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.94, y: 16 }}
           transition={{ duration: 0.35, ease: [0.23, 1, 0.32, 1] }}
-          className="relative z-10 flex max-h-[95vh] w-full max-w-lg flex-col items-center overflow-hidden rounded-3xl border border-white/20 bg-zinc-950 p-5 shadow-2xl"
+          className="relative z-10 flex max-h-[95vh] w-full max-w-lg flex-col items-center overflow-y-auto rounded-3xl border border-white/20 bg-zinc-950 p-5 shadow-2xl scrollbar-none"
         >
           {/* Header */}
           <div className="flex w-full items-center justify-between border-b border-white/10 pb-3">
@@ -73,7 +75,7 @@ export function RemotionReelModal({ isOpen, onClose, demo }: Props) {
                 style={{ backgroundColor: demo.palette.accent }}
               />
               <span className="text-xs font-bold uppercase tracking-wider text-zinc-300">
-                Reel Promocional Automatizado (15s) · {demo.name}
+                Reel Promocional (15s HD) · {demo.name}
               </span>
             </div>
             <button
@@ -85,7 +87,7 @@ export function RemotionReelModal({ isOpen, onClose, demo }: Props) {
           </div>
 
           {/* Smartphone Frame with Remotion Player */}
-          <div className="relative mt-4 flex w-full max-w-[280px] sm:max-w-[320px] items-center justify-center overflow-hidden rounded-[2.5rem] border-4 border-zinc-700 bg-black shadow-2xl shadow-black/80">
+          <div className="relative mt-4 flex w-full max-w-[270px] sm:max-w-[310px] items-center justify-center overflow-hidden rounded-[2.5rem] border-4 border-zinc-700 bg-black shadow-2xl shadow-black/80">
             {/* Notch */}
             <div className="absolute top-2 z-20 h-4 w-24 rounded-full bg-zinc-900 border border-white/10" />
 
@@ -110,17 +112,17 @@ export function RemotionReelModal({ isOpen, onClose, demo }: Props) {
           </div>
 
           {/* Player Controls Bar */}
-          <div className="mt-4 flex items-center justify-center gap-3">
+          <div className="mt-3 flex items-center justify-center gap-2">
             <button
               onClick={handleTogglePlay}
-              className="rounded-xl border border-white/15 bg-white/10 px-4 py-2 text-xs font-bold text-white transition-all active:scale-95 hover:bg-white/20"
+              className="rounded-xl border border-white/15 bg-white/10 px-3.5 py-1.5 text-xs font-bold text-white transition-all active:scale-95 hover:bg-white/20"
             >
               {isPlaying ? "⏸️ Pausar" : "▶️ Reproducir"}
             </button>
 
             <button
               onClick={handleRestart}
-              className="rounded-xl border border-white/15 bg-white/10 px-4 py-2 text-xs font-bold text-white transition-all active:scale-95 hover:bg-white/20"
+              className="rounded-xl border border-white/15 bg-white/10 px-3.5 py-1.5 text-xs font-bold text-white transition-all active:scale-95 hover:bg-white/20"
             >
               🔄 Reiniciar
             </button>
@@ -149,6 +151,34 @@ export function RemotionReelModal({ isOpen, onClose, demo }: Props) {
               </svg>
               <span>Enviar Propuesta y Video por WhatsApp</span>
             </a>
+
+            <button
+              onClick={handleCopyPitch}
+              className={`flex w-full items-center justify-center gap-2 rounded-xl border py-2.5 text-xs font-semibold transition-all active:scale-95 ${
+                copied
+                  ? "border-emerald-500 bg-emerald-500/20 text-emerald-300"
+                  : "border-white/15 bg-white/5 text-zinc-300 hover:bg-white/10 hover:text-white"
+              }`}
+            >
+              <span>{copied ? "✓" : "📋"}</span>
+              <span>
+                {copied
+                  ? "¡Mensaje Copiado al Portapapeles!"
+                  : "Copiar Mensaje de WhatsApp"}
+              </span>
+            </button>
+          </div>
+
+          {/* Render Tip Box */}
+          <div className="mt-3 w-full rounded-2xl border border-white/10 bg-zinc-900/80 p-3 text-left">
+            <div className="flex items-center justify-between text-[11px] text-zinc-400">
+              <span className="font-semibold text-zinc-300">
+                📥 Descargar video en MP4 1080x1920 (Alta Calidad):
+              </span>
+            </div>
+            <code className="mt-1 block font-mono text-[10px] text-amber-300 bg-black/60 p-2 rounded-lg overflow-x-auto">
+              npm run render:reels {demo.slug}
+            </code>
           </div>
         </motion.div>
       </div>

@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "motion/react";
+import { motion, AnimatePresence } from "motion/react";
 import { BusinessDemo } from "@/data/demosData";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
@@ -18,17 +18,11 @@ export function DemosHubClient({ demos }: Props) {
   const [filter, setFilter] = useState<string>("all");
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [activeReelDemo, setActiveReelDemo] = useState<BusinessDemo | null>(null);
+  const [selectedPitchDemo, setSelectedPitchDemo] = useState<BusinessDemo | null>(null);
 
-  const handleCopyLink = (slug: string, name: string) => {
-    const origin =
-      typeof window !== "undefined"
-        ? window.location.origin
-        : "https://bytebridge.cloud";
-    const fullUrl = `${origin}/demos/${slug}`;
-    const pitchText = `Hola! Te comparto la propuesta y demo interactiva que preparamos especialmente para ${name} con reservas QR, menú en USD/Bs y video promocional: ${fullUrl}`;
-
-    navigator.clipboard.writeText(pitchText);
-    setCopiedSlug(slug);
+  const handleCopyPitch = (demo: BusinessDemo) => {
+    navigator.clipboard.writeText(demo.whatsappPitchCopy);
+    setCopiedSlug(demo.slug);
     setTimeout(() => setCopiedSlug(null), 2000);
   };
 
@@ -82,7 +76,7 @@ export function DemosHubClient({ demos }: Props) {
               Catálogo de Propuestas, WebApps & Reels
             </h1>
             <p className="mt-3 max-w-2xl mx-auto text-sm text-zinc-400 sm:text-base">
-              WebApps con reservaciones por código QR, menú digital multimoneda (USD/Bs), panel de control y **videos verticales (Reels) generados con Remotion**.
+              WebApps interactivas con reservaciones por código QR, menú digital multimoneda (USD/Bs), panel de control y **videos verticales (Reels) generados con Remotion**.
             </p>
 
             {/* Buscador de Demos */}
@@ -271,50 +265,27 @@ export function DemosHubClient({ demos }: Props) {
                       </button>
                     </div>
 
-                    <button
-                      onClick={() => handleCopyLink(demo.slug, demo.name)}
-                      className={`flex items-center justify-center gap-1.5 rounded-xl border py-2 text-xs font-semibold transition-all active:scale-[0.97] ${
-                        isCopied
-                          ? "border-emerald-500 bg-emerald-500/20 text-emerald-300"
-                          : "border-white/15 bg-white/5 text-zinc-300 hover:bg-white/10 hover:text-white"
-                      }`}
-                    >
-                      {isCopied ? (
-                        <>
-                          <svg
-                            className="h-3.5 w-3.5"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2}
-                              d="M5 13l4 4L19 7"
-                            />
-                          </svg>
-                          <span>¡Enlace Copiado para WhatsApp!</span>
-                        </>
-                      ) : (
-                        <>
-                          <svg
-                            className="h-3.5 w-3.5"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2}
-                              d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"
-                            />
-                          </svg>
-                          <span>Copiar Enlace para WhatsApp</span>
-                        </>
-                      )}
-                    </button>
+                    <div className="grid grid-cols-2 gap-2">
+                      <button
+                        onClick={() => handleCopyPitch(demo)}
+                        className={`flex items-center justify-center gap-1 rounded-xl border py-2 text-[11px] font-semibold transition-all active:scale-[0.97] ${
+                          isCopied
+                            ? "border-emerald-500 bg-emerald-500/20 text-emerald-300"
+                            : "border-white/15 bg-white/5 text-zinc-300 hover:bg-white/10 hover:text-white"
+                        }`}
+                      >
+                        <span>{isCopied ? "✓" : "📋"}</span>
+                        <span>{isCopied ? "¡Copiado!" : "Copiar Copy"}</span>
+                      </button>
+
+                      <button
+                        onClick={() => setSelectedPitchDemo(demo)}
+                        className="flex items-center justify-center gap-1 rounded-xl border border-white/15 bg-white/5 py-2 text-[11px] font-semibold text-zinc-300 transition-all active:scale-[0.97] hover:bg-white/10 hover:text-white"
+                      >
+                        <span>💬</span>
+                        <span>Ver Mensaje</span>
+                      </button>
+                    </div>
                   </div>
                 </motion.div>
               );
@@ -331,6 +302,77 @@ export function DemosHubClient({ demos }: Props) {
           demo={activeReelDemo}
         />
       )}
+
+      {/* Modal para ver y copiar el Copy de WhatsApp completo */}
+      <AnimatePresence>
+        {selectedPitchDemo && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setSelectedPitchDemo(null)}
+              className="fixed inset-0 bg-black/80 backdrop-blur-md"
+            />
+
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 16 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 16 }}
+              className="relative z-10 w-full max-w-lg rounded-3xl border border-white/20 bg-zinc-950 p-6 shadow-2xl"
+            >
+              <div className="flex items-center justify-between border-b border-white/10 pb-3">
+                <div className="flex items-center gap-2">
+                  <span className="text-lg">💬</span>
+                  <h3 className="text-base font-bold text-white">
+                    Copy de WhatsApp para {selectedPitchDemo.name}
+                  </h3>
+                </div>
+                <button
+                  onClick={() => setSelectedPitchDemo(null)}
+                  className="flex h-7 w-7 items-center justify-center rounded-full bg-white/10 text-xs font-bold text-zinc-400 hover:bg-white/20 hover:text-white"
+                >
+                  ✕
+                </button>
+              </div>
+
+              <div className="mt-4 rounded-2xl border border-white/10 bg-zinc-900/90 p-4 font-mono text-xs leading-relaxed text-zinc-200 whitespace-pre-wrap selection:bg-amber-400 selection:text-black">
+                {selectedPitchDemo.whatsappPitchCopy}
+              </div>
+
+              <div className="mt-5 flex flex-wrap gap-2">
+                <button
+                  onClick={() => {
+                    navigator.clipboard.writeText(selectedPitchDemo.whatsappPitchCopy);
+                    setCopiedSlug(selectedPitchDemo.slug);
+                    setTimeout(() => setCopiedSlug(null), 2000);
+                  }}
+                  className="flex-1 flex items-center justify-center gap-2 rounded-xl bg-white py-3 text-xs font-bold text-black shadow transition-all active:scale-95 hover:bg-zinc-200"
+                >
+                  <span>{copiedSlug === selectedPitchDemo.slug ? "✓" : "📋"}</span>
+                  <span>
+                    {copiedSlug === selectedPitchDemo.slug
+                      ? "¡Mensaje Copiado!"
+                      : "Copiar al Portapapeles"}
+                  </span>
+                </button>
+
+                <a
+                  href={`https://wa.me/?text=${encodeURIComponent(
+                    selectedPitchDemo.whatsappPitchCopy
+                  )}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center gap-2 rounded-xl bg-emerald-500 px-5 py-3 text-xs font-bold text-black shadow transition-all active:scale-95 hover:bg-emerald-400"
+                >
+                  <span>📲</span>
+                  <span>Abrir en WhatsApp</span>
+                </a>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
 
       <Footer />
     </div>

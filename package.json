@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "render:reels": "node scripts/render-reels.mjs"
   },
   "dependencies": {
     "@remotion/player": "^4.0.518",
@@ -19,6 +20,9 @@
     "remotion": "^4.0.518"
   },
   "devDependencies": {
+    "@remotion/bundler": "^4.0.518",
+    "@remotion/cli": "^4.0.518",
+    "@remotion/renderer": "^4.0.518",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/qrcode": "^1.5.6",
