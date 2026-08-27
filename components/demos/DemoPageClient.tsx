@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { BusinessDemo, CurrencyMode, MenuItem, BookingOption } from "@/data/demosData";
 import { DemoHeader } from "@/components/demos/DemoHeader";
 import { DemoHero } from "@/components/demos/DemoHero";
@@ -36,6 +36,15 @@ export function DemoPageClient({ demo }: Props) {
   const [activeTicket, setActiveTicket] = useState<BookingData | null>(null);
   const [isTicketModalOpen, setIsTicketModalOpen] = useState<boolean>(false);
   const [isReelOpen, setIsReelOpen] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const params = new URLSearchParams(window.location.search);
+      if (params.get("admin") === "true" || params.get("gerente") === "true") {
+        setIsManagerMode(true);
+      }
+    }
+  }, []);
 
   const toggleCurrency = () => {
     setCurrency((prev) => (prev === "USD" ? "VES" : "USD"));
