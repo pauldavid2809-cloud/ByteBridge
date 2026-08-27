@@ -15,9 +15,13 @@ type Props = {
 export function DemosHubClient({ demos }: Props) {
   const [copiedSlug, setCopiedSlug] = useState<string | null>(null);
   const [filter, setFilter] = useState<string>("all");
+  const [searchQuery, setSearchQuery] = useState<string>("");
 
   const handleCopyLink = (slug: string, name: string) => {
-    const origin = typeof window !== "undefined" ? window.location.origin : "https://bytebridge.cloud";
+    const origin =
+      typeof window !== "undefined"
+        ? window.location.origin
+        : "https://bytebridge.cloud";
     const fullUrl = `${origin}/demos/${slug}`;
     const pitchText = `Hola, te comparto la propuesta y demo interactiva que preparamos especialmente para ${name}: ${fullUrl}`;
 
@@ -27,6 +31,13 @@ export function DemosHubClient({ demos }: Props) {
   };
 
   const filteredDemos = demos.filter((d) => {
+    const matchesSearch =
+      d.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      d.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      d.tagline.toLowerCase().includes(searchQuery.toLowerCase());
+
+    if (!matchesSearch) return false;
+
     if (filter === "all") return true;
     if (filter === "gastro") {
       return (
@@ -62,23 +73,50 @@ export function DemosHubClient({ demos }: Props) {
           {/* Header del Hub */}
           <div className="text-center">
             <span className="inline-flex items-center gap-1.5 rounded-full border border-amber-400/30 bg-amber-400/10 px-3.5 py-1 text-xs font-bold text-amber-300">
-              ⚡ 10 Demos Interactivas Desarrolladas
+              <span className="h-1.5 w-1.5 rounded-full bg-amber-400 animate-pulse" />
+              10 Demos Comerciales Personalizadas
             </span>
             <h1 className="mt-4 text-3xl font-extrabold tracking-tight sm:text-5xl">
-              Catálogo de Propuestas & Demos Comerciales
+              Catálogo de Propuestas & WebApps
             </h1>
             <p className="mt-3 max-w-2xl mx-auto text-sm text-zinc-400 sm:text-base">
-              WebApps personalizadas con reservas por código QR, menú digital con conversión a tasa oficial y modo gerente en tiempo real.
+              Soluciones digitales a medida con reservaciones por código QR, menú digital multimoneda (USD/Bs) y panel de control en tiempo real.
             </p>
+
+            {/* Buscador de Demos */}
+            <div className="mx-auto mt-6 max-w-md">
+              <div className="relative">
+                <input
+                  type="text"
+                  placeholder="Buscar por negocio o sector..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="w-full rounded-2xl border border-white/15 bg-zinc-900/90 pl-10 pr-4 py-3 text-sm text-white placeholder-zinc-500 focus:border-amber-400 focus:outline-none"
+                />
+                <svg
+                  className="absolute left-3.5 top-3.5 h-4 w-4 text-zinc-500"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                  />
+                </svg>
+              </div>
+            </div>
           </div>
 
           {/* Filtros de Categoría */}
-          <div className="mt-10 flex justify-center gap-2 overflow-x-auto pb-2 scrollbar-none">
+          <div className="mt-8 flex justify-center gap-2 overflow-x-auto pb-2 scrollbar-none">
             {[
-              { id: "all", label: "✨ Todas (10)" },
-              { id: "gastro", label: "🍽️ Restaurantes & Gourmet (4)" },
-              { id: "night", label: "🍸 Restobares & Rumba (3)" },
-              { id: "ent", label: "🎳 Hotel & Entretenimiento (3)" },
+              { id: "all", label: "Todas (10)" },
+              { id: "gastro", label: "Restaurantes & Gourmet (4)" },
+              { id: "night", label: "Restobares & Rumba (3)" },
+              { id: "ent", label: "Hotel & Entretenimiento (3)" },
             ].map((f) => (
               <button
                 key={f.id}
@@ -131,7 +169,13 @@ export function DemosHubClient({ demos }: Props) {
                     </div>
 
                     <div className="mt-4">
-                      <span className="inline-block rounded-md bg-white/5 px-2.5 py-1 text-[11px] font-medium text-amber-300">
+                      <span
+                        className="inline-block rounded-md px-2.5 py-1 text-[11px] font-semibold"
+                        style={{
+                          backgroundColor: `${demo.palette.accent}20`,
+                          color: demo.palette.accent,
+                        }}
+                      >
                         {demo.category}
                       </span>
                     </div>
@@ -143,15 +187,48 @@ export function DemosHubClient({ demos }: Props) {
                     {/* Características clave */}
                     <div className="mt-4 space-y-1.5 border-t border-white/5 pt-3 text-[11px] text-zinc-400">
                       <div className="flex items-center gap-1.5">
-                        <span className="text-emerald-400">✓</span>
+                        <svg
+                          className="h-3.5 w-3.5 shrink-0"
+                          style={{ color: demo.palette.accent }}
+                          fill="currentColor"
+                          viewBox="0 0 20 20"
+                        >
+                          <path
+                            fillRule="evenodd"
+                            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                            clipRule="evenodd"
+                          />
+                        </svg>
                         <span className="text-zinc-200">{demo.bookingTitle}</span>
                       </div>
                       <div className="flex items-center gap-1.5">
-                        <span className="text-emerald-400">✓</span>
+                        <svg
+                          className="h-3.5 w-3.5 shrink-0"
+                          style={{ color: demo.palette.accent }}
+                          fill="currentColor"
+                          viewBox="0 0 20 20"
+                        >
+                          <path
+                            fillRule="evenodd"
+                            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                            clipRule="evenodd"
+                          />
+                        </svg>
                         <span>Menú con {demo.menuItems.length} platillos/servicios</span>
                       </div>
                       <div className="flex items-center gap-1.5">
-                        <span className="text-emerald-400">✓</span>
+                        <svg
+                          className="h-3.5 w-3.5 shrink-0"
+                          style={{ color: demo.palette.accent }}
+                          fill="currentColor"
+                          viewBox="0 0 20 20"
+                        >
+                          <path
+                            fillRule="evenodd"
+                            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                            clipRule="evenodd"
+                          />
+                        </svg>
                         <span>Modo Gerente & Escáner QR</span>
                       </div>
                     </div>
@@ -175,12 +252,41 @@ export function DemosHubClient({ demos }: Props) {
                           : "border-white/15 bg-white/5 text-zinc-300 hover:bg-white/10 hover:text-white"
                       }`}
                     >
-                      <span>{isCopied ? "✓" : "📋"}</span>
-                      <span>
-                        {isCopied
-                          ? "¡Mensaje y Enlace Copiado!"
-                          : "Copiar Enlace para WhatsApp"}
-                      </span>
+                      {isCopied ? (
+                        <>
+                          <svg
+                            className="h-3.5 w-3.5"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M5 13l4 4L19 7"
+                            />
+                          </svg>
+                          <span>¡Enlace Copiado para WhatsApp!</span>
+                        </>
+                      ) : (
+                        <>
+                          <svg
+                            className="h-3.5 w-3.5"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"
+                            />
+                          </svg>
+                          <span>Copiar Enlace para WhatsApp</span>
+                        </>
+                      )}
                     </button>
                   </div>
                 </motion.div>

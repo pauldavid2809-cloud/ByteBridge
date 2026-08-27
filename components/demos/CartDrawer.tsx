@@ -72,24 +72,42 @@ export function CartDrawer({
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           onClick={onClose}
-          className="fixed inset-0 bg-black/70 backdrop-blur-sm"
+          className="fixed inset-0 bg-black/75 backdrop-blur-sm"
         />
 
-        {/* Panel lateral / inferior */}
+        {/* Panel lateral con curva suave */}
         <motion.div
           initial={{ x: "100%" }}
           animate={{ x: 0 }}
           exit={{ x: "100%" }}
-          transition={{ duration: 0.3, ease: [0.23, 1, 0.32, 1] }}
+          transition={{ duration: 0.3, ease: [0.32, 0.72, 0, 1] }}
           className="relative z-10 flex h-full w-full max-w-md flex-col justify-between border-l border-white/10 bg-zinc-950 p-6 shadow-2xl"
         >
           {/* Cabecera del Carrito */}
           <div>
             <div className="flex items-center justify-between border-b border-white/10 pb-4">
               <div className="flex items-center gap-2">
-                <span className="text-xl">🛒</span>
+                <svg
+                  className="h-5 w-5 text-zinc-300"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
+                  />
+                </svg>
                 <h3 className="text-lg font-bold text-white">Comanda Digital</h3>
-                <span className="rounded-full bg-white/10 px-2 py-0.5 text-xs font-bold text-zinc-300">
+                <span
+                  className="rounded-full px-2 py-0.5 text-xs font-bold"
+                  style={{
+                    backgroundColor: `${demo.palette.accent}25`,
+                    color: demo.palette.accent,
+                  }}
+                >
                   {items.length} {items.length === 1 ? "ítem" : "ítems"}
                 </span>
               </div>
@@ -105,9 +123,21 @@ export function CartDrawer({
             <div className="mt-4 max-h-[42vh] space-y-3 overflow-y-auto pr-1 scrollbar-none">
               {items.length === 0 ? (
                 <div className="py-12 text-center text-zinc-500">
-                  <p className="text-3xl">🍽️</p>
-                  <p className="mt-2 text-sm">Tu comanda está vacía</p>
-                  <p className="mt-1 text-xs">Agrega platillos o bebidas del menú</p>
+                  <svg
+                    className="mx-auto h-10 w-10 text-zinc-600"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={1.5}
+                      d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
+                    />
+                  </svg>
+                  <p className="mt-3 text-sm text-zinc-400">Tu comanda está vacía</p>
+                  <p className="mt-1 text-xs text-zinc-500">Agrega platillos o bebidas del menú</p>
                 </div>
               ) : (
                 items.map(({ item, quantity }) => (
@@ -157,14 +187,14 @@ export function CartDrawer({
                     placeholder="Tu Nombre"
                     value={clientName}
                     onChange={(e) => setClientName(e.target.value)}
-                    className="rounded-lg border border-white/10 bg-zinc-900 px-3 py-1.5 text-xs text-white placeholder-zinc-500 focus:border-amber-400 focus:outline-none"
+                    className="rounded-lg border border-white/10 bg-zinc-900 px-3 py-2 text-xs text-white placeholder-zinc-500 focus:border-amber-400 focus:outline-none"
                   />
                   <input
                     type="text"
                     placeholder="Mesa # / Ubicación"
                     value={tableOrNote}
                     onChange={(e) => setTableOrNote(e.target.value)}
-                    className="rounded-lg border border-white/10 bg-zinc-900 px-3 py-1.5 text-xs text-white placeholder-zinc-500 focus:border-amber-400 focus:outline-none"
+                    className="rounded-lg border border-white/10 bg-zinc-900 px-3 py-2 text-xs text-white placeholder-zinc-500 focus:border-amber-400 focus:outline-none"
                   />
                 </div>
 
@@ -180,9 +210,12 @@ export function CartDrawer({
                           onClick={() => setPaymentMethod(m)}
                           className={`rounded-md px-2 py-1 text-[10px] font-semibold transition-all ${
                             paymentMethod === m
-                              ? "bg-amber-400 text-black font-bold"
+                              ? "text-black font-bold shadow"
                               : "bg-white/5 text-zinc-400 hover:bg-white/10"
                           }`}
+                          style={{
+                            backgroundColor: paymentMethod === m ? demo.palette.accent : undefined,
+                          }}
                         >
                           {m}
                         </button>
@@ -216,7 +249,19 @@ export function CartDrawer({
                 disabled={items.length === 0}
                 className="flex w-full items-center justify-center gap-2 rounded-xl bg-emerald-500 py-3 text-xs font-bold text-black shadow-lg shadow-emerald-500/20 transition-all active:scale-[0.97] disabled:opacity-40"
               >
-                <span>📲</span>
+                <svg
+                  className="h-4 w-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
+                  />
+                </svg>
                 <span>Enviar Comanda por WhatsApp</span>
               </button>
 

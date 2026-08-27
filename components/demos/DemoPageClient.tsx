@@ -4,6 +4,7 @@ import { useState } from "react";
 import { BusinessDemo, CurrencyMode, MenuItem, BookingOption } from "@/data/demosData";
 import { DemoHeader } from "@/components/demos/DemoHeader";
 import { DemoHero } from "@/components/demos/DemoHero";
+import { DemoIntro } from "@/components/demos/DemoIntro";
 import { InteractiveBooking } from "@/components/demos/InteractiveBooking";
 import { DigitalMenu } from "@/components/demos/DigitalMenu";
 import { ManagerDashboard } from "@/components/demos/ManagerDashboard";
@@ -89,7 +90,7 @@ export function DemoPageClient({ demo }: Props) {
 
   return (
     <div className="min-h-screen bg-black text-white selection:bg-amber-400 selection:text-black">
-      {/* Cabecera Adaptativa */}
+      {/* Cabecera Adaptativa con Marca */}
       <DemoHeader
         demo={demo}
         currency={currency}
@@ -109,6 +110,7 @@ export function DemoPageClient({ demo }: Props) {
       ) : (
         /* Vista del Cliente */
         <main>
+          {/* 1. Hero Principal */}
           <DemoHero
             demo={demo}
             onScrollToBooking={() => scrollTo("reservas")}
@@ -116,36 +118,49 @@ export function DemoPageClient({ demo }: Props) {
             onScrollToLocation={() => scrollTo("ubicacion")}
           />
 
+          {/* 2. Sección Narrativa de Introducción y Diferenciales */}
+          <DemoIntro
+            demo={demo}
+            onExploreBooking={() => scrollTo("reservas")}
+            onExploreMenu={() => scrollTo("menu")}
+          />
+
+          {/* 3. Módulo de Reservaciones con QR */}
           <InteractiveBooking
             demo={demo}
             currency={currency}
             onGenerateQrTicket={handleGenerateQrTicket}
           />
 
+          {/* 4. Menú Digital Interactivo */}
           <DigitalMenu
             demo={demo}
             currency={currency}
             onAddToCart={handleAddToCart}
           />
 
+          {/* 5. Ubicación y Contacto */}
           <LocationCard demo={demo} />
 
           {/* Footer de la Demo */}
-          <footer className="border-t border-white/10 bg-zinc-950 py-8 text-center text-xs text-zinc-500">
-            <p className="text-zinc-400">
-              © {new Date().getFullYear()} {demo.name} · WebApp Digital & Sistema de Reservas
-            </p>
-            <p className="mt-1 text-[11px]">
-              Diseñado e implementado a medida por{" "}
-              <a
-                href="https://wa.me/584121662998"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-amber-400 underline hover:text-amber-300"
-              >
-                ByteBridge
-              </a>
-            </p>
+          <footer className="border-t border-white/10 bg-zinc-950 py-10 text-center text-xs text-zinc-500">
+            <div className="mx-auto max-w-5xl px-4 space-y-2">
+              <p className="font-medium text-zinc-400">
+                © {new Date().getFullYear()} {demo.name} · WebApp Digital & Sistema de Reservas
+              </p>
+              <p className="text-[11px] text-zinc-500">
+                Diseñado e implementado a medida por{" "}
+                <a
+                  href="https://wa.me/584121662998"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-semibold underline hover:text-white transition-colors"
+                  style={{ color: demo.palette.accent }}
+                >
+                  ByteBridge
+                </a>
+              </p>
+            </div>
           </footer>
         </main>
       )}

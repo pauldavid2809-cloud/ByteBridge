@@ -56,10 +56,10 @@ export function QrTicketModal({ isOpen, onClose, demo, booking }: Props) {
 
         {/* Contenedor del Ticket / Boarding Pass */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.92, y: 20 }}
+          initial={{ opacity: 0, scale: 0.95, y: 16 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.92, y: 20 }}
-          transition={{ duration: 0.35, ease: [0.23, 1, 0.32, 1] }}
+          exit={{ opacity: 0, scale: 0.95, y: 16 }}
+          transition={{ duration: 0.3, ease: [0.23, 1, 0.32, 1] }}
           className="relative z-10 max-h-[92vh] w-full max-w-md overflow-y-auto rounded-3xl border border-white/20 bg-zinc-950 p-6 shadow-2xl scrollbar-none"
         >
           {/* Botón de Cierre */}
@@ -72,8 +72,20 @@ export function QrTicketModal({ isOpen, onClose, demo, booking }: Props) {
 
           {/* Encabezado del Pase */}
           <div className="text-center">
-            <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl border border-emerald-500/30 bg-emerald-500/20 text-2xl">
-              ✅
+            <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl border border-emerald-500/30 bg-emerald-500/20 text-emerald-400">
+              <svg
+                className="h-6 w-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2.5}
+                  d="M5 13l4 4L19 7"
+                />
+              </svg>
             </div>
             <h3 className="mt-3 text-xl font-extrabold text-white">
               ¡Pase Digital Generado!
@@ -98,7 +110,10 @@ export function QrTicketModal({ isOpen, onClose, demo, booking }: Props) {
                 </div>
                 <div>
                   <h4 className="text-sm font-bold text-white">{demo.name}</h4>
-                  <span className="font-mono text-[11px] font-bold text-amber-400">
+                  <span
+                    className="font-mono text-[11px] font-bold"
+                    style={{ color: demo.palette.accent }}
+                  >
                     #{ticketCode}
                   </span>
                 </div>
@@ -141,7 +156,6 @@ export function QrTicketModal({ isOpen, onClose, demo, booking }: Props) {
             {/* Simulación del Código QR */}
             <div className="mt-5 flex flex-col items-center justify-center rounded-xl bg-white p-4">
               <div className="relative flex h-36 w-36 items-center justify-center bg-zinc-950 p-2 rounded-lg">
-                {/* Visual SVG QR representativo y nítido */}
                 <svg
                   viewBox="0 0 100 100"
                   className="h-full w-full fill-white"
@@ -159,7 +173,6 @@ export function QrTicketModal({ isOpen, onClose, demo, booking }: Props) {
                   <rect x="5" y="75" width="20" height="20" fill="#000" />
                   <rect x="10" y="80" width="10" height="10" fill="#fff" />
 
-                  {/* Puntos de datos simulados */}
                   <rect x="35" y="5" width="5" height="15" />
                   <rect x="45" y="10" width="15" height="5" />
                   <rect x="35" y="25" width="25" height="5" />
@@ -192,7 +205,19 @@ export function QrTicketModal({ isOpen, onClose, demo, booking }: Props) {
               rel="noopener noreferrer"
               className="flex w-full items-center justify-center gap-2 rounded-xl bg-emerald-500 py-3.5 text-sm font-bold text-black shadow-lg shadow-emerald-500/25 transition-all active:scale-[0.97] hover:bg-emerald-400"
             >
-              <span>📲</span>
+              <svg
+                className="h-4 w-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
+                />
+              </svg>
               <span>Confirmar y Enviar a WhatsApp</span>
             </a>
 

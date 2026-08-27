@@ -63,6 +63,12 @@ export type BusinessDemo = {
     fontDisplay: string;
     fontBody: string;
   };
+  /** Narrative intro paragraph shown between hero and booking */
+  introText: string;
+  /** 3 highlight stats/facts for the intro section */
+  introStats: { label: string; value: string; detail: string }[];
+  /** Contextual trust badges (replaces the generic ones) */
+  trustBadges: string[];
   address: string;
   mapsUrl: string;
   hours: string;
@@ -134,6 +140,13 @@ export const businessDemos: BusinessDemo[] = [
       fontDisplay: "font-sans",
       fontBody: "font-sans",
     },
+    introText: "Ecoland Club es el único complejo turístico urbano de Maracaibo que integra hotel boutique, restaurante de parrilla, gimnasio completo y zona de piscinas — todo en un solo lugar, sin salir de la ciudad.",
+    introStats: [
+      { label: "Áreas de Piscina", value: "3", detail: "Olímpica, recreativa e infantil" },
+      { label: "Suites Disponibles", value: "12", detail: "Equipadas con A/A y Smart TV" },
+      { label: "Horario Continuo", value: "7AM–10PM", detail: "Los 7 días de la semana" },
+    ],
+    trustBadges: ["Check-in Digital con QR", "Pagos Multimoneda", "Valet Parking Incluido"],
     address: "Av. Principal La Rinconada, Maracaibo, Zulia",
     mapsUrl: "https://maps.google.com/?q=Maracaibo",
     hours: "Lunes a Domingo: 7:00 AM - 10:00 PM",
@@ -259,6 +272,13 @@ export const businessDemos: BusinessDemo[] = [
       fontDisplay: "font-serif",
       fontBody: "font-sans",
     },
+    introText: "Grand Chef es el restaurante mediterráneo con la vista más privilegiada de Maracaibo: mesas en primera fila frente al Puente sobre el Lago con atardeceres que transforman cada cena en una experiencia cinematográfica.",
+    introStats: [
+      { label: "Vista al Puente", value: "180°", detail: "Panorámica sin obstáculos" },
+      { label: "Carta de Vinos", value: "40+", detail: "Etiquetas seleccionadas por sommelier" },
+      { label: "Años de Trayectoria", value: "8+", detail: "Referente gastronómico zuliano" },
+    ],
+    trustBadges: ["Mesa Garantizada con Reserva", "Sommelier en Sala", "Estacionamiento Privado"],
     address: "San Francisco, Sector El Manzanillo frente al Lago, Edo. Zulia",
     mapsUrl: "https://maps.google.com/?q=Grand+Chef+San+Francisco+Zulia",
     hours: "Miércoles a Domingo: 12:00 PM - 11:30 PM",
@@ -376,6 +396,13 @@ export const businessDemos: BusinessDemo[] = [
       fontDisplay: "font-sans",
       fontBody: "font-sans",
     },
+    introText: "Zu House es el steakhouse nocturno de referencia en 5 de Julio. A partir de las 5:00 PM, sus brasas encienden cortes premium importados en un ambiente que combina terraza urbana con energía de after-work.",
+    introStats: [
+      { label: "Apertura Diaria", value: "5 PM", detail: "Ideal para after-work" },
+      { label: "Cortes Premium", value: "12+", detail: "Importados y nacionales" },
+      { label: "Ubicación", value: "T-77", detail: "C.C. Terraza 77, 5 de Julio" },
+    ],
+    trustBadges: ["Acceso Directo sin Cola", "Coctelería de Autor", "Ambiente Nocturno Premium"],
     address: "Calle 77 (5 de Julio), al lado del C.C. Terraza 77, Maracaibo",
     mapsUrl: "https://maps.google.com/?q=Terraza+77+Maracaibo",
     hours: "Todos los días a partir de las 5:00 PM",
@@ -477,6 +504,13 @@ export const businessDemos: BusinessDemo[] = [
       fontDisplay: "font-serif",
       fontBody: "font-sans",
     },
+    introText: "Tannous Bar & Lounge fusiona gastronomía de alto nivel con momentos inolvidables: desde almuerzos ejecutivos ágiles de lunes a viernes hasta pedidas de mano con decoración personalizada, velas y champaña.",
+    introStats: [
+      { label: "Menú Ejecutivo", value: "$14", detail: "3 tiempos + bebida incluida" },
+      { label: "Eventos Privados", value: "100%", detail: "Coordinación integral" },
+      { label: "Capacidad", value: "80+", detail: "Interior climatizado" },
+    ],
+    trustBadges: ["Servicio Express 20 min", "Coordinador de Eventos", "Factura Digital"],
     address: "Av. 13 con calle 74, C.C. Grupo 3965, Maracaibo",
     mapsUrl: "https://maps.google.com/?q=Maracaibo+Av+13+calle+74",
     hours: "Lunes a Domingo desde las 11:00 AM",
@@ -576,6 +610,13 @@ export const businessDemos: BusinessDemo[] = [
       fontDisplay: "font-sans uppercase tracking-widest font-black",
       fontBody: "font-sans",
     },
+    introText: "Room 101 es el restobar underground de Maracaibo donde la coctelería de autor se encuentra con hookah sessions premium y noches temáticas. Un concepto que mezcla mixología artesanal con experiencias sensoriales únicas.",
+    introStats: [
+      { label: "Tragos Insignia", value: "6", detail: "101 Mule, Magic Love y más" },
+      { label: "Sabores Hookah", value: "20+", detail: "Premium con carbón de coco" },
+      { label: "Noches Temáticas", value: "3/sem", detail: "Jue-Vie-Sáb rotativos" },
+    ],
+    trustBadges: ["Reserva de Lounge con QR", "Shisha Master Dedicado", "Acceso VIP sin Fila"],
     address: "Sector Tierra Negra, Maracaibo",
     mapsUrl: "https://maps.google.com/?q=Maracaibo+Tierra+Negra",
     hours: "Dom-Jue: 4:00 PM - 12:00 AM | Vie-Sáb: 4:00 PM - 3:00 AM",
@@ -692,6 +733,13 @@ export const businessDemos: BusinessDemo[] = [
       fontDisplay: "font-sans uppercase font-black tracking-wider",
       fontBody: "font-sans",
     },
+    introText: "La Barra Ventura es el epicentro de la vida nocturna de Maracaibo: restaurante de calidad que se transforma en la discoteca más activa de la ciudad con DJs residentes, servicio de botellas y pases VIP digitales.",
+    introStats: [
+      { label: "Capacidad", value: "400+", detail: "Personas por noche" },
+      { label: "Servicio Botellas", value: "15+", detail: "Marcas premium disponibles" },
+      { label: "Horario", value: "8PM–5AM", detail: "Jueves a Sábado" },
+    ],
+    trustBadges: ["Pase VIP Express Digital", "Entrada sin Cola", "DJ Residentes Internacionales"],
     address: "Sector Bella Vista / Av. 4, Maracaibo",
     mapsUrl: "https://maps.google.com/?q=Bella+Vista+Maracaibo",
     hours: "Jueves a Sábado: 8:00 PM - 5:00 AM",
@@ -793,6 +841,13 @@ export const businessDemos: BusinessDemo[] = [
       fontDisplay: "font-serif",
       fontBody: "font-sans",
     },
+    introText: "Ciao Gastrobar trae el arte de la auténtica cocina italiana al segundo nivel del C.C. Terraza 77: pastas hechas a mano cada mañana, pizzas napolitanas al horno de leña y una carta de vinos italianos curada por el chef.",
+    introStats: [
+      { label: "Pastas Frescas", value: "100%", detail: "Hechas a mano cada día" },
+      { label: "Nivel", value: "2do", detail: "C.C. Terraza 77" },
+      { label: "Especialidad", value: "Napoli", detail: "Pizza al horno de leña" },
+    ],
+    trustBadges: ["Ingredientes Importados", "Chef Italiano en Cocina", "Terraza con Brisa"],
     address: "C.C. Terraza 77, Nivel 2, Calle 77 (5 de Julio), Maracaibo",
     mapsUrl: "https://maps.google.com/?q=Terraza+77+Nivel+2+Maracaibo",
     hours: "Martes a Domingo: 12:30 PM - 11:00 PM",
@@ -893,6 +948,13 @@ export const businessDemos: BusinessDemo[] = [
       fontDisplay: "font-sans uppercase font-bold tracking-tight",
       fontBody: "font-sans",
     },
+    introText: "BLAO es la terraza más versátil de Maracaibo: almuerzos ejecutivos B-Lunch al mediodía, cócteles al atardecer y noches de Blaoke con karaoke en vivo. Fusión gastronómica de mar y tierra en Plaza 75.",
+    introStats: [
+      { label: "Concepto Dual", value: "2 en 1", detail: "Almuerzo ejecutivo + Rumba" },
+      { label: "Terraza", value: "Plaza 75", detail: "Al aire libre" },
+      { label: "Blaoke", value: "Vie-Sáb", detail: "Karaoke en vivo + DJ" },
+    ],
+    trustBadges: ["B-Lunch Express 15 min", "Wi-Fi para Trabajo", "Terraza al Aire Libre"],
     address: "Plaza 75, Calle 75 con Av. 3Y, Maracaibo",
     mapsUrl: "https://maps.google.com/?q=Plaza+75+Maracaibo",
     hours: "Lunes a Domingo: 12:00 PM - 2:00 AM",
@@ -994,6 +1056,13 @@ export const businessDemos: BusinessDemo[] = [
       fontDisplay: "font-sans uppercase font-black tracking-wider",
       fontBody: "font-sans",
     },
+    introText: "Pitts Bowling es el único centro de bowling federado de Maracaibo, ubicado en la planta alta del C.C. Costa Verde. Pistas profesionales con puntuación digital, restaurante con comida a la pista y bar deportivo.",
+    introStats: [
+      { label: "Pistas Profesionales", value: "8", detail: "Con puntuación digital HD" },
+      { label: "Precio/Hora", value: "$30", detail: "Hasta 6 jugadores" },
+      { label: "Centro Federado", value: "Único", detail: "En toda la ciudad" },
+    ],
+    trustBadges: ["Calzado Desinfectado", "Comanda a la Pista", "Torneos Oficiales"],
     address: "Planta Alta C.C. Costa Verde, Av. Bella Vista, Maracaibo",
     mapsUrl: "https://maps.google.com/?q=CC+Costa+Verde+Maracaibo",
     hours: "Lunes a Domingo: 2:00 PM - 12:00 AM",
@@ -1103,6 +1172,13 @@ export const businessDemos: BusinessDemo[] = [
       fontDisplay: "font-sans uppercase font-black tracking-tight",
       fontBody: "font-sans",
     },
+    introText: "The Corner es el bar de entretenimiento donde los juegos de mesa se encuentran con tragos temáticos y comedia en vivo. Más de 50 juegos con Game Masters que explican las reglas, salón para eventos privados y stand-up comedy.",
+    introStats: [
+      { label: "Juegos de Mesa", value: "50+", detail: "Con Game Master dedicado" },
+      { label: "Tragos Temáticos", value: "12", detail: "Pociones con glitter UV" },
+      { label: "Eventos", value: "Privados", detail: "Hasta 15 personas" },
+    ],
+    trustBadges: ["Game Master Incluido", "Sin Límite de Tiempo", "Stand-Up Comedy Semanal"],
     address: "Calle 72 con Av. 10, Maracaibo",
     mapsUrl: "https://maps.google.com/?q=Calle+72+Maracaibo",
     hours: "Miércoles a Domingos: 5:30 PM - 12:00 AM",

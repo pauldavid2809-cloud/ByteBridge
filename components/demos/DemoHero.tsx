@@ -18,8 +18,8 @@ export function DemoHero({
   onScrollToLocation,
 }: Props) {
   return (
-    <section className="relative min-h-[580px] w-full overflow-hidden border-b border-white/10 bg-zinc-950 py-16 sm:min-h-[640px] sm:py-24">
-      {/* Imagen de fondo con gradientes de marca */}
+    <section className="relative min-h-[90dvh] w-full flex items-center overflow-hidden border-b border-white/10 bg-zinc-950 py-16 sm:py-24">
+      {/* Imagen de fondo con gradientes de marca y ambient lighting */}
       <div className="absolute inset-0 z-0">
         <Image
           src={demo.coverImage}
@@ -30,21 +30,25 @@ export function DemoHero({
           priority
         />
         <div
-          className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/60 to-zinc-950"
+          className="absolute inset-0 bg-gradient-to-b from-black/85 via-black/70 to-zinc-950"
           style={{
-            backgroundImage: `radial-gradient(circle at 50% 20%, ${demo.palette.glow}, transparent 70%)`,
+            backgroundImage: `radial-gradient(ellipse at 50% 15%, ${demo.palette.glow}, transparent 70%)`,
           }}
         />
       </div>
 
-      <div className="relative z-10 mx-auto flex max-w-5xl flex-col items-center px-4 text-center sm:px-6">
-        {/* Badge de la marca */}
+      <div className="relative z-10 mx-auto flex w-full max-w-5xl flex-col items-center px-4 text-center sm:px-6">
+        {/* Badge de la marca con indicador animado */}
         <motion.div
           initial={{ opacity: 0, y: 12, scale: 0.95 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
           className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3.5 py-1.5 backdrop-blur-md"
         >
+          <span
+            className="h-2 w-2 rounded-full animate-pulse"
+            style={{ backgroundColor: demo.palette.accent }}
+          />
           <span className="text-xs font-semibold tracking-wide text-white">
             {demo.badgeText}
           </span>
@@ -61,7 +65,7 @@ export function DemoHero({
           <span
             className="bg-clip-text text-transparent"
             style={{
-              backgroundImage: `linear-gradient(135deg, #FFFFFF 0%, ${demo.palette.accent} 100%)`,
+              backgroundImage: `linear-gradient(135deg, #FFFFFF 20%, ${demo.palette.accent} 100%)`,
             }}
           >
             {demo.heroHighlight}
@@ -73,12 +77,12 @@ export function DemoHero({
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2, ease: [0.23, 1, 0.32, 1] }}
-          className="mt-5 max-w-2xl text-base leading-relaxed text-zinc-300 sm:text-lg"
+          className="mt-5 max-w-2xl text-sm leading-relaxed text-zinc-300 sm:text-base md:text-lg"
         >
           {demo.heroSubtitle}
         </motion.p>
 
-        {/* Botones de acción rápida con microanimación táctil */}
+        {/* Botones de acción rápida con microanimación táctil y SVGs limpios */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
@@ -93,7 +97,19 @@ export function DemoHero({
               boxShadow: `0 10px 25px -5px ${demo.palette.glow}`,
             }}
           >
-            <span>🎟️</span>
+            <svg
+              className="h-4 w-4"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a2 2 0 110 4v3a2 2 0 002 2h14a2 2 0 002-2v-3a2 2 0 110-4V7a2 2 0 00-2-2H5z"
+              />
+            </svg>
             <span>Reservar con Pase QR</span>
           </button>
 
@@ -101,7 +117,19 @@ export function DemoHero({
             onClick={onScrollToMenu}
             className="flex items-center gap-2 rounded-xl border border-white/20 bg-white/10 px-6 py-3.5 text-sm font-semibold text-white backdrop-blur-md transition-all active:scale-[0.97] hover:bg-white/20"
           >
-            <span>📋</span>
+            <svg
+              className="h-4 w-4"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"
+              />
+            </svg>
             <span>Ver Menú Digital</span>
           </button>
 
@@ -109,30 +137,53 @@ export function DemoHero({
             onClick={onScrollToLocation}
             className="flex items-center gap-2 rounded-xl border border-white/10 bg-zinc-900/80 px-4 py-3.5 text-sm font-medium text-zinc-300 transition-all active:scale-[0.97] hover:text-white"
           >
-            <span>📍</span>
+            <svg
+              className="h-4 w-4"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+              />
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+              />
+            </svg>
             <span>Ubicación</span>
           </button>
         </motion.div>
 
-        {/* Mini Highlights de Confianza */}
+        {/* Badges de Confianza Contextuales y Personalizados por Negocio */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="mt-12 flex flex-wrap items-center justify-center gap-6 border-t border-white/10 pt-6 text-xs text-zinc-400"
+          className="mt-12 flex flex-wrap items-center justify-center gap-4 sm:gap-6 border-t border-white/10 pt-6 text-xs text-zinc-400"
         >
-          <div className="flex items-center gap-1.5">
-            <span className="text-emerald-400">✓</span>
-            <span>Confirmación Inmediata</span>
-          </div>
-          <div className="flex items-center gap-1.5">
-            <span className="text-emerald-400">✓</span>
-            <span>Pase con Código QR</span>
-          </div>
-          <div className="flex items-center gap-1.5">
-            <span className="text-emerald-400">✓</span>
-            <span>Pagos en USD & Bs (Tasa Oficial)</span>
-          </div>
+          {demo.trustBadges.map((badge, idx) => (
+            <div key={idx} className="flex items-center gap-1.5">
+              <svg
+                className="h-3.5 w-3.5"
+                style={{ color: demo.palette.accent }}
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                  clipRule="evenodd"
+                />
+              </svg>
+              <span className="text-zinc-300">{badge}</span>
+            </div>
+          ))}
         </motion.div>
       </div>
     </section>

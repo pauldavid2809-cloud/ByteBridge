@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { BusinessDemo, BookingOption, BCV_RATE, CurrencyMode } from "@/data/demosData";
+import { AnimateOnScroll } from "@/components/demos/AnimateOnScroll";
 
 type Props = {
   demo: BusinessDemo;
@@ -44,7 +45,6 @@ export function InteractiveBooking({ demo, currency, onGenerateQrTicket }: Props
 
   const dateOptions = ["Hoy", "Mañana", "Viernes", "Sábado", "Domingo"];
 
-  // Cálculo total según la unidad del plan
   const totalUSD =
     selectedOption.unit.includes("persona")
       ? selectedOption.priceUSD * pax
@@ -77,7 +77,7 @@ export function InteractiveBooking({ demo, currency, onGenerateQrTicket }: Props
         notes: clientNotes,
         totalUSD,
       });
-    }, 600);
+    }, 500);
   };
 
   return (
@@ -87,9 +87,9 @@ export function InteractiveBooking({ demo, currency, onGenerateQrTicket }: Props
     >
       <div className="mx-auto max-w-5xl px-4 sm:px-6">
         {/* Encabezado de la Sección */}
-        <div className="text-center">
+        <AnimateOnScroll className="text-center">
           <span
-            className="inline-block rounded-full px-3 py-1 text-xs font-bold uppercase tracking-wider text-white"
+            className="inline-block rounded-full px-3 py-1 text-xs font-bold uppercase tracking-wider text-white shadow-sm"
             style={{ backgroundColor: demo.palette.primary }}
           >
             Módulo de Reservaciones
@@ -100,17 +100,19 @@ export function InteractiveBooking({ demo, currency, onGenerateQrTicket }: Props
           <p className="mt-2 text-sm text-zinc-400 sm:text-base">
             {demo.bookingSubtitle}
           </p>
-        </div>
+        </AnimateOnScroll>
 
         <form onSubmit={handleSubmit} className="mt-10 grid gap-8 lg:grid-cols-12">
           {/* Columna Izquierda: Selección de Plan / Opción */}
           <div className="space-y-4 lg:col-span-7">
-            <h3 className="text-sm font-semibold uppercase tracking-wider text-zinc-300">
-              1. Selecciona tu tipo de experiencia o reserva:
-            </h3>
+            <AnimateOnScroll delay={0.05}>
+              <h3 className="text-sm font-semibold uppercase tracking-wider text-zinc-300">
+                1. Selecciona tu tipo de experiencia o reserva:
+              </h3>
+            </AnimateOnScroll>
 
             <div className="space-y-3">
-              {demo.bookingOptions.map((opt) => {
+              {demo.bookingOptions.map((opt, idx) => {
                 const isSelected = selectedOption.id === opt.id;
                 const priceFormatted =
                   currency === "USD"
@@ -120,60 +122,73 @@ export function InteractiveBooking({ demo, currency, onGenerateQrTicket }: Props
                       })} Bs`;
 
                 return (
-                  <motion.div
-                    key={opt.id}
-                    whileTap={{ scale: 0.98 }}
-                    onClick={() => setSelectedOption(opt)}
-                    className={`relative cursor-pointer rounded-2xl border p-4.5 transition-all sm:p-5 ${
-                      isSelected
-                        ? "border-amber-400 bg-zinc-800/90 shadow-lg shadow-black/50"
-                        : "border-white/10 bg-zinc-950/60 hover:border-white/20 hover:bg-zinc-900/60"
-                    }`}
-                    style={{
-                      borderColor: isSelected ? demo.palette.accent : undefined,
-                    }}
-                  >
-                    {opt.badge && (
-                      <span
-                        className="absolute -top-2.5 right-4 rounded-full px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-black shadow"
-                        style={{ backgroundColor: demo.palette.accent }}
-                      >
-                        {opt.badge}
-                      </span>
-                    )}
-
-                    <div className="flex items-start justify-between gap-3">
-                      <div>
-                        <h4 className="text-base font-bold text-white">
-                          {opt.name}
-                        </h4>
-                        <p className="mt-1 text-xs leading-relaxed text-zinc-400 sm:text-sm">
-                          {opt.description}
-                        </p>
-                      </div>
-
-                      <div className="text-right">
-                        <span className="text-lg font-black text-white sm:text-xl">
-                          {priceFormatted}
+                  <AnimateOnScroll key={opt.id} delay={0.08 + idx * 0.05}>
+                    <motion.div
+                      whileTap={{ scale: 0.98 }}
+                      onClick={() => setSelectedOption(opt)}
+                      className={`relative cursor-pointer rounded-2xl border p-4.5 transition-all sm:p-5 ${
+                        isSelected
+                          ? "bg-zinc-800/90 shadow-lg shadow-black/50"
+                          : "border-white/10 bg-zinc-950/60 hover:border-white/20 hover:bg-zinc-900/60"
+                      }`}
+                      style={{
+                        borderColor: isSelected ? demo.palette.accent : undefined,
+                      }}
+                    >
+                      {opt.badge && (
+                        <span
+                          className="absolute -top-2.5 right-4 rounded-full px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-black shadow"
+                          style={{ backgroundColor: demo.palette.accent }}
+                        >
+                          {opt.badge}
                         </span>
-                        <p className="text-[11px] text-zinc-400">{opt.unit}</p>
-                      </div>
-                    </div>
+                      )}
 
-                    {/* Características incluidas */}
-                    {opt.features && opt.features.length > 0 && (
-                      <div className="mt-3.5 flex flex-wrap gap-2 border-t border-white/10 pt-3">
-                        {opt.features.map((feat, idx) => (
-                          <span
-                            key={idx}
-                            className="inline-flex items-center gap-1 rounded-md bg-white/5 px-2 py-0.5 text-[11px] text-zinc-300"
-                          >
-                            <span className="text-emerald-400">✓</span> {feat}
+                      <div className="flex items-start justify-between gap-3">
+                        <div>
+                          <h4 className="text-base font-bold text-white">
+                            {opt.name}
+                          </h4>
+                          <p className="mt-1 text-xs leading-relaxed text-zinc-400 sm:text-sm">
+                            {opt.description}
+                          </p>
+                        </div>
+
+                        <div className="text-right">
+                          <span className="text-lg font-black text-white sm:text-xl">
+                            {priceFormatted}
                           </span>
-                        ))}
+                          <p className="text-[11px] text-zinc-400">{opt.unit}</p>
+                        </div>
                       </div>
-                    )}
-                  </motion.div>
+
+                      {/* Características incluidas */}
+                      {opt.features && opt.features.length > 0 && (
+                        <div className="mt-3.5 flex flex-wrap gap-2 border-t border-white/10 pt-3">
+                          {opt.features.map((feat, fIdx) => (
+                            <span
+                              key={fIdx}
+                              className="inline-flex items-center gap-1 rounded-md bg-white/5 px-2 py-0.5 text-[11px] text-zinc-300"
+                            >
+                              <svg
+                                className="h-3 w-3"
+                                style={{ color: demo.palette.accent }}
+                                fill="currentColor"
+                                viewBox="0 0 20 20"
+                              >
+                                <path
+                                  fillRule="evenodd"
+                                  d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                  clipRule="evenodd"
+                                />
+                              </svg>
+                              {feat}
+                            </span>
+                          ))}
+                        </div>
+                      )}
+                    </motion.div>
+                  </AnimateOnScroll>
                 );
               })}
             </div>
@@ -221,9 +236,12 @@ export function InteractiveBooking({ demo, currency, onGenerateQrTicket }: Props
                     onClick={() => setSelectedTime(t)}
                     className={`rounded-md py-1.5 text-xs font-medium transition-all active:scale-95 ${
                       selectedTime === t
-                        ? "bg-amber-400 text-black font-bold"
+                        ? "text-black font-bold shadow"
                         : "border border-white/10 bg-white/5 text-zinc-400 hover:text-white"
                     }`}
+                    style={{
+                      backgroundColor: selectedTime === t ? demo.palette.accent : undefined,
+                    }}
                   >
                     {t}
                   </button>
@@ -349,7 +367,19 @@ export function InteractiveBooking({ demo, currency, onGenerateQrTicket }: Props
                   </span>
                 ) : (
                   <>
-                    <span>🎟️</span>
+                    <svg
+                      className="h-4 w-4"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a2 2 0 110 4v3a2 2 0 002 2h14a2 2 0 002-2v-3a2 2 0 110-4V7a2 2 0 00-2-2H5z"
+                      />
+                    </svg>
                     <span>Generar Pase Digital con QR</span>
                   </>
                 )}

@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { BusinessDemo, MenuItem, BCV_RATE, CurrencyMode } from "@/data/demosData";
+import { AnimateOnScroll } from "@/components/demos/AnimateOnScroll";
 
 type Props = {
   demo: BusinessDemo;
@@ -37,10 +38,10 @@ export function DigitalMenu({ demo, currency, onAddToCart }: Props) {
     >
       <div className="mx-auto max-w-5xl px-4 sm:px-6">
         {/* Título de la Sección */}
-        <div className="flex flex-col items-start justify-between gap-4 md:flex-row md:items-end">
+        <AnimateOnScroll className="flex flex-col items-start justify-between gap-4 md:flex-row md:items-end">
           <div>
             <span
-              className="inline-block rounded-full px-3 py-1 text-xs font-bold uppercase tracking-wider text-white"
+              className="inline-block rounded-full px-3 py-1 text-xs font-bold uppercase tracking-wider text-white shadow-sm"
               style={{ backgroundColor: demo.palette.primary }}
             >
               Carta Digital & Pedidos
@@ -49,55 +50,66 @@ export function DigitalMenu({ demo, currency, onAddToCart }: Props) {
               Menú Digital Interactivo
             </h2>
             <p className="mt-1 text-sm text-zinc-400">
-              Explora nuestros platillos, bebidas y especialidades. Precios en tiempo real con conversión oficial.
+              Explora nuestra propuesta gastronómica. Precios en tiempo real con conversión oficial.
             </p>
           </div>
 
-          {/* Buscador de platillos */}
+          {/* Buscador de platillos con SVG */}
           <div className="w-full md:w-72">
             <div className="relative">
               <input
                 type="text"
-                placeholder="Buscar en el menú..."
+                placeholder="Buscar platillo o bebida..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full rounded-xl border border-white/15 bg-zinc-900/90 pl-9 pr-4 py-2 text-sm text-white placeholder-zinc-500 focus:border-amber-400 focus:outline-none"
+                className="w-full rounded-xl border border-white/15 bg-zinc-900/90 pl-9 pr-4 py-2.5 text-sm text-white placeholder-zinc-500 focus:border-amber-400 focus:outline-none"
               />
-              <span className="absolute left-3 top-2.5 text-sm text-zinc-500">
-                🔍
-              </span>
+              <svg
+                className="absolute left-3 top-3 h-4 w-4 text-zinc-500"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                />
+              </svg>
             </div>
           </div>
-        </div>
+        </AnimateOnScroll>
 
-        {/* Pestañas Horizontales de Categorías */}
-        <div className="mt-8 flex gap-2 overflow-x-auto pb-2 scrollbar-none">
-          <button
-            onClick={() => setActiveCategory("all")}
-            className={`relative whitespace-nowrap rounded-xl px-4 py-2 text-xs font-bold transition-all active:scale-95 ${
-              activeCategory === "all"
-                ? "bg-white text-black shadow-md"
-                : "border border-white/10 bg-zinc-900/70 text-zinc-300 hover:bg-zinc-800"
-            }`}
-          >
-            ✨ Todos ({demo.menuItems.length})
-          </button>
-
-          {demo.categories.map((cat) => (
+        {/* Pestañas Horizontales de Categorías con scroll suave */}
+        <AnimateOnScroll delay={0.05}>
+          <div className="mt-8 flex gap-2 overflow-x-auto pb-2 scrollbar-none">
             <button
-              key={cat.id}
-              onClick={() => setActiveCategory(cat.id)}
+              onClick={() => setActiveCategory("all")}
               className={`relative whitespace-nowrap rounded-xl px-4 py-2 text-xs font-bold transition-all active:scale-95 ${
-                activeCategory === cat.id
+                activeCategory === "all"
                   ? "bg-white text-black shadow-md"
                   : "border border-white/10 bg-zinc-900/70 text-zinc-300 hover:bg-zinc-800"
               }`}
             >
-              {cat.icon && <span className="mr-1.5">{cat.icon}</span>}
-              {cat.name}
+              Todos ({demo.menuItems.length})
             </button>
-          ))}
-        </div>
+
+            {demo.categories.map((cat) => (
+              <button
+                key={cat.id}
+                onClick={() => setActiveCategory(cat.id)}
+                className={`relative whitespace-nowrap rounded-xl px-4 py-2 text-xs font-bold transition-all active:scale-95 ${
+                  activeCategory === cat.id
+                    ? "bg-white text-black shadow-md"
+                    : "border border-white/10 bg-zinc-900/70 text-zinc-300 hover:bg-zinc-800"
+                }`}
+              >
+                {cat.name}
+              </button>
+            ))}
+          </div>
+        </AnimateOnScroll>
 
         {/* Grid de Ítems del Menú */}
         <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:gap-6">
@@ -134,8 +146,14 @@ export function DigitalMenu({ demo, currency, onAddToCart }: Props) {
                           {item.name}
                         </h3>
                         {item.popular && (
-                          <span className="rounded-full bg-amber-400/20 px-2 py-0.5 text-[10px] font-bold text-amber-300">
-                            ⭐ Popular
+                          <span
+                            className="rounded-full px-2 py-0.5 text-[10px] font-bold"
+                            style={{
+                              backgroundColor: `${demo.palette.accent}20`,
+                              color: demo.palette.accent,
+                            }}
+                          >
+                            Destacado
                           </span>
                         )}
                       </div>
@@ -194,12 +212,36 @@ export function DigitalMenu({ demo, currency, onAddToCart }: Props) {
                     >
                       {isRecentlyAdded ? (
                         <>
-                          <span>✓</span>
+                          <svg
+                            className="h-3.5 w-3.5"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M5 13l4 4L19 7"
+                            />
+                          </svg>
                           <span>¡Agregado!</span>
                         </>
                       ) : (
                         <>
-                          <span>+</span>
+                          <svg
+                            className="h-3.5 w-3.5"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M12 4v16m8-8H4"
+                            />
+                          </svg>
                           <span>Pedir a Comanda</span>
                         </>
                       )}
@@ -213,7 +255,9 @@ export function DigitalMenu({ demo, currency, onAddToCart }: Props) {
 
         {filteredItems.length === 0 && (
           <div className="mt-12 rounded-2xl border border-dashed border-white/10 p-12 text-center text-zinc-400">
-            <p className="text-lg">🔍 No se encontraron platillos o servicios</p>
+            <p className="text-sm font-semibold text-zinc-300">
+              No se encontraron opciones
+            </p>
             <p className="mt-1 text-xs text-zinc-500">
               Intenta buscar con otro término o selecciona otra categoría.
             </p>
