@@ -1,11 +1,11 @@
 "use client";
 
 import { AbsoluteFill, Sequence } from "remotion";
-import { BusinessDemo } from "@/data/demosData";
-import { Scene1Hook } from "@/remotion/scenes/Scene1Hook";
-import { Scene2Menu } from "@/remotion/scenes/Scene2Menu";
-import { Scene3QrPass } from "@/remotion/scenes/Scene3QrPass";
-import { Scene4ManagerCta } from "@/remotion/scenes/Scene4ManagerCta";
+import { BusinessDemo } from "../data/demosData";
+import { Scene1Hook } from "./scenes/Scene1Hook";
+import { Scene2Menu } from "./scenes/Scene2Menu";
+import { Scene3QrPass } from "./scenes/Scene3QrPass";
+import { Scene4ManagerCta } from "./scenes/Scene4ManagerCta";
 
 export type PromoReelProps = {
   demo: BusinessDemo;

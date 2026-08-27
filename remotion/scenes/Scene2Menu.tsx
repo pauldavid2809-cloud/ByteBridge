@@ -7,7 +7,7 @@ import {
   useCurrentFrame,
   useVideoConfig,
 } from "remotion";
-import { BusinessDemo, BCV_RATE } from "@/data/demosData";
+import { BusinessDemo, BCV_RATE } from "../../data/demosData";
 
 type Props = {
   demo: BusinessDemo;

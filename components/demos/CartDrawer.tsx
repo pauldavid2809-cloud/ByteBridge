@@ -59,7 +59,7 @@ export function CartDrawer({
       })} Bs a tasa BCV: ${BCV_RATE})\n\n` +
       `_Pedido digital generado desde la WebApp de demostración._`;
 
-    const url = `https://wa.me/584121662998?text=${encodeURIComponent(msg)}`;
+    const url = `https://wa.me/584120308674?text=${encodeURIComponent(msg)}`;
     window.open(url, "_blank");
   };
 

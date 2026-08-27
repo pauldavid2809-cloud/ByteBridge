@@ -319,7 +319,7 @@ export function ManagerDashboard({ demo, onExitManagerMode }: Props) {
                 Automatiza reservas, elimina duplicidades y ofrece menú digital con cobro multimoneda.
               </p>
               <a
-                href="https://wa.me/584121662998?text=Hola%20Paul,%20estuve%20viendo%20la%20demo%20y%20quiero%20implementar%20este%20sistema"
+                href="https://wa.me/584120308674?text=Hola%20Paul,%20estuve%20viendo%20la%20demo%20y%20quiero%20implementar%20este%20sistema"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="mt-3 inline-flex items-center gap-2 rounded-xl bg-emerald-500 px-4 py-2 text-xs font-bold text-black shadow transition-all hover:bg-emerald-400 active:scale-95"

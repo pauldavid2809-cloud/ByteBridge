@@ -7,8 +7,9 @@ import {
   useCurrentFrame,
   useVideoConfig,
   Img,
+  staticFile,
 } from "remotion";
-import { BusinessDemo } from "@/data/demosData";
+import { BusinessDemo } from "../../data/demosData";
 
 type Props = {
   demo: BusinessDemo;
@@ -84,7 +85,7 @@ export function Scene1Hook({ demo }: Props) {
             className="relative h-44 w-44 overflow-hidden rounded-3xl border-4 border-white/30 bg-zinc-900 shadow-2xl"
           >
             <Img
-              src={demo.logo}
+              src={demo.logo.startsWith("http") ? demo.logo : staticFile(demo.logo)}
               alt={demo.name}
               className="h-full w-full object-cover"
             />

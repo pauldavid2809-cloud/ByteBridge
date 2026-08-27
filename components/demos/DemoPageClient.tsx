@@ -154,7 +154,7 @@ export function DemoPageClient({ demo }: Props) {
               <p className="text-[11px] text-zinc-500">
                 Diseñado e implementado a medida por{" "}
                 <a
-                  href="https://wa.me/584121662998"
+                  href="https://wa.me/584120308674"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="font-semibold underline hover:text-white transition-colors"

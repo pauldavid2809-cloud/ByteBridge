@@ -152,21 +152,32 @@ export function RemotionReelModal({ isOpen, onClose, demo }: Props) {
               <span>Enviar Propuesta y Video por WhatsApp</span>
             </a>
 
-            <button
-              onClick={handleCopyPitch}
-              className={`flex w-full items-center justify-center gap-2 rounded-xl border py-2.5 text-xs font-semibold transition-all active:scale-95 ${
-                copied
-                  ? "border-emerald-500 bg-emerald-500/20 text-emerald-300"
-                  : "border-white/15 bg-white/5 text-zinc-300 hover:bg-white/10 hover:text-white"
-              }`}
-            >
-              <span>{copied ? "✓" : "📋"}</span>
-              <span>
-                {copied
-                  ? "¡Mensaje Copiado al Portapapeles!"
-                  : "Copiar Mensaje de WhatsApp"}
-              </span>
-            </button>
+            <div className="grid grid-cols-2 gap-2">
+              <button
+                onClick={handleCopyPitch}
+                className={`flex items-center justify-center gap-1.5 rounded-xl border py-2.5 text-xs font-semibold transition-all active:scale-95 ${
+                  copied
+                    ? "border-emerald-500 bg-emerald-500/20 text-emerald-300"
+                    : "border-white/15 bg-white/5 text-zinc-300 hover:bg-white/10 hover:text-white"
+                }`}
+              >
+                <span>{copied ? "✓" : "📋"}</span>
+                <span>
+                  {copied
+                    ? "¡Copiado!"
+                    : "Copiar Mensaje"}
+                </span>
+              </button>
+
+              <a
+                href={`/reels/${demo.slug}.mp4`}
+                download={`${demo.slug}-reel-1080x1920.mp4`}
+                className="flex items-center justify-center gap-1.5 rounded-xl border border-amber-400/40 bg-amber-400/10 py-2.5 text-xs font-bold text-amber-300 transition-all active:scale-95 hover:bg-amber-400/20"
+              >
+                <span>⬇️</span>
+                <span>Descargar MP4</span>
+              </a>
+            </div>
           </div>
 
           {/* Render Tip Box */}

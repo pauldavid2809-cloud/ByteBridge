@@ -28,7 +28,7 @@ export function QrTicketModal({ isOpen, onClose, demo, booking }: Props) {
   const ticketCode = `PASS-${Math.floor(1000 + Math.random() * 9000)}`;
   const totalVES = booking.totalUSD * BCV_RATE;
 
-  // Generación del enlace de WhatsApp estructurado hacia ByteBridge (+58 412-1662998)
+  // Generación del enlace de WhatsApp estructurado hacia ByteBridge (+58 412-0308674)
   const whatsappMsg = `🎟️ *[DEMO ${demo.name.toUpperCase()}] NUEVA RESERVA GENERADA*\n\n` +
     `*Código:* #${ticketCode}\n` +
     `*Cliente:* ${booking.name}\n` +
@@ -40,7 +40,7 @@ export function QrTicketModal({ isOpen, onClose, demo, booking }: Props) {
     (booking.notes ? `*Notas:* ${booking.notes}\n\n` : `\n`) +
     `_Pase digital validado con código QR en vivo._`;
 
-  const whatsappUrl = `https://wa.me/584121662998?text=${encodeURIComponent(whatsappMsg)}`;
+  const whatsappUrl = `https://wa.me/584120308674?text=${encodeURIComponent(whatsappMsg)}`;
 
   return (
     <AnimatePresence>

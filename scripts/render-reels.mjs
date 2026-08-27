@@ -1,7 +1,6 @@
 /**
  * Script de renderizado de video en alta definición (1080x1920 MP4) con Remotion
- * Ejecutar con: npm run render:reels [slug] o node scripts/render-reels.mjs [slug]
- * Si no se especifica slug, renderiza los 10 negocios a la carpeta out/reels/
+ * Guarda los videos directamente en public/reels/[slug].mp4 para descarga web y envío.
  */
 
 import { bundle } from "@remotion/bundler";
@@ -38,23 +37,33 @@ async function main() {
     process.exit(1);
   }
 
-  const outDir = path.join(rootDir, "out", "reels");
+  const outDir = path.join(rootDir, "public", "reels");
   if (!fs.existsSync(outDir)) {
     fs.mkdirSync(outDir, { recursive: true });
   }
 
   console.log("🎬 Empaquetando composición de Remotion con Webpack...");
-  const entryPoint = path.join(rootDir, "remotion", "Root.tsx");
+  const entryPoint = path.join(rootDir, "remotion", "index.ts");
   const bundleLocation = await bundle({
     entryPoint,
-    webpackOverride: (config) => config,
+    publicDir: path.join(rootDir, "public"),
+    webpackOverride: (config) => ({
+      ...config,
+      resolve: {
+        ...config.resolve,
+        alias: {
+          ...(config.resolve?.alias || {}),
+          "@": rootDir,
+        },
+      },
+    }),
   });
 
   console.log("✅ Bundle creado con éxito. Iniciando renderizado de video(s)...\n");
 
   for (const slug of slugsToRender) {
     const compositionId = `PromoReel-${slug}`;
-    const outputPath = path.join(outDir, `${slug}-reel-1080x1920.mp4`);
+    const outputPath = path.join(outDir, `${slug}.mp4`);
 
     console.log(`🎥 Renderizando Reel para [${slug}] (${compositionId})...`);
 
@@ -74,10 +83,10 @@ async function main() {
       },
     });
 
-    console.log(`\n✅ Video exportado en alta calidad: ${outputPath}\n`);
+    console.log(`\n✅ Video exportado a: public/reels/${slug}.mp4\n`);
   }
 
-  console.log("🎉 ¡Todos los videos han sido generados exitosamente en out/reels/!");
+  console.log("🎉 ¡Todos los videos han sido generados exitosamente en public/reels/!");
 }
 
 main().catch((err) => {

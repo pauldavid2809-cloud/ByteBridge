@@ -8,7 +8,7 @@ import {
   useVideoConfig,
   Img,
 } from "remotion";
-import { BusinessDemo, BCV_RATE } from "@/data/demosData";
+import { BusinessDemo, BCV_RATE } from "../../data/demosData";
 
 type Props = {
   demo: BusinessDemo;
@@ -105,7 +105,7 @@ export function Scene4ManagerCta({ demo }: Props) {
           {/* WhatsApp Direct Button */}
           <div className="mt-6 rounded-2xl bg-emerald-500 p-4 text-center shadow-lg shadow-emerald-500/30">
             <span className="text-xl font-black text-black tracking-wide">
-              📲 Escríbenos al WhatsApp: +58 412-1662998
+              📲 Escríbenos al WhatsApp: +58 412-0308674
             </span>
           </div>
         </div>

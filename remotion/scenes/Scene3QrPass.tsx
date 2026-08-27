@@ -7,8 +7,9 @@ import {
   useCurrentFrame,
   useVideoConfig,
   Img,
+  staticFile,
 } from "remotion";
-import { BusinessDemo } from "@/data/demosData";
+import { BusinessDemo } from "../../data/demosData";
 
 type Props = {
   demo: BusinessDemo;
@@ -72,7 +73,7 @@ export function Scene3QrPass({ demo }: Props) {
           <div className="flex items-center gap-3">
             <div className="relative h-12 w-12 overflow-hidden rounded-xl border border-white/20">
               <Img
-                src={demo.logo}
+                src={demo.logo.startsWith("http") ? demo.logo : staticFile(demo.logo)}
                 alt={demo.name}
                 className="h-full w-full object-cover"
               />

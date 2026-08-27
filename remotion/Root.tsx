@@ -1,10 +1,8 @@
 import { Composition } from "remotion";
-import { PromoReel } from "@/remotion/PromoReel";
-import { businessDemos } from "@/data/demosData";
+import { PromoReel } from "./PromoReel";
+import { businessDemos } from "../data/demosData";
 
 export function RemotionRoot() {
-  const defaultDemo = businessDemos[0];
-
   return (
     <>
       {businessDemos.map((demo) => (
