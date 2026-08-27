@@ -11,6 +11,7 @@ import { ManagerDashboard } from "@/components/demos/ManagerDashboard";
 import { QrTicketModal } from "@/components/demos/QrTicketModal";
 import { CartDrawer, CartItem } from "@/components/demos/CartDrawer";
 import { LocationCard } from "@/components/demos/LocationCard";
+import { RemotionReelModal } from "@/components/demos/RemotionReelModal";
 
 type BookingData = {
   option: BookingOption;
@@ -34,6 +35,7 @@ export function DemoPageClient({ demo }: Props) {
   const [isCartOpen, setIsCartOpen] = useState<boolean>(false);
   const [activeTicket, setActiveTicket] = useState<BookingData | null>(null);
   const [isTicketModalOpen, setIsTicketModalOpen] = useState<boolean>(false);
+  const [isReelOpen, setIsReelOpen] = useState<boolean>(false);
 
   const toggleCurrency = () => {
     setCurrency((prev) => (prev === "USD" ? "VES" : "USD"));
@@ -110,12 +112,13 @@ export function DemoPageClient({ demo }: Props) {
       ) : (
         /* Vista del Cliente */
         <main>
-          {/* 1. Hero Principal */}
+          {/* 1. Hero Principal con trigger de Reel */}
           <DemoHero
             demo={demo}
             onScrollToBooking={() => scrollTo("reservas")}
             onScrollToMenu={() => scrollTo("menu")}
             onScrollToLocation={() => scrollTo("ubicacion")}
+            onOpenReel={() => setIsReelOpen(true)}
           />
 
           {/* 2. Sección Narrativa de Introducción y Diferenciales */}
@@ -164,6 +167,13 @@ export function DemoPageClient({ demo }: Props) {
           </footer>
         </main>
       )}
+
+      {/* Modal de Reel / Video Promocional Programático de Remotion */}
+      <RemotionReelModal
+        isOpen={isReelOpen}
+        onClose={() => setIsReelOpen(false)}
+        demo={demo}
+      />
 
       {/* Modal de Pase / Boarding Pass con QR */}
       <QrTicketModal

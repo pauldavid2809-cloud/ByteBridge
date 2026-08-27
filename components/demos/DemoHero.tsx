@@ -9,6 +9,7 @@ type Props = {
   onScrollToBooking: () => void;
   onScrollToMenu: () => void;
   onScrollToLocation: () => void;
+  onOpenReel: () => void;
 };
 
 export function DemoHero({
@@ -16,6 +17,7 @@ export function DemoHero({
   onScrollToBooking,
   onScrollToMenu,
   onScrollToLocation,
+  onOpenReel,
 }: Props) {
   return (
     <section className="relative min-h-[90dvh] w-full flex items-center overflow-hidden border-b border-white/10 bg-zinc-950 py-16 sm:py-24">
@@ -38,20 +40,30 @@ export function DemoHero({
       </div>
 
       <div className="relative z-10 mx-auto flex w-full max-w-5xl flex-col items-center px-4 text-center sm:px-6">
-        {/* Badge de la marca con indicador animado */}
+        {/* Badges superiores: Marca y Trigger de Reel Promocional */}
         <motion.div
           initial={{ opacity: 0, y: 12, scale: 0.95 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
-          className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3.5 py-1.5 backdrop-blur-md"
+          className="flex flex-wrap items-center justify-center gap-2.5"
         >
-          <span
-            className="h-2 w-2 rounded-full animate-pulse"
-            style={{ backgroundColor: demo.palette.accent }}
-          />
-          <span className="text-xs font-semibold tracking-wide text-white">
-            {demo.badgeText}
-          </span>
+          <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3.5 py-1.5 backdrop-blur-md">
+            <span
+              className="h-2 w-2 rounded-full animate-pulse"
+              style={{ backgroundColor: demo.palette.accent }}
+            />
+            <span className="text-xs font-semibold tracking-wide text-white">
+              {demo.badgeText}
+            </span>
+          </div>
+
+          <button
+            onClick={onOpenReel}
+            className="group inline-flex items-center gap-2 rounded-full border border-amber-400/40 bg-amber-400/15 px-3.5 py-1.5 text-xs font-bold text-amber-300 backdrop-blur-md transition-all active:scale-95 hover:bg-amber-400/25 hover:border-amber-400"
+          >
+            <span className="flex h-2 w-2 rounded-full bg-amber-400 animate-ping" />
+            <span>▶️ Ver Reel Comercial (15s)</span>
+          </button>
         </motion.div>
 
         {/* Título Principal de la Demo */}

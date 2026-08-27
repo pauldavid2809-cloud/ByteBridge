@@ -7,6 +7,7 @@ import { motion } from "motion/react";
 import { BusinessDemo } from "@/data/demosData";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { RemotionReelModal } from "@/components/demos/RemotionReelModal";
 
 type Props = {
   demos: BusinessDemo[];
@@ -16,6 +17,7 @@ export function DemosHubClient({ demos }: Props) {
   const [copiedSlug, setCopiedSlug] = useState<string | null>(null);
   const [filter, setFilter] = useState<string>("all");
   const [searchQuery, setSearchQuery] = useState<string>("");
+  const [activeReelDemo, setActiveReelDemo] = useState<BusinessDemo | null>(null);
 
   const handleCopyLink = (slug: string, name: string) => {
     const origin =
@@ -23,7 +25,7 @@ export function DemosHubClient({ demos }: Props) {
         ? window.location.origin
         : "https://bytebridge.cloud";
     const fullUrl = `${origin}/demos/${slug}`;
-    const pitchText = `Hola, te comparto la propuesta y demo interactiva que preparamos especialmente para ${name}: ${fullUrl}`;
+    const pitchText = `Hola! Te comparto la propuesta y demo interactiva que preparamos especialmente para ${name} con reservas QR, menú en USD/Bs y video promocional: ${fullUrl}`;
 
     navigator.clipboard.writeText(pitchText);
     setCopiedSlug(slug);
@@ -74,13 +76,13 @@ export function DemosHubClient({ demos }: Props) {
           <div className="text-center">
             <span className="inline-flex items-center gap-1.5 rounded-full border border-amber-400/30 bg-amber-400/10 px-3.5 py-1 text-xs font-bold text-amber-300">
               <span className="h-1.5 w-1.5 rounded-full bg-amber-400 animate-pulse" />
-              10 Demos Comerciales Personalizadas
+              10 Demos Comerciales + Reels en Remotion
             </span>
             <h1 className="mt-4 text-3xl font-extrabold tracking-tight sm:text-5xl">
-              Catálogo de Propuestas & WebApps
+              Catálogo de Propuestas, WebApps & Reels
             </h1>
             <p className="mt-3 max-w-2xl mx-auto text-sm text-zinc-400 sm:text-base">
-              Soluciones digitales a medida con reservaciones por código QR, menú digital multimoneda (USD/Bs) y panel de control en tiempo real.
+              WebApps con reservaciones por código QR, menú digital multimoneda (USD/Bs), panel de control y **videos verticales (Reels) generados con Remotion**.
             </p>
 
             {/* Buscador de Demos */}
@@ -148,27 +150,38 @@ export function DemosHubClient({ demos }: Props) {
                 >
                   <div>
                     {/* Cabecera de la Tarjeta */}
-                    <div className="flex items-center gap-3.5">
-                      <div className="relative h-12 w-12 shrink-0 overflow-hidden rounded-2xl border border-white/20 shadow-md">
-                        <Image
-                          src={demo.logo}
-                          alt={demo.name}
-                          fill
-                          className="object-cover"
-                          sizes="48px"
-                        />
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-3.5">
+                        <div className="relative h-12 w-12 shrink-0 overflow-hidden rounded-2xl border border-white/20 shadow-md">
+                          <Image
+                            src={demo.logo}
+                            alt={demo.name}
+                            fill
+                            className="object-cover"
+                            sizes="48px"
+                          />
+                        </div>
+                        <div>
+                          <h2 className="text-base font-bold text-white tracking-tight">
+                            {demo.name}
+                          </h2>
+                          <span className="text-xs text-zinc-400">
+                            @{demo.handle}
+                          </span>
+                        </div>
                       </div>
-                      <div>
-                        <h2 className="text-base font-bold text-white tracking-tight">
-                          {demo.name}
-                        </h2>
-                        <span className="text-xs text-zinc-400">
-                          @{demo.handle}
-                        </span>
-                      </div>
+
+                      {/* Botón rápido para abrir el Reel */}
+                      <button
+                        onClick={() => setActiveReelDemo(demo)}
+                        className="flex h-9 w-9 items-center justify-center rounded-xl border border-amber-400/30 bg-amber-400/10 text-amber-300 shadow transition-all active:scale-90 hover:bg-amber-400/20"
+                        title="Ver Reel en Video"
+                      >
+                        <span className="text-xs">▶️</span>
+                      </button>
                     </div>
 
-                    <div className="mt-4">
+                    <div className="mt-4 flex items-center gap-2">
                       <span
                         className="inline-block rounded-md px-2.5 py-1 text-[11px] font-semibold"
                         style={{
@@ -177,6 +190,10 @@ export function DemosHubClient({ demos }: Props) {
                         }}
                       >
                         {demo.category}
+                      </span>
+
+                      <span className="rounded-md border border-white/10 bg-white/5 px-2 py-1 text-[10px] font-medium text-zinc-300">
+                        🎬 Reel 15s
                       </span>
                     </div>
 
@@ -229,20 +246,30 @@ export function DemosHubClient({ demos }: Props) {
                             clipRule="evenodd"
                           />
                         </svg>
-                        <span>Modo Gerente & Escáner QR</span>
+                        <span>Reel en Video + Modo Gerente</span>
                       </div>
                     </div>
                   </div>
 
                   {/* Acciones de la Tarjeta */}
                   <div className="mt-6 flex flex-col gap-2.5 border-t border-white/10 pt-4">
-                    <Link
-                      href={`/demos/${demo.slug}`}
-                      className="flex items-center justify-center gap-2 rounded-xl bg-white py-2.5 text-xs font-bold text-black shadow transition-all active:scale-[0.97] hover:bg-zinc-200"
-                    >
-                      <span>Abrir Demo en Vivo</span>
-                      <span>→</span>
-                    </Link>
+                    <div className="grid grid-cols-2 gap-2">
+                      <Link
+                        href={`/demos/${demo.slug}`}
+                        className="flex items-center justify-center gap-1.5 rounded-xl bg-white py-2.5 text-xs font-bold text-black shadow transition-all active:scale-[0.97] hover:bg-zinc-200"
+                      >
+                        <span>Abrir Demo</span>
+                        <span>→</span>
+                      </Link>
+
+                      <button
+                        onClick={() => setActiveReelDemo(demo)}
+                        className="flex items-center justify-center gap-1.5 rounded-xl border border-amber-400/40 bg-amber-400/10 py-2.5 text-xs font-bold text-amber-300 transition-all active:scale-[0.97] hover:bg-amber-400/20"
+                      >
+                        <span>▶️</span>
+                        <span>Ver Reel</span>
+                      </button>
+                    </div>
 
                     <button
                       onClick={() => handleCopyLink(demo.slug, demo.name)}
@@ -295,6 +322,15 @@ export function DemosHubClient({ demos }: Props) {
           </div>
         </div>
       </main>
+
+      {/* Modal de Remotion Player activo */}
+      {activeReelDemo && (
+        <RemotionReelModal
+          isOpen={!!activeReelDemo}
+          onClose={() => setActiveReelDemo(null)}
+          demo={activeReelDemo}
+        />
+      )}
 
       <Footer />
     </div>
