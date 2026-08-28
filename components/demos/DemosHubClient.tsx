@@ -19,6 +19,32 @@ export function DemosHubClient({ demos }: Props) {
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [activeReelDemo, setActiveReelDemo] = useState<BusinessDemo | null>(null);
   const [selectedPitchDemo, setSelectedPitchDemo] = useState<BusinessDemo | null>(null);
+  const [modalTab, setModalTab] = useState<"pitch" | "voice" | "admin">("pitch");
+
+  const voiceScripts: Record<string, string> = {
+    // Dia 2
+    estacionholidays: "Hola equipo de Estación Holidays, les habla Paul David de ByteBridge. Estuve viendo el concepto tan genial que tienen con las 3 estaciones de Asia, América y Europa, y les preparé un video y una WebApp interactiva que incluye un Pasaporte Digital con sellos para sus clientes. Miren el video adjunto y pruébenlo en el link que les dejé abajo sin ningún compromiso.",
+    mosaico_mcbo: "Hola amigos de Mosaico, les saluda Paul David de ByteBridge. Sé lo que colapsa el WhatsApp al mediodía con la gente preguntando qué hay en el buffet y los papelitos en las noches de karaoke. Les armé una WebApp que automatiza el menú del día y organiza los turnos de canciones con código QR. Échenle un ojo al video que les adjunté.",
+    incontrotrattoria: "Ciao equipo de Incontro, habla Paul David de ByteBridge. Diseñamos una propuesta digital a la altura de su cocina en Torre Tendencia: incluye un Sommelier Digital que le recomienda el vino perfecto para cada pasta y pizza, y reserva de mesas para ejecutivos. Les dejé el video comercial y la demo para que la prueben.",
+    pinzulia: "Hola gente de PinZulia, les habla Paul David de ByteBridge. ¡Qué brutal les quedó la reapertura! Para evitar las colas de 2 horas los fines de semana, les construí una WebApp donde sus clientes pueden reservar pistas en vivo y pedir hamburguesas directo a su carril con QR. Miren el video y me cuentan qué les parece.",
+    alfredscoffeebar: "Hola equipo de Alfred's, habla Paul David de ByteBridge. Analizamos el flujo en 5 de Julio y les creamos una WebApp que muestra el stock en tiempo real de su vitrina de donas de pistacho y permite a los oficinistas pedir para llevar sin hacer cola en barra. Les comparto el video y el link de prueba.",
+    lakebistro: "Hola amigos de Lake Bistro, les saluda Paul David de ByteBridge. La vista al atardecer que tienen frente al Lago es de las mejores de la ciudad. Para evitar que las mesas de primera fila se queden vacías por no-shows, les diseñé un selector de mesas 3D con cobro de depósito consumible. Mírenlo en el video adjunto.",
+    bromcbo: "Hola gente de BRO, habla Paul David de ByteBridge. Sé que meten cientos de personas en Cecilio Acosta con las raves y el freestyle, pero la mayoría de esos contactos se pierden. Les armé una WebApp para vender brazaletes QR de eventos y auto-pedidos en mesa. Les dejo el video de 15 segundos para que lo vean.",
+    ahpresidente: "Hola equipo de AH Presidente, les saluda Paul David de ByteBridge. Tienen una comunidad gigante de más de 74.000 seguidores en Instagram. Para que no hagan fila bajo el sol comprando el Day Pass de piscina, les construí una WebApp con venta de boletos QR y pedidos desde las tumbonas. Miren el video adjunto.",
+    mykonosconceptve: "Hola gente de Mykonos, habla Paul David de ByteBridge. Les armé una solución exclusiva para su lounge en el Tibisay: incluye un Cotizador Automático de Cumpleaños con botellas y shishas 24/7, y pases FastPass QR para entrar sin hacer fila. Les compartí el video vertical y el link para que lo jueguen.",
+    terraza_restobar: "Hola equipo de Terraza Restobar, les saluda Paul David de ByteBridge. Su vista frontal al Puente al anochecer es su producto estrella. Les diseñé una WebApp con mapa interactivo para asegurar reservas de mesas mirador y carta dual de sushi y parrilla con conversión multimoneda. Échenle un ojo al video.",
+    // Dia 1
+    ecoland: "Hola equipo de Ecoland, les habla Paul David de ByteBridge. Diseñamos una WebApp integral para su complejo que permite comprar Day Pass de piscina con código QR, reservar cabañas VIP y gestionar suites de hotel en un solo lugar. Les adjunté el video promocional y la demo en vivo.",
+    grandchef: "Hola amigos de Grand Chef, les saluda Paul David de ByteBridge. Preparamos una propuesta exclusiva para sus cenas frente al Puente: reserva de mesas en primera fila, maridaje con su carta de 40 vinos y cálculo automático a tasa oficial. Les comparto el video y el enlace.",
+    zuhouse: "Hola equipo de Zu House, habla Paul David de ByteBridge. Les construí una WebApp pensada para sus tardes de after-work en 5 de Julio: reserva de mesas, comanda directa de cortes a la brasa y control de aforo en tiempo real. Miren el video que les adjunté.",
+    tannous: "Hola amigos de Tannous, les saluda Paul David de ByteBridge. Creamos una WebApp optimizada para sus dos grandes fortalezas: reserva express de almuerzos corporativos en menos de 20 minutos y cotización automática para pedidas de mano y eventos privados con pase QR.",
+    room101: "Hola gente de Room 101, habla Paul David de ByteBridge. Diseñamos una WebApp con su estética underground: reserva de lounges VIP, carta interactiva de shishas y cócteles insignia, y pases QR para noches temáticas sin cola en puerta. Mírenlo en el video.",
+    labarraventura: "Hola equipo de La Barra Ventura, les saluda Paul David de ByteBridge. Para acelerar el acceso nocturno, les creamos un sistema de emisión de pases VIP express con código QR que su seguridad valida en 1 segundo con el móvil. Les dejo el video demostrativo.",
+    ciaogastrobar: "Ciao amigos de Ciao Gastrobar, habla Paul David de ByteBridge. Diseñamos una WebApp para su restaurante en Terraza 77 con reserva de mesas al aire libre, carta interactiva de pastas frescas y pizzas al horno con maridaje de vinos. Miren la demo en el link.",
+    blaomcbo: "Hola gente de BLAO, les saluda Paul David de ByteBridge. Les armé una WebApp interactiva para su concepto dual en Plaza 75: reservas rápidas de B-Lunch para ejecutivos al mediodía y mesas de terraza para las noches de Blaoke y fiesta. Miren el video adjunto.",
+    pittsbowling: "Hola equipo de Pitts Bowling, les habla Paul David de ByteBridge. Como único centro federado en Costa Verde, les diseñamos una WebApp con reserva de pistas computarizadas por hora, alquiler de calzado y comanda de comida directo a la pista con QR.",
+    corner: "Hola amigos de The Corner, habla Paul David de ByteBridge. Creamos una WebApp lúdica para su bar: catálogo digital con filtros de sus 50 juegos de mesa, carta de pociones y tragos con glitter, y reserva de salón privado para grupos. Échenle un vistazo."
+  };
 
   const handleCopyPitch = (demo: BusinessDemo) => {
     navigator.clipboard.writeText(demo.whatsappPitchCopy);
@@ -393,7 +419,7 @@ export function DemosHubClient({ demos }: Props) {
         />
       )}
 
-      {/* Modal para ver y copiar el Copy de WhatsApp completo */}
+      {/* Modal para ver el Outreach Kit (Copy WhatsApp, Guión de Voz 20s, y Admin Follow-up) */}
       <AnimatePresence>
         {selectedPitchDemo && (
           <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
@@ -409,13 +435,13 @@ export function DemosHubClient({ demos }: Props) {
               initial={{ opacity: 0, scale: 0.95, y: 16 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 16 }}
-              className="relative z-10 w-full max-w-lg rounded-3xl border border-white/20 bg-zinc-950 p-6 shadow-2xl"
+              className="relative z-10 w-full max-w-xl rounded-3xl border border-white/20 bg-zinc-950 p-6 shadow-2xl"
             >
               <div className="flex items-center justify-between border-b border-white/10 pb-3">
                 <div className="flex items-center gap-2">
-                  <span className="text-lg">💬</span>
+                  <span className="text-lg">🎯</span>
                   <h3 className="text-base font-bold text-white">
-                    Copy de WhatsApp para {selectedPitchDemo.name}
+                    Kit de Outreach para {selectedPitchDemo.name}
                   </h3>
                 </div>
                 <button
@@ -426,39 +452,150 @@ export function DemosHubClient({ demos }: Props) {
                 </button>
               </div>
 
-              <div className="mt-4 rounded-2xl border border-white/10 bg-zinc-900/90 p-4 font-mono text-xs leading-relaxed text-zinc-200 whitespace-pre-wrap selection:bg-amber-400 selection:text-black">
-                {selectedPitchDemo.whatsappPitchCopy}
-              </div>
-
-              <div className="mt-5 flex flex-wrap gap-2">
+              {/* Selector de Pestañas del Modal */}
+              <div className="mt-4 flex gap-2 border-b border-white/10 pb-2">
                 <button
-                  onClick={() => {
-                    navigator.clipboard.writeText(selectedPitchDemo.whatsappPitchCopy);
-                    setCopiedSlug(selectedPitchDemo.slug);
-                    setTimeout(() => setCopiedSlug(null), 2000);
-                  }}
-                  className="flex-1 flex items-center justify-center gap-2 rounded-xl bg-white py-3 text-xs font-bold text-black shadow transition-all active:scale-95 hover:bg-zinc-200"
+                  onClick={() => setModalTab("pitch")}
+                  className={`rounded-xl px-3 py-1.5 text-xs font-bold transition-all ${
+                    modalTab === "pitch"
+                      ? "bg-white text-black"
+                      : "bg-white/5 text-zinc-400 hover:text-white"
+                  }`}
                 >
-                  <span>{copiedSlug === selectedPitchDemo.slug ? "✓" : "📋"}</span>
-                  <span>
-                    {copiedSlug === selectedPitchDemo.slug
-                      ? "¡Mensaje Copiado!"
-                      : "Copiar al Portapapeles"}
-                  </span>
+                  💬 Copy WhatsApp
                 </button>
-
-                <a
-                  href={`https://wa.me/?text=${encodeURIComponent(
-                    selectedPitchDemo.whatsappPitchCopy
-                  )}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-2 rounded-xl bg-emerald-500 px-5 py-3 text-xs font-bold text-black shadow transition-all active:scale-95 hover:bg-emerald-400"
+                <button
+                  onClick={() => setModalTab("voice")}
+                  className={`rounded-xl px-3 py-1.5 text-xs font-bold transition-all ${
+                    modalTab === "voice"
+                      ? "bg-amber-400 text-black"
+                      : "bg-white/5 text-zinc-400 hover:text-white"
+                  }`}
                 >
-                  <span>📲</span>
-                  <span>Abrir en WhatsApp</span>
-                </a>
+                  🎙️ Guión de Voz (20s)
+                </button>
+                <button
+                  onClick={() => setModalTab("admin")}
+                  className={`rounded-xl px-3 py-1.5 text-xs font-bold transition-all ${
+                    modalTab === "admin"
+                      ? "bg-purple-500 text-white"
+                      : "bg-white/5 text-zinc-400 hover:text-white"
+                  }`}
+                >
+                  ⚙️ Seguimiento 24h (Admin)
+                </button>
               </div>
+
+              {/* Contenido según la pestaña */}
+              {modalTab === "pitch" && (
+                <div>
+                  <p className="mt-3 text-xs text-zinc-400">
+                    Mensaje de texto formateado listo para enviar junto con el video vertical:
+                  </p>
+                  <div className="mt-2 rounded-2xl border border-white/10 bg-zinc-900/90 p-4 font-mono text-xs leading-relaxed text-zinc-200 whitespace-pre-wrap selection:bg-amber-400 selection:text-black">
+                    {selectedPitchDemo.whatsappPitchCopy}
+                  </div>
+                  <div className="mt-4 flex flex-wrap gap-2">
+                    <button
+                      onClick={() => {
+                        navigator.clipboard.writeText(selectedPitchDemo.whatsappPitchCopy);
+                        setCopiedSlug(selectedPitchDemo.slug);
+                        setTimeout(() => setCopiedSlug(null), 2000);
+                      }}
+                      className="flex-1 flex items-center justify-center gap-2 rounded-xl bg-white py-3 text-xs font-bold text-black shadow transition-all active:scale-95 hover:bg-zinc-200"
+                    >
+                      <span>{copiedSlug === selectedPitchDemo.slug ? "✓" : "📋"}</span>
+                      <span>
+                        {copiedSlug === selectedPitchDemo.slug
+                          ? "¡Texto Copiado!"
+                          : "Copiar al Portapapeles"}
+                      </span>
+                    </button>
+                    <a
+                      href={`https://wa.me/?text=${encodeURIComponent(
+                        selectedPitchDemo.whatsappPitchCopy
+                      )}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-center gap-2 rounded-xl bg-emerald-500 px-5 py-3 text-xs font-bold text-black shadow transition-all active:scale-95 hover:bg-emerald-400"
+                    >
+                      <span>📲</span>
+                      <span>Abrir en WhatsApp</span>
+                    </a>
+                  </div>
+                </div>
+              )}
+
+              {modalTab === "voice" && (
+                <div>
+                  <p className="mt-3 text-xs text-amber-300 font-medium">
+                    🎙️ Lee este texto en una nota de voz de 20 segundos con tono tranquilo y cercano:
+                  </p>
+                  <div className="mt-2 rounded-2xl border border-amber-400/20 bg-amber-400/5 p-4 text-xs leading-relaxed text-zinc-200 font-sans italic selection:bg-amber-400 selection:text-black">
+                    "{voiceScripts[selectedPitchDemo.slug] || `Hola equipo de ${selectedPitchDemo.name}, les habla Paul David de ByteBridge. Estuve analizando su propuesta y les preparé este video de 15 segundos y una WebApp interactiva a su medida. Miren el video adjunto y pruébenlo en el link sin ningún compromiso.`}"
+                  </div>
+                  <div className="mt-4 flex flex-wrap gap-2">
+                    <button
+                      onClick={() => {
+                        const text = voiceScripts[selectedPitchDemo.slug] || "";
+                        navigator.clipboard.writeText(text);
+                        setCopiedSlug("voice-" + selectedPitchDemo.slug);
+                        setTimeout(() => setCopiedSlug(null), 2000);
+                      }}
+                      className="flex-1 flex items-center justify-center gap-2 rounded-xl bg-amber-400 py-3 text-xs font-bold text-black shadow transition-all active:scale-95 hover:bg-amber-300"
+                    >
+                      <span>{copiedSlug === "voice-" + selectedPitchDemo.slug ? "✓" : "📋"}</span>
+                      <span>
+                        {copiedSlug === "voice-" + selectedPitchDemo.slug
+                          ? "¡Guión Copiado!"
+                          : "Copiar Guión de Audio"}
+                      </span>
+                    </button>
+                  </div>
+                </div>
+              )}
+
+              {modalTab === "admin" && (
+                <div>
+                  <p className="mt-3 text-xs text-purple-300 font-medium">
+                    ⚙️ Mensaje de seguimiento a las 24 horas para mostrar el panel de control:
+                  </p>
+                  <div className="mt-2 rounded-2xl border border-purple-500/20 bg-purple-500/5 p-4 text-xs leading-relaxed text-zinc-200 font-mono whitespace-pre-wrap selection:bg-purple-400 selection:text-black">
+{`Hola equipo de ${selectedPitchDemo.name}! ¿Pudieron ver el video que les envié ayer?
+
+Les comparto además el enlace a la vista de administración para que vean cómo su gerente puede cambiar precios en dólares y bolívares a tasa oficial en 1 segundo y ver las reservas del día:
+👉 https://byte-bridge-tau.vercel.app/demos/${selectedPitchDemo.slug}?admin=true
+
+¿Les gustaría que les muestre cómo funciona en 5 minutos?`}
+                  </div>
+                  <div className="mt-4 flex flex-wrap gap-2">
+                    <button
+                      onClick={() => {
+                        const adminCopy = `Hola equipo de ${selectedPitchDemo.name}! ¿Pudieron ver el video que les envié ayer?\n\nLes comparto además el enlace a la vista de administración para que vean cómo su gerente puede cambiar precios en dólares y bolívares a tasa oficial en 1 segundo y ver las reservas del día:\n👉 https://byte-bridge-tau.vercel.app/demos/${selectedPitchDemo.slug}?admin=true\n\n¿Les gustaría que les muestre cómo funciona en 5 minutos?`;
+                        navigator.clipboard.writeText(adminCopy);
+                        setCopiedSlug("admin-" + selectedPitchDemo.slug);
+                        setTimeout(() => setCopiedSlug(null), 2000);
+                      }}
+                      className="flex-1 flex items-center justify-center gap-2 rounded-xl bg-purple-500 py-3 text-xs font-bold text-white shadow transition-all active:scale-95 hover:bg-purple-400"
+                    >
+                      <span>{copiedSlug === "admin-" + selectedPitchDemo.slug ? "✓" : "📋"}</span>
+                      <span>
+                        {copiedSlug === "admin-" + selectedPitchDemo.slug
+                          ? "¡Mensaje Copiado!"
+                          : "Copiar Mensaje de Seguimiento"}
+                      </span>
+                    </button>
+                    <Link
+                      href={`/demos/${selectedPitchDemo.slug}?admin=true`}
+                      target="_blank"
+                      className="flex items-center justify-center gap-1.5 rounded-xl border border-white/20 bg-white/10 px-4 py-3 text-xs font-bold text-white transition-all hover:bg-white/20"
+                    >
+                      <span>Probar Admin</span>
+                      <span>↗</span>
+                    </Link>
+                  </div>
+                </div>
+              )}
             </motion.div>
           </div>
         )}
