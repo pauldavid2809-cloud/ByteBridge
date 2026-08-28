@@ -24,6 +24,16 @@ const SLUGS = [
   "blaomcbo",
   "pittsbowling",
   "corner",
+  "estacionholidays",
+  "mosaico_mcbo",
+  "incontrotrattoria",
+  "pinzulia",
+  "alfredscoffeebar",
+  "lakebistro",
+  "bromcbo",
+  "ahpresidente",
+  "mykonosconceptve",
+  "terraza_restobar",
 ];
 
 async function main() {

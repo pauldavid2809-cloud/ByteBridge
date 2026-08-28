@@ -1,0 +1,30 @@
+<svg width="400" height="400" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="grad-mykonosconceptve" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#0284C7" stop-opacity="0.3" />
+      <stop offset="100%" stop-color="#040C16" stop-opacity="1" />
+    </radialGradient>
+    <linearGradient id="stroke-mykonosconceptve" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38BDF8" />
+      <stop offset="100%" stop-color="#0284C7" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="400" height="400" fill="#040C16" rx="60" />
+  <circle cx="200" cy="200" r="160" fill="url(#grad-mykonosconceptve)" />
+
+  <!-- Outer Ring -->
+  <circle cx="200" cy="200" r="150" fill="none" stroke="url(#stroke-mykonosconceptve)" stroke-width="6" stroke-dasharray="6 4" opacity="0.6" />
+  <circle cx="200" cy="200" r="130" fill="none" stroke="#0284C7" stroke-width="2.5" opacity="0.8" />
+
+  <!-- Initials Badge -->
+  <text x="200" y="215" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="64" font-weight="900" text-anchor="middle" fill="#FFFFFF" letter-spacing="2">
+    MYK
+  </text>
+
+  <!-- Subtitle -->
+  <text x="200" y="275" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="16" font-weight="800" text-anchor="middle" fill="#38BDF8" letter-spacing="4">
+    GREEK BEACH CLUB
+  </text>
+</svg>
