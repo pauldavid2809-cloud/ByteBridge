@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "motion/react";
 import Image from "next/image";
 import { BusinessDemo } from "@/data/demosData";
@@ -19,22 +20,42 @@ export function DemoHero({
   onScrollToLocation,
   onOpenReel,
 }: Props) {
+  const [imageError, setImageError] = useState(false);
+
   return (
     <section className="relative min-h-[90dvh] w-full flex items-center overflow-hidden border-b border-white/10 bg-zinc-950 py-16 sm:py-24">
       {/* Imagen de fondo con gradientes de marca y ambient lighting */}
-      <div className="absolute inset-0 z-0">
-        <Image
-          src={demo.coverImage}
-          alt={demo.name}
-          fill
-          className="object-cover opacity-25 brightness-75 filter"
-          sizes="100vw"
-          priority
-        />
+      <div className="absolute inset-0 z-0 overflow-hidden">
+        {!imageError ? (
+          <Image
+            src={demo.coverImage}
+            alt={demo.name}
+            fill
+            className="object-cover opacity-25 brightness-75 transition-opacity duration-700 filter"
+            sizes="100vw"
+            priority
+            onError={() => setImageError(true)}
+          />
+        ) : (
+          <div
+            className="absolute inset-0 opacity-40"
+            style={{
+              background: `radial-gradient(circle at 50% 30%, ${demo.palette.primary} 0%, transparent 70%), radial-gradient(circle at 80% 80%, ${demo.palette.accent} 0%, transparent 60%)`,
+            }}
+          />
+        )}
         <div
           className="absolute inset-0 bg-gradient-to-b from-black/85 via-black/70 to-zinc-950"
           style={{
             backgroundImage: `radial-gradient(ellipse at 50% 15%, ${demo.palette.glow}, transparent 70%)`,
+          }}
+        />
+        {/* Sutil cuadrícula decorativa */}
+        <div
+          className="absolute inset-0 opacity-15 pointer-events-none"
+          style={{
+            backgroundImage: "linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px)",
+            backgroundSize: "60px 60px",
           }}
         />
       </div>

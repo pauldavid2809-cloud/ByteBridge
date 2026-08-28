@@ -116,7 +116,7 @@ export const businessDemos: BusinessDemo[] = [
     heroSubtitle:
       "Reserva tu Day Pass para la piscina, gestiona tu membresía de gimnasio, hospédate en nuestras suites y disfruta de nuestro restaurante.",
     logo: "/marcas/ecoland.jpg",
-    coverImage: "https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=1200&q=80",
+    coverImage: "/marcas/ecoland-cover.jpg",
     palette: {
       primary: "#0284C7",
       primaryHover: "#0369A1",
@@ -249,7 +249,7 @@ export const businessDemos: BusinessDemo[] = [
     heroSubtitle:
       "Reserva tu mesa en primera fila, selecciona tu maridaje de vinos y disfruta de risottos, mariscos y cortes preparados por chefs expertos.",
     logo: "/marcas/grandchef.jpg",
-    coverImage: "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1200&q=80",
+    coverImage: "/marcas/grandchef-cover.jpg",
     palette: {
       primary: "#C5A880",
       primaryHover: "#B59468",
@@ -374,7 +374,7 @@ export const businessDemos: BusinessDemo[] = [
     heroSubtitle:
       "El punto de encuentro en 5 de Julio. Reserva tu mesa para after-work o cenas especiales, pide tus cortes y disfruta del mejor ambiente nocturno.",
     logo: "/marcas/zuhouse.jpg",
-    coverImage: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1200&q=80",
+    coverImage: "/marcas/zuhouse-cover.jpg",
     palette: {
       primary: "#D97706",
       primaryHover: "#B45309",
@@ -483,7 +483,7 @@ export const businessDemos: BusinessDemo[] = [
     heroSubtitle:
       "Desde almuerzos ejecutivos de lunes a viernes hasta pedidas de mano personalizadas y celebraciones íntimas en Av. 13 con calle 74.",
     logo: "/marcas/tannous.jpg",
-    coverImage: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=80",
+    coverImage: "/marcas/tannous-cover.jpg",
     palette: {
       primary: "#14B8A6",
       primaryHover: "#0D9488",
@@ -590,7 +590,7 @@ export const businessDemos: BusinessDemo[] = [
     heroSubtitle:
       "Disfruta de nuestros tragos insignia como el 101 Mule y The Magic Love, sabores premium de Hookah y reserva tu lounge con código QR.",
     logo: "/marcas/room101.jpg",
-    coverImage: "https://images.unsplash.com/photo-1572116469696-31de0f17cc34?auto=format&fit=crop&w=1200&q=80",
+    coverImage: "/marcas/room101-cover.jpg",
     palette: {
       primary: "#EAB308",
       primaryHover: "#CA8A04",
@@ -714,7 +714,7 @@ export const businessDemos: BusinessDemo[] = [
     heroSubtitle:
       "Emisión instantánea de entradas y covers por QR, reserva de mesas de discoteca y carta de bebidas para vivir la noche sin complicaciones.",
     logo: "/marcas/labarraventura.jpg",
-    coverImage: "https://images.unsplash.com/photo-1566737236500-c8ac43014a67?auto=format&fit=crop&w=1200&q=80",
+    coverImage: "/marcas/labarraventura-cover.jpg",
     palette: {
       primary: "#EC4899",
       primaryHover: "#DB2777",
@@ -823,7 +823,7 @@ export const businessDemos: BusinessDemo[] = [
     heroSubtitle:
       "Ubicado en el C.C. Terraza 77 (Nivel 2). Reserva tu mesa en terraza o salón y disfruta de pastas hechas a mano y pizzas al horno.",
     logo: "/marcas/ciaogastrobar.jpg",
-    coverImage: "https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&w=1200&q=80",
+    coverImage: "/marcas/ciaogastrobar-cover.jpg",
     palette: {
       primary: "#15803D",
       primaryHover: "#166534",
@@ -931,7 +931,7 @@ export const businessDemos: BusinessDemo[] = [
     heroSubtitle:
       "Ubicado en Plaza 75. Disfruta de gastronomía mar y tierra, cócteles de autor y reserva tu mesa para almuerzos o eventos nocturnos.",
     logo: "/marcas/blaomcbo.jpg",
-    coverImage: "https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=1200&q=80",
+    coverImage: "/marcas/blaomcbo-cover.jpg",
     palette: {
       primary: "#0284C7",
       primaryHover: "#0369A1",
@@ -1040,7 +1040,7 @@ export const businessDemos: BusinessDemo[] = [
     heroSubtitle:
       "Ubicado en la Planta Alta del C.C. Costa Verde. Reserva tus pistas por hora, calzado profesional y pide directo a tu mesa con tasa oficial.",
     logo: "/marcas/pittsbowling.jpg",
-    coverImage: "https://images.unsplash.com/photo-1544919982-b61976f0ba43?auto=format&fit=crop&w=1200&q=80",
+    coverImage: "/marcas/pittsbowling-cover.jpg",
     palette: {
       primary: "#2563EB",
       primaryHover: "#1D4ED8",
@@ -1157,7 +1157,7 @@ export const businessDemos: BusinessDemo[] = [
     heroSubtitle:
       "El punto de entretenimiento más divertido de Maracaibo. Reserva salones para eventos privados, explora el menú de juegos y cócteles temáticos.",
     logo: "/marcas/corner.jpg",
-    coverImage: "https://images.unsplash.com/photo-1610890716171-6b1bb98ffd09?auto=format&fit=crop&w=1200&q=80",
+    coverImage: "/marcas/corner-cover.jpg",
     palette: {
       primary: "#F97316",
       primaryHover: "#EA580C",
@@ -1276,7 +1276,7 @@ export const businessDemos: BusinessDemo[] = [
     heroSubtitle:
       "Estación Asia, América y Europa en un solo lugar. Reserva tu mesa, estampa tu Pasaporte Digital y disfruta de alta cocina continental.",
     logo: "/marcas/estacionholidays.jpg",
-    coverImage: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=80",
+    coverImage: "/marcas/estacionholidays-cover.jpg",
     palette: {
       primary: "#D97706",
       primaryHover: "#B45309",
@@ -1405,7 +1405,7 @@ export const businessDemos: BusinessDemo[] = [
     heroSubtitle:
       "Almuerzos ejecutivos con 1 proteína y 3 contornos, asado negro zuliano, costillas al barril y noches de micrófono abierto.",
     logo: "/marcas/mosaico_mcbo.jpg",
-    coverImage: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1200&q=80",
+    coverImage: "/marcas/mosaico_mcbo-cover.jpg",
     palette: {
       primary: "#EC4899",
       primaryHover: "#DB2777",
@@ -1532,7 +1532,7 @@ export const businessDemos: BusinessDemo[] = [
     heroSubtitle:
       "Risottos cremosos, pizza Abruzzo con miel de trufa, pastas al dente hechas cada mañana y sommelier digital para una velada perfecta.",
     logo: "/marcas/incontrotrattoria.jpg",
-    coverImage: "https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&w=1200&q=80",
+    coverImage: "/marcas/incontrotrattoria-cover.jpg",
     palette: {
       primary: "#B91C1C",
       primaryHover: "#991B1B",
@@ -1659,7 +1659,7 @@ export const businessDemos: BusinessDemo[] = [
     heroSubtitle:
       "Reserva tu pista en tiempo real, pide comida directo a tu carril con QR y disfruta de noches de Glow Bowling con DJ en vivo.",
     logo: "/marcas/pinzulia.jpg",
-    coverImage: "https://images.unsplash.com/photo-1544919982-b61976f0ba43?auto=format&fit=crop&w=1200&q=80",
+    coverImage: "/marcas/pinzulia-cover.jpg",
     palette: {
       primary: "#0284C7",
       primaryHover: "#0369A1",
@@ -1786,7 +1786,7 @@ export const businessDemos: BusinessDemo[] = [
     heroSubtitle:
       "Pide to-go sin filas, consulta el stock en tiempo real de nuestra vitrina de donas gourmet y reserva tu almuerzo ejecutivo de 3 tiempos.",
     logo: "/marcas/alfredscoffeebar.jpg",
-    coverImage: "https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=1200&q=80",
+    coverImage: "/marcas/alfredscoffeebar-cover.jpg",
     palette: {
       primary: "#92400E",
       primaryHover: "#78350F",
@@ -1913,7 +1913,7 @@ export const businessDemos: BusinessDemo[] = [
     heroSubtitle:
       "Reserva tu mesa en primera fila para el Sunset, degusta ceviches al ají dulce, cortes Tomahawk a la brasa y coctelería ahumada.",
     logo: "/marcas/lakebistro.jpg",
-    coverImage: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80",
+    coverImage: "/marcas/lakebistro-cover.jpg",
     palette: {
       primary: "#0D9488",
       primaryHover: "#0F766E",
@@ -2041,7 +2041,7 @@ export const businessDemos: BusinessDemo[] = [
     heroSubtitle:
       "Pide directo a la mesa con QR, compra entradas para Asian Raves y batallas de rap, y disfruta de cervezas a temperatura glacial.",
     logo: "/marcas/bromcbo.jpg",
-    coverImage: "https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=1200&q=80",
+    coverImage: "/marcas/bromcbo-cover.jpg",
     palette: {
       primary: "#EA580C",
       primaryHover: "#C2410C",
@@ -2168,7 +2168,7 @@ export const businessDemos: BusinessDemo[] = [
     heroSubtitle:
       "Compra tu pase de piscina con QR, pide comida desde tu tumbona, haz check-in digital y hospédate con planta eléctrica 100% continua.",
     logo: "/marcas/ahpresidente.jpg",
-    coverImage: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1200&q=80",
+    coverImage: "/marcas/ahpresidente-cover.jpg",
     palette: {
       primary: "#CA8A04",
       primaryHover: "#A16207",
@@ -2296,7 +2296,7 @@ export const businessDemos: BusinessDemo[] = [
     heroSubtitle:
       "Cotiza tu cumpleaños con botellas y bengalas, reserva lounges VIP frente al lago y accede sin filas con tu pase FastPass QR.",
     logo: "/marcas/mykonosconceptve.jpg",
-    coverImage: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1200&q=80",
+    coverImage: "/marcas/mykonosconceptve-cover.jpg",
     palette: {
       primary: "#0284C7",
       primaryHover: "#0369A1",
@@ -2423,7 +2423,7 @@ export const businessDemos: BusinessDemo[] = [
     heroSubtitle:
       "Reserva tu mesa mirador frente a la brisa lacustre, ordena sushi flameado y tablas de carne a la parrilla con coctelería tropical.",
     logo: "/marcas/terraza_restobar.jpg",
-    coverImage: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=80",
+    coverImage: "/marcas/terraza_restobar-cover.jpg",
     palette: {
       primary: "#7C3AED",
       primaryHover: "#6D28D9",

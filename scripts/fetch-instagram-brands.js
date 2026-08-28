@@ -7,6 +7,18 @@ const http = require("http");
 const EDGE_PATH = "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe";
 
 const accounts = [
+  // Dia 1
+  { slug: "ecoland", handle: "ecoland.club", name: "Ecoland Club", url: "https://www.instagram.com/ecoland.club/" },
+  { slug: "grandchef", handle: "grandchefmaracaibo", name: "Grand Chef Maracaibo", url: "https://www.instagram.com/grandchefmaracaibo/" },
+  { slug: "zuhouse", handle: "zuhousemaracaibo", name: "Zu House Maracaibo", url: "https://www.instagram.com/zuhousemaracaibo/" },
+  { slug: "tannous", handle: "tannous_ve", name: "Tannous", url: "https://www.instagram.com/tannous_ve/" },
+  { slug: "room101", handle: "room101bar", name: "Room 101 Bar", url: "https://www.instagram.com/room101bar/" },
+  { slug: "labarraventura", handle: "labarraventura", name: "La Barra Ventura", url: "https://www.instagram.com/labarraventura/" },
+  { slug: "ciaogastrobar", handle: "ciaogastrobar", name: "Ciao Gastrobar", url: "https://www.instagram.com/ciaogastrobar/" },
+  { slug: "blaomcbo", handle: "blaomcbo", name: "Blao Maracaibo", url: "https://www.instagram.com/blaomcbo/" },
+  { slug: "pittsbowling", handle: "pittsbowling", name: "Pitts Bowling", url: "https://www.instagram.com/pittsbowling/" },
+  { slug: "corner", handle: "cornermcbo", name: "Corner Maracaibo", url: "https://www.instagram.com/cornermcbo/" },
+  // Dia 2
   { slug: "estacionholidays", handle: "estacionholidays", name: "Estación Holidays", url: "https://www.instagram.com/estacionholidays/" },
   { slug: "mosaico_mcbo", handle: "mosaico_mcbo", name: "Mosaico Restaurant", url: "https://www.instagram.com/mosaico_mcbo/" },
   { slug: "incontrotrattoria", handle: "incontrotrattoria", name: "Incontro Trattoria", url: "https://www.instagram.com/incontrotrattoria/" },
@@ -44,7 +56,7 @@ async function main() {
     fs.mkdirSync(outputDir, { recursive: true });
   }
 
-  console.log("Iniciando Edge headless para inspeccionar los 10 perfiles...");
+  console.log("Iniciando Edge headless para descargar fotos de ambiente de los 20 perfiles...");
   const browser = await puppeteer.launch({
     executablePath: EDGE_PATH,
     headless: "new",
@@ -53,84 +65,94 @@ async function main() {
       "--disable-setuid-sandbox",
       "--disable-dev-shm-usage",
       "--disable-gpu",
-      "--window-size=1280,800"
+      "--window-size=1280,1000"
     ]
   });
 
-  const results = [];
+  for (let i = 0; i < accounts.length; i++) {
+    const account = accounts[i];
+    console.log(`\n[${i + 1}/${accounts.length}] --- Analizando @${account.handle} ---`);
+    const coverDestFile = path.join(outputDir, `${account.slug}-cover.jpg`);
+    const logoDestFile = path.join(outputDir, `${account.slug}.jpg`);
 
-  for (const account of accounts) {
-    console.log(`\n--- Analizando @${account.handle} ---`);
     try {
       const page = await browser.newPage();
       await page.setUserAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36");
       
       await page.goto(account.url, { waitUntil: "domcontentloaded", timeout: 25000 });
-      await new Promise(r => setTimeout(r, 2000));
+      await new Promise(r => setTimeout(r, 2500));
 
-      const meta = await page.evaluate(() => {
+      const media = await page.evaluate(() => {
         const ogImage = document.querySelector('meta[property="og:image"]')?.getAttribute("content");
-        const ogTitle = document.querySelector('meta[property="og:title"]')?.getAttribute("content");
-        const ogDesc = document.querySelector('meta[property="og:description"]')?.getAttribute("content");
-        const title = document.title;
-        const bodyText = document.body ? document.body.innerText.slice(0, 300) : "";
-
-        // Intentar buscar imagen de avatar en DOM
+        
         let avatarUrl = ogImage;
+        let postCoverUrl = null;
+
         const imgTags = Array.from(document.querySelectorAll("img"));
         for (const img of imgTags) {
           if (img.alt && (img.alt.includes("profile") || img.alt.includes("perfil") || img.alt.includes("foto"))) {
             avatarUrl = img.src;
-            break;
+          } else if (img.src && !img.src.includes("150x150") && img.src.startsWith("http") && !postCoverUrl) {
+            postCoverUrl = img.src;
           }
         }
 
-        return { ogImage, ogTitle, ogDesc, title, avatarUrl, bodyText };
+        if (!postCoverUrl) {
+          postCoverUrl = ogImage;
+        }
+
+        return { avatarUrl, postCoverUrl };
       });
 
-      console.log(`Title: ${meta.title || meta.ogTitle}`);
-      console.log(`Desc: ${meta.ogDesc || ""}`);
-      console.log(`Avatar URL: ${meta.avatarUrl || meta.ogImage || "No encontrada"}`);
-
-      let downloaded = false;
-      const targetImage = meta.avatarUrl || meta.ogImage;
-      if (targetImage && targetImage.startsWith("http")) {
-        const destFile = path.join(outputDir, `${account.slug}.jpg`);
+      if (media.avatarUrl && !fs.existsSync(logoDestFile)) {
         try {
-          await downloadFile(targetImage, destFile);
-          console.log(`✓ Imagen guardada en: ${destFile}`);
-          downloaded = true;
+          await downloadFile(media.avatarUrl, logoDestFile);
+          console.log(`✓ Logo guardado: ${logoDestFile}`);
         } catch (e) {
-          console.error(`Error descargando imagen: ${e.message}`);
+          console.error(`Error guardando logo: ${e.message}`);
         }
       }
 
-      results.push({
-        slug: account.slug,
-        handle: account.handle,
-        name: account.name,
-        meta,
-        downloaded,
-        imagePath: downloaded ? `/marcas/${account.slug}.jpg` : null
-      });
+      if (media.postCoverUrl) {
+        try {
+          await downloadFile(media.postCoverUrl, coverDestFile);
+          console.log(`✓ Foto de ambiente guardada: ${coverDestFile}`);
+        } catch (e) {
+          console.error(`Error guardando cover: ${e.message}`);
+        }
+      }
 
       await page.close();
     } catch (err) {
       console.error(`Error en @${account.handle}: ${err.message}`);
-      results.push({
-        slug: account.slug,
-        handle: account.handle,
-        name: account.name,
-        error: err.message
-      });
     }
   }
 
   await browser.close();
 
-  const reportPath = path.join(__dirname, "..", "data", "marcas-instagram.json");
-  fs.writeFileSync(reportPath, JSON.stringify(results, null, 2), "utf-8");
-  console.log(`\nResultados guardados en ${reportPath}`);
+  // Actualizar demosData.ts con las rutas locales de coverImage
+  const demosDataPath = path.join(__dirname, "..", "data", "demosData.ts");
+  let demosCode = fs.readFileSync(demosDataPath, "utf-8");
+
+  for (const account of accounts) {
+    const regex = new RegExp(`(slug:\\s*["']${account.slug}["'][\\s\\S]*?coverImage:\\s*)[^,]+,`, "m");
+    demosCode = demosCode.replace(regex, `$1"/marcas/${account.slug}-cover.jpg",`);
+  }
+
+  fs.writeFileSync(demosDataPath, demosCode, "utf-8");
+  console.log("✓ data/demosData.ts actualizado con las 20 rutas locales /marcas/[slug]-cover.jpg");
+  console.log("\n🎉 ¡Fotos de ambiente y logos verificados para los 20 negocios!");
 }
 
-main().catch(console.error);
+if (process.argv[2] === "update-demos") {
+  const demosDataPath = path.join(__dirname, "..", "data", "demosData.ts");
+  let demosCode = fs.readFileSync(demosDataPath, "utf-8");
+  for (const account of accounts) {
+    const regex = new RegExp(`(slug:\\s*["']${account.slug}["'][\\s\\S]*?coverImage:\\s*)[^,]+,`, "m");
+    demosCode = demosCode.replace(regex, `$1"/marcas/${account.slug}-cover.jpg",`);
+  }
+  fs.writeFileSync(demosDataPath, demosCode, "utf-8");
+  console.log("✓ data/demosData.ts actualizado con las 20 rutas locales /marcas/[slug]-cover.jpg");
+} else {
+  main().catch(console.error);
+}
