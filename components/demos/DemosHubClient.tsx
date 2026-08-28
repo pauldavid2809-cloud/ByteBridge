@@ -26,6 +26,32 @@ export function DemosHubClient({ demos }: Props) {
     setTimeout(() => setCopiedSlug(null), 2000);
   };
 
+  const dia2Slugs = [
+    "estacionholidays",
+    "mosaico_mcbo",
+    "incontrotrattoria",
+    "pinzulia",
+    "alfredscoffeebar",
+    "lakebistro",
+    "bromcbo",
+    "ahpresidente",
+    "mykonosconceptve",
+    "terraza_restobar",
+  ];
+
+  const dia1Slugs = [
+    "ecoland",
+    "grandchef",
+    "zuhouse",
+    "tannous",
+    "room101",
+    "labarraventura",
+    "ciaogastrobar",
+    "blaomcbo",
+    "pittsbowling",
+    "corner",
+  ];
+
   const filteredDemos = demos.filter((d) => {
     const matchesSearch =
       d.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -35,6 +61,8 @@ export function DemosHubClient({ demos }: Props) {
     if (!matchesSearch) return false;
 
     if (filter === "all") return true;
+    if (filter === "dia2") return dia2Slugs.includes(d.slug);
+    if (filter === "dia1") return dia1Slugs.includes(d.slug);
     if (filter === "gastro") {
       return [
         "grandchef",
@@ -69,6 +97,9 @@ export function DemosHubClient({ demos }: Props) {
     }
     return true;
   });
+
+  const countDia2 = demos.filter((d) => dia2Slugs.includes(d.slug)).length;
+  const countDia1 = demos.filter((d) => dia1Slugs.includes(d.slug)).length;
 
   const countGastro = demos.filter((d) =>
     [
@@ -151,18 +182,20 @@ export function DemosHubClient({ demos }: Props) {
             </div>
           </div>
 
-          {/* Filtros por Categoría */}
+          {/* Filtros por Categoría y por Día */}
           <div className="mt-8 flex justify-center gap-2 overflow-x-auto pb-2 scrollbar-none">
             {[
               { id: "all", label: `Todas (${demos.length})` },
-              { id: "gastro", label: `Restaurantes & Gourmet (${countGastro})` },
-              { id: "night", label: `Restobares & Sunset (${countNight})` },
-              { id: "ent", label: `Hotel, Bowling & Café (${countEnt})` },
+              { id: "dia2", label: `🚀 Día 2: 10 Nuevos (${countDia2})` },
+              { id: "dia1", label: `🏛️ Día 1: Top 10 Inicial (${countDia1})` },
+              { id: "gastro", label: `🍽️ Gourmet & Grill (${countGastro})` },
+              { id: "night", label: `🍸 Restobares & Sunset (${countNight})` },
+              { id: "ent", label: `🏨 Hotel & Bowling (${countEnt})` },
             ].map((f) => (
               <button
                 key={f.id}
                 onClick={() => setFilter(f.id)}
-                className={`rounded-xl px-4 py-2 text-xs font-bold transition-all active:scale-95 ${
+                className={`rounded-xl px-4 py-2 text-xs font-bold transition-all active:scale-95 whitespace-nowrap ${
                   filter === f.id
                     ? "bg-white text-black shadow-lg"
                     : "border border-white/10 bg-zinc-900/80 text-zinc-400 hover:text-white"
@@ -173,10 +206,11 @@ export function DemosHubClient({ demos }: Props) {
             ))}
           </div>
 
-          {/* Grid de las 10 Tarjetas de Demos */}
+          {/* Grid de las Tarjetas de Demos */}
           <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {filteredDemos.map((demo) => {
               const isCopied = copiedSlug === demo.slug;
+              const isDia2 = dia2Slugs.includes(demo.slug);
 
               return (
                 <motion.div
@@ -201,9 +235,20 @@ export function DemosHubClient({ demos }: Props) {
                           />
                         </div>
                         <div>
-                          <h2 className="text-base font-bold text-white tracking-tight">
-                            {demo.name}
-                          </h2>
+                          <div className="flex items-center gap-2">
+                            <h2 className="text-base font-bold text-white tracking-tight">
+                              {demo.name}
+                            </h2>
+                            {isDia2 ? (
+                              <span className="inline-flex items-center rounded-full border border-amber-400/30 bg-amber-400/10 px-2 py-0.5 text-[10px] font-bold text-amber-300">
+                                Día 2
+                              </span>
+                            ) : (
+                              <span className="inline-flex items-center rounded-full border border-blue-400/30 bg-blue-400/10 px-2 py-0.5 text-[10px] font-bold text-blue-300">
+                                Día 1
+                              </span>
+                            )}
+                          </div>
                           <span className="text-xs text-zinc-400">
                             @{demo.handle}
                           </span>

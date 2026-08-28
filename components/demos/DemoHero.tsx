@@ -25,7 +25,7 @@ export function DemoHero({
       <div className="absolute inset-0 z-0">
         <Image
           src={demo.coverImage}
-          alt={`Ambiente de ${demo.name}`}
+          alt={demo.name}
           fill
           className="object-cover opacity-25 brightness-75 filter"
           sizes="100vw"

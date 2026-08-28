@@ -37,6 +37,7 @@ export type BookingOption = {
 
 export type BusinessDemo = {
   slug: string;
+  batch?: "dia1" | "dia2";
   name: string;
   handle: string;
   category: string;
