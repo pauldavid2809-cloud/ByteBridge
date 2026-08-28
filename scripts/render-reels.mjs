@@ -38,12 +38,18 @@ const SLUGS = [
 
 async function main() {
   const targetSlug = process.argv[2];
-  const slugsToRender = targetSlug
-    ? SLUGS.filter((s) => s.toLowerCase() === targetSlug.toLowerCase())
-    : SLUGS;
+  let slugsToRender = SLUGS;
+
+  if (targetSlug === "batch2") {
+    slugsToRender = SLUGS.slice(10);
+  } else if (targetSlug === "batch1") {
+    slugsToRender = SLUGS.slice(0, 10);
+  } else if (targetSlug) {
+    slugsToRender = SLUGS.filter((s) => s.toLowerCase() === targetSlug.toLowerCase());
+  }
 
   if (slugsToRender.length === 0) {
-    console.error(`❌ Slug "${targetSlug}" no encontrado. Opciones válidas:`, SLUGS.join(", "));
+    console.error(`❌ Argumento "${targetSlug}" no encontrado. Opciones válidas: batch1, batch2 o cualquiera de:`, SLUGS.join(", "));
     process.exit(1);
   }
 
@@ -72,8 +78,13 @@ async function main() {
   console.log("✅ Bundle creado con éxito. Iniciando renderizado de video(s)...\n");
 
   for (const slug of slugsToRender) {
-    const compositionId = `PromoReel-${slug}`;
+    const compositionId = `PromoReel-${slug.replace(/_/g, "-")}`;
     const outputPath = path.join(outDir, `${slug}.mp4`);
+
+    if (fs.existsSync(outputPath) && fs.statSync(outputPath).size > 1000000 && !process.argv.includes("--force")) {
+      console.log(`⏩ [${slug}] ya está renderizado en public/reels/${slug}.mp4 (${(fs.statSync(outputPath).size / (1024 * 1024)).toFixed(2)} MB). Saltando...`);
+      continue;
+    }
 
     console.log(`🎥 Renderizando Reel para [${slug}] (${compositionId})...`);
 

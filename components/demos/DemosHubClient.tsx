@@ -36,29 +36,74 @@ export function DemosHubClient({ demos }: Props) {
 
     if (filter === "all") return true;
     if (filter === "gastro") {
-      return (
-        d.slug === "grandchef" ||
-        d.slug === "zuhouse" ||
-        d.slug === "tannous" ||
-        d.slug === "ciaogastrobar"
-      );
+      return [
+        "grandchef",
+        "zuhouse",
+        "tannous",
+        "ciaogastrobar",
+        "estacionholidays",
+        "mosaico_mcbo",
+        "incontrotrattoria",
+        "lakebistro",
+        "bromcbo",
+      ].includes(d.slug);
     }
     if (filter === "night") {
-      return (
-        d.slug === "room101" ||
-        d.slug === "labarraventura" ||
-        d.slug === "blaomcbo"
-      );
+      return [
+        "room101",
+        "labarraventura",
+        "blaomcbo",
+        "mykonosconceptve",
+        "terraza_restobar",
+      ].includes(d.slug);
     }
     if (filter === "ent") {
-      return (
-        d.slug === "ecoland" ||
-        d.slug === "pittsbowling" ||
-        d.slug === "corner"
-      );
+      return [
+        "ecoland",
+        "pittsbowling",
+        "corner",
+        "pinzulia",
+        "alfredscoffeebar",
+        "ahpresidente",
+      ].includes(d.slug);
     }
     return true;
   });
+
+  const countGastro = demos.filter((d) =>
+    [
+      "grandchef",
+      "zuhouse",
+      "tannous",
+      "ciaogastrobar",
+      "estacionholidays",
+      "mosaico_mcbo",
+      "incontrotrattoria",
+      "lakebistro",
+      "bromcbo",
+    ].includes(d.slug)
+  ).length;
+
+  const countNight = demos.filter((d) =>
+    [
+      "room101",
+      "labarraventura",
+      "blaomcbo",
+      "mykonosconceptve",
+      "terraza_restobar",
+    ].includes(d.slug)
+  ).length;
+
+  const countEnt = demos.filter((d) =>
+    [
+      "ecoland",
+      "pittsbowling",
+      "corner",
+      "pinzulia",
+      "alfredscoffeebar",
+      "ahpresidente",
+    ].includes(d.slug)
+  ).length;
 
   return (
     <div className="min-h-screen bg-black text-white selection:bg-amber-400 selection:text-black">
@@ -70,7 +115,7 @@ export function DemosHubClient({ demos }: Props) {
           <div className="text-center">
             <span className="inline-flex items-center gap-1.5 rounded-full border border-amber-400/30 bg-amber-400/10 px-3.5 py-1 text-xs font-bold text-amber-300">
               <span className="h-1.5 w-1.5 rounded-full bg-amber-400 animate-pulse" />
-              10 Demos Comerciales + Reels en Remotion
+              20 Demos Comerciales + Reels en Remotion
             </span>
             <h1 className="mt-4 text-3xl font-extrabold tracking-tight sm:text-5xl">
               Catálogo de Propuestas, WebApps & Reels
@@ -106,13 +151,13 @@ export function DemosHubClient({ demos }: Props) {
             </div>
           </div>
 
-          {/* Filtros de Categoría */}
+          {/* Filtros por Categoría */}
           <div className="mt-8 flex justify-center gap-2 overflow-x-auto pb-2 scrollbar-none">
             {[
-              { id: "all", label: "Todas (10)" },
-              { id: "gastro", label: "Restaurantes & Gourmet (4)" },
-              { id: "night", label: "Restobares & Rumba (3)" },
-              { id: "ent", label: "Hotel & Entretenimiento (3)" },
+              { id: "all", label: `Todas (${demos.length})` },
+              { id: "gastro", label: `Restaurantes & Gourmet (${countGastro})` },
+              { id: "night", label: `Restobares & Sunset (${countNight})` },
+              { id: "ent", label: `Hotel, Bowling & Café (${countEnt})` },
             ].map((f) => (
               <button
                 key={f.id}

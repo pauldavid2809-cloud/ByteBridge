@@ -8,7 +8,7 @@ export function RemotionRoot() {
       {businessDemos.map((demo) => (
         <Composition
           key={demo.slug}
-          id={`PromoReel-${demo.slug}`}
+          id={`PromoReel-${demo.slug.replace(/_/g, "-")}`}
           component={PromoReel}
           durationInFrames={450}
           fps={30}

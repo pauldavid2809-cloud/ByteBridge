@@ -1658,7 +1658,7 @@ export const businessDemos: BusinessDemo[] = [
     heroSubtitle:
       "Reserva tu pista en tiempo real, pide comida directo a tu carril con QR y disfruta de noches de Glow Bowling con DJ en vivo.",
     logo: "/marcas/pinzulia.jpg",
-    coverImage: "https://images.unsplash.com/photo-1545232979-fbf68fe9b10d?auto=format&fit=crop&w=1200&q=80",
+    coverImage: "https://images.unsplash.com/photo-1544919982-b61976f0ba43?auto=format&fit=crop&w=1200&q=80",
     palette: {
       primary: "#0284C7",
       primaryHover: "#0369A1",

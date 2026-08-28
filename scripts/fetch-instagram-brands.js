@@ -7,16 +7,16 @@ const http = require("http");
 const EDGE_PATH = "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe";
 
 const accounts = [
-  { slug: "ecoland", handle: "ecoland.club", name: "Ecoland Club", url: "https://www.instagram.com/ecoland.club/" },
-  { slug: "grandchef", handle: "grandchefmaracaibo", name: "Grand Chef Maracaibo", url: "https://www.instagram.com/grandchefmaracaibo/" },
-  { slug: "zuhouse", handle: "zuhousemaracaibo", name: "Zu House Maracaibo", url: "https://www.instagram.com/zuhousemaracaibo/" },
-  { slug: "tannous", handle: "tannous_ve", name: "Tannous", url: "https://www.instagram.com/tannous_ve/" },
-  { slug: "room101", handle: "room101bar", name: "Room 101 Bar", url: "https://www.instagram.com/room101bar/" },
-  { slug: "labarraventura", handle: "labarraventura", name: "La Barra Ventura", url: "https://www.instagram.com/labarraventura/" },
-  { slug: "ciaogastrobar", handle: "ciaogastrobar", name: "Ciao Gastrobar", url: "https://www.instagram.com/ciaogastrobar/" },
-  { slug: "blaomcbo", handle: "blaomcbo", name: "Blao Maracaibo", url: "https://www.instagram.com/blaomcbo/" },
-  { slug: "pittsbowling", handle: "pittsbowling", name: "Pitts Bowling", url: "https://www.instagram.com/pittsbowling/" },
-  { slug: "corner", handle: "cornermcbo", name: "Corner Maracaibo", url: "https://www.instagram.com/cornermcbo/" }
+  { slug: "estacionholidays", handle: "estacionholidays", name: "Estación Holidays", url: "https://www.instagram.com/estacionholidays/" },
+  { slug: "mosaico_mcbo", handle: "mosaico_mcbo", name: "Mosaico Restaurant", url: "https://www.instagram.com/mosaico_mcbo/" },
+  { slug: "incontrotrattoria", handle: "incontrotrattoria", name: "Incontro Trattoria", url: "https://www.instagram.com/incontrotrattoria/" },
+  { slug: "pinzulia", handle: "pinzulia", name: "PinZulia Bowling", url: "https://www.instagram.com/pinzulia/" },
+  { slug: "alfredscoffeebar", handle: "alfredscoffeebar", name: "Alfred's Coffee Bar", url: "https://www.instagram.com/alfredscoffeebar/" },
+  { slug: "lakebistro", handle: "lake.bistro", name: "Lake Bistro", url: "https://www.instagram.com/lake.bistro/" },
+  { slug: "bromcbo", handle: "bromcbo", name: "BRO GastroBar", url: "https://www.instagram.com/bromcbo/" },
+  { slug: "ahpresidente", handle: "ahpresidente", name: "Apart Hotel Presidente", url: "https://www.instagram.com/ahpresidente/" },
+  { slug: "mykonosconceptve", handle: "mykonosconceptve", name: "Mykonos Concept", url: "https://www.instagram.com/mykonosconceptve/" },
+  { slug: "terraza_restobar", handle: "terraza_restobar", name: "Terraza Restobar", url: "https://www.instagram.com/terraza_restobar/" }
 ];
 
 function downloadFile(url, destPath) {
