@@ -22,6 +22,17 @@ export function DemosHubClient({ demos }: Props) {
   const [modalTab, setModalTab] = useState<"pitch" | "voice" | "admin">("pitch");
 
   const voiceScripts: Record<string, string> = {
+    // Dia 3
+    ranchogalipan: "Hola equipo de Rancho Galipán, les habla Paul David de ByteBridge. Estuve analizando cómo optimizar el acceso a sus piscinas y cabañas campestres: les preparé un Reel comercial y una WebApp donde sus visitantes compran su Day Pass con código QR y reservan bohíos con parrillada al carbón sin hacer fila en entrada. Les adjunté el video y el link de prueba.",
+    nomi_sakebar: "Konnichiwa equipo de Nomi Sake Bar, les saluda Paul David de ByteBridge. El ambiente de izakaya y ramen que tienen en Bella Vista es de lo más top de la ciudad. Les diseñé una WebApp con auto-pedido por código QR en mesa y barra robata, y maridaje guiado de sakes para acelerar la rotación de comensales. Miren el video adjunto y pruébenla en el enlace.",
+    da_ettore: "Buonasera equipo de Da Ettore, habla Paul David de ByteBridge. Con más de 30 años de impecable tradición culinaria en Maracaibo, creamos una WebApp a la altura de su prestigio: reserva digital de mesas con plano de sala, carta interactiva de pastas frescas y sommelier digital de vinos italianos. Les comparto el video y la demo interactiva.",
+    solemiocucinaebar: "Ciao equipo de O Sole Mio, les habla Paul David de ByteBridge. Su terraza en La Lago y sus pizzas napolitanas al horno de leña son una maravilla. Les armé una WebApp para reservar mesas al aire libre garantizadas y pedir pastas de autor con conversión automática a tasa oficial. Miren el video de 15 segundos y la demo.",
+    somos_delish: "Hola equipo de Delish, les saluda Paul David de ByteBridge. Amamos sus cinnamon rolls y brunch en Tierra Negra. Para que dejen de pagar el 25% de comisión en apps de terceros y automaticen sus pedidos de cajas de regalo por WhatsApp con tasa BCV al día, les construí esta WebApp. Les dejo el video promocional y el link.",
+    yellowstonemcbo: "Howdy equipo de Yellowstone, habla Paul David de ByteBridge. Su concepto de steakhouse western en La Lago tiene una vibra increíble. Les preparé una WebApp para vender pases VIP con código QR para sus noches de música en vivo y reservar mesas parrilleras sin colas en puerta. Échenle un ojo al video que les adjunté.",
+    morecheese_mcbo: "Hola gente de More Cheese, les saluda Paul David de ByteBridge. El show de la piscina de queso cheddar en mesa es súper viral. Para eliminar las colas de espera en horas pico, les diseñé una WebApp con auto-pedido por código QR directo a cocina y combos de tequeñones XXL. Les comparto el video y la demo para que la prueben.",
+    saloncanton_mcbo: "Ni hao equipo de Salón Cantón, habla Paul David de ByteBridge. Reconociendo su liderazgo en alta cocina cantonesa en Maracaibo, diseñamos una WebApp para reservar mesas giratorias imperiales y salones VIP climatizados, con menús de banquetes y pato Pekín. Les dejé el video y el link de prueba.",
+    holysushi_mcbo: "Hola equipo de Holy Sushi, les saluda Paul David de ByteBridge. Sus rolls flameados y barcos para fiestas son de lo mejor. Les creamos una WebApp para potenciar su delivery: catálogo visual de barcos de 40 piezas, cálculo BCV automático y checkout directo a WhatsApp sin comisiones. Miren el video adjunto y la demo.",
+    vivematcha: "Hola equipo de Vive Matcha, habla Paul David de ByteBridge. Su propuesta de bienestar y matcha ceremonial Uji en Cecilio Acosta es única en Maracaibo. Les construí una WebApp para auto-pedido en barra y pick-up express de matcha lattes y açaí bowls sin hacer fila. Les dejo el video vertical y el enlace.",
     // Dia 2
     estacionholidays: "Hola equipo de Estación Holidays, les habla Paul David de ByteBridge. Estuve viendo el concepto tan genial que tienen con las 3 estaciones de Asia, América y Europa, y les preparé un video y una WebApp interactiva que incluye un Pasaporte Digital con sellos para sus clientes. Miren el video adjunto y pruébenlo en el link que les dejé abajo sin ningún compromiso.",
     mosaico_mcbo: "Hola amigos de Mosaico, les saluda Paul David de ByteBridge. Sé lo que colapsa el WhatsApp al mediodía con la gente preguntando qué hay en el buffet y los papelitos en las noches de karaoke. Les armé una WebApp que automatiza el menú del día y organiza los turnos de canciones con código QR. Échenle un ojo al video que les adjunté.",
@@ -51,6 +62,19 @@ export function DemosHubClient({ demos }: Props) {
     setCopiedSlug(demo.slug);
     setTimeout(() => setCopiedSlug(null), 2000);
   };
+
+  const dia3Slugs = [
+    "ranchogalipan",
+    "nomi_sakebar",
+    "da_ettore",
+    "solemiocucinaebar",
+    "somos_delish",
+    "yellowstonemcbo",
+    "morecheese_mcbo",
+    "saloncanton_mcbo",
+    "holysushi_mcbo",
+    "vivematcha",
+  ];
 
   const dia2Slugs = [
     "estacionholidays",
@@ -87,80 +111,23 @@ export function DemosHubClient({ demos }: Props) {
     if (!matchesSearch) return false;
 
     if (filter === "all") return true;
+    if (filter === "dia3") return dia3Slugs.includes(d.slug);
     if (filter === "dia2") return dia2Slugs.includes(d.slug);
     if (filter === "dia1") return dia1Slugs.includes(d.slug);
-    if (filter === "gastro") {
-      return [
-        "grandchef",
-        "zuhouse",
-        "tannous",
-        "ciaogastrobar",
-        "estacionholidays",
-        "mosaico_mcbo",
-        "incontrotrattoria",
-        "lakebistro",
-        "bromcbo",
-      ].includes(d.slug);
-    }
-    if (filter === "night") {
-      return [
-        "room101",
-        "labarraventura",
-        "blaomcbo",
-        "mykonosconceptve",
-        "terraza_restobar",
-      ].includes(d.slug);
-    }
-    if (filter === "ent") {
-      return [
-        "ecoland",
-        "pittsbowling",
-        "corner",
-        "pinzulia",
-        "alfredscoffeebar",
-        "ahpresidente",
-      ].includes(d.slug);
-    }
+    if (filter === "table-ordering") return d.archetype === "table-ordering";
+    if (filter === "vip-access") return d.archetype === "vip-access";
+    if (filter === "gourmet-booking") return d.archetype === "gourmet-booking";
+    if (filter === "direct-delivery") return d.archetype === "direct-delivery";
     return true;
   });
 
+  const countDia3 = demos.filter((d) => dia3Slugs.includes(d.slug)).length;
   const countDia2 = demos.filter((d) => dia2Slugs.includes(d.slug)).length;
   const countDia1 = demos.filter((d) => dia1Slugs.includes(d.slug)).length;
-
-  const countGastro = demos.filter((d) =>
-    [
-      "grandchef",
-      "zuhouse",
-      "tannous",
-      "ciaogastrobar",
-      "estacionholidays",
-      "mosaico_mcbo",
-      "incontrotrattoria",
-      "lakebistro",
-      "bromcbo",
-    ].includes(d.slug)
-  ).length;
-
-  const countNight = demos.filter((d) =>
-    [
-      "room101",
-      "labarraventura",
-      "blaomcbo",
-      "mykonosconceptve",
-      "terraza_restobar",
-    ].includes(d.slug)
-  ).length;
-
-  const countEnt = demos.filter((d) =>
-    [
-      "ecoland",
-      "pittsbowling",
-      "corner",
-      "pinzulia",
-      "alfredscoffeebar",
-      "ahpresidente",
-    ].includes(d.slug)
-  ).length;
+  const countTableOrder = demos.filter((d) => d.archetype === "table-ordering").length;
+  const countVipPass = demos.filter((d) => d.archetype === "vip-access").length;
+  const countGourmet = demos.filter((d) => d.archetype === "gourmet-booking").length;
+  const countDelivery = demos.filter((d) => d.archetype === "direct-delivery").length;
 
   return (
     <div className="min-h-screen bg-black text-white selection:bg-amber-400 selection:text-black">
@@ -170,15 +137,15 @@ export function DemosHubClient({ demos }: Props) {
         <div className="mx-auto max-w-6xl">
           {/* Header del Hub */}
           <div className="text-center">
-            <span className="inline-flex items-center gap-1.5 rounded-full border border-amber-400/30 bg-amber-400/10 px-3.5 py-1 text-xs font-bold text-amber-300">
-              <span className="h-1.5 w-1.5 rounded-full bg-amber-400 animate-pulse" />
-              20 Demos Comerciales + Reels en Remotion
+            <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-400/30 bg-emerald-400/10 px-3.5 py-1 text-xs font-bold text-emerald-300">
+              <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
+              30 Demos Comerciales + Reels en Remotion
             </span>
             <h1 className="mt-4 text-3xl font-extrabold tracking-tight sm:text-5xl">
               Catálogo de Propuestas, WebApps & Reels
             </h1>
             <p className="mt-3 max-w-2xl mx-auto text-sm text-zinc-400 sm:text-base">
-              WebApps interactivas con reservaciones por código QR, menú digital multimoneda (USD/Bs), panel de control y **videos verticales (Reels) generados con Remotion**.
+              WebApps interactivas adaptadas a 4 arquetipos operativos: Auto-Pedido en Mesa, Pases VIP con QR, Reservas Gourmet y Delivery Directo sin comisiones.
             </p>
 
             {/* Buscador de Demos */}
@@ -208,15 +175,17 @@ export function DemosHubClient({ demos }: Props) {
             </div>
           </div>
 
-          {/* Filtros por Categoría y por Día */}
+          {/* Filtros por Categoría, Arquetipos y por Día */}
           <div className="mt-8 flex justify-center gap-2 overflow-x-auto pb-2 scrollbar-none">
             {[
               { id: "all", label: `Todas (${demos.length})` },
-              { id: "dia2", label: `🚀 Día 2: 10 Nuevos (${countDia2})` },
-              { id: "dia1", label: `🏛️ Día 1: Top 10 Inicial (${countDia1})` },
-              { id: "gastro", label: `🍽️ Gourmet & Grill (${countGastro})` },
-              { id: "night", label: `🍸 Restobares & Sunset (${countNight})` },
-              { id: "ent", label: `🏨 Hotel & Bowling (${countEnt})` },
+              { id: "dia3", label: `🚀 Día 3 (${countDia3})` },
+              { id: "dia2", label: `⚡ Día 2 (${countDia2})` },
+              { id: "dia1", label: `🏛️ Día 1 (${countDia1})` },
+              { id: "table-order", label: `📱 Auto-Pedido (${countTableOrder})` },
+              { id: "vip-pass", label: `🎟️ Pases VIP (${countVipPass})` },
+              { id: "gourmet", label: `🍷 Gourmet (${countGourmet})` },
+              { id: "delivery", label: `🛵 Delivery 0% (${countDelivery})` },
             ].map((f) => (
               <button
                 key={f.id}
@@ -236,7 +205,8 @@ export function DemosHubClient({ demos }: Props) {
           <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {filteredDemos.map((demo) => {
               const isCopied = copiedSlug === demo.slug;
-              const isDia2 = dia2Slugs.includes(demo.slug);
+              const isDia3 = dia3Slugs.includes(demo.slug) || demo.batch === "dia3";
+              const isDia2 = dia2Slugs.includes(demo.slug) || demo.batch === "dia2";
 
               return (
                 <motion.div
@@ -261,17 +231,21 @@ export function DemosHubClient({ demos }: Props) {
                           />
                         </div>
                         <div>
-                          <div className="flex items-center gap-2">
+                          <div className="flex items-center gap-2 flex-wrap">
                             <h2 className="text-base font-bold text-white tracking-tight">
                               {demo.name}
                             </h2>
-                            {isDia2 ? (
+                            {isDia3 ? (
+                              <span className="inline-flex items-center rounded-full border border-emerald-400/30 bg-emerald-400/10 px-2 py-0.5 text-[10px] font-bold text-emerald-300">
+                                ✨ Día 3
+                              </span>
+                            ) : isDia2 ? (
                               <span className="inline-flex items-center rounded-full border border-amber-400/30 bg-amber-400/10 px-2 py-0.5 text-[10px] font-bold text-amber-300">
-                                Día 2
+                                ⚡ Día 2
                               </span>
                             ) : (
                               <span className="inline-flex items-center rounded-full border border-blue-400/30 bg-blue-400/10 px-2 py-0.5 text-[10px] font-bold text-blue-300">
-                                Día 1
+                                🏛️ Día 1
                               </span>
                             )}
                           </div>
@@ -291,7 +265,7 @@ export function DemosHubClient({ demos }: Props) {
                       </button>
                     </div>
 
-                    <div className="mt-4 flex items-center gap-2">
+                    <div className="mt-4 flex items-center gap-2 flex-wrap">
                       <span
                         className="inline-block rounded-md px-2.5 py-1 text-[11px] font-semibold"
                         style={{
@@ -301,6 +275,27 @@ export function DemosHubClient({ demos }: Props) {
                       >
                         {demo.category}
                       </span>
+
+                      {demo.archetype === "table-ordering" && (
+                        <span className="rounded-md border border-emerald-500/30 bg-emerald-500/10 px-2 py-1 text-[10px] font-bold text-emerald-300">
+                          📱 Auto-Pedido
+                        </span>
+                      )}
+                      {demo.archetype === "vip-access" && (
+                        <span className="rounded-md border border-amber-500/30 bg-amber-500/10 px-2 py-1 text-[10px] font-bold text-amber-300">
+                          🎟️ Pases QR
+                        </span>
+                      )}
+                      {demo.archetype === "gourmet-booking" && (
+                        <span className="rounded-md border border-purple-500/30 bg-purple-500/10 px-2 py-1 text-[10px] font-bold text-purple-300">
+                          🍷 Gourmet
+                        </span>
+                      )}
+                      {demo.archetype === "direct-delivery" && (
+                        <span className="rounded-md border border-rose-500/30 bg-rose-500/10 px-2 py-1 text-[10px] font-bold text-rose-300">
+                          🛵 Delivery 0%
+                        </span>
+                      )}
 
                       <span className="rounded-md border border-white/10 bg-white/5 px-2 py-1 text-[10px] font-medium text-zinc-300">
                         🎬 Reel 15s

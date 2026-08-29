@@ -40,6 +40,11 @@ export function Scene1Hook({ demo }: Props) {
   });
 
   const logoSrc = demo.logo.startsWith("http") ? demo.logo : staticFile(demo.logo);
+  const coverSrc = demo.coverImage
+    ? demo.coverImage.startsWith("http")
+      ? demo.coverImage
+      : staticFile(demo.coverImage)
+    : logoSrc;
 
   return (
     <AbsoluteFill
@@ -281,7 +286,7 @@ export function Scene1Hook({ demo }: Props) {
               }}
             >
               <Img
-                src={demo.coverImage}
+                src={coverSrc}
                 alt={demo.name}
                 style={{
                   width: "100%",

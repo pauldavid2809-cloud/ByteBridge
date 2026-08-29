@@ -28,7 +28,18 @@ const accounts = [
   { slug: "bromcbo", handle: "bromcbo", name: "BRO GastroBar", url: "https://www.instagram.com/bromcbo/" },
   { slug: "ahpresidente", handle: "ahpresidente", name: "Apart Hotel Presidente", url: "https://www.instagram.com/ahpresidente/" },
   { slug: "mykonosconceptve", handle: "mykonosconceptve", name: "Mykonos Concept", url: "https://www.instagram.com/mykonosconceptve/" },
-  { slug: "terraza_restobar", handle: "terraza_restobar", name: "Terraza Restobar", url: "https://www.instagram.com/terraza_restobar/" }
+  { slug: "terraza_restobar", handle: "terraza_restobar", name: "Terraza Restobar", url: "https://www.instagram.com/terraza_restobar/" },
+  // Dia 3
+  { slug: "ranchogalipan", handle: "ranchogalipan", name: "Rancho Galipán", url: "https://www.instagram.com/ranchogalipan/" },
+  { slug: "nomi_sakebar", handle: "nomi.sakebar", name: "Nomi Sake Bar", url: "https://www.instagram.com/nomi.sakebar/" },
+  { slug: "da_ettore", handle: "da_ettore", name: "Da Ettore Ristorante", url: "https://www.instagram.com/da_ettore/" },
+  { slug: "solemiocucinaebar", handle: "solemiocucinaebar", name: "O Sole Mio Cucina e Bar", url: "https://www.instagram.com/solemiocucinaebar/" },
+  { slug: "somos_delish", handle: "somos.delish", name: "Delish Bakery & Brunch", url: "https://www.instagram.com/somos.delish/" },
+  { slug: "yellowstonemcbo", handle: "yellowstonemcbo", name: "Yellowstone Steakhouse", url: "https://www.instagram.com/yellowstonemcbo/" },
+  { slug: "morecheese_mcbo", handle: "morecheese.mcbo", name: "More Cheese Maracaibo", url: "https://www.instagram.com/morecheese.mcbo/" },
+  { slug: "saloncanton_mcbo", handle: "saloncanton_mcbo", name: "Salón Cantón Maracaibo", url: "https://www.instagram.com/saloncanton_mcbo/" },
+  { slug: "holysushi_mcbo", handle: "holysushi_mcbo", name: "Holy Sushi Maracaibo", url: "https://www.instagram.com/holysushi_mcbo/" },
+  { slug: "vivematcha", handle: "vivematcha", name: "Vive Matcha Bar", url: "https://www.instagram.com/vivematcha/" }
 ];
 
 function downloadFile(url, destPath) {
@@ -71,9 +82,15 @@ async function main() {
 
   for (let i = 0; i < accounts.length; i++) {
     const account = accounts[i];
-    console.log(`\n[${i + 1}/${accounts.length}] --- Analizando @${account.handle} ---`);
     const coverDestFile = path.join(outputDir, `${account.slug}-cover.jpg`);
     const logoDestFile = path.join(outputDir, `${account.slug}.jpg`);
+
+    if (fs.existsSync(logoDestFile) && fs.existsSync(coverDestFile)) {
+      console.log(`[${i + 1}/${accounts.length}] ⏩ Ya descargado: @${account.handle}`);
+      continue;
+    }
+
+    console.log(`\n[${i + 1}/${accounts.length}] --- Descargando marca y ambiente para @${account.handle} ---`);
 
     try {
       const page = await browser.newPage();

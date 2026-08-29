@@ -4,151 +4,1272 @@ import { fileURLToPath } from "url";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const rootDir = path.resolve(__dirname, "..");
-const marcasDir = path.join(rootDir, "public", "marcas");
+const demosPath = path.join(__dirname, "..", "data", "demosData.ts");
 
-if (!fs.existsSync(marcasDir)) {
-  fs.mkdirSync(marcasDir, { recursive: true });
-}
+const batch3Entries = `
+  // ==========================================
+  // DÍA 3: 10 NUEVAS DEMOS COMERCIALES MARACAIBO
+  // ==========================================
 
-const BRANDS = [
+  // 21. RANCHO GALIPÁN
   {
-    slug: "estacionholidays",
-    name: "Estación Holidays",
-    initials: "EH",
-    sub: "GASTRO STATION",
-    bg: "#0F172A",
-    color: "#F59E0B",
-    accent: "#D97706",
+    slug: "ranchogalipan",
+    batch: "dia3",
+    archetype: "vip-access",
+    name: "Rancho Galipán",
+    handle: "ranchogalipan",
+    category: "Finca Turística · Parrilladas al Carbón · Day Pass & Eventos",
+    badgeText: "🌴 #TuEscapadaCampestre",
+    tagline: "Día de campo familiar, piscinas, caballos y la mejor parrilla llanera en Maracaibo",
+    heroTitle: "Tu escapada campestre familiar sin salir del Zulia con",
+    heroHighlight: "Day Pass y piscina",
+    heroSubtitle:
+      "Compra tu Day Pass con QR, reserva cabañas privadas con parrillada al carbón, paseos a caballo y piscina para toda la familia.",
+    logo: "/marcas/ranchogalipan.jpg",
+    coverImage: "/marcas/ranchogalipan-cover.jpg",
+    palette: {
+      primary: "#16A34A",
+      primaryHover: "#15803D",
+      secondary: "#CA8A04",
+      accent: "#4ADE80",
+      darkBg: "#05130A",
+      cardBg: "rgba(10, 30, 15, 0.85)",
+      textLight: "#F0FDF4",
+      textMuted: "#86EFAC",
+      border: "rgba(22, 163, 74, 0.25)",
+      glow: "rgba(22, 163, 74, 0.25)",
+    },
+    typography: {
+      fontDisplay: "font-sans",
+      fontBody: "font-sans",
+    },
+    introText:
+      "Rancho Galipán es el complejo agroturístico y campestre predilecto de las familias zulianas. Ofrece amplias áreas verdes, piscina con tobogán, paseos guiados a caballo, bohíos privados con parrilla llanera y actividades recreativas en un entorno natural seguro.",
+    introStats: [
+      { label: "Áreas de Piscina", value: "2", detail: "Adultos y tobogán infantil" },
+      { label: "Pase Day Pass", value: "$8", detail: "Acceso a piscina y áreas verdes" },
+      { label: "Cabañas Privadas", value: "15", detail: "Con parrillera y bohío exclusivo" },
+    ],
+    trustBadges: ["Day Pass Digital con Boleto QR", "Parrilla Llanera a la Leña", "Estacionamiento Privado Vigilado"],
+    whatsappPitchCopy:
+      "Hola equipo de Rancho Galipán! 🌴 Analizamos su concepto agroturístico y campestre y diseñamos esta WebApp a su medida: permite comprar Day Pass con código QR (cero colas en la entrada), cotizar cabañas familiares con parrilladas y reservar eventos corporativos con cálculo automático a tasa oficial.\\n\\nPueden probar la demo y ver su Reel animado aquí:\\n👉 https://byte-bridge-tau.vercel.app/demos/ranchogalipan",
+    address: "Carretera Vía La Concepción / Palito Blanco, Maracaibo, Zulia",
+    mapsUrl: "https://maps.google.com/?q=Rancho+Galipan+Maracaibo",
+    hours: "Viernes a Domingo y Feriados: 9:00 AM - 6:00 PM",
+    phone: "+58 412-0308674",
+    instagramUrl: "https://www.instagram.com/ranchogalipan/",
+    bookingType: "ranch-daypass",
+    bookingTitle: "Pases Day Pass & Reserva de Cabañas",
+    bookingSubtitle: "Adquiere tus entradas digitales para la piscina o reserva una cabaña con parrillera para tu grupo.",
+    bookingOptions: [
+      {
+        id: "day-pass-rancho-adulto",
+        name: "Day Pass Piscina & Finca (Acceso General)",
+        description: "Uso libre de piscinas, áreas verdes, canchas deportivas, zona infantil y estacionamiento.",
+        priceUSD: 8,
+        unit: "por persona",
+        badge: "Más Vendido",
+        features: ["Acceso a piscinas de 9AM a 6PM", "Boleto digital QR instantáneo", "Áreas verdes y canchas", "Estacionamiento privado"],
+      },
+      {
+        id: "cabana-familiar-rancho",
+        name: "Bohío Familiar VIP (Hasta 10 Personas)",
+        description: "Bohío exclusivo con parrillera privada, mesa con sillas, toma eléctrica, enfriador y acceso a piscina.",
+        priceUSD: 45,
+        unit: "por día",
+        badge: "Familiar",
+        features: ["Bohío techado privado", "Parrillera y mesón exclusivo", "Acceso a piscina para el grupo", "Atención preferencial"],
+      },
+      {
+        id: "combo-parrilla-rancho",
+        name: "Combo Rancho Fest (Parrillada 4 Pax + 4 Pases)",
+        description: "4 Day Pass de piscina + Parrilla Llanera completa al carbón (1kg de cortes, yuca, queso de mano y guasacaca).",
+        priceUSD: 55,
+        unit: "para 4 personas",
+        features: ["4 Entradas de piscina", "1kg de carne llanera a la brasa", "Guarniciones criollas completas", "Ahorro del 25%"],
+      },
+    ],
+    categories: [
+      { id: "parrilladas-rancho", name: "Parrillas & Carnes a la Brasa 🥩", icon: "🥩" },
+      { id: "criollo-snacks", name: "Cachapas & Comida Criolla 🌽", icon: "🌽" },
+      { id: "bebidas-campo", name: "Baldes Fríos & Bebidas 🍺", icon: "🍺" },
+    ],
+    menuItems: [
+      {
+        id: "parrilla-llanera-rancho",
+        name: "Parrilla Llanera Galipán (Especial al Carbón)",
+        category: "parrilladas-rancho",
+        description: "Punta trasera y solomo al grill, chorizo ahumado, queso de mano fresco, tostones con queso y guasacaca criolla.",
+        priceUSD: 24,
+        badge: "Firma Rancho",
+        popular: true,
+      },
+      {
+        id: "cachapa-queso-mano",
+        name: "Cachapa de Maíz Dulce con Queso de Mano y Pernil",
+        category: "criollo-snacks",
+        description: "Masa de maíz tierno recién molido con mantequilla criolla, abundante queso de mano y pernil horneado.",
+        priceUSD: 9.5,
+        popular: true,
+      },
+      {
+        id: "balde-cervezas-rancho",
+        name: "Balde Campestre (8 Cervezas Polar Pilsen)",
+        category: "bebidas-campo",
+        description: "Ocho cervezas servidas bajo cero en hielera con hielo para disfrutar junto a la piscina.",
+        priceUSD: 11,
+        popular: true,
+      },
+    ],
+    managerKpis: {
+      activeReservations: 28,
+      capacityPercentage: 88,
+      todaySalesUSD: 1450,
+      avgTicketUSD: 36,
+    },
+    sampleBookings: [
+      { id: "RAN-101", clientName: "José Gregorio Rincón", details: "Bohío Familiar VIP (8 pax)", time: "10:00 AM", status: "en_mesa", pax: 8, totalUSD: 45 },
+      { id: "RAN-102", clientName: "Mariana Albornoz", details: "Combo Rancho Fest (4 pax)", time: "11:30 AM", status: "confirmada", pax: 4, totalUSD: 55 },
+    ],
   },
-  {
-    slug: "mosaico_mcbo",
-    name: "Mosaico Bar",
-    initials: "MS",
-    sub: "RESTAURANTE",
-    bg: "#0D0714",
-    color: "#EC4899",
-    accent: "#8B5CF6",
-  },
-  {
-    slug: "incontrotrattoria",
-    name: "Incontro Trattoria",
-    initials: "IT",
-    sub: "CUCINA ITALIANA",
-    bg: "#120909",
-    color: "#B91C1C",
-    accent: "#FDE047",
-  },
-  {
-    slug: "pinzulia",
-    name: "PinZulia",
-    initials: "PZ",
-    sub: "BOWLING & PINSA",
-    bg: "#070F1E",
-    color: "#0284C7",
-    accent: "#EF4444",
-  },
-  {
-    slug: "alfredscoffeebar",
-    name: "Alfred's Coffee",
-    initials: "AC",
-    sub: "COFFEE BAR",
-    bg: "#140C08",
-    color: "#D97706",
-    accent: "#FBBF24",
-  },
-  {
-    slug: "lakebistro",
-    name: "Lake Bistro",
-    initials: "LB",
-    sub: "LAKEVIEW DINING",
-    bg: "#061316",
-    color: "#0D9488",
-    accent: "#2DD4BF",
-  },
-  {
-    slug: "bromcbo",
-    name: "BRO GastroBar",
-    initials: "BRO",
-    sub: "SMASH & BEER",
-    bg: "#120904",
-    color: "#EA580C",
-    accent: "#F97316",
-  },
-  {
-    slug: "ahpresidente",
-    name: "¡Ah, Presidente!",
-    initials: "AP",
-    sub: "RESTOBAR LOUNGE",
-    bg: "#0F0E08",
-    color: "#CA8A04",
-    accent: "#FACC15",
-  },
-  {
-    slug: "mykonosconceptve",
-    name: "Mykonos Concept",
-    initials: "MYK",
-    sub: "GREEK BEACH CLUB",
-    bg: "#040C16",
-    color: "#0284C7",
-    accent: "#38BDF8",
-  },
-  {
-    slug: "terraza_restobar",
-    name: "Terraza Restobar",
-    initials: "TR",
-    sub: "ROOFTOP & DRINKS",
-    bg: "#0A0512",
-    color: "#7C3AED",
-    accent: "#A78BFA",
-  },
-];
 
-for (const brand of BRANDS) {
-  const svg = `
-<svg width="400" height="400" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <radialGradient id="grad-${brand.slug}" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="${brand.color}" stop-opacity="0.3" />
-      <stop offset="100%" stop-color="${brand.bg}" stop-opacity="1" />
-    </radialGradient>
-    <linearGradient id="stroke-${brand.slug}" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="${brand.accent}" />
-      <stop offset="100%" stop-color="${brand.color}" />
-    </linearGradient>
-  </defs>
+  // 22. NOMI SAKE BAR
+  {
+    slug: "nomi_sakebar",
+    batch: "dia3",
+    archetype: "table-ordering",
+    name: "Nomi Sake Bar",
+    handle: "nomi.sakebar",
+    category: "Izakaya Japonés · Sake Bar · Street Food Asiático",
+    badgeText: "🏮 #TokyoVibesMcbo",
+    tagline: "Ramen artesanal, robata al carbón, coctelería con sake y cultura izakaya",
+    heroTitle: "La auténtica taberna japonesa en Maracaibo con",
+    heroHighlight: "auto-pedido en barra y mesa",
+    heroSubtitle:
+      "Escanea el QR en tu mesa para pedir brochetas yakitori, ramen con caldo de 18 horas y cócteles de autor sin esperar al mesonero.",
+    logo: "/marcas/nomi_sakebar.jpg",
+    coverImage: "/marcas/nomi_sakebar-cover.jpg",
+    palette: {
+      primary: "#E11D48",
+      primaryHover: "#BE123C",
+      secondary: "#F43F5E",
+      accent: "#FDA4AF",
+      darkBg: "#0F0407",
+      cardBg: "rgba(30, 8, 15, 0.85)",
+      textLight: "#FFF1F2",
+      textMuted: "#FECDD3",
+      border: "rgba(225, 29, 72, 0.25)",
+      glow: "rgba(225, 29, 72, 0.25)",
+    },
+    typography: {
+      fontDisplay: "font-sans",
+      fontBody: "font-sans",
+    },
+    introText:
+      "Nomi Sake Bar trae la energía de los callejones gastronómicos de Tokio al corazón de Maracaibo. Un izakaya contemporáneo con barra robatayaki al carbón japonés binchotan, selección de sakes premium importados y ramen artesanal con fideos frescos elaborados al día.",
+    introStats: [
+      { label: "Caldo de Ramen", value: "18h", detail: "Cocción lenta tradicional" },
+      { label: "Variedad de Sakes", value: "12+", detail: "Junmai, Ginjo y Daiginjo" },
+      { label: "Parrilla Robata", value: "Binchotan", detail: "Carbón blanco japonés" },
+    ],
+    trustBadges: ["Auto-Pedido en Mesa con QR", "Sake Flights de Degustación", "Barra Omakase Abierta"],
+    whatsappPitchCopy:
+      "Konnichiwa equipo de Nomi Sake Bar! 🏮 Diseñamos una WebApp a la medida de su izakaya: permite auto-pedido con código QR en mesa y barra para acelerar la rotación de comensales, muestra catas de sake con maridaje y convierte automáticamente a tasa oficial.\\n\\nPrueben la demo interactiva y vean su Reel promocional aquí:\\n👉 https://byte-bridge-tau.vercel.app/demos/nomi_sakebar",
+    address: "Av. 3Y con Calle 78 (Dr. Portillo), Sector Bella Vista, Maracaibo",
+    mapsUrl: "https://maps.google.com/?q=Bella+Vista+Dr+Portillo+Maracaibo",
+    hours: "Martes a Domingo: 6:00 PM - 1:00 AM",
+    phone: "+58 412-0308674",
+    instagramUrl: "https://www.instagram.com/nomi.sakebar/",
+    bookingType: "izakaya-order",
+    bookingTitle: "Reserva de Mesas & Catas de Sake",
+    bookingSubtitle: "Asegura tu lugar en la barra robata o reserva mesa para tu grupo con comanda QR.",
+    bookingOptions: [
+      {
+        id: "mesa-izakaya-nomi",
+        name: "Mesa Salón Izakaya (2 a 4 Pax)",
+        description: "Ubicación en salón con luces de neón y lámparas de papel japonesas + auto-pedido en mesa.",
+        priceUSD: 0,
+        unit: "reserva gratuita",
+        badge: "Popular",
+        features: ["Mesa reservada sin espera", "Auto-pedido QR en mesa", "Selección musical Lo-Fi / Tokyo Beats"],
+      },
+      {
+        id: "degustacion-sake-flight",
+        name: "Experiencia Sake Flight & Yakitori (2 Pax)",
+        description: "Degustación de 3 sakes premium guiados + 4 brochetas robata mixtas (pork belly, pollo tsukune y hongos shiitake).",
+        priceUSD: 36,
+        unit: "para 2 personas",
+        badge: "Exclusivo",
+        features: ["3 Copas de sake por persona", "4 Brochetas robata al carbón", "Explicación de maridaje"],
+      },
+      {
+        id: "nomi-party-lounge",
+        name: "Lounge VIP Nomi Squad (6 a 10 Pax)",
+        description: "Mesa lounge reservada con 2 botellas de sake o cócteles de autor + combo XXL de dumplings y baos.",
+        priceUSD: 95,
+        unit: "consumo mínimo",
+        features: ["Lounge privado para grupos", "2 Botellas de sake premium", "Platillos izakaya para compartir"],
+      },
+    ],
+    categories: [
+      { id: "ramen-bowls", name: "Ramen & Fideos Artesanales 🍜", icon: "🍜" },
+      { id: "robata-yakitori", name: "Robatayaki & Baos 🍢", icon: "🍢" },
+      { id: "sake-cocktails", name: "Sake & Coctelería de Autor 🍶", icon: "🍶" },
+    ],
+    menuItems: [
+      {
+        id: "tonkotsu-ramen-nomi",
+        name: "Tonkotsu Black Garlic Ramen",
+        category: "ramen-bowls",
+        description: "Caldo espeso de cerdo cocido por 18h con aceite de ajo negro quemado, chashu tierno, huevo ajitama marinado y fideos frescos.",
+        priceUSD: 14,
+        badge: "Top 1",
+        popular: true,
+      },
+      {
+        id: "yakitori-pork-belly",
+        name: "Kushiyaki de Pork Belly al Miso Rojo (2 Und)",
+        category: "robata-yakitori",
+        description: "Panceta de cerdo asada al carbón binchotan con glaseado de miso rojo dulce, cebollín y semillas de sésamo.",
+        priceUSD: 8,
+        popular: true,
+      },
+      {
+        id: "tokyo-mule-cocktail",
+        name: "Tokyo Mule con Sake & Jengibre",
+        category: "sake-cocktails",
+        description: "Sake Junmai, cordial de jengibre fresco, jugo de yuzu japonés y soda servido en jarro de cobre.",
+        priceUSD: 9,
+        popular: true,
+      },
+    ],
+    managerKpis: {
+      activeReservations: 19,
+      capacityPercentage: 84,
+      todaySalesUSD: 1150,
+      avgTicketUSD: 31,
+    },
+    sampleBookings: [
+      { id: "NOM-201", clientName: "Alejandro Morillo", details: "Experiencia Sake Flight (2 pax)", time: "08:00 PM", status: "en_mesa", pax: 2, totalUSD: 36 },
+      { id: "NOM-202", clientName: "Claudia Bracho", details: "Mesa Salón Izakaya (4 pax)", time: "09:30 PM", status: "confirmada", pax: 4, totalUSD: 68 },
+    ],
+  },
 
-  <!-- Background -->
-  <rect width="400" height="400" fill="${brand.bg}" rx="60" />
-  <circle cx="200" cy="200" r="160" fill="url(#grad-${brand.slug})" />
+  // 23. DA ETTORE RISTORANTE
+  {
+    slug: "da_ettore",
+    batch: "dia3",
+    archetype: "gourmet-booking",
+    name: "Da Ettore Ristorante",
+    handle: "da_ettore",
+    category: "Ristorante Italiano Clásico · Tradición & Pastas Frescas",
+    badgeText: "🏛️ #TradicionItaliana",
+    tagline: "Más de 30 años de auténtica tradición italiana y recetas de nonna en Maracaibo",
+    heroTitle: "La mesa italiana por excelencia en Maracaibo con",
+    heroHighlight: "recetas clásicas y sommelier",
+    heroSubtitle:
+      "Pastas frescas al huevo, ossobuco alla milanese, carpaccios de lomo y una cava de vinos clásicos italianos para veladas inolvidables.",
+    logo: "/marcas/da_ettore.jpg",
+    coverImage: "/marcas/da_ettore-cover.jpg",
+    palette: {
+      primary: "#991B1B",
+      primaryHover: "#7F1D1D",
+      secondary: "#15803D",
+      accent: "#FDE047",
+      darkBg: "#120606",
+      cardBg: "rgba(28, 10, 10, 0.85)",
+      textLight: "#FFF1F2",
+      textMuted: "#FECDD3",
+      border: "rgba(153, 27, 27, 0.25)",
+      glow: "rgba(153, 27, 27, 0.25)",
+    },
+    typography: {
+      fontDisplay: "font-serif",
+      fontBody: "font-sans",
+    },
+    introText:
+      "Da Ettore es un baluarte de la alta gastronomía italiana clásica en Maracaibo. Con décadas de trayectoria, mantiene vivas las técnicas culinarias del norte y sur de Italia: servicio señorial en sala, pastas caseras amasadas diariamente y maridaje con etiquetas consagradas.",
+    introStats: [
+      { label: "Años de Tradición", value: "30+", detail: "Referente culinario italiano" },
+      { label: "Pastas Frescas", value: "100%", detail: "Amasadas a mano cada mañana" },
+      { label: "Cava de Vinos", value: "45+", detail: "Selección de uvas italianas" },
+    ],
+    trustBadges: ["Mesa con Reserva Garantizada", "Servicio Sommelier en Sala", "Valet Parking Privado"],
+    whatsappPitchCopy:
+      "Buonasera equipo de Da Ettore! 🍝 Reconociendo su impecable trayectoria de más de 30 años en Maracaibo, diseñamos una WebApp a la altura de su prestigio: reserva digital de mesas con plano de sala, carta interactiva de pastas y sommelier digital de vinos italianos.\\n\\nPueden probar la experiencia digital aquí:\\n👉 https://byte-bridge-tau.vercel.app/demos/da_ettore",
+    address: "Av. 4 (Bella Vista) con Calle 67 (Cecilio Acosta), Maracaibo, Zulia",
+    mapsUrl: "https://maps.google.com/?q=Da+Ettore+Maracaibo",
+    hours: "Martes a Domingo: 12:00 PM - 11:00 PM",
+    phone: "+58 412-0308674",
+    instagramUrl: "https://www.instagram.com/da_ettore/",
+    bookingType: "italian-classic",
+    bookingTitle: "Reserva de Mesas & Cenas de Autor",
+    bookingSubtitle: "Asegura tu mesa en salón principal o área reservada con atención señorial.",
+    bookingOptions: [
+      {
+        id: "mesa-tradicion-ettore",
+        name: "Mesa Salón Principal (2 a 4 Pax)",
+        description: "Mesa con mantel de hilo, servicio de panera caliente de la casa con mantequilla de hierbas y carta guiada.",
+        priceUSD: 0,
+        unit: "reserva gratuita",
+        badge: "Más Solicitado",
+        features: ["Mesa reservada sin espera", "Panera artesanal y antipasto de cortesía", "Atención de maître en mesa"],
+      },
+      {
+        id: "cena-degustacion-ettore",
+        name: "Cena Romántica / Aniversario Da Ettore (2 Pax)",
+        description: "Carpaccio di Manzo + 2 Platos de pasta fresca a elegir + 2 Copas de vino Chianti Classico + Tiramisú tradicional.",
+        priceUSD: 52,
+        unit: "para 2 personas",
+        badge: "Recomendado",
+        features: ["Menú 4 tiempos para 2", "2 Copas de vino italiano", "Tiramisú de la casa", "Mesa preferencial con velas"],
+      },
+      {
+        id: "salon-familiar-ettore",
+        name: "Salón Privado Familiar / Negocios (6 a 12 Pax)",
+        description: "Espacio reservado para almuerzos o cenas familiares y corporativas con atención exclusiva.",
+        priceUSD: 120,
+        unit: "consumo mínimo",
+        features: ["Salón climatizado privado", "Mesonero y sommelier dedicado", "Factura fiscal corporativa"],
+      },
+    ],
+    categories: [
+      { id: "pastas-frescas-ettore", name: "Pastas Frescas & Risottos 🍝", icon: "🍝" },
+      { id: "carni-pesce", name: "Carni, Pesce & Carpaccios 🥩", icon: "🥩" },
+      { id: "dolci-vini", name: "Dolci Tradizionali & Vini 🍷", icon: "🍷" },
+    ],
+    menuItems: [
+      {
+        id: "fettuccine-ettore",
+        name: "Fettuccine ai Funghi Porcini & Tartufo",
+        category: "pastas-frescas-ettore",
+        description: "Pasta fresca al huevo salteada con setas porcini italianas, crema de trufa negra y queso Parmigiano Reggiano 24 meses.",
+        priceUSD: 16,
+        badge: "Plato Insignia",
+        popular: true,
+      },
+      {
+        id: "ossobuco-milanese",
+        name: "Ossobuco alla Milanese con Risotto allo Zafferano",
+        category: "carni-pesce",
+        description: "Corte de ternera estofado lentamente en vino blanco y hierbas toscanas, servido sobre risotto cremoso al azafrán.",
+        priceUSD: 22,
+        popular: true,
+      },
+      {
+        id: "carpaccio-manzo-ettore",
+        name: "Carpaccio di Manzo Classico",
+        category: "carni-pesce",
+        description: "Finas láminas de lomo de res con rúcula fresca, lascas de parmesano, alcaparras baby y reducción de balsámico de Módena.",
+        priceUSD: 12,
+        popular: true,
+      },
+    ],
+    managerKpis: {
+      activeReservations: 15,
+      capacityPercentage: 78,
+      todaySalesUSD: 1320,
+      avgTicketUSD: 48,
+    },
+    sampleBookings: [
+      { id: "ETT-301", clientName: "Dr. Luigi Bellini", details: "Cena Romántica (2 pax)", time: "08:00 PM", status: "en_mesa", pax: 2, totalUSD: 52 },
+      { id: "ETT-302", clientName: "Ing. Fernando Urdaneta", details: "Mesa Salón Principal (4 pax)", time: "01:30 PM", status: "confirmada", pax: 4, totalUSD: 94 },
+    ],
+  },
 
-  <!-- Outer Ring -->
-  <circle cx="200" cy="200" r="150" fill="none" stroke="url(#stroke-${brand.slug})" stroke-width="6" stroke-dasharray="6 4" opacity="0.6" />
-  <circle cx="200" cy="200" r="130" fill="none" stroke="${brand.color}" stroke-width="2.5" opacity="0.8" />
+  // 24. O SOLE MIO CUCINA E BAR
+  {
+    slug: "solemiocucinaebar",
+    batch: "dia3",
+    archetype: "gourmet-booking",
+    name: "O Sole Mio Cucina e Bar",
+    handle: "solemiocucinaebar",
+    category: "Cucina Italiana Contemporánea · Terraza & Coctelería",
+    badgeText: "☀️ #SaporeDiNapoli",
+    tagline: "Pastas de autor, pizzas napolitanas al horno de piedra y terraza nocturna",
+    heroTitle: "El sabor del sur de Italia con la mejor",
+    heroHighlight: "coctelería y brisa en terraza",
+    heroSubtitle:
+      "Pizzas con fermentación de 48h, pastas rellenas de autor, sangrías artesanales y mesas en terraza al aire libre.",
+    logo: "/marcas/solemiocucinaebar.jpg",
+    coverImage: "/marcas/solemiocucinaebar-cover.jpg",
+    palette: {
+      primary: "#D97706",
+      primaryHover: "#B45309",
+      secondary: "#B91C1C",
+      accent: "#F59E0B",
+      darkBg: "#0F0A05",
+      cardBg: "rgba(30, 20, 10, 0.85)",
+      textLight: "#FEF3C7",
+      textMuted: "#FDE68A",
+      border: "rgba(217, 119, 6, 0.25)",
+      glow: "rgba(217, 119, 6, 0.25)",
+    },
+    typography: {
+      fontDisplay: "font-sans",
+      fontBody: "font-sans",
+    },
+    introText:
+      "O Sole Mio Cucina e Bar fusiona la autenticidad culinaria napolitana con una vibrante atmósfera contemporánea. Su horno de leña hornea pizzas de borde inflado y masa ligera, mientras su barra de mixología prepara aperitivos italianos para disfrutar en la terraza.",
+    introStats: [
+      { label: "Masa Napolitana", value: "48h", detail: "Fermentación natural en frío" },
+      { label: "Horno de Piedra", value: "450°C", detail: "Cocción napolitana en 90s" },
+      { label: "Ambiente Terraza", value: "Outdoor", detail: "Música y coctelería italiana" },
+    ],
+    trustBadges: ["Mesa en Terraza Garantizada", "Masa Madre 100% Italiana", "Mixología de Autor"],
+    whatsappPitchCopy:
+      "Ciao equipo de O Sole Mio! ☀️ Diseñamos una WebApp especializada para su restaurante: permite reservar mesas en terraza, ordenar su carta de pizzas napolitanas y pastas rellenas con cálculo automático en Bs oficial y gestionar comandas sin confusiones.\\n\\nLes comparto la demo y el video promocional:\\n👉 https://byte-bridge-tau.vercel.app/demos/solemiocucinaebar",
+    address: "Calle 72 con Av. 3F, Sector La Lago, Maracaibo, Zulia",
+    mapsUrl: "https://maps.google.com/?q=Calle+72+con+3F+La+Lago+Maracaibo",
+    hours: "Lunes a Domingo: 12:00 PM - 12:00 AM",
+    phone: "+58 412-0308674",
+    instagramUrl: "https://www.instagram.com/solemiocucinaebar/",
+    bookingType: "sole-mio-table",
+    bookingTitle: "Reserva de Mesas en Salón & Terraza",
+    bookingSubtitle: "Elige tu ambiente preferido y recibe confirmación instantánea con código QR.",
+    bookingOptions: [
+      {
+        id: "mesa-terraza-solemio",
+        name: "Mesa Terraza al Aire Libre (2 a 4 Pax)",
+        description: "Ubicación en terraza con brisa, luces cálidas y música ambiental italiana.",
+        priceUSD: 0,
+        unit: "reserva gratuita",
+        badge: "Más Pedido",
+        features: ["Mesa reservada en terraza", "Jarra de agua aromatizada de cortesía", "Auto-pedido QR disponible"],
+      },
+      {
+        id: "combo-pizza-wine-sole",
+        name: "Noche de Pizza Napolitana & Vino (2 Pax)",
+        description: "1 Pizza Napolitana de autor a elegir + 1 Ensalada Caprese al pesto + 1 Botella de vino tinto o blanco de la casa.",
+        priceUSD: 38,
+        unit: "para 2 personas",
+        badge: "Recomendado",
+        features: ["Pizza napolitana artesanal", "Caprese con mozzarella fior di latte", "Botella de vino incluida", "Mesa preferencial"],
+      },
+      {
+        id: "cumpleanos-solemio",
+        name: "Reserva Cumpleaños / Grupo (6 a 12 Pax)",
+        description: "Mesa amplia con 2 pizzas grandes para compartir + jarra de Sangría Sole Mio + postre con bengala.",
+        priceUSD: 70,
+        unit: "paquete grupo",
+        features: ["Mesa decorada para cumpleaños", "2 Pizzas napolitanas familiares", "Jarra de Sangría artesanal", "Postre con bengala"],
+      },
+    ],
+    categories: [
+      { id: "pizzas-napolitanas", name: "Pizzas al Horno de Leña 🍕", icon: "🍕" },
+      { id: "pastas-sole", name: "Pastas Rellenas & Risottos 🍝", icon: "🍝" },
+      { id: "cocteles-sangrias", name: "Cócteles, Sangrías & Vinos 🍷", icon: "🍷" },
+    ],
+    menuItems: [
+      {
+        id: "pizza-sole-speciale",
+        name: "Pizza O Sole Mio (Burrata & Prosciutto)",
+        category: "pizzas-napolitanas",
+        description: "Base pomodoro San Marzano, mozzarella fresca, coronada con burrata cremosa entera, prosciutto di Parma y rúcula.",
+        priceUSD: 16,
+        badge: "Firma de la Casa",
+        popular: true,
+      },
+      {
+        id: "ravioli-ricotta-espinaca",
+        name: "Ravioloni de Ricotta & Espinaca a la Mantequilla de Salvia",
+        category: "pastas-sole",
+        description: "Raviolis gigantes rellenos de ricotta fresca y espinaca salteada, bañados en mantequilla dorada con salvia y nueces.",
+        priceUSD: 14,
+        popular: true,
+      },
+      {
+        id: "sangria-sole-mio",
+        name: "Jarra de Sangría Sole Mio (Tinta o Blanca)",
+        category: "cocteles-sangrias",
+        description: "Vino seleccionado, frutas de temporada maceradas en licor de naranja, canela y toque espumoso.",
+        priceUSD: 15,
+        popular: true,
+      },
+    ],
+    managerKpis: {
+      activeReservations: 22,
+      capacityPercentage: 86,
+      todaySalesUSD: 1280,
+      avgTicketUSD: 35,
+    },
+    sampleBookings: [
+      { id: "SOL-401", clientName: "Valeria Montero", details: "Mesa Terraza (4 pax)", time: "08:00 PM", status: "en_mesa", pax: 4, totalUSD: 65 },
+      { id: "SOL-402", clientName: "Gabriel Villalobos", details: "Noche Pizza & Vino (2 pax)", time: "09:00 PM", status: "confirmada", pax: 2, totalUSD: 38 },
+    ],
+  },
 
-  <!-- Initials Badge -->
-  <text x="200" y="215" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="${brand.initials.length > 2 ? "64" : "78"}" font-weight="900" text-anchor="middle" fill="#FFFFFF" letter-spacing="2">
-    ${brand.initials}
-  </text>
+  // 25. DELISH BAKERY & BRUNCH
+  {
+    slug: "somos_delish",
+    batch: "dia3",
+    archetype: "direct-delivery",
+    name: "Delish Bakery & Brunch",
+    handle: "somos.delish",
+    category: "Bakery Artesanal · Brunch Gourmet · Cajas de Dulces & Delivery",
+    badgeText: "🧁 #SweetAndBrunch",
+    tagline: "Rolls de canela recién horneados, brunch de autor, café de especialidad y cajas de regalo",
+    heroTitle: "Tu bakery y brunch favorito directo a tu puerta",
+    heroHighlight: "sin comisiones del 25%",
+    heroSubtitle:
+      "Pide cajas de repostería para regalar, combos de brunch gourmet y café de especialidad con checkout directo a WhatsApp y cálculo en Bs BCV.",
+    logo: "/marcas/somos_delish.jpg",
+    coverImage: "/marcas/somos_delish-cover.jpg",
+    palette: {
+      primary: "#F43F5E",
+      primaryHover: "#E11D48",
+      secondary: "#FB7185",
+      accent: "#FEE2E2",
+      darkBg: "#140508",
+      cardBg: "rgba(35, 12, 18, 0.85)",
+      textLight: "#FFF1F2",
+      textMuted: "#FECDD3",
+      border: "rgba(244, 63, 94, 0.25)",
+      glow: "rgba(244, 63, 94, 0.25)",
+    },
+    typography: {
+      fontDisplay: "font-sans",
+      fontBody: "font-sans",
+    },
+    introText:
+      "Delish Bakery es el rincón más dulce de Maracaibo para los amantes de la pastelería artesanal y el brunch contemporáneo. Famosos por sus cinnamon rolls esponjosos, galletas rellenas estilo Nueva York, tostadas francesas y cajas de regalo personalizadas.",
+    introStats: [
+      { label: "Horneado Diario", value: "100%", detail: "Frescura desde las 7:00 AM" },
+      { label: "Cajas de Regalo", value: "500+", detail: "Entregadas para ocasiones especiales" },
+      { label: "Ticket Delivery", value: "$18", detail: "Sin comisiones de apps externas" },
+    ],
+    trustBadges: ["Delivery Directo sin Comisiones", "Cajas de Regalo con Dedicatoria", "Café de Especialidad 100% Arábica"],
+    whatsappPitchCopy:
+      "Hola equipo de Delish! 🧁 Amamos sus postres y brunch en Maracaibo. Para que dejen de perder el 25% de comisión en apps de terceros y reciban pedidos de cajas de regalo organizados por WhatsApp con tasa BCV automática, diseñamos esta WebApp a su medida.\\n\\nMiren la demo y el video promocional aquí:\\n👉 https://byte-bridge-tau.vercel.app/demos/somos_delish",
+    address: "Av. 13A entre Calles 69 y 70, Sector Tierra Negra, Maracaibo",
+    mapsUrl: "https://maps.google.com/?q=Tierra+Negra+Maracaibo+Delish",
+    hours: "Lunes a Domingo: 8:00 AM - 8:00 PM",
+    phone: "+58 412-0308674",
+    instagramUrl: "https://www.instagram.com/somos.delish/",
+    bookingType: "bakery-delivery",
+    bookingTitle: "Cajas de Regalo & Pedidos para Llevar",
+    bookingSubtitle: "Arma tu caja personalizada o reserva mesa para tu brunch de fin de semana.",
+    bookingOptions: [
+      {
+        id: "delish-box-regalo",
+        name: "Delish Gift Box Especial (6 Piezas Surtidas)",
+        description: "2 Cinnamon Rolls con frosting de queso crema + 2 Cookies NY rellenas + 2 Brownies fudgy en caja de lujo con lazo.",
+        priceUSD: 18,
+        unit: "por caja",
+        badge: "Más Vendido",
+        features: ["Caja de regalo decorada con lazo", "Tarjeta con dedicatoria personalizada", "Envío express o retiro en tienda", "Cero comisiones"],
+      },
+      {
+        id: "brunch-box-duo",
+        name: "Brunch Box para 2 (Dulce & Salado)",
+        description: "2 Tostadas de aguacate y huevo poché + 2 Croissants rellenos + 2 Parfaits de yogurt con granola + 2 Iced Lattes.",
+        priceUSD: 26,
+        unit: "para 2 personas",
+        badge: "Brunch",
+        features: ["Combo completo para 2", "2 Cafés de especialidad incluidos", "Empaque térmico para delivery"],
+      },
+      {
+        id: "reserva-mesa-brunch",
+        name: "Reserva Mesa Brunch Salón Delish (2 a 4 Pax)",
+        description: "Asegura tu mesa en salón climatizado para disfrutar de tu desayuno o merienda sin hacer fila.",
+        priceUSD: 0,
+        unit: "reserva gratuita",
+        features: ["Mesa reservada en salón", "Menú digital con QR", "Wi-Fi de alta velocidad para trabajo"],
+      },
+    ],
+    categories: [
+      { id: "bakery-dulce", name: "Cinnamon Rolls & Cookies 🥐", icon: "🥐" },
+      { id: "brunch-salado", name: "Brunch, Tostadas & Huevos 🥑", icon: "🥑" },
+      { id: "cafe-especialidad", name: "Café de Especialidad & Bebidas ☕", icon: "☕" },
+    ],
+    menuItems: [
+      {
+        id: "cinnamon-roll-delish",
+        name: "Classic Cinnamon Roll con Cream Cheese Frosting",
+        category: "bakery-dulce",
+        description: "Masa brioche esponjosa enrollada con canela de Ceilán y azúcar morena, bañada en glaseado tibio de queso crema.",
+        priceUSD: 4.5,
+        badge: "Favorito",
+        popular: true,
+      },
+      {
+        id: "avocado-toast-delish",
+        name: "Avocado Toast con Huevo Poché & Semillas",
+        category: "brunch-salado",
+        description: "Pan de masa madre tostado con puré de aguacate aliñado, huevo poché con yema líquida, microgreens y semillas de chía.",
+        priceUSD: 8,
+        popular: true,
+      },
+      {
+        id: "iced-pistachio-latte",
+        name: "Iced Pistachio Latte de Especialidad",
+        category: "cafe-especialidad",
+        description: "Espresso doble de café arábica, leche cremada, pasta artesanal de pistacho y hielo con crema batida.",
+        priceUSD: 5.5,
+        popular: true,
+      },
+    ],
+    managerKpis: {
+      activeReservations: 34,
+      capacityPercentage: 92,
+      todaySalesUSD: 940,
+      avgTicketUSD: 19,
+    },
+    sampleBookings: [
+      { id: "DEL-501", clientName: "Andrea Quintero", details: "Delish Gift Box (Envío)", time: "11:00 AM", status: "en_mesa", pax: 1, totalUSD: 18 },
+      { id: "DEL-502", clientName: "Mariángel Rivas", details: "Brunch Box para 2", time: "10:30 AM", status: "confirmada", pax: 2, totalUSD: 26 },
+    ],
+  },
 
-  <!-- Subtitle -->
-  <text x="200" y="275" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="16" font-weight="800" text-anchor="middle" fill="${brand.accent}" letter-spacing="4">
-    ${brand.sub}
-  </text>
-</svg>
-  `.trim();
+  // 26. YELLOWSTONE STEAKHOUSE
+  {
+    slug: "yellowstonemcbo",
+    batch: "dia3",
+    archetype: "vip-access",
+    name: "Yellowstone Steakhouse",
+    handle: "yellowstonemcbo",
+    category: "Western Steakhouse · Ribs & Smoked Meats · Rock & Country Nights",
+    badgeText: "🤠 #WildWestSteakhouse",
+    tagline: "Costillas ahumadas en leña de roble, cortes Tomahawk, cervezas artesanales y música en vivo",
+    heroTitle: "El auténtico sabor del salvaje oeste en Maracaibo con",
+    heroHighlight: "pases VIP para conciertos",
+    heroSubtitle:
+      "Reserva tus boletos QR para las noches de Rock & Country en vivo, degusta costillares ahumados y cortes Tomahawk a la brasa.",
+    logo: "/marcas/yellowstonemcbo.jpg",
+    coverImage: "/marcas/yellowstonemcbo-cover.jpg",
+    palette: {
+      primary: "#B45309",
+      primaryHover: "#92400E",
+      secondary: "#78350F",
+      accent: "#F59E0B",
+      darkBg: "#140A04",
+      cardBg: "rgba(35, 18, 8, 0.85)",
+      textLight: "#FEF3C7",
+      textMuted: "#FDE68A",
+      border: "rgba(180, 83, 9, 0.25)",
+      glow: "rgba(180, 83, 9, 0.25)",
+    },
+    typography: {
+      fontDisplay: "font-sans",
+      fontBody: "font-sans",
+    },
+    introText:
+      "Yellowstone Steakhouse recrea la rudeza y calidez de un rancho de Montana en pleno corazón de Maracaibo. Especialistas en carnes ahumadas a baja temperatura durante 12 horas, costillas bañadas en BBQ artesanal de bourbon y noches de música country y rock en vivo.",
+    introStats: [
+      { label: "Ahumado a Leña", value: "12h", detail: "Roble y maderas nobles" },
+      { label: "Música en Vivo", value: "Vie-Sáb", detail: "Bandas de rock y country" },
+      { label: "Cortes Premium", value: "Tomahawk", detail: "Certificados Angus Prime" },
+    ],
+    trustBadges: ["Pases VIP para Conciertos QR", "Costillas al Estilo Texas Smoked", "Amplio Estacionamiento Privado"],
+    whatsappPitchCopy:
+      "Howdy equipo de Yellowstone! 🤠 Su concepto de steakhouse western en Maracaibo es brutal. Para organizar el acceso en sus noches de música en vivo y vender combos de costillas y cortes sin colas en puerta, desarrollamos esta WebApp con pases VIP por código QR.\\n\\nPueden probar la demo y ver su video aquí:\\n👉 https://byte-bridge-tau.vercel.app/demos/yellowstonemcbo",
+    address: "Av. 3F entre Calles 74 y 75, Sector La Lago, Maracaibo, Zulia",
+    mapsUrl: "https://maps.google.com/?q=La+Lago+Maracaibo+Yellowstone",
+    hours: "Miércoles a Domingo: 5:00 PM - 2:00 AM",
+    phone: "+58 412-0308674",
+    instagramUrl: "https://www.instagram.com/yellowstonemcbo/",
+    bookingType: "western-events",
+    bookingTitle: "Tickets de Conciertos & Reservas de Mesas",
+    bookingSubtitle: "Compra tus entradas digitales para las noches temáticas o asegura tu mesa parrillera.",
+    bookingOptions: [
+      {
+        id: "mesa-western-yellow",
+        name: "Reserva de Mesa Salón Western (4 a 6 Pax)",
+        description: "Mesa de madera rústica en salón principal con vista a la tarima musical y servicio de barril.",
+        priceUSD: 20,
+        unit: "consumo mínimo",
+        badge: "Más Solicitado",
+        features: ["Mesa reservada frente a tarima", "Balde de 6 cervezas artesanales", "Auto-pedido QR en mesa"],
+      },
+      {
+        id: "ticket-rock-night-yellow",
+        name: "Pase VIP QR / Noche de Rock & Country en Vivo",
+        description: "Entrada con acceso preferencial sin fila + 1 Trago de bourbon de bienvenida para la noche de concierto.",
+        priceUSD: 10,
+        unit: "por persona",
+        badge: "Eventos",
+        features: ["Acceso sin fila en puerta", "1 Trago de bienvenida", "Boleto digital QR en WhatsApp", "Aforo garantizado"],
+      },
+      {
+        id: "combo-yellowstone-feast",
+        name: "Yellowstone Ribs Feast (4 Pax + Costillar XXL)",
+        description: "Costillar entero de cerdo ahumado 12h en salsa BBQ bourbon + Mazorcas asadas + Papas rústicas + Balde de cervezas.",
+        priceUSD: 65,
+        unit: "para 4 personas",
+        features: ["Costillar XXL ahumado", "Guarniciones western completas", "Balde de 8 cervezas frías", "Mesa reservada"],
+      },
+    ],
+    categories: [
+      { id: "ahumados-ribs", name: "Costillas & Carnes Ahumadas 🍖", icon: "🍖" },
+      { id: "cortes-tomahawk", name: "Cortes Angus al Grill 🥩", icon: "🥩" },
+      { id: "bourbon-beers", name: "Bourbon, Tragos & Cervezas 🥃", icon: "🥃" },
+    ],
+    menuItems: [
+      {
+        id: "texas-smoked-ribs",
+        name: "Texas Smoked Pork Ribs (Costillar Completo)",
+        category: "ahumados-ribs",
+        description: "Costillas de cerdo ahumadas durante 12 horas con astillas de roble, glaseadas en salsa BBQ de bourbon y azúcar morena.",
+        priceUSD: 24,
+        badge: "Especialidad",
+        popular: true,
+      },
+      {
+        id: "tomahawk-yellowstone",
+        name: "Tomahawk Steak Prime (1.2 Kg)",
+        category: "cortes-tomahawk",
+        description: "Impresionante corte de carne con hueso largo sellado a la brasa, acompañado de mantequilla de romero y papas al plomo.",
+        priceUSD: 45,
+        popular: true,
+      },
+      {
+        id: "bourbon-smoked-oldfashioned",
+        name: "Smokey Montana Old Fashioned",
+        category: "bourbon-beers",
+        description: "Bourbon añejo, bíter aromático, piel de naranja caramelizada y humo de canela servido en vaso con hielo esférico.",
+        priceUSD: 9,
+        popular: true,
+      },
+    ],
+    managerKpis: {
+      activeReservations: 24,
+      capacityPercentage: 90,
+      todaySalesUSD: 1680,
+      avgTicketUSD: 42,
+    },
+    sampleBookings: [
+      { id: "YEL-601", clientName: "Guillermo Parra", details: "Mesa Salón Western (6 pax)", time: "09:00 PM", status: "en_mesa", pax: 6, totalUSD: 65 },
+      { id: "YEL-602", clientName: "Beatriz Soto", details: "Pase VIP Rock Night (4 pax)", time: "10:30 PM", status: "confirmada", pax: 4, totalUSD: 40 },
+    ],
+  },
 
-  // Save SVG
-  const svgPath = path.join(marcasDir, `${brand.slug}.svg`);
-  fs.writeFileSync(svgPath, svg);
+  // 27. MORE CHEESE MARACAIBO
+  {
+    slug: "morecheese_mcbo",
+    batch: "dia3",
+    archetype: "table-ordering",
+    name: "More Cheese Maracaibo",
+    handle: "morecheese.mcbo",
+    category: "Burgers con Piscina de Cheddar · Tequeños XXL · Fast Casual",
+    badgeText: "🧀 #AmantesDelQueso",
+    tagline: "El templo del queso fundido: smash burgers bañadas en cheddar, tequeñones y finger food",
+    heroTitle: "Sumérgete en la experiencia de queso fundido con",
+    heroHighlight: "auto-pedido en mesa con QR",
+    heroSubtitle:
+      "Pide hamburguesas con cascada de queso cheddar fundido, tequeñones gigantes y tablas de snacks directo a tu mesa sin hacer cola.",
+    logo: "/marcas/morecheese_mcbo.jpg",
+    coverImage: "/marcas/morecheese_mcbo-cover.jpg",
+    palette: {
+      primary: "#EAB308",
+      primaryHover: "#CA8A04",
+      secondary: "#EA580C",
+      accent: "#FEF08A",
+      darkBg: "#120E04",
+      cardBg: "rgba(35, 28, 10, 0.85)",
+      textLight: "#FEFCE8",
+      textMuted: "#FEF08A",
+      border: "rgba(234, 179, 8, 0.25)",
+      glow: "rgba(234, 179, 8, 0.25)",
+    },
+    typography: {
+      fontDisplay: "font-sans",
+      fontBody: "font-sans",
+    },
+    introText:
+      "More Cheese es el paraíso gastronómico para los fanáticos del queso en Maracaibo. Pioneros en hamburguesas servidas con piscina de queso cheddar derretido al momento en mesa, tequeños gigantes rellenos de mezclas gourmet y porciones abundantes pensadas para compartir.",
+    introStats: [
+      { label: "Cheddar Derretido", value: "100%", detail: "Cascada de queso en mesa" },
+      { label: "Tequeñones XXL", value: "25cm", detail: "Rellenos de queso fundido" },
+      { label: "Auto-Pedido", value: "0.8s", detail: "Comanda enviada a cocina" },
+    ],
+    trustBadges: ["Auto-Pedido con QR en Mesa", "Piscina de Queso Cheddar en Vivo", "Delivery Rápido en Empaque Térmico"],
+    whatsappPitchCopy:
+      "Hola gente de More Cheese! 🧀 Su concepto con la piscina de queso cheddar en Maracaibo es una locura visual. Para evitar las colas de gente esperando mesa y mesoneros en horas pico, les creamos esta WebApp con auto-pedido por código QR directo a cocina y menú multimoneda.\\n\\nLes comparto la demo y el Reel animado:\\n👉 https://byte-bridge-tau.vercel.app/demos/morecheese_mcbo",
+    address: "Av. 8 (Santa Rita) con Calle 67 (Cecilio Acosta), Maracaibo, Zulia",
+    mapsUrl: "https://maps.google.com/?q=Santa+Rita+Cecilio+Acosta+Maracaibo",
+    hours: "Lunes a Domingo: 12:00 PM - 12:00 AM",
+    phone: "+58 412-0308674",
+    instagramUrl: "https://www.instagram.com/morecheese.mcbo/",
+    bookingType: "cheese-order-flow",
+    bookingTitle: "Combos Cheddar & Reservas de Mesas",
+    bookingSubtitle: "Elige tu combo con piscina de queso o aparta mesa para tu grupo de amigos.",
+    bookingOptions: [
+      {
+        id: "mesa-cheddar-more",
+        name: "Reserva de Mesa Cheese Squad (4 a 6 Pax)",
+        description: "Mesa reservada para grupo con servicio prioritario de piscina de queso cheddar y bebidas.",
+        priceUSD: 10,
+        unit: "consumo mínimo",
+        badge: "Más Pedido",
+        features: ["Mesa reservada sin hacer cola", "Auto-pedido QR en mesa", "Servicio de cascada de queso garantizado"],
+      },
+      {
+        id: "combo-cheese-mountain",
+        name: "Combo Cheese Mountain (4 Burgers + Cascada Cheddar)",
+        description: "4 Smash Burgers dobles + Porción XXL de papas fritas con tocineta + Olla de queso cheddar fundido para bañar.",
+        priceUSD: 36,
+        unit: "para 4 personas",
+        badge: "Firma",
+        features: ["4 Smash burgers completas", "Cascada de queso cheddar derretido", "Papas XXL con tocineta", "Ahorro del 20%"],
+      },
+      {
+        id: "pack-tequenones-xxl",
+        name: "Pack Tequeñones XXL (6 Unidades Gigantes)",
+        description: "6 Tequeños de 25cm rellenos de queso semiduro fundido, tocineta y maíz dulce con salsa de ajo.",
+        priceUSD: 15,
+        unit: "para compartir",
+        features: ["6 Tequeños gigantes de 25cm", "Salsa tártara y salsa de maíz dulce", "Masa crujiente artesanal"],
+      },
+    ],
+    categories: [
+      { id: "burgers-cheddar", name: "Burgers con Piscina de Queso 🍔", icon: "🍔" },
+      { id: "tequenas-snacks", name: "Tequeñones XXL & Fries 🍟", icon: "🍟" },
+      { id: "bebidas-shakes", name: "Bebidas & Milkshakes 🥤", icon: "🥤" },
+    ],
+    menuItems: [
+      {
+        id: "more-cheese-burger-volcano",
+        name: "Volcano Cheese Burger (Doble Smash con Cascada)",
+        category: "burgers-cheddar",
+        description: "Doble carne smash Angus, tocineta crujiente, cebolla caramelizada, servida dentro de una torre de queso cheddar fundido.",
+        priceUSD: 9.5,
+        badge: "Top 1 Viral",
+        popular: true,
+      },
+      {
+        id: "tequenon-guayanes-bacon",
+        name: "Tequeñón XXL con Queso Guayanés y Tocineta",
+        category: "tequenas-snacks",
+        description: "Tequeño gigante de 25 cm relleno de queso guayanés derretido y trozos de tocineta ahumada.",
+        priceUSD: 3.5,
+        popular: true,
+      },
+      {
+        id: "papas-cheese-overload",
+        name: "Papas Fritas Cheese Overload",
+        category: "tequenas-snacks",
+        description: "Papas fritas crujientes bañadas en abundante salsa cheddar, carne molida especiada y cebollín fresco.",
+        priceUSD: 7.5,
+        popular: true,
+      },
+    ],
+    managerKpis: {
+      activeReservations: 30,
+      capacityPercentage: 94,
+      todaySalesUSD: 1120,
+      avgTicketUSD: 21,
+    },
+    sampleBookings: [
+      { id: "MCH-701", clientName: "Nelson Bermúdez", details: "Combo Cheese Mountain (4 pax)", time: "08:00 PM", status: "en_mesa", pax: 4, totalUSD: 36 },
+      { id: "MCH-702", clientName: "Gabriela Prieto", details: "Mesa Cheese Squad (5 pax)", time: "09:30 PM", status: "confirmada", pax: 5, totalUSD: 45 },
+    ],
+  },
 
-  // Also save a fallback .jpg file reference or copy
-  const jpgPath = path.join(marcasDir, `${brand.slug}.jpg`);
-  if (!fs.existsSync(jpgPath)) {
-    fs.writeFileSync(jpgPath, svg); // SVG content as compatible fallback
+  // 28. SALÓN CANTÓN MARACAIBO
+  {
+    slug: "saloncanton_mcbo",
+    batch: "dia3",
+    archetype: "gourmet-booking",
+    name: "Salón Cantón Maracaibo",
+    handle: "saloncanton_mcbo",
+    category: "Alta Gastronomía Cantonesa · Banquetes Tradicionales · Pato Laqueado",
+    badgeText: "🥢 #AltaCocinaChina",
+    tagline: "La cúspide de la cocina china tradicional en Venezuela: mesas giratorias, dim sum y pato Pekín",
+    heroTitle: "Banquetes legendarios de la alta cocina cantonesa con",
+    heroHighlight: "mesas giratorias y salones VIP",
+    heroSubtitle:
+      "Reserva tu mesa giratoria para banquetes familiares, degusta pato laqueado Pekín de piel crujiente y arroces al wok de alta gama.",
+    logo: "/marcas/saloncanton_mcbo.jpg",
+    coverImage: "/marcas/saloncanton_mcbo-cover.jpg",
+    palette: {
+      primary: "#DC2626",
+      primaryHover: "#B91C1C",
+      secondary: "#B45309",
+      accent: "#FBBF24",
+      darkBg: "#140505",
+      cardBg: "rgba(35, 10, 10, 0.85)",
+      textLight: "#FEF2F2",
+      textMuted: "#FECACA",
+      border: "rgba(220, 38, 38, 0.25)",
+      glow: "rgba(220, 38, 38, 0.25)",
+    },
+    typography: {
+      fontDisplay: "font-serif",
+      fontBody: "font-sans",
+    },
+    introText:
+      "Salón Cantón es la institución gastronómica cantonesa por excelencia en Venezuela. En Maracaibo, ofrece una experiencia imperial con salones privados climatizados, mesas redondas giratorias para banquetes familiares, maestros chefs cantoneses y platos icónicos de la cocina imperial china.",
+    introStats: [
+      { label: "Tradición Cantonesa", value: "40+", detail: "Años de excelencia en el país" },
+      { label: "Mesas Giratorias", value: "Lazy Susan", detail: "Para banquetes de 6 a 12 pax" },
+      { label: "Pato Pekín", value: "Auténtico", detail: "Asado a leña con piel crocante" },
+    ],
+    trustBadges: ["Mesa Giratoria de Banquete Reservada", "Maestros Chefs de Cantón", "Salones VIP Ejecutivos Climatizados"],
+    whatsappPitchCopy:
+      "Ni hao equipo de Salón Cantón! 🥢 Para honrar su prestigio como el máximo referente de alta cocina cantonesa en Maracaibo, diseñamos esta WebApp: permite reservar mesas giratorias familiares y salones privados VIP, ordenar menús de banquete con maridaje y conversión multimoneda en tiempo real.\\n\\nPueden explorar la demo y su Reel animado aquí:\\n👉 https://byte-bridge-tau.vercel.app/demos/saloncanton_mcbo",
+    address: "Av. 3Y (San Martín) entre Calles 74 y 75, Sector La Lago, Maracaibo",
+    mapsUrl: "https://maps.google.com/?q=Salon+Canton+Maracaibo",
+    hours: "Lunes a Domingo: 11:30 AM - 11:00 PM",
+    phone: "+58 412-0308674",
+    instagramUrl: "https://www.instagram.com/saloncanton_mcbo/",
+    bookingType: "cantonese-banquet",
+    bookingTitle: "Reserva de Mesas Giratorias & Banquetes VIP",
+    bookingSubtitle: "Reserva tu mesa imperial con Lazy Susan para compartir en familia o eventos corporativos.",
+    bookingOptions: [
+      {
+        id: "mesa-banquete-canton",
+        name: "Mesa Giratoria Banquete Imperial (6 a 10 Pax)",
+        description: "Mesa redonda con centro giratorio Lazy Susan en salón principal con servicio de té jazmín de cortesía.",
+        priceUSD: 0,
+        unit: "reserva gratuita",
+        badge: "Más Solicitado",
+        features: ["Mesa giratoria familiar garantizada", "Servicio de té de jazmín en tetera", "Atención guiada por capitán de sala"],
+      },
+      {
+        id: "banquete-imperial-4pax",
+        name: "Banquete Imperial Cantón Completo (4 Pax)",
+        description: "Pato Laqueado Pekín con crepes + Arroz Cantón Especial + Lumpias crocantes + Pollo con almendras + Costillitas agridulces.",
+        priceUSD: 68,
+        unit: "para 4 personas",
+        badge: "Recomendado",
+        features: ["5 Platos icónicos para compartir", "Pato Pekín con crepes y salsa hoisin", "Porciones abundantes", "Ahorro del 25%"],
+      },
+      {
+        id: "salon-vip-imperial",
+        name: "Salón Privado Dinastía VIP (8 a 15 Pax)",
+        description: "Salón exclusivo climatizado con pantalla para reuniones corporativas o celebraciones íntimas.",
+        priceUSD: 150,
+        unit: "consumo mínimo",
+        features: ["Salón privado con puerta acústica", "Mesonero exclusivo", "Facturación corporativa"],
+      },
+    ],
+    categories: [
+      { id: "pato-especialidades", name: "Pato Pekín & Especialidades 🦆", icon: "🦆" },
+      { id: "arroces-fideos-wok", name: "Arroces al Wok & Dim Sum 🍚", icon: "🍚" },
+      { id: "carnes-mariscos-canton", name: "Carnes, Pollo & Mariscos 🍤", icon: "🍤" },
+    ],
+    menuItems: [
+      {
+        id: "pato-pekin-canton",
+        name: "Pato Laqueado Pekín Imperial (Medio Pato)",
+        category: "pato-especialidades",
+        description: "Pato asado tradicional con piel ultra crujiente, servido con finas crepes al vapor, cebollín fresco, pepino y salsa hoisin.",
+        priceUSD: 26,
+        badge: "Plato Supremo",
+        popular: true,
+      },
+      {
+        id: "arroz-canton-especial",
+        name: "Arroz Frito Especial Salón Cantón",
+        category: "arroces-fideos-wok",
+        description: "Arroz al wok con camarones jumbo, lechón ahumado cantones, pollo marinado, brotes de soja y cebollín.",
+        priceUSD: 12.5,
+        popular: true,
+      },
+      {
+        id: "costillitas-sal-pimienta",
+        name: "Costillitas de Cerdo a la Sal y Pimienta de Sichuan",
+        category: "carnes-mariscos-canton",
+        description: "Crujientes bocados de costilla de cerdo salteados al wok con ajo dorado, pimientos verdes y pimienta aromática de Sichuan.",
+        priceUSD: 14,
+        popular: true,
+      },
+    ],
+    managerKpis: {
+      activeReservations: 18,
+      capacityPercentage: 82,
+      todaySalesUSD: 1850,
+      avgTicketUSD: 54,
+    },
+    sampleBookings: [
+      { id: "CAN-801", clientName: "Ing. Roberto Wong", details: "Banquete Imperial (4 pax)", time: "01:30 PM", status: "en_mesa", pax: 4, totalUSD: 68 },
+      { id: "CAN-802", clientName: "Dra. Carolina Guanipa", details: "Mesa Giratoria (8 pax)", time: "08:30 PM", status: "confirmada", pax: 8, totalUSD: 140 },
+    ],
+  },
+
+  // 29. HOLY SUSHI MARACAIBO
+  {
+    slug: "holysushi_mcbo",
+    batch: "dia3",
+    archetype: "direct-delivery",
+    name: "Holy Sushi Maracaibo",
+    handle: "holysushi_mcbo",
+    category: "Sushi Fusión Nikkei · Barcos de Sushi · Delivery WhatsApp",
+    badgeText: "🍣 #HolyExperience",
+    tagline: "Rolls de autor con topping flameados, ceviches nikkei, barcos para fiestas y delivery veloz",
+    heroTitle: "Sushi gourmet en tu mesa y barcos para fiestas",
+    heroHighlight: "sin comisiones de apps",
+    heroSubtitle:
+      "Pide barcos de sushi de 30 a 50 piezas para tus reuniones, rolls flameados al soplete y ceviches nikkei con entrega express a domicilio.",
+    logo: "/marcas/holysushi_mcbo.jpg",
+    coverImage: "/marcas/holysushi_mcbo-cover.jpg",
+    palette: {
+      primary: "#4F46E5",
+      primaryHover: "#4338CA",
+      secondary: "#818CF8",
+      accent: "#A5B4FC",
+      darkBg: "#070614",
+      cardBg: "rgba(18, 15, 40, 0.85)",
+      textLight: "#EEF2FF",
+      textMuted: "#C7D2FE",
+      border: "rgba(79, 70, 229, 0.25)",
+      glow: "rgba(79, 70, 229, 0.25)",
+    },
+    typography: {
+      fontDisplay: "font-sans",
+      fontBody: "font-sans",
+    },
+    introText:
+      "Holy Sushi es el referente del sushi nikkei contemporáneo y delivery premium en Maracaibo. Destaca por sus rolls con toppings flameados al soplete, salsas de autor artesanales, imponentes barcos de sushi para eventos y empaques térmicos de alta calidad.",
+    introStats: [
+      { label: "Piezas por Barco", value: "30-50", detail: "Ideal para fiestas y reuniones" },
+      { label: "Topping Flameado", value: "Torched", detail: "Salmón y atún al soplete" },
+      { label: "Delivery Express", value: "35 min", detail: "Empaque sellado de alta gama" },
+    ],
+    trustBadges: ["Delivery WhatsApp sin Comisiones", "Barcos de Sushi para Eventos", "Pescados Frescos Grado Sashimi"],
+    whatsappPitchCopy:
+      "Hola equipo de Holy Sushi! 🍣 Amamos sus rolls flameados y barcos para eventos en Maracaibo. Diseñamos una WebApp especializada para potenciar su delivery: catálogo con fotos HD, cotizador de barcos de 30/50 piezas y checkout directo a WhatsApp con tasa BCV automática.\\n\\nLes comparto la demo y el Reel animado:\\n👉 https://byte-bridge-tau.vercel.app/demos/holysushi_mcbo",
+    address: "Av. 3F con Calle 70, Sector La Lago, Maracaibo, Zulia",
+    mapsUrl: "https://maps.google.com/?q=La+Lago+Calle+70+Maracaibo+Sushi",
+    hours: "Martes a Domingo: 12:00 PM - 11:30 PM",
+    phone: "+58 412-0308674",
+    instagramUrl: "https://www.instagram.com/holysushi_mcbo/",
+    bookingType: "sushi-party-delivery",
+    bookingTitle: "Barcos para Eventos & Delivery Express",
+    bookingSubtitle: "Ordena tu barco de sushi para fiestas o reserva mesa en nuestra barra nikkei.",
+    bookingOptions: [
+      {
+        id: "holy-boat-party",
+        name: "Holy Boat Party Pack (40 Piezas Surtidas)",
+        description: "10 Fuji Flame + 10 Ebi Crunchy + 10 Tuna Nikkei + 10 Alaska Especial en barco decorativo de presentación.",
+        priceUSD: 38,
+        unit: "barco 40 piezas",
+        badge: "Más Vendido",
+        features: ["Barco decorativo incluido", "4 Rolls de autor variados", "Salsas de autor (anguila trufada, fuji y soya)", "Ideal para 4 personas"],
+      },
+      {
+        id: "combo-sushi-duo",
+        name: "Combo Holy Duo (20 Piezas + Ceviche Nikkei)",
+        description: "2 Rolls de autor de 10 bocados + Ceviche de pesca blanca y camarón al ají amarillo + 2 Bebidas.",
+        priceUSD: 24,
+        unit: "para 2 personas",
+        badge: "Recomendado",
+        features: ["20 Bocados de sushi fresco", "Ceviche nikkei abundante", "2 Bebidas frías"],
+      },
+      {
+        id: "reserva-barra-sushi",
+        name: "Mesa Salón / Barra Sushi Holy (2 a 4 Pax)",
+        description: "Reserva tu mesa en salón climatizado con ambientación moderna y atención directa de sushiman.",
+        priceUSD: 0,
+        unit: "reserva gratuita",
+        features: ["Mesa reservada sin espera", "Auto-pedido QR en mesa", "Atención preferencial"],
+      },
+    ],
+    categories: [
+      { id: "rolls-flameados", name: "Rolls de Autor Flameados 🍣", icon: "🍣" },
+      { id: "barcos-party", name: "Barcos & Combos de Fiesta 🍱", icon: "🍱" },
+      { id: "ceviches-entradas", name: "Ceviches Nikkei & Gyozas 🥟", icon: "🥟" },
+    ],
+    menuItems: [
+      {
+        id: "holy-fuji-roll",
+        name: "Holy Fuji Roll (10 Bocados Flameados)",
+        category: "rolls-flameados",
+        description: "Camarón tempura, queso crema, aguacate, cubierto de salmón fresco flameado al soplete con salsa fuji y masago.",
+        priceUSD: 11,
+        badge: "Top 1 Viral",
+        popular: true,
+      },
+      {
+        id: "ceviche-nikkei-holy",
+        name: "Ceviche Nikkei al Ají Amarillo",
+        category: "ceviches-entradas",
+        description: "Pesca blanca del día, calamares crocantes y aguacate en leche de tigre al ají amarillo con batata glaseada y canchita.",
+        priceUSD: 13,
+        popular: true,
+      },
+      {
+        id: "gyozas-cerdo-holy",
+        name: "Gyozas de Cerdo y Cebollín al Vapor y Grill (5 Und)",
+        category: "ceviches-entradas",
+        description: "Empanaditas japonesas artesanales rellenas de cerdo especiado con salsa ponzu de la casa.",
+        priceUSD: 7,
+        popular: true,
+      },
+    ],
+    managerKpis: {
+      activeReservations: 26,
+      capacityPercentage: 89,
+      todaySalesUSD: 1420,
+      avgTicketUSD: 29,
+    },
+    sampleBookings: [
+      { id: "HOL-901", clientName: "Paola Villasmil", details: "Holy Boat Party 40 Pzs", time: "08:30 PM", status: "en_mesa", pax: 4, totalUSD: 38 },
+      { id: "HOL-902", clientName: "Mauricio Faria", details: "Combo Holy Duo (2 pax)", time: "07:30 PM", status: "confirmada", pax: 2, totalUSD: 24 },
+    ],
+  },
+
+  // 30. VIVE MATCHA BAR
+  {
+    slug: "vivematcha",
+    batch: "dia3",
+    archetype: "table-ordering",
+    name: "Vive Matcha Bar",
+    handle: "vivematcha",
+    category: "Matcha Bar de Especialidad · Açaí Bowls · Wellness & Healthy Food",
+    badgeText: "🍵 #MatchaLoverMcbo",
+    tagline: "Matcha ceremonial japonés grado Uji, latte art, bowls energéticos y repostería saludable sin azúcar",
+    heroTitle: "Tu dosis diaria de energía verde con",
+    heroHighlight: "auto-pedido en barra y pick-up express",
+    heroSubtitle:
+      "Pide matcha lattes ceremoniales de Kioto, açaí bowls con frutas frescas y postres keto sin hacer fila en el mostrador.",
+    logo: "/marcas/vivematcha.jpg",
+    coverImage: "/marcas/vivematcha-cover.jpg",
+    palette: {
+      primary: "#65A30D",
+      primaryHover: "#4D7C0F",
+      secondary: "#84CC16",
+      accent: "#BEF264",
+      darkBg: "#071203",
+      cardBg: "rgba(15, 30, 8, 0.85)",
+      textLight: "#F7FEE7",
+      textMuted: "#D9F99D",
+      border: "rgba(101, 163, 13, 0.25)",
+      glow: "rgba(101, 163, 13, 0.25)",
+    },
+    typography: {
+      fontDisplay: "font-sans",
+      fontBody: "font-sans",
+    },
+    introText:
+      "Vive Matcha es el primer matcha bar de especialidad en Maracaibo, dedicado al bienestar y la nutrición consciente. Importa directamente matcha ceremonial de grado ceremonial de Uji (Kioto), combinándolo con leches vegetales, adaptógenos, açaí bowls orgánicos y pastelería sin gluten ni azúcar refinada.",
+    introStats: [
+      { label: "Origen del Matcha", value: "Uji, Japón", detail: "100% Ceremonial Grade" },
+      { label: "Bebidas Saludables", value: "20+", detail: "Lattes, cold brews y tonics" },
+      { label: "Opciones Wellness", value: "Keto & Vegan", detail: "Sin gluten ni azúcares añadidos" },
+    ],
+    trustBadges: ["Auto-Pedido en Barra & Mesa con QR", "Matcha Ceremonial 100% Orgánico", "Pick-up Express sin Colas"],
+    whatsappPitchCopy:
+      "Hola equipo de Vive Matcha! 🍵 Su propuesta de bienestar y matcha ceremonial en Maracaibo es increíble. Para que su comunidad de clientes pida rápido desde la mesa o barra sin hacer cola en el mostrador y ordene pick-up express antes del gimnasio, diseñamos esta WebApp a su medida.\\n\\nMiren la demo interactiva y su Reel animado aquí:\\n👉 https://byte-bridge-tau.vercel.app/demos/vivematcha",
+    address: "Av. 10 entre Calles 66 y 67, Sector Cecilio Acosta, Maracaibo",
+    mapsUrl: "https://maps.google.com/?q=Cecilio+Acosta+Av+10+Maracaibo+Matcha",
+    hours: "Lunes a Sábado: 7:30 AM - 7:30 PM · Domingos: 8:30 AM - 4:00 PM",
+    phone: "+58 412-0308674",
+    instagramUrl: "https://www.instagram.com/vivematcha/",
+    bookingType: "matcha-wellness",
+    bookingTitle: "Combos Energy & Pick-up Express",
+    bookingSubtitle: "Ordena tu latte ceremonial para llevar o reserva mesa en nuestro espacio zen.",
+    bookingOptions: [
+      {
+        id: "combo-matcha-bowl",
+        name: "Combo Energy Morning (Matcha Latte + Açaí Bowl)",
+        description: "1 Ceremonial Iced Matcha Latte con leche de almendras + 1 Tropical Açaí Bowl con fresas, arándanos, coco y granola.",
+        priceUSD: 12,
+        unit: "combo completo",
+        badge: "Más Vendido",
+        features: ["Matcha ceremonial Uji grado A", "Açaí orgánico con superfoods", "Pick-up express en 5 min o consumo en local"],
+      },
+      {
+        id: "tasting-flight-matcha",
+        name: "Matcha Tasting Flight (3 Variedades)",
+        description: "3 Mini lattes de autor: Ceremonial Classic + Strawberry Vanilla Matcha + Blue Spirulina Cloud.",
+        priceUSD: 14,
+        unit: "degustación",
+        badge: "Experiencia",
+        features: ["3 Lattes de especialidad", "Mini cookie keto de cortesía", "Explicación de beneficios y antioxidantes"],
+      },
+      {
+        id: "reserva-espacio-zen",
+        name: "Reserva Mesa Zen / Coworking (1 a 4 Pax)",
+        description: "Mesa en salón con luz natural, Wi-Fi ultra rápido, enchufes y música relajante para trabajar.",
+        priceUSD: 0,
+        unit: "reserva gratuita",
+        features: ["Mesa reservada para trabajo/estudio", "Wi-Fi de alta velocidad", "Auto-pedido QR directo a mesa"],
+      },
+    ],
+    categories: [
+      { id: "matcha-lattes", name: "Matcha Ceremonial & Lattes 🍵", icon: "🍵" },
+      { id: "acai-bowls", name: "Açaí Bowls & Superfoods 🫐", icon: "🫐" },
+      { id: "bakery-healthy", name: "Postres Saludables & Keto 🥑", icon: "🥑" },
+    ],
+    menuItems: [
+      {
+        id: "iced-strawberry-matcha",
+        name: "Iced Strawberry Cloud Matcha Latte",
+        category: "matcha-lattes",
+        description: "Compota artesanal de fresas naturales, leche de avena fría y capa superior de matcha ceremonial batido a mano.",
+        priceUSD: 6.5,
+        badge: "Top 1 Viral",
+        popular: true,
+      },
+      {
+        id: "acai-power-bowl",
+        name: "Tropical Açaí Power Bowl",
+        category: "acai-bowls",
+        description: "Base cremosa de açaí orgánico coronada con fresas, banano, arándanos, semillas de chía, coco tostado y mantequilla de almendras.",
+        priceUSD: 8.5,
+        popular: true,
+      },
+      {
+        id: "matcha-cookie-keto",
+        name: "Galleta Keto de Matcha & Chocolate Blanco",
+        category: "bakery-healthy",
+        description: "Elaborada con harina de almendras, matcha ceremonial y chips de chocolate blanco sin azúcar.",
+        priceUSD: 3.5,
+        popular: true,
+      },
+    ],
+    managerKpis: {
+      activeReservations: 20,
+      capacityPercentage: 86,
+      todaySalesUSD: 820,
+      avgTicketUSD: 16,
+    },
+    sampleBookings: [
+      { id: "MAT-1001", clientName: "Daniela Casanova", details: "Combo Energy Morning", time: "09:00 AM", status: "en_mesa", pax: 1, totalUSD: 12 },
+      { id: "MAT-1002", clientName: "Santiago Vera", details: "Matcha Tasting Flight (2 pax)", time: "11:00 AM", status: "confirmada", pax: 2, totalUSD: 14 },
+    ],
+  },
+`;
+
+let content = fs.readFileSync(demosPath, "utf-8");
+
+// Assign archetypes and batch to Batch 1 and Batch 2 if not present
+const archetypesMap = {
+  ecoland: { batch: "dia1", archetype: "vip-access" },
+  grandchef: { batch: "dia1", archetype: "gourmet-booking" },
+  zuhouse: { batch: "dia1", archetype: "table-ordering" },
+  tannous: { batch: "dia1", archetype: "gourmet-booking" },
+  room101: { batch: "dia1", archetype: "vip-access" },
+  labarraventura: { batch: "dia1", archetype: "vip-access" },
+  ciaogastrobar: { batch: "dia1", archetype: "gourmet-booking" },
+  blaomcbo: { batch: "dia1", archetype: "table-ordering" },
+  pittsbowling: { batch: "dia1", archetype: "vip-access" },
+  corner: { batch: "dia1", archetype: "table-ordering" },
+  estacionholidays: { batch: "dia2", archetype: "gourmet-booking" },
+  mosaico_mcbo: { batch: "dia2", archetype: "table-ordering" },
+  incontrotrattoria: { batch: "dia2", archetype: "gourmet-booking" },
+  pinzulia: { batch: "dia2", archetype: "vip-access" },
+  alfredscoffeebar: { batch: "dia2", archetype: "direct-delivery" },
+  lakebistro: { batch: "dia2", archetype: "gourmet-booking" },
+  bromcbo: { batch: "dia2", archetype: "table-ordering" },
+  ahpresidente: { batch: "dia2", archetype: "vip-access" },
+  mykonosconceptve: { batch: "dia2", archetype: "vip-access" },
+  terraza_restobar: { batch: "dia2", archetype: "gourmet-booking" },
+};
+
+for (const [slug, meta] of Object.entries(archetypesMap)) {
+  const regex = new RegExp('(slug:\\s*["\']' + slug + '["\'],)', 'm');
+  if (content.match(regex) && !content.includes('slug: "' + slug + '",\n    batch:')) {
+    content = content.replace(regex, '$1\n    batch: "' + meta.batch + '",\n    archetype: "' + meta.archetype + '",');
   }
-
-  console.log(`✅ Logo generado para [${brand.slug}] en public/marcas/`);
 }
 
-console.log("🎉 ¡Todos los logos vectoriales generados con éxito!");
+// Append Batch 3 entries before the closing ]; of businessDemos
+content = content.replace(
+  /\n\]\;\n\nexport function getDemoBySlug/,
+  batch3Entries + '\n];\n\nexport function getDemoBySlug'
+);
+
+fs.writeFileSync(demosPath, content, 'utf-8');
+console.log('✓ data/demosData.ts updated with all 30 businesses and archetypes!');

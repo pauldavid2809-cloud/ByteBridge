@@ -1,8 +1,11 @@
-import { AbsoluteFill, Sequence, interpolate, spring, useCurrentFrame, useVideoConfig } from "remotion";
+import { AbsoluteFill, Sequence, useCurrentFrame } from "remotion";
 import { BusinessDemo } from "../data/demosData";
 import { Scene1Hook } from "./scenes/Scene1Hook";
 import { Scene2Menu } from "./scenes/Scene2Menu";
 import { Scene3QrPass } from "./scenes/Scene3QrPass";
+import { Scene3TableOrder } from "./scenes/Scene3TableOrder";
+import { Scene3SommelierBooking } from "./scenes/Scene3SommelierBooking";
+import { Scene3DirectDelivery } from "./scenes/Scene3DirectDelivery";
 import { Scene4ManagerCta } from "./scenes/Scene4ManagerCta";
 
 export type PromoReelProps = {
@@ -50,9 +53,17 @@ export function PromoReel({ demo }: PromoReelProps) {
         <Scene2Menu demo={demo} />
       </Sequence>
 
-      {/* Escena 3: Pase VIP QR y Validación Óptica (7.5s - 11.2s = frames 225 a 335) */}
+      {/* Escena 3: Mecanismo Operativo Diferenciado según Arquetipo (7.5s - 11.2s = frames 225 a 335) */}
       <Sequence from={225} durationInFrames={110}>
-        <Scene3QrPass demo={demo} />
+        {demo.archetype === "table-ordering" ? (
+          <Scene3TableOrder demo={demo} />
+        ) : demo.archetype === "gourmet-booking" ? (
+          <Scene3SommelierBooking demo={demo} />
+        ) : demo.archetype === "direct-delivery" ? (
+          <Scene3DirectDelivery demo={demo} />
+        ) : (
+          <Scene3QrPass demo={demo} />
+        )}
       </Sequence>
 
       {/* Escena 4: Modo Gerente y Pitch ByteBridge (11.2s - 15.0s = frames 335 a 450) */}

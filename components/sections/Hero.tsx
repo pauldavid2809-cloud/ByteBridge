@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { Logo } from "@/components/Logo";
 import { WhatsAppIcon } from "@/components/icons/WhatsAppIcon";
 import { Button } from "@/components/ui/Button";
@@ -8,6 +9,7 @@ import { HeroSimulator } from "@/components/sections/HeroSimulator";
 import { whatsappLink } from "@/lib/config";
 import { useLanguage } from "@/context/LanguageContext";
 import { dictionary } from "@/data/dictionary";
+import { ByteBridgeReelModal } from "@/components/ByteBridgeReelModal";
 
 /**
  * Hero: responde en 5 segundos qué hago, qué gana el cliente y genera confianza inmediata.
@@ -16,6 +18,7 @@ import { dictionary } from "@/data/dictionary";
 export function Hero() {
   const { lang } = useLanguage();
   const t = dictionary.hero;
+  const [reelOpen, setReelOpen] = useState(false);
 
   return (
     <section
@@ -63,9 +66,13 @@ export function Hero() {
                 <WhatsAppIcon className="h-4.5 w-4.5" />
                 {t.ctaWhatsapp[lang]}
               </Button>
-              <Button href="#proyectos" variant="secondary" size="lg" className="w-full sm:w-auto">
-                {t.ctaProjects[lang]}
-              </Button>
+              <button
+                onClick={() => setReelOpen(true)}
+                className="inline-flex items-center justify-center gap-2 rounded-xl border border-accent/40 bg-accent/10 px-5 py-3.5 text-sm font-bold text-accent transition-all hover:bg-accent/20 hover:border-accent active:scale-95 shadow-lg shadow-accent/10"
+              >
+                <span>🎬</span>
+                <span>{lang === "es" ? "Ver Reel Oficial (19s)" : "Watch Official Reel"}</span>
+              </button>
             </div>
 
             {/* Micro-puntos de confianza y conversión */}
@@ -93,6 +100,9 @@ export function Hero() {
           </div>
         </div>
       </div>
+
+      {/* Modal de previsualización interactiva del Reel en Remotion */}
+      <ByteBridgeReelModal isOpen={reelOpen} onClose={() => setReelOpen(false)} />
     </section>
   );
 }
