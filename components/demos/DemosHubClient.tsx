@@ -22,6 +22,17 @@ export function DemosHubClient({ demos }: Props) {
   const [modalTab, setModalTab] = useState<"pitch" | "voice" | "admin">("pitch");
 
   const voiceScripts: Record<string, string> = {
+    // Dia 4
+    saukorestaurant: "Hola equipo de Sauko Restaurant, les habla Paul David de ByteBridge. Estuve analizando cómo optimizar la experiencia de sus comensales en Valera: les preparé un Reel comercial y una WebApp con auto-pedido por código QR en mesa y comanda directa a barra para agilizar la rotación de mesas. Miren el video adjunto y pruébenla en el link.",
+    genovia_val: "Hola equipo de Genovia Steak House, les saluda Paul David de ByteBridge. Su propuesta de cortes nobles y madurados en Mañongo es extraordinaria. Les diseñé una WebApp con reserva de mesas VIP y Chef's Table con selector de cortes Dry-Aged y confirmación a WhatsApp. Les dejo el video de 15 segundos y el enlace.",
+    yakitoribarccs: "Konnichiwa equipo de Yakitori Bar Caracas, habla Paul David de ByteBridge. Nos encanta su concepto izakaya en Valle Arriba. Les armé una WebApp con auto-pedido QR continuo de brochetas yakitori al carbón y delivery propio sin pagar comisiones del 25%. Miren el video comercial que les adjunté.",
+    santogrillccs: "Hola amigos de Santo Grill Caracas, les saluda Paul David de ByteBridge. Su ceviche de chicharrón y sus parrillas familiares en Santa Paula son de lo más top. Para que las mesas grandes ordenen términos de carne y bebidas sin demoras, les creamos esta WebApp con comanda QR. Échenle un ojo a la demo.",
+    kiuboletexmexfood: "Hola gente de Kiúbole Tex-Mex, habla Paul David de ByteBridge. Sus tacos de birria en la 72 son legendarios. Para eliminar el colapso del chat los fines de semana y que sus clientes pidan delivery en 30 segundos con tasa BCV automática, les armé esta WebApp directa. Les comparto el video y el link.",
+    lapagodaccs: "Ni hao equipo de La Pagoda Caracas, les habla Paul David de ByteBridge. Reconociendo su liderazgo en alta cocina cantonesa en El Laguito, les diseñé una WebApp para reservar salones imperiales y mesas en terraza panorámica con pre-orden de banquetes familiares. Miren el video promocional y la demo.",
+    tulum_bqto: "Hola equipo de Tulum Barquisimeto, les saluda Paul David de ByteBridge. Su concepto boho-chic y coctelería en el este de Barquisimeto son increíbles. Para agilizar las rondas de tragos en noches de terraza llena y DJ, les construí una WebApp con auto-pedido QR directo al bartender. Miren el video adjunto.",
+    handroll_ve: "Hola equipo de Handroll, habla Paul David de ByteBridge. Su propuesta de handrolls crujientes y poke bowls en el Sambil Maracaibo es súper visual. Para evitar colas en feria, les armé una WebApp donde el cliente personaliza su poke y retira sin esperar en caja. Les dejo el video y el enlace.",
+    artica_dunas: "Hola amigos de Ártica Dunas, les saluda Paul David de ByteBridge. Manejar la única pista de hielo de Valencia y el bowling atrae a miles de familias. Les diseñé una WebApp con pases QR holográficos para turnos de pista de patinaje y reservas de líneas de bowling online. Échenle un vistazo al video comercial.",
+    mrcrunch_ve: "Hola equipo de Mr. Crunch, habla Paul David de ByteBridge. Sus sándwiches de Nashville en Caracas y Maracaibo son virales. Para ahorrar el 25% de comisión en apps de delivery y despachar combos con tasa BCV automática, les creamos esta WebApp multi-sede. Les comparto el video y la demo interactiva.",
     // Dia 3
     ranchogalipan: "Hola equipo de Rancho Galipán, les habla Paul David de ByteBridge. Estuve analizando cómo optimizar el acceso a sus piscinas y cabañas campestres: les preparé un Reel comercial y una WebApp donde sus visitantes compran su Day Pass con código QR y reservan bohíos con parrillada al carbón sin hacer fila en entrada. Les adjunté el video y el link de prueba.",
     nomi_sakebar: "Konnichiwa equipo de Nomi Sake Bar, les saluda Paul David de ByteBridge. El ambiente de izakaya y ramen que tienen en Bella Vista es de lo más top de la ciudad. Les diseñé una WebApp con auto-pedido por código QR en mesa y barra robata, y maridaje guiado de sakes para acelerar la rotación de comensales. Miren el video adjunto y pruébenla en el enlace.",
@@ -62,6 +73,19 @@ export function DemosHubClient({ demos }: Props) {
     setCopiedSlug(demo.slug);
     setTimeout(() => setCopiedSlug(null), 2000);
   };
+
+  const dia4Slugs = [
+    "saukorestaurant",
+    "genovia_val",
+    "yakitoribarccs",
+    "santogrillccs",
+    "kiuboletexmexfood",
+    "lapagodaccs",
+    "tulum_bqto",
+    "handroll_ve",
+    "artica_dunas",
+    "mrcrunch_ve",
+  ];
 
   const dia3Slugs = [
     "ranchogalipan",
@@ -111,19 +135,21 @@ export function DemosHubClient({ demos }: Props) {
     if (!matchesSearch) return false;
 
     if (filter === "all") return true;
-    if (filter === "dia3") return dia3Slugs.includes(d.slug);
-    if (filter === "dia2") return dia2Slugs.includes(d.slug);
-    if (filter === "dia1") return dia1Slugs.includes(d.slug);
-    if (filter === "table-ordering") return d.archetype === "table-ordering";
-    if (filter === "vip-access") return d.archetype === "vip-access";
-    if (filter === "gourmet-booking") return d.archetype === "gourmet-booking";
-    if (filter === "direct-delivery") return d.archetype === "direct-delivery";
+    if (filter === "dia4") return dia4Slugs.includes(d.slug) || d.batch === "dia4";
+    if (filter === "dia3") return dia3Slugs.includes(d.slug) || d.batch === "dia3";
+    if (filter === "dia2") return dia2Slugs.includes(d.slug) || d.batch === "dia2";
+    if (filter === "dia1") return dia1Slugs.includes(d.slug) || d.batch === "dia1";
+    if (filter === "table-order") return d.archetype === "table-ordering";
+    if (filter === "vip-pass") return d.archetype === "vip-access";
+    if (filter === "gourmet") return d.archetype === "gourmet-booking";
+    if (filter === "delivery") return d.archetype === "direct-delivery";
     return true;
   });
 
-  const countDia3 = demos.filter((d) => dia3Slugs.includes(d.slug)).length;
-  const countDia2 = demos.filter((d) => dia2Slugs.includes(d.slug)).length;
-  const countDia1 = demos.filter((d) => dia1Slugs.includes(d.slug)).length;
+  const countDia4 = demos.filter((d) => dia4Slugs.includes(d.slug) || d.batch === "dia4").length;
+  const countDia3 = demos.filter((d) => dia3Slugs.includes(d.slug) || d.batch === "dia3").length;
+  const countDia2 = demos.filter((d) => dia2Slugs.includes(d.slug) || d.batch === "dia2").length;
+  const countDia1 = demos.filter((d) => dia1Slugs.includes(d.slug) || d.batch === "dia1").length;
   const countTableOrder = demos.filter((d) => d.archetype === "table-ordering").length;
   const countVipPass = demos.filter((d) => d.archetype === "vip-access").length;
   const countGourmet = demos.filter((d) => d.archetype === "gourmet-booking").length;
@@ -139,7 +165,7 @@ export function DemosHubClient({ demos }: Props) {
           <div className="text-center">
             <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-400/30 bg-emerald-400/10 px-3.5 py-1 text-xs font-bold text-emerald-300">
               <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
-              30 Demos Comerciales + Reels en Remotion
+              40 Demos Comerciales + Reels en Remotion
             </span>
             <h1 className="mt-4 text-3xl font-extrabold tracking-tight sm:text-5xl">
               Catálogo de Propuestas, WebApps & Reels
@@ -179,6 +205,7 @@ export function DemosHubClient({ demos }: Props) {
           <div className="mt-8 flex justify-center gap-2 overflow-x-auto pb-2 scrollbar-none">
             {[
               { id: "all", label: `Todas (${demos.length})` },
+              { id: "dia4", label: `🔥 Día 4 (${countDia4})` },
               { id: "dia3", label: `🚀 Día 3 (${countDia3})` },
               { id: "dia2", label: `⚡ Día 2 (${countDia2})` },
               { id: "dia1", label: `🏛️ Día 1 (${countDia1})` },
@@ -205,6 +232,7 @@ export function DemosHubClient({ demos }: Props) {
           <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {filteredDemos.map((demo) => {
               const isCopied = copiedSlug === demo.slug;
+              const isDia4 = dia4Slugs.includes(demo.slug) || demo.batch === "dia4";
               const isDia3 = dia3Slugs.includes(demo.slug) || demo.batch === "dia3";
               const isDia2 = dia2Slugs.includes(demo.slug) || demo.batch === "dia2";
 
@@ -235,7 +263,11 @@ export function DemosHubClient({ demos }: Props) {
                             <h2 className="text-base font-bold text-white tracking-tight">
                               {demo.name}
                             </h2>
-                            {isDia3 ? (
+                            {isDia4 ? (
+                              <span className="inline-flex items-center rounded-full border border-purple-400/30 bg-purple-400/10 px-2 py-0.5 text-[10px] font-bold text-purple-300">
+                                🔥 Día 4
+                              </span>
+                            ) : isDia3 ? (
                               <span className="inline-flex items-center rounded-full border border-emerald-400/30 bg-emerald-400/10 px-2 py-0.5 text-[10px] font-bold text-emerald-300">
                                 ✨ Día 3
                               </span>

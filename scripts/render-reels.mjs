@@ -48,14 +48,27 @@ const SLUGS = [
   "saloncanton_mcbo",
   "holysushi_mcbo",
   "vivematcha",
+  // Batch 4 (Día 4)
+  "saukorestaurant",
+  "genovia_val",
+  "yakitoribarccs",
+  "santogrillccs",
+  "kiuboletexmexfood",
+  "lapagodaccs",
+  "tulum_bqto",
+  "handroll_ve",
+  "artica_dunas",
+  "mrcrunch_ve",
 ];
 
 async function main() {
   const targetSlug = process.argv[2];
   let slugsToRender = SLUGS;
 
-  if (targetSlug === "batch3") {
-    slugsToRender = SLUGS.slice(21);
+  if (targetSlug === "batch4") {
+    slugsToRender = SLUGS.slice(31);
+  } else if (targetSlug === "batch3") {
+    slugsToRender = SLUGS.slice(21, 31);
   } else if (targetSlug === "batch2") {
     slugsToRender = SLUGS.slice(11, 21);
   } else if (targetSlug === "batch1") {
@@ -65,7 +78,7 @@ async function main() {
   }
 
   if (slugsToRender.length === 0) {
-    console.error(`❌ Argumento "${targetSlug}" no encontrado. Opciones válidas: bytebridge, batch1, batch2, batch3, all o cualquiera de:`, SLUGS.join(", "));
+    console.error(`❌ Argumento "${targetSlug}" no encontrado. Opciones válidas: bytebridge, batch1, batch2, batch3, batch4, all o cualquiera de:`, SLUGS.join(", "));
     process.exit(1);
   }
 
