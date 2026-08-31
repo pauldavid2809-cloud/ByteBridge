@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 400" fill="none">
+  <rect width="1000" height="400" rx="32" fill="#0A0E0D"/>
+  <defs>
+    <linearGradient id="bbGradDarkCard" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#36D698"/>
+      <stop offset="50%" stop-color="#2EBD85"/>
+      <stop offset="100%" stop-color="#10B981"/>
+    </linearGradient>
+    <radialGradient id="neonAmbient" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#2EBD85" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#0A0E0D" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1000" height="400" rx="32" fill="url(#neonAmbient)"/>
+  <g transform="translate(100, 110) scale(0.78)">
+    <path d="M46 208 V118 Q46 46 118 46 H330 Q402 46 402 118 V208" stroke="url(#bbGradDarkCard)" stroke-width="46" stroke-linecap="round" fill="none"/>
+  </g>
+  <text x="470" y="215" font-family="-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-weight="800" font-size="92" fill="#FFFFFF" letter-spacing="-3">
+    byte<tspan fill="#2EBD85">/</tspan>bridge
+  </text>
+  <text x="472" y="260" font-family="-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-weight="500" font-size="26" fill="#9CA3AF" letter-spacing="1">
+    WEBS Y SISTEMAS A MEDIDA
+  </text>
+</svg>

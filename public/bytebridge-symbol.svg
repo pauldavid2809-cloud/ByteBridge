@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 232" fill="none">
+  <defs>
+    <linearGradient id="bbGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#36D698"/>
+      <stop offset="50%" stop-color="#2EBD85"/>
+      <stop offset="100%" stop-color="#10B981"/>
+    </linearGradient>
+  </defs>
+  <path d="M46 208 V118 Q46 46 118 46 H330 Q402 46 402 118 V208" stroke="url(#bbGrad)" stroke-width="46" stroke-linecap="round" fill="none"/>
+</svg>

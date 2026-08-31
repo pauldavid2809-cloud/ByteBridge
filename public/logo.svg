@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 180" fill="none">
+  <defs>
+    <linearGradient id="bbGradH" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#36D698"/>
+      <stop offset="50%" stop-color="#2EBD85"/>
+      <stop offset="100%" stop-color="#10B981"/>
+    </linearGradient>
+  </defs>
+  <g transform="translate(10, 20) scale(0.6)">
+    <path d="M46 208 V118 Q46 46 118 46 H330 Q402 46 402 118 V208" stroke="url(#bbGradH)" stroke-width="46" stroke-linecap="round" fill="none"/>
+  </g>
+  <text x="300" y="116" font-family="-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-weight="800" font-size="82" fill="#FFFFFF" letter-spacing="-2">
+    byte<tspan fill="#2EBD85">/</tspan>bridge
+  </text>
+</svg>
