@@ -22,6 +22,17 @@ export function DemosHubClient({ demos }: Props) {
   const [modalTab, setModalTab] = useState<"pitch" | "voice" | "admin">("pitch");
 
   const voiceScripts: Record<string, string> = {
+    // Dia 5
+    dystopiabowling: "Qué tal, equipo de Dystopia Bowling, les habla Paul David de ByteBridge. Diseñamos una demo interactiva donde sus clientes reservan su pista de bowling en segundos, reciben un pase QR VIP y pueden pedir tragos y hamburguesas directo a su pista sin hacer filas en barra. Miren cómo funciona en el enlace que les dejo.",
+    lataberna_delnavegante: "Hola al equipo de La Taberna del Navegante, les habla Paul David de ByteBridge. Les preparamos una plataforma de reservas gourmet exclusiva para su taberna: permite a sus comensales reservar mesa, pre-ordenar sus paellas y seleccionar sus vinos con confirmación inmediata en WhatsApp. Vean su demo lista aquí.",
+    mrbroastermcbo: "Hola equipo de Mr. Broaster Maracaibo, les habla Paul David de ByteBridge. Creamos una tienda delivery web para su local: sus clientes eligen sus combos broaster, arman su pedido y les llega la comanda lista a WhatsApp sin pagarle comisiones a apps de terceros. Pruébenla aquí.",
+    friendsmaracaibo: "Qué tal, amigos de Friends Maracaibo, les habla Paul David de ByteBridge. Diseñamos un sistema de auto-pedido por QR en mesa para su local: sus comensales escanean, ven sus hamburguesas y patacones, y piden directo a cocina sin esperar mesoneros. Entren a probar la demo interactiva.",
+    cartablancave: "Hola al equipo de Carta Blanca Maracaibo, les habla Paul David de ByteBridge. Creamos una plataforma interactiva para su espacio de eventos: permite vender pases a sus talleres con tickets QR, cotizar eventos privados y recibir pagos a tasa BCV en un clic. Miren su demo interactiva aquí.",
+    pidesalmarina: "Hola equipo de Sal Marina, les habla Paul David de ByteBridge en Maracaibo. Vi el éxito de sus promos de almuerzos en Tierra Negra, pero sé que atender cada pedido por chat quita horas. Les monté una demo interactiva donde sus clientes eligen sus contornos, ven la tasa BCV al instante y mandan la comanda lista a WhatsApp. Échenle un ojo al link.",
+    picanagrill: "Hola a la gerencia de Picaña Grill, Paul David por acá de ByteBridge Maracaibo. Su concepto de cortes a la brasa y ambiente VIP en Las Veritas es de primer nivel. Pero los fines de semana las reservas por WhatsApp se vuelven pesadas. Les diseñé un sistema de reservas gourmet donde el cliente aparta su mesa VIP y preselecciona sus cortes en un toque. Revisen el enlace.",
+    altamarmcbo: "Hola amigos de Altamar Maracaibo, les habla Paul David de ByteBridge. Todos sabemos que los domingos de marisquería se llenan y los saloneros no dan abasto tomando pedidos de bebidas o tostones extra. Les creé una demo con menú QR interactivo para mesa: la familia pide directo desde el teléfono y la rotación vuela. Chequeen la demo.",
+    bogrillmcbo: "Qué tal, gente de BO Grill, les habla Paul David de ByteBridge Maracaibo. Manejar el volumen de pedidos de Indio Mara y Cañada Honda por chat en plena noche de fin de semana es una locura. Les armé una demo donde el cliente elige su sede, arma su Bandeja Todoterreno y manda la comanda lista a WhatsApp sin confusiones. Miren el link adjunto.",
+    dantedipronto: "Hola a la gerencia de Dante Di Pronto, les habla Paul David de ByteBridge Maracaibo. El Rodizio de diez dólares que tienen en 5 de Julio es un éxito total, pero controlar las colas y turnos de mesa los fines de semana es pesado. Les diseñé una demo con pases digitales para su Rodizio y catálogo de delivery para sus pizzas de masa madre. Les dejé el enlace.",
     // Dia 4
     saukorestaurant: "Hola equipo de Sauko Restaurant, les habla Paul David de ByteBridge. Estuve analizando cómo optimizar la experiencia de sus comensales en Valera: les preparé un Reel comercial y una WebApp con auto-pedido por código QR en mesa y comanda directa a barra para agilizar la rotación de mesas. Miren el video adjunto y pruébenla en el link.",
     genovia_val: "Hola equipo de Genovia Steak House, les saluda Paul David de ByteBridge. Su propuesta de cortes nobles y madurados en Mañongo es extraordinaria. Les diseñé una WebApp con reserva de mesas VIP y Chef's Table con selector de cortes Dry-Aged y confirmación a WhatsApp. Les dejo el video de 15 segundos y el enlace.",
@@ -73,6 +84,19 @@ export function DemosHubClient({ demos }: Props) {
     setCopiedSlug(demo.slug);
     setTimeout(() => setCopiedSlug(null), 2000);
   };
+
+  const dia5Slugs = [
+    "dystopiabowling",
+    "lataberna_delnavegante",
+    "mrbroastermcbo",
+    "friendsmaracaibo",
+    "cartablancave",
+    "pidesalmarina",
+    "picanagrill",
+    "altamarmcbo",
+    "bogrillmcbo",
+    "dantedipronto",
+  ];
 
   const dia4Slugs = [
     "saukorestaurant",
@@ -135,6 +159,7 @@ export function DemosHubClient({ demos }: Props) {
     if (!matchesSearch) return false;
 
     if (filter === "all") return true;
+    if (filter === "dia5") return dia5Slugs.includes(d.slug) || d.batch === "dia5";
     if (filter === "dia4") return dia4Slugs.includes(d.slug) || d.batch === "dia4";
     if (filter === "dia3") return dia3Slugs.includes(d.slug) || d.batch === "dia3";
     if (filter === "dia2") return dia2Slugs.includes(d.slug) || d.batch === "dia2";
@@ -146,6 +171,7 @@ export function DemosHubClient({ demos }: Props) {
     return true;
   });
 
+  const countDia5 = demos.filter((d) => dia5Slugs.includes(d.slug) || d.batch === "dia5").length;
   const countDia4 = demos.filter((d) => dia4Slugs.includes(d.slug) || d.batch === "dia4").length;
   const countDia3 = demos.filter((d) => dia3Slugs.includes(d.slug) || d.batch === "dia3").length;
   const countDia2 = demos.filter((d) => dia2Slugs.includes(d.slug) || d.batch === "dia2").length;
@@ -165,7 +191,7 @@ export function DemosHubClient({ demos }: Props) {
           <div className="text-center">
             <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-400/30 bg-emerald-400/10 px-3.5 py-1 text-xs font-bold text-emerald-300">
               <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
-              40 Demos Comerciales + Reels en Remotion
+              50 Demos Comerciales + Reels en Remotion
             </span>
             <h1 className="mt-4 text-3xl font-extrabold tracking-tight sm:text-5xl">
               Catálogo de Propuestas, WebApps & Reels
@@ -205,6 +231,7 @@ export function DemosHubClient({ demos }: Props) {
           <div className="mt-8 flex justify-center gap-2 overflow-x-auto pb-2 scrollbar-none">
             {[
               { id: "all", label: `Todas (${demos.length})` },
+              { id: "dia5", label: `🌟 Día 5 (${countDia5})` },
               { id: "dia4", label: `🔥 Día 4 (${countDia4})` },
               { id: "dia3", label: `🚀 Día 3 (${countDia3})` },
               { id: "dia2", label: `⚡ Día 2 (${countDia2})` },
@@ -232,6 +259,7 @@ export function DemosHubClient({ demos }: Props) {
           <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {filteredDemos.map((demo) => {
               const isCopied = copiedSlug === demo.slug;
+              const isDia5 = dia5Slugs.includes(demo.slug) || demo.batch === "dia5";
               const isDia4 = dia4Slugs.includes(demo.slug) || demo.batch === "dia4";
               const isDia3 = dia3Slugs.includes(demo.slug) || demo.batch === "dia3";
               const isDia2 = dia2Slugs.includes(demo.slug) || demo.batch === "dia2";
@@ -263,7 +291,11 @@ export function DemosHubClient({ demos }: Props) {
                             <h2 className="text-base font-bold text-white tracking-tight">
                               {demo.name}
                             </h2>
-                            {isDia4 ? (
+                            {isDia5 ? (
+                              <span className="inline-flex items-center rounded-full border border-pink-400/30 bg-pink-400/10 px-2 py-0.5 text-[10px] font-bold text-pink-300">
+                                🌟 Día 5
+                              </span>
+                            ) : isDia4 ? (
                               <span className="inline-flex items-center rounded-full border border-purple-400/30 bg-purple-400/10 px-2 py-0.5 text-[10px] font-bold text-purple-300">
                                 🔥 Día 4
                               </span>

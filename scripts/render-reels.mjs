@@ -59,14 +59,27 @@ const SLUGS = [
   "handroll_ve",
   "artica_dunas",
   "mrcrunch_ve",
+  // Batch 5 (Día 5)
+  "dystopiabowling",
+  "lataberna_delnavegante",
+  "mrbroastermcbo",
+  "friendsmaracaibo",
+  "cartablancave",
+  "pidesalmarina",
+  "picanagrill",
+  "altamarmcbo",
+  "bogrillmcbo",
+  "dantedipronto",
 ];
 
 async function main() {
   const targetSlug = process.argv[2];
   let slugsToRender = SLUGS;
 
-  if (targetSlug === "batch4") {
-    slugsToRender = SLUGS.slice(31);
+  if (targetSlug === "batch5") {
+    slugsToRender = SLUGS.slice(41);
+  } else if (targetSlug === "batch4") {
+    slugsToRender = SLUGS.slice(31, 41);
   } else if (targetSlug === "batch3") {
     slugsToRender = SLUGS.slice(21, 31);
   } else if (targetSlug === "batch2") {
@@ -78,7 +91,7 @@ async function main() {
   }
 
   if (slugsToRender.length === 0) {
-    console.error(`❌ Argumento "${targetSlug}" no encontrado. Opciones válidas: bytebridge, batch1, batch2, batch3, batch4, all o cualquiera de:`, SLUGS.join(", "));
+    console.error(`❌ Argumento "${targetSlug}" no encontrado. Opciones válidas: bytebridge, batch1, batch2, batch3, batch4, batch5, all o cualquiera de:`, SLUGS.join(", "));
     process.exit(1);
   }
 

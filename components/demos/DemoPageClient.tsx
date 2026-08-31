@@ -12,6 +12,7 @@ import { QrTicketModal } from "@/components/demos/QrTicketModal";
 import { CartDrawer, CartItem } from "@/components/demos/CartDrawer";
 import { LocationCard } from "@/components/demos/LocationCard";
 import { RemotionReelModal } from "@/components/demos/RemotionReelModal";
+import { ModuleTabsSelector } from "@/components/demos/ModuleTabsSelector";
 
 type BookingData = {
   option: BookingOption;
@@ -128,6 +129,18 @@ export function DemoPageClient({ demo }: Props) {
             onScrollToMenu={() => scrollTo("menu")}
             onScrollToLocation={() => scrollTo("ubicacion")}
             onOpenReel={() => setIsReelOpen(true)}
+          />
+
+          {/* Selector Interactivo de Módulos Operativos */}
+          <ModuleTabsSelector
+            demo={demo}
+            onSelectModule={(mod) => {
+              if (mod === "table-ordering" || mod === "direct-delivery") {
+                scrollTo("menu");
+              } else {
+                scrollTo("reservas");
+              }
+            }}
           />
 
           {/* 2. Sección Narrativa de Introducción y Diferenciales */}

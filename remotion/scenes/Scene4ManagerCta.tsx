@@ -217,14 +217,14 @@ export function Scene4ManagerCta({ demo }: Props) {
             />
             <span
               style={{
-                fontSize: "20px",
+                fontSize: "19px",
                 fontWeight: 900,
                 color: "#fde047",
-                letterSpacing: "2px",
+                letterSpacing: "1.5px",
                 textTransform: "uppercase",
               }}
             >
-              DESARROLLADO POR BYTEBRIDGE
+              Suite: QR en Mesa · Delivery · Pases · Reservas
             </span>
           </div>
 
