@@ -22,7 +22,6 @@ export function DemosHubClient({ demos }: Props) {
   const [modalTab, setModalTab] = useState<"pitch" | "voice" | "admin">("pitch");
 
   const voiceScripts: Record<string, string> = {
-    // Dia 6
     lolapopspaleteria: "Hola equipo de Lola Pops, les habla Paul David de ByteBridge. En horas pico, explicar sabores, baños y toppings por WhatsApp quita tiempo valioso. Les construimos una WebApp interactiva con 'Paleta Builder' donde sus clientes arman su combinación en 3 clics y cotizan el carrito de eventos con tasa BCV en tiempo real. Miren la demo en el enlace adjunto.",
     keponke_ve: "Hola equipo de Ke Ponke, les habla Paul David de ByteBridge. Cuadrar dedicatorias, sabores de ponquecitos y horas de entrega por WhatsApp puede volverse un dolor de cabeza. Creamos para ustedes una WebApp con 'Gift Customizer' donde sus clientes arman su caja, escriben la dedicatoria y agendan el delivery en un minuto. Pruébenla en el enlace.",
     dolcezza_ve: "Hola equipo de Dolcezza, les habla Paul David de ByteBridge. Preguntar por WhatsApp qué porciones quedan en vitrina hace perder ventas todos los días. Les diseñamos una WebApp de Delivery Directo y Encargos donde sus clientes ven las tortas disponibles, eligen porción o entera y pagan a tasa BCV al instante. Vean la demo en el link.",
@@ -33,61 +32,6 @@ export function DemosHubClient({ demos }: Props) {
     pokemolokai: "Hola equipo de Poke Molokai, les habla Paul David de ByteBridge. Con nuestra WebApp con constructor interactivo, sus clientes arman su Poke bowl paso a paso, eligen su proteína y salsas favoritas y ordenan en segundos sin enredos de mensajes por chat. Precisión total en cocina y más ventas al día. Chequeen la demo.",
     barako_rest: "Estimado equipo de Barako, les habla Paul David de ByteBridge. Para que la experiencia en su restaurante sea impecable desde antes de que el comensal pise su terraza, creamos una WebApp donde sus clientes VIP reservan su mesa, eligen su corte prime y reciben su confirmación digital con código QR. Miren la demo.",
     portovenerehotel: "Estimada gerencia de Hotel Portovenere, les habla Paul David de ByteBridge. Con nuestra WebApp VIP, sus clientes compran su Day Pass de piscina con pase QR, reservan suites al instante y piden servicio a la habitación desde su celular con tasa BCV al día. Miren la demo en el link.",
-    // Dia 5
-    dystopiabowling: "Qué tal, equipo de Dystopia Bowling, les habla Paul David de ByteBridge. Diseñamos una demo interactiva donde sus clientes reservan su pista de bowling en segundos, reciben un pase QR VIP y pueden pedir tragos y hamburguesas directo a su pista sin hacer filas en barra. Miren cómo funciona en el enlace que les dejo.",
-    lataberna_delnavegante: "Hola al equipo de La Taberna del Navegante, les habla Paul David de ByteBridge. Les preparamos una plataforma de reservas gourmet exclusiva para su taberna: permite a sus comensales reservar mesa, pre-ordenar sus paellas y seleccionar sus vinos con confirmación inmediata en WhatsApp. Vean su demo lista aquí.",
-    mrbroastermcbo: "Hola equipo de Mr. Broaster Maracaibo, les habla Paul David de ByteBridge. Creamos una tienda delivery web para su local: sus clientes eligen sus combos broaster, arman su pedido y les llega la comanda lista a WhatsApp sin pagarle comisiones a apps de terceros. Pruébenla aquí.",
-    friendsmaracaibo: "Qué tal, amigos de Friends Maracaibo, les habla Paul David de ByteBridge. Diseñamos un sistema de auto-pedido por QR en mesa para su local: sus comensales escanean, ven sus hamburguesas y patacones, y piden directo a cocina sin esperar mesoneros. Entren a probar la demo interactiva.",
-    cartablancave: "Hola al equipo de Carta Blanca Maracaibo, les habla Paul David de ByteBridge. Creamos una plataforma interactiva para su espacio de eventos: permite vender pases a sus talleres con tickets QR, cotizar eventos privados y recibir pagos a tasa BCV en un clic. Miren su demo interactiva aquí.",
-    pidesalmarina: "Hola equipo de Sal Marina, les habla Paul David de ByteBridge en Maracaibo. Vi el éxito de sus promos de almuerzos en Tierra Negra, pero sé que atender cada pedido por chat quita horas. Les monté una demo interactiva donde sus clientes eligen sus contornos, ven la tasa BCV al instante y mandan la comanda lista a WhatsApp. Échenle un ojo al link.",
-    picanagrill: "Hola a la gerencia de Picaña Grill, Paul David por acá de ByteBridge Maracaibo. Su concepto de cortes a la brasa y ambiente VIP en Las Veritas es de primer nivel. Pero los fines de semana las reservas por WhatsApp se vuelven pesadas. Les diseñé un sistema de reservas gourmet donde el cliente aparta su mesa VIP y preselecciona sus cortes en un toque. Revisen el enlace.",
-    altamarmcbo: "Hola amigos de Altamar Maracaibo, les habla Paul David de ByteBridge. Todos sabemos que los domingos de marisquería se llenan y los saloneros no dan abasto tomando pedidos de bebidas o tostones extra. Les creé una demo con menú QR interactivo para mesa: la familia pide directo desde el teléfono y la rotación vuela. Chequeen la demo.",
-    bogrillmcbo: "Qué tal, gente de BO Grill, les habla Paul David de ByteBridge Maracaibo. Manejar el volumen de pedidos de Indio Mara y Cañada Honda por chat en plena noche de fin de semana es una locura. Les armé una demo donde el cliente elige su sede, arma su Bandeja Todoterreno y manda la comanda lista a WhatsApp sin confusiones. Miren el link adjunto.",
-    dantedipronto: "Hola a la gerencia de Dante Di Pronto, les habla Paul David de ByteBridge Maracaibo. El Rodizio de diez dólares que tienen en 5 de Julio es un éxito total, pero controlar las colas y turnos de mesa los fines de semana es pesado. Les diseñé una demo con pases digitales para su Rodizio y catálogo de delivery para sus pizzas de masa madre. Les dejé el enlace.",
-    // Dia 4
-    saukorestaurant: "Hola equipo de Sauko Restaurant, les habla Paul David de ByteBridge. Estuve analizando cómo optimizar la experiencia de sus comensales en Valera: les preparé un Reel comercial y una WebApp con auto-pedido por código QR en mesa y comanda directa a barra para agilizar la rotación de mesas. Miren el video adjunto y pruébenla en el link.",
-    genovia_val: "Hola equipo de Genovia Steak House, les saluda Paul David de ByteBridge. Su propuesta de cortes nobles y madurados en Mañongo es extraordinaria. Les diseñé una WebApp con reserva de mesas VIP y Chef's Table con selector de cortes Dry-Aged y confirmación a WhatsApp. Les dejo el video de 15 segundos y el enlace.",
-    yakitoribarccs: "Konnichiwa equipo de Yakitori Bar Caracas, habla Paul David de ByteBridge. Nos encanta su concepto izakaya en Valle Arriba. Les armé una WebApp con auto-pedido QR continuo de brochetas yakitori al carbón y delivery propio sin pagar comisiones del 25%. Miren el video comercial que les adjunté.",
-    santogrillccs: "Hola amigos de Santo Grill Caracas, les saluda Paul David de ByteBridge. Su ceviche de chicharrón y sus parrillas familiares en Santa Paula son de lo más top. Para que las mesas grandes ordenen términos de carne y bebidas sin demoras, les creamos esta WebApp con comanda QR. Échenle un ojo a la demo.",
-    kiuboletexmexfood: "Hola gente de Kiúbole Tex-Mex, habla Paul David de ByteBridge. Sus tacos de birria en la 72 son legendarios. Para eliminar el colapso del chat los fines de semana y que sus clientes pidan delivery en 30 segundos con tasa BCV automática, les armé esta WebApp directa. Les comparto el video y el link.",
-    lapagodaccs: "Ni hao equipo de La Pagoda Caracas, les habla Paul David de ByteBridge. Reconociendo su liderazgo en alta cocina cantonesa en El Laguito, les diseñé una WebApp para reservar salones imperiales y mesas en terraza panorámica con pre-orden de banquetes familiares. Miren el video promocional y la demo.",
-    tulum_bqto: "Hola equipo de Tulum Barquisimeto, les saluda Paul David de ByteBridge. Su concepto boho-chic y coctelería en el este de Barquisimeto son increíbles. Para agilizar las rondas de tragos en noches de terraza llena y DJ, les construí una WebApp con auto-pedido QR directo al bartender. Miren el video adjunto.",
-    handroll_ve: "Hola equipo de Handroll, habla Paul David de ByteBridge. Su propuesta de handrolls crujientes y poke bowls en el Sambil Maracaibo es súper visual. Para evitar colas en feria, les armé una WebApp donde el cliente personaliza su poke y retira sin esperar en caja. Les dejo el video y el enlace.",
-    artica_dunas: "Hola amigos de Ártica Dunas, les saluda Paul David de ByteBridge. Manejar la única pista de hielo de Valencia y el bowling atrae a miles de familias. Les diseñé una WebApp con pases QR holográficos para turnos de pista de patinaje y reservas de líneas de bowling online. Échenle un vistazo al video comercial.",
-    mrcrunch_ve: "Hola equipo de Mr. Crunch, habla Paul David de ByteBridge. Sus sándwiches de Nashville en Caracas y Maracaibo son virales. Para ahorrar el 25% de comisión en apps de delivery y despachar combos con tasa BCV automática, les creamos esta WebApp multi-sede. Les comparto el video y la demo interactiva.",
-    // Dia 3
-    ranchogalipan: "Hola equipo de Rancho Galipán, les habla Paul David de ByteBridge. Estuve analizando cómo optimizar el acceso a sus piscinas y cabañas campestres: les preparé un Reel comercial y una WebApp donde sus visitantes compran su Day Pass con código QR y reservan bohíos con parrillada al carbón sin hacer fila en entrada. Les adjunté el video y el link de prueba.",
-    nomi_sakebar: "Konnichiwa equipo de Nomi Sake Bar, les saluda Paul David de ByteBridge. El ambiente de izakaya y ramen que tienen en Bella Vista es de lo más top de la ciudad. Les diseñé una WebApp con auto-pedido por código QR en mesa y barra robata, y maridaje guiado de sakes para acelerar la rotación de comensales. Miren el video adjunto y pruébenla en el enlace.",
-    da_ettore: "Buonasera equipo de Da Ettore, habla Paul David de ByteBridge. Con más de 30 años de impecable tradición culinaria en Maracaibo, creamos una WebApp a la altura de su prestigio: reserva digital de mesas con plano de sala, carta interactiva de pastas frescas y sommelier digital de vinos italianos. Les comparto el video y la demo interactiva.",
-    solemiocucinaebar: "Ciao equipo de O Sole Mio, les habla Paul David de ByteBridge. Su terraza en La Lago y sus pizzas napolitanas al horno de leña son una maravilla. Les armé una WebApp para reservar mesas al aire libre garantizadas y pedir pastas de autor con conversión automática a tasa oficial. Miren el video de 15 segundos y la demo.",
-    somos_delish: "Hola equipo de Delish, les saluda Paul David de ByteBridge. Amamos sus cinnamon rolls y brunch en Tierra Negra. Para que dejen de pagar el 25% de comisión en apps de terceros y automaticen sus pedidos de cajas de regalo por WhatsApp con tasa BCV al día, les construí esta WebApp. Les dejo el video promocional y el link.",
-    yellowstonemcbo: "Howdy equipo de Yellowstone, habla Paul David de ByteBridge. Su concepto de steakhouse western en La Lago tiene una vibra increíble. Les preparé una WebApp para vender pases VIP con código QR para sus noches de música en vivo y reservar mesas parrilleras sin colas en puerta. Échenle un ojo al video que les adjunté.",
-    morecheese_mcbo: "Hola gente de More Cheese, les saluda Paul David de ByteBridge. El show de la piscina de queso cheddar en mesa es súper viral. Para eliminar las colas de espera en horas pico, les diseñé una WebApp con auto-pedido por código QR directo a cocina y combos de tequeñones XXL. Les comparto el video y la demo para que la prueben.",
-    saloncanton_mcbo: "Ni hao equipo de Salón Cantón, habla Paul David de ByteBridge. Reconociendo su liderazgo en alta cocina cantonesa en Maracaibo, diseñamos una WebApp para reservar mesas giratorias imperiales y salones VIP climatizados, con menús de banquetes y pato Pekín. Les dejé el video y el link de prueba.",
-    holysushi_mcbo: "Hola equipo de Holy Sushi, les saluda Paul David de ByteBridge. Sus rolls flameados y barcos para fiestas son de lo mejor. Les creamos una WebApp para potenciar su delivery: catálogo visual de barcos de 40 piezas, cálculo BCV automático y checkout directo a WhatsApp sin comisiones. Miren el video adjunto y la demo.",
-    vivematcha: "Hola equipo de Vive Matcha, habla Paul David de ByteBridge. Su propuesta de bienestar y matcha ceremonial Uji en Cecilio Acosta es única en Maracaibo. Les construí una WebApp para auto-pedido en barra y pick-up express de matcha lattes y açaí bowls sin hacer fila. Les dejo el video vertical y el enlace.",
-    // Dia 2
-    estacionholidays: "Hola equipo de Estación Holidays, les habla Paul David de ByteBridge. Estuve viendo el concepto tan genial que tienen con las 3 estaciones de Asia, América y Europa, y les preparé un video y una WebApp interactiva que incluye un Pasaporte Digital con sellos para sus clientes. Miren el video adjunto y pruébenlo en el link que les dejé abajo sin ningún compromiso.",
-    mosaico_mcbo: "Hola amigos de Mosaico, les saluda Paul David de ByteBridge. Sé lo que colapsa el WhatsApp al mediodía con la gente preguntando qué hay en el buffet y los papelitos en las noches de karaoke. Les armé una WebApp que automatiza el menú del día y organiza los turnos de canciones con código QR. Échenle un ojo al video que les adjunté.",
-    incontrotrattoria: "Ciao equipo de Incontro, habla Paul David de ByteBridge. Diseñamos una propuesta digital a la altura de su cocina en Torre Tendencia: incluye un Sommelier Digital que le recomienda el vino perfecto para cada pasta y pizza, y reserva de mesas para ejecutivos. Les dejé el video comercial y la demo para que la prueben.",
-    pinzulia: "Hola gente de PinZulia, les habla Paul David de ByteBridge. ¡Qué brutal les quedó la reapertura! Para evitar las colas de 2 horas los fines de semana, les construí una WebApp donde sus clientes pueden reservar pistas en vivo y pedir hamburguesas directo a su carril con QR. Miren el video y me cuentan qué les parece.",
-    alfredscoffeebar: "Hola equipo de Alfred's, habla Paul David de ByteBridge. Analizamos el flujo en 5 de Julio y les creamos una WebApp que muestra el stock en tiempo real de su vitrina de donas de pistacho y permite a los oficinistas pedir para llevar sin hacer cola en barra. Les comparto el video y el link de prueba.",
-    lakebistro: "Hola amigos de Lake Bistro, les saluda Paul David de ByteBridge. La vista al atardecer que tienen frente al Lago es de las mejores de la ciudad. Para evitar que las mesas de primera fila se queden vacías por no-shows, les diseñé un selector de mesas 3D con cobro de depósito consumible. Mírenlo en el video adjunto.",
-    bromcbo: "Hola gente de BRO, habla Paul David de ByteBridge. Sé que meten cientos de personas en Cecilio Acosta con las raves y el freestyle, pero la mayoría de esos contactos se pierden. Les armé una WebApp para vender brazaletes QR de eventos y auto-pedidos en mesa. Les dejo el video de 15 segundos para que lo vean.",
-    ahpresidente: "Hola equipo de AH Presidente, les saluda Paul David de ByteBridge. Tienen una comunidad gigante de más de 74.000 seguidores en Instagram. Para que no hagan fila bajo el sol comprando el Day Pass de piscina, les construí una WebApp con venta de boletos QR y pedidos desde las tumbonas. Miren el video adjunto.",
-    mykonosconceptve: "Hola gente de Mykonos, habla Paul David de ByteBridge. Les armé una solución exclusiva para su lounge en el Tibisay: incluye un Cotizador Automático de Cumpleaños con botellas y shishas 24/7, y pases FastPass QR para entrar sin hacer fila. Les compartí el video vertical y el link para que lo jueguen.",
-    terraza_restobar: "Hola equipo de Terraza Restobar, les saluda Paul David de ByteBridge. Su vista frontal al Puente al anochecer es su producto estrella. Les diseñé una WebApp con mapa interactivo para asegurar reservas de mesas mirador y carta dual de sushi y parrilla con conversión multimoneda. Échenle un ojo al video.",
-    // Dia 1
-    ecoland: "Hola equipo de Ecoland, les habla Paul David de ByteBridge. Diseñamos una WebApp integral para su complejo que permite comprar Day Pass de piscina con código QR, reservar cabañas VIP y gestionar suites de hotel en un solo lugar. Les adjunté el video promocional y la demo en vivo.",
-    grandchef: "Hola amigos de Grand Chef, les saluda Paul David de ByteBridge. Preparamos una propuesta exclusiva para sus cenas frente al Puente: reserva de mesas en primera fila, maridaje con su carta de 40 vinos y cálculo automático a tasa oficial. Les comparto el video y el enlace.",
-    zuhouse: "Hola equipo de Zu House, habla Paul David de ByteBridge. Les construí una WebApp pensada para sus tardes de after-work en 5 de Julio: reserva de mesas, comanda directa de cortes a la brasa y control de aforo en tiempo real. Miren el video que les adjunté.",
-    tannous: "Hola amigos de Tannous, les saluda Paul David de ByteBridge. Creamos una WebApp optimizada para sus dos grandes fortalezas: reserva express de almuerzos corporativos en menos de 20 minutos y cotización automática para pedidas de mano y eventos privados con pase QR.",
-    room101: "Hola gente de Room 101, habla Paul David de ByteBridge. Diseñamos una WebApp con su estética underground: reserva de lounges VIP, carta interactiva de shishas y cócteles insignia, y pases QR para noches temáticas sin cola en puerta. Mírenlo en el video.",
-    labarraventura: "Hola equipo de La Barra Ventura, les saluda Paul David de ByteBridge. Para acelerar el acceso nocturno, les creamos un sistema de emisión de pases VIP express con código QR que su seguridad valida en 1 segundo con el móvil. Les dejo el video demostrativo.",
-    ciaogastrobar: "Ciao amigos de Ciao Gastrobar, habla Paul David de ByteBridge. Diseñamos una WebApp para su restaurante en Terraza 77 con reserva de mesas al aire libre, carta interactiva de pastas frescas y pizzas al horno con maridaje de vinos. Miren la demo en el link.",
-    blaomcbo: "Hola gente de BLAO, les saluda Paul David de ByteBridge. Les armé una WebApp interactiva para su concepto dual en Plaza 75: reservas rápidas de B-Lunch para ejecutivos al mediodía y mesas de terraza para las noches de Blaoke y fiesta. Miren el video adjunto.",
-    pittsbowling: "Hola equipo de Pitts Bowling, les habla Paul David de ByteBridge. Como único centro federado en Costa Verde, les diseñamos una WebApp con reserva de pistas computarizadas por hora, alquiler de calzado y comanda de comida directo a la pista con QR.",
-    corner: "Hola amigos de The Corner, habla Paul David de ByteBridge. Creamos una WebApp lúdica para su bar: catálogo digital con filtros de sus 50 juegos de mesa, carta de pociones y tragos con glitter, y reserva de salón privado para grupos. Échenle un vistazo."
   };
 
   const handleCopyPitch = (demo: BusinessDemo) => {
@@ -95,84 +39,6 @@ export function DemosHubClient({ demos }: Props) {
     setCopiedSlug(demo.slug);
     setTimeout(() => setCopiedSlug(null), 2000);
   };
-
-  const dia6Slugs = [
-    "lolapopspaleteria",
-    "keponke_ve",
-    "dolcezza_ve",
-    "tostaca_ve",
-    "elvarfoodandcoffee",
-    "sweetgiftve",
-    "olis_burger",
-    "pokemolokai",
-    "barako_rest",
-    "portovenerehotel",
-  ];
-
-  const dia5Slugs = [
-    "dystopiabowling",
-    "lataberna_delnavegante",
-    "mrbroastermcbo",
-    "friendsmaracaibo",
-    "cartablancave",
-    "pidesalmarina",
-    "picanagrill",
-    "altamarmcbo",
-    "bogrillmcbo",
-    "dantedipronto",
-  ];
-
-  const dia4Slugs = [
-    "saukorestaurant",
-    "genovia_val",
-    "yakitoribarccs",
-    "santogrillccs",
-    "kiuboletexmexfood",
-    "lapagodaccs",
-    "tulum_bqto",
-    "handroll_ve",
-    "artica_dunas",
-    "mrcrunch_ve",
-  ];
-
-  const dia3Slugs = [
-    "ranchogalipan",
-    "nomi_sakebar",
-    "da_ettore",
-    "solemiocucinaebar",
-    "somos_delish",
-    "yellowstonemcbo",
-    "morecheese_mcbo",
-    "saloncanton_mcbo",
-    "holysushi_mcbo",
-    "vivematcha",
-  ];
-
-  const dia2Slugs = [
-    "estacionholidays",
-    "mosaico_mcbo",
-    "incontrotrattoria",
-    "pinzulia",
-    "alfredscoffeebar",
-    "lakebistro",
-    "bromcbo",
-    "ahpresidente",
-    "mykonosconceptve",
-    "terraza_restobar",
-  ];
-
-  const dia1Slugs = [
-    "ecoland",
-    "grandchef",
-    "zuhouse",
-    "tannous",
-    "room101",
-    "labarraventura",
-    "ciaogastrobar",
-    "blaomcbo",
-    "pittsbowling",
-    "corner",
-  ];
 
   const filteredDemos = demos.filter((d) => {
     const matchesSearch =
@@ -183,27 +49,19 @@ export function DemosHubClient({ demos }: Props) {
     if (!matchesSearch) return false;
 
     if (filter === "all") return true;
-    if (filter === "dia6") return dia6Slugs.includes(d.slug) || d.batch === "dia6";
-    if (filter === "dia5") return dia5Slugs.includes(d.slug) || d.batch === "dia5";
-    if (filter === "dia4") return dia4Slugs.includes(d.slug) || d.batch === "dia4";
-    if (filter === "dia3") return dia3Slugs.includes(d.slug) || d.batch === "dia3";
-    if (filter === "dia2") return dia2Slugs.includes(d.slug) || d.batch === "dia2";
-    if (filter === "dia1") return dia1Slugs.includes(d.slug) || d.batch === "dia1";
+    if (filter === "customizer") return d.archetype === "gift-customizer" || d.archetype === "item-builder";
+    if (filter === "wholesale") return d.archetype === "wholesale-catalog";
     if (filter === "table-order") return d.archetype === "table-ordering";
-    if (filter === "vip-pass") return d.archetype === "vip-access";
+    if (filter === "vip-pass") return d.archetype === "vip-access" || d.archetype === "match-booking";
     if (filter === "gourmet") return d.archetype === "gourmet-booking";
     if (filter === "delivery") return d.archetype === "direct-delivery";
     return true;
   });
 
-  const countDia6 = demos.filter((d) => dia6Slugs.includes(d.slug) || d.batch === "dia6").length;
-  const countDia5 = demos.filter((d) => dia5Slugs.includes(d.slug) || d.batch === "dia5").length;
-  const countDia4 = demos.filter((d) => dia4Slugs.includes(d.slug) || d.batch === "dia4").length;
-  const countDia3 = demos.filter((d) => dia3Slugs.includes(d.slug) || d.batch === "dia3").length;
-  const countDia2 = demos.filter((d) => dia2Slugs.includes(d.slug) || d.batch === "dia2").length;
-  const countDia1 = demos.filter((d) => dia1Slugs.includes(d.slug) || d.batch === "dia1").length;
+  const countCustomizer = demos.filter((d) => d.archetype === "gift-customizer" || d.archetype === "item-builder").length;
+  const countWholesale = demos.filter((d) => d.archetype === "wholesale-catalog").length;
   const countTableOrder = demos.filter((d) => d.archetype === "table-ordering").length;
-  const countVipPass = demos.filter((d) => d.archetype === "vip-access").length;
+  const countVipPass = demos.filter((d) => d.archetype === "vip-access" || d.archetype === "match-booking").length;
   const countGourmet = demos.filter((d) => d.archetype === "gourmet-booking").length;
   const countDelivery = demos.filter((d) => d.archetype === "direct-delivery").length;
 
@@ -217,13 +75,13 @@ export function DemosHubClient({ demos }: Props) {
           <div className="text-center">
             <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-400/30 bg-emerald-400/10 px-3.5 py-1 text-xs font-bold text-emerald-300">
               <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
-              60 Demos Comerciales + Reels en Remotion
+              10 Demos Comerciales Especializadas + Reels en Remotion
             </span>
             <h1 className="mt-4 text-3xl font-extrabold tracking-tight sm:text-5xl">
-              Catálogo de Propuestas, WebApps & Reels
+              Propuestas & WebApps a Medida
             </h1>
             <p className="mt-3 max-w-2xl mx-auto text-sm text-zinc-400 sm:text-base">
-              WebApps interactivas adaptadas a arquetipos especializados: Auto-Pedido en Mesa, Pases VIP con QR, Reservas Gourmet, Delivery Directo, Constructores de Regalos y Pokes.
+              Soluciones digitales adaptadas a cada modelo de negocio: Constructores de Regalos, Personalizador de Paletas & Pokes, Catálogo Mayorista B2B, Reservas Deportivas y Hospitalidad.
             </p>
 
             {/* Buscador de Demos */}
@@ -253,18 +111,14 @@ export function DemosHubClient({ demos }: Props) {
             </div>
           </div>
 
-          {/* Filtros por Categoría, Arquetipos y por Día */}
+          {/* Filtros por Solución Especializada */}
           <div className="mt-8 flex justify-center gap-2 overflow-x-auto pb-2 scrollbar-none">
             {[
               { id: "all", label: `Todas (${demos.length})` },
-              { id: "dia6", label: `🌟 Día 6 (${countDia6})` },
-              { id: "dia5", label: `🚀 Día 5 (${countDia5})` },
-              { id: "dia4", label: `🔥 Día 4 (${countDia4})` },
-              { id: "dia3", label: `⚡ Día 3 (${countDia3})` },
-              { id: "dia2", label: `💎 Día 2 (${countDia2})` },
-              { id: "dia1", label: `🏛️ Día 1 (${countDia1})` },
-              { id: "table-order", label: `📱 Auto-Pedido (${countTableOrder})` },
-              { id: "vip-pass", label: `🎟️ Pases VIP (${countVipPass})` },
+              { id: "customizer", label: `🎁 Regalos & Creadores (${countCustomizer})` },
+              { id: "wholesale", label: `📦 Mayorista B2B (${countWholesale})` },
+              { id: "vip-pass", label: `🎟️ Pases VIP & Hotel (${countVipPass})` },
+              { id: "table-order", label: `📱 Auto-Pedido QR (${countTableOrder})` },
               { id: "gourmet", label: `🍷 Gourmet (${countGourmet})` },
               { id: "delivery", label: `🛵 Delivery 0% (${countDelivery})` },
             ].map((f) => (
@@ -286,11 +140,6 @@ export function DemosHubClient({ demos }: Props) {
           <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {filteredDemos.map((demo) => {
               const isCopied = copiedSlug === demo.slug;
-              const isDia6 = dia6Slugs.includes(demo.slug) || demo.batch === "dia6";
-              const isDia5 = dia5Slugs.includes(demo.slug) || demo.batch === "dia5";
-              const isDia4 = dia4Slugs.includes(demo.slug) || demo.batch === "dia4";
-              const isDia3 = dia3Slugs.includes(demo.slug) || demo.batch === "dia3";
-              const isDia2 = dia2Slugs.includes(demo.slug) || demo.batch === "dia2";
 
               return (
                 <motion.div
@@ -319,31 +168,9 @@ export function DemosHubClient({ demos }: Props) {
                             <h2 className="text-base font-bold text-white tracking-tight">
                               {demo.name}
                             </h2>
-                            {isDia6 ? (
-                              <span className="inline-flex items-center rounded-full border border-amber-400/40 bg-amber-400/15 px-2 py-0.5 text-[10px] font-bold text-amber-300">
-                                🌟 Día 6
-                              </span>
-                            ) : isDia5 ? (
-                              <span className="inline-flex items-center rounded-full border border-pink-400/30 bg-pink-400/10 px-2 py-0.5 text-[10px] font-bold text-pink-300">
-                                🚀 Día 5
-                              </span>
-                            ) : isDia4 ? (
-                              <span className="inline-flex items-center rounded-full border border-purple-400/30 bg-purple-400/10 px-2 py-0.5 text-[10px] font-bold text-purple-300">
-                                🔥 Día 4
-                              </span>
-                            ) : isDia3 ? (
-                              <span className="inline-flex items-center rounded-full border border-emerald-400/30 bg-emerald-400/10 px-2 py-0.5 text-[10px] font-bold text-emerald-300">
-                                ✨ Día 3
-                              </span>
-                            ) : isDia2 ? (
-                              <span className="inline-flex items-center rounded-full border border-amber-400/30 bg-amber-400/10 px-2 py-0.5 text-[10px] font-bold text-amber-300">
-                                ⚡ Día 2
-                              </span>
-                            ) : (
-                              <span className="inline-flex items-center rounded-full border border-blue-400/30 bg-blue-400/10 px-2 py-0.5 text-[10px] font-bold text-blue-300">
-                                🏛️ Día 1
-                              </span>
-                            )}
+                            <span className="inline-flex items-center rounded-full border border-amber-400/40 bg-amber-400/15 px-2 py-0.5 text-[10px] font-bold text-amber-300">
+                              🌟 Solución a Medida
+                            </span>
                           </div>
                           <span className="text-xs text-zinc-400">
                             @{demo.handle}
@@ -372,6 +199,26 @@ export function DemosHubClient({ demos }: Props) {
                         {demo.category}
                       </span>
 
+                      {demo.archetype === "gift-customizer" && (
+                        <span className="rounded-md border border-pink-500/30 bg-pink-500/10 px-2 py-1 text-[10px] font-bold text-pink-300">
+                          🎁 Regalos & Dedicatorias
+                        </span>
+                      )}
+                      {demo.archetype === "item-builder" && (
+                        <span className="rounded-md border border-cyan-500/30 bg-cyan-500/10 px-2 py-1 text-[10px] font-bold text-cyan-300">
+                          🍧 Creador Interactivo
+                        </span>
+                      )}
+                      {demo.archetype === "wholesale-catalog" && (
+                        <span className="rounded-md border border-amber-500/30 bg-amber-500/10 px-2 py-1 text-[10px] font-bold text-amber-300">
+                          📦 Mayorista B2B
+                        </span>
+                      )}
+                      {demo.archetype === "match-booking" && (
+                        <span className="rounded-md border border-emerald-500/30 bg-emerald-500/10 px-2 py-1 text-[10px] font-bold text-emerald-300">
+                          ⚽ Reserva Partidos
+                        </span>
+                      )}
                       {demo.archetype === "table-ordering" && (
                         <span className="rounded-md border border-emerald-500/30 bg-emerald-500/10 px-2 py-1 text-[10px] font-bold text-emerald-300">
                           📱 Auto-Pedido
@@ -379,12 +226,12 @@ export function DemosHubClient({ demos }: Props) {
                       )}
                       {demo.archetype === "vip-access" && (
                         <span className="rounded-md border border-amber-500/30 bg-amber-500/10 px-2 py-1 text-[10px] font-bold text-amber-300">
-                          🎟️ Pases QR
+                          🎟️ Pases VIP & Hotel
                         </span>
                       )}
                       {demo.archetype === "gourmet-booking" && (
                         <span className="rounded-md border border-purple-500/30 bg-purple-500/10 px-2 py-1 text-[10px] font-bold text-purple-300">
-                          🍷 Gourmet
+                          🍷 Gourmet & Cava
                         </span>
                       )}
                       {demo.archetype === "direct-delivery" && (

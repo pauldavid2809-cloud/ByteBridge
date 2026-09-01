@@ -15,62 +15,6 @@ const rootDir = path.resolve(__dirname, "..");
 
 const SLUGS = [
   "bytebridge",
-  // Batch 1 (Día 1)
-  "ecoland",
-  "grandchef",
-  "zuhouse",
-  "tannous",
-  "room101",
-  "labarraventura",
-  "ciaogastrobar",
-  "blaomcbo",
-  "pittsbowling",
-  "corner",
-  // Batch 2 (Día 2)
-  "estacionholidays",
-  "mosaico_mcbo",
-  "incontrotrattoria",
-  "pinzulia",
-  "alfredscoffeebar",
-  "lakebistro",
-  "bromcbo",
-  "ahpresidente",
-  "mykonosconceptve",
-  "terraza_restobar",
-  // Batch 3 (Día 3)
-  "ranchogalipan",
-  "nomi_sakebar",
-  "da_ettore",
-  "solemiocucinaebar",
-  "somos_delish",
-  "yellowstonemcbo",
-  "morecheese_mcbo",
-  "saloncanton_mcbo",
-  "holysushi_mcbo",
-  "vivematcha",
-  // Batch 4 (Día 4)
-  "saukorestaurant",
-  "genovia_val",
-  "yakitoribarccs",
-  "santogrillccs",
-  "kiuboletexmexfood",
-  "lapagodaccs",
-  "tulum_bqto",
-  "handroll_ve",
-  "artica_dunas",
-  "mrcrunch_ve",
-  // Batch 5 (Día 5)
-  "dystopiabowling",
-  "lataberna_delnavegante",
-  "mrbroastermcbo",
-  "friendsmaracaibo",
-  "cartablancave",
-  "pidesalmarina",
-  "picanagrill",
-  "altamarmcbo",
-  "bogrillmcbo",
-  "dantedipronto",
-  // Batch 6 (Día 6)
   "lolapopspaleteria",
   "keponke_ve",
   "dolcezza_ve",
@@ -87,24 +31,12 @@ async function main() {
   const targetSlug = process.argv[2];
   let slugsToRender = SLUGS;
 
-  if (targetSlug === "batch6") {
-    slugsToRender = SLUGS.slice(51);
-  } else if (targetSlug === "batch5") {
-    slugsToRender = SLUGS.slice(41, 51);
-  } else if (targetSlug === "batch4") {
-    slugsToRender = SLUGS.slice(31, 41);
-  } else if (targetSlug === "batch3") {
-    slugsToRender = SLUGS.slice(21, 31);
-  } else if (targetSlug === "batch2") {
-    slugsToRender = SLUGS.slice(11, 21);
-  } else if (targetSlug === "batch1") {
-    slugsToRender = SLUGS.slice(1, 11);
-  } else if (targetSlug && targetSlug !== "all") {
+  if (targetSlug && targetSlug !== "all") {
     slugsToRender = SLUGS.filter((s) => s.toLowerCase() === targetSlug.toLowerCase());
   }
 
   if (slugsToRender.length === 0) {
-    console.error(`❌ Argumento "${targetSlug}" no encontrado. Opciones válidas: bytebridge, batch1, batch2, batch3, batch4, batch5, batch6, all o cualquiera de:`, SLUGS.join(", "));
+    console.error(`❌ Argumento "${targetSlug}" no encontrado. Opciones válidas: all o cualquiera de:`, SLUGS.join(", "));
     process.exit(1);
   }
 
