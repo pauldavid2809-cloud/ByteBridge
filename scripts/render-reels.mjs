@@ -70,14 +70,27 @@ const SLUGS = [
   "altamarmcbo",
   "bogrillmcbo",
   "dantedipronto",
+  // Batch 6 (Día 6)
+  "lolapopspaleteria",
+  "keponke_ve",
+  "dolcezza_ve",
+  "tostaca_ve",
+  "elvarfoodandcoffee",
+  "sweetgiftve",
+  "olis_burger",
+  "pokemolokai",
+  "barako_rest",
+  "portovenerehotel",
 ];
 
 async function main() {
   const targetSlug = process.argv[2];
   let slugsToRender = SLUGS;
 
-  if (targetSlug === "batch5") {
-    slugsToRender = SLUGS.slice(41);
+  if (targetSlug === "batch6") {
+    slugsToRender = SLUGS.slice(51);
+  } else if (targetSlug === "batch5") {
+    slugsToRender = SLUGS.slice(41, 51);
   } else if (targetSlug === "batch4") {
     slugsToRender = SLUGS.slice(31, 41);
   } else if (targetSlug === "batch3") {
@@ -91,7 +104,7 @@ async function main() {
   }
 
   if (slugsToRender.length === 0) {
-    console.error(`❌ Argumento "${targetSlug}" no encontrado. Opciones válidas: bytebridge, batch1, batch2, batch3, batch4, batch5, all o cualquiera de:`, SLUGS.join(", "));
+    console.error(`❌ Argumento "${targetSlug}" no encontrado. Opciones válidas: bytebridge, batch1, batch2, batch3, batch4, batch5, batch6, all o cualquiera de:`, SLUGS.join(", "));
     process.exit(1);
   }
 
@@ -160,6 +173,8 @@ async function main() {
       serveUrl: bundleLocation,
       codec: "h264",
       outputLocation: outputPath,
+      concurrency: 1,
+      timeoutInMilliseconds: 90000,
       onProgress: ({ progress }) => {
         const percent = Math.floor(progress * 100);
         process.stdout.write(`\r   ⏳ Progreso: ${percent}%`);

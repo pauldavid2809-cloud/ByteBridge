@@ -22,6 +22,17 @@ export function DemosHubClient({ demos }: Props) {
   const [modalTab, setModalTab] = useState<"pitch" | "voice" | "admin">("pitch");
 
   const voiceScripts: Record<string, string> = {
+    // Dia 6
+    lolapopspaleteria: "Hola equipo de Lola Pops, les habla Paul David de ByteBridge. En horas pico, explicar sabores, baños y toppings por WhatsApp quita tiempo valioso. Les construimos una WebApp interactiva con 'Paleta Builder' donde sus clientes arman su combinación en 3 clics y cotizan el carrito de eventos con tasa BCV en tiempo real. Miren la demo en el enlace adjunto.",
+    keponke_ve: "Hola equipo de Ke Ponke, les habla Paul David de ByteBridge. Cuadrar dedicatorias, sabores de ponquecitos y horas de entrega por WhatsApp puede volverse un dolor de cabeza. Creamos para ustedes una WebApp con 'Gift Customizer' donde sus clientes arman su caja, escriben la dedicatoria y agendan el delivery en un minuto. Pruébenla en el enlace.",
+    dolcezza_ve: "Hola equipo de Dolcezza, les habla Paul David de ByteBridge. Preguntar por WhatsApp qué porciones quedan en vitrina hace perder ventas todos los días. Les diseñamos una WebApp de Delivery Directo y Encargos donde sus clientes ven las tortas disponibles, eligen porción o entera y pagan a tasa BCV al instante. Vean la demo en el link.",
+    tostaca_ve: "Hola equipo de Tostaca, les habla Paul David de ByteBridge. Vender bultos de platanitos al mayor por WhatsApp enviando listas en PDF retrasa pedidos de bodegones. Les armamos una WebApp con catálogo mayorista que calcula descuentos por volumen y tasa BCV en automático. Prueben la demo en el enlace.",
+    elvarfoodandcoffee: "Hola equipo de El VAR, les habla Paul David de ByteBridge. En días de Champions o Clásicos, los clientes se desesperan esperando salonero para pedir otra ronda de cervezas. Creamos una WebApp con reserva por partido y auto-pedido en mesa por QR con tasa BCV automática. Vean la demo en el enlace adjunto.",
+    sweetgiftve: "Hola equipo de Sweet Gift, les habla Paul David de ByteBridge. ¿Su equipo pierde horas coordinando dedicatorias, toppings y direcciones por WhatsApp? Con nuestra WebApp con personalizador interactivo, sus clientes diseñan su arreglo, programan la fecha exacta de entrega y pagan en 3 clics desde Maracaibo o el exterior. Miren la demo en el link.",
+    olis_burger: "Hola equipo de Oli's Burger, les habla Paul David de ByteBridge. Si su salón se llena los fines de semana y el delivery les cobra 25% de comisión, con nuestra WebApp sus comensales piden y pagan desde su mesa con código QR, y reciben pedidos de delivery directo sin intermediarios. Vean la demo interactiva.",
+    pokemolokai: "Hola equipo de Poke Molokai, les habla Paul David de ByteBridge. Con nuestra WebApp con constructor interactivo, sus clientes arman su Poke bowl paso a paso, eligen su proteína y salsas favoritas y ordenan en segundos sin enredos de mensajes por chat. Precisión total en cocina y más ventas al día. Chequeen la demo.",
+    barako_rest: "Estimado equipo de Barako, les habla Paul David de ByteBridge. Para que la experiencia en su restaurante sea impecable desde antes de que el comensal pise su terraza, creamos una WebApp donde sus clientes VIP reservan su mesa, eligen su corte prime y reciben su confirmación digital con código QR. Miren la demo.",
+    portovenerehotel: "Estimada gerencia de Hotel Portovenere, les habla Paul David de ByteBridge. Con nuestra WebApp VIP, sus clientes compran su Day Pass de piscina con pase QR, reservan suites al instante y piden servicio a la habitación desde su celular con tasa BCV al día. Miren la demo en el link.",
     // Dia 5
     dystopiabowling: "Qué tal, equipo de Dystopia Bowling, les habla Paul David de ByteBridge. Diseñamos una demo interactiva donde sus clientes reservan su pista de bowling en segundos, reciben un pase QR VIP y pueden pedir tragos y hamburguesas directo a su pista sin hacer filas en barra. Miren cómo funciona en el enlace que les dejo.",
     lataberna_delnavegante: "Hola al equipo de La Taberna del Navegante, les habla Paul David de ByteBridge. Les preparamos una plataforma de reservas gourmet exclusiva para su taberna: permite a sus comensales reservar mesa, pre-ordenar sus paellas y seleccionar sus vinos con confirmación inmediata en WhatsApp. Vean su demo lista aquí.",
@@ -84,6 +95,19 @@ export function DemosHubClient({ demos }: Props) {
     setCopiedSlug(demo.slug);
     setTimeout(() => setCopiedSlug(null), 2000);
   };
+
+  const dia6Slugs = [
+    "lolapopspaleteria",
+    "keponke_ve",
+    "dolcezza_ve",
+    "tostaca_ve",
+    "elvarfoodandcoffee",
+    "sweetgiftve",
+    "olis_burger",
+    "pokemolokai",
+    "barako_rest",
+    "portovenerehotel",
+  ];
 
   const dia5Slugs = [
     "dystopiabowling",
@@ -159,6 +183,7 @@ export function DemosHubClient({ demos }: Props) {
     if (!matchesSearch) return false;
 
     if (filter === "all") return true;
+    if (filter === "dia6") return dia6Slugs.includes(d.slug) || d.batch === "dia6";
     if (filter === "dia5") return dia5Slugs.includes(d.slug) || d.batch === "dia5";
     if (filter === "dia4") return dia4Slugs.includes(d.slug) || d.batch === "dia4";
     if (filter === "dia3") return dia3Slugs.includes(d.slug) || d.batch === "dia3";
@@ -171,6 +196,7 @@ export function DemosHubClient({ demos }: Props) {
     return true;
   });
 
+  const countDia6 = demos.filter((d) => dia6Slugs.includes(d.slug) || d.batch === "dia6").length;
   const countDia5 = demos.filter((d) => dia5Slugs.includes(d.slug) || d.batch === "dia5").length;
   const countDia4 = demos.filter((d) => dia4Slugs.includes(d.slug) || d.batch === "dia4").length;
   const countDia3 = demos.filter((d) => dia3Slugs.includes(d.slug) || d.batch === "dia3").length;
@@ -191,13 +217,13 @@ export function DemosHubClient({ demos }: Props) {
           <div className="text-center">
             <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-400/30 bg-emerald-400/10 px-3.5 py-1 text-xs font-bold text-emerald-300">
               <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
-              50 Demos Comerciales + Reels en Remotion
+              60 Demos Comerciales + Reels en Remotion
             </span>
             <h1 className="mt-4 text-3xl font-extrabold tracking-tight sm:text-5xl">
               Catálogo de Propuestas, WebApps & Reels
             </h1>
             <p className="mt-3 max-w-2xl mx-auto text-sm text-zinc-400 sm:text-base">
-              WebApps interactivas adaptadas a 4 arquetipos operativos: Auto-Pedido en Mesa, Pases VIP con QR, Reservas Gourmet y Delivery Directo sin comisiones.
+              WebApps interactivas adaptadas a arquetipos especializados: Auto-Pedido en Mesa, Pases VIP con QR, Reservas Gourmet, Delivery Directo, Constructores de Regalos y Pokes.
             </p>
 
             {/* Buscador de Demos */}
@@ -231,10 +257,11 @@ export function DemosHubClient({ demos }: Props) {
           <div className="mt-8 flex justify-center gap-2 overflow-x-auto pb-2 scrollbar-none">
             {[
               { id: "all", label: `Todas (${demos.length})` },
-              { id: "dia5", label: `🌟 Día 5 (${countDia5})` },
+              { id: "dia6", label: `🌟 Día 6 (${countDia6})` },
+              { id: "dia5", label: `🚀 Día 5 (${countDia5})` },
               { id: "dia4", label: `🔥 Día 4 (${countDia4})` },
-              { id: "dia3", label: `🚀 Día 3 (${countDia3})` },
-              { id: "dia2", label: `⚡ Día 2 (${countDia2})` },
+              { id: "dia3", label: `⚡ Día 3 (${countDia3})` },
+              { id: "dia2", label: `💎 Día 2 (${countDia2})` },
               { id: "dia1", label: `🏛️ Día 1 (${countDia1})` },
               { id: "table-order", label: `📱 Auto-Pedido (${countTableOrder})` },
               { id: "vip-pass", label: `🎟️ Pases VIP (${countVipPass})` },
@@ -259,6 +286,7 @@ export function DemosHubClient({ demos }: Props) {
           <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {filteredDemos.map((demo) => {
               const isCopied = copiedSlug === demo.slug;
+              const isDia6 = dia6Slugs.includes(demo.slug) || demo.batch === "dia6";
               const isDia5 = dia5Slugs.includes(demo.slug) || demo.batch === "dia5";
               const isDia4 = dia4Slugs.includes(demo.slug) || demo.batch === "dia4";
               const isDia3 = dia3Slugs.includes(demo.slug) || demo.batch === "dia3";
@@ -291,9 +319,13 @@ export function DemosHubClient({ demos }: Props) {
                             <h2 className="text-base font-bold text-white tracking-tight">
                               {demo.name}
                             </h2>
-                            {isDia5 ? (
+                            {isDia6 ? (
+                              <span className="inline-flex items-center rounded-full border border-amber-400/40 bg-amber-400/15 px-2 py-0.5 text-[10px] font-bold text-amber-300">
+                                🌟 Día 6
+                              </span>
+                            ) : isDia5 ? (
                               <span className="inline-flex items-center rounded-full border border-pink-400/30 bg-pink-400/10 px-2 py-0.5 text-[10px] font-bold text-pink-300">
-                                🌟 Día 5
+                                🚀 Día 5
                               </span>
                             ) : isDia4 ? (
                               <span className="inline-flex items-center rounded-full border border-purple-400/30 bg-purple-400/10 px-2 py-0.5 text-[10px] font-bold text-purple-300">

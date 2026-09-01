@@ -282,12 +282,22 @@ export function InteractiveBooking({ demo, currency, onGenerateQrTicket }: Props
             <div className="space-y-3 border-t border-white/10 pt-4">
               <div>
                 <label className="text-xs font-medium text-zinc-400">
-                  Nombre de quien reserva:
+                  {demo.archetype === "gift-customizer"
+                    ? "Nombre de quien envía / Destinatario:"
+                    : demo.archetype === "wholesale-catalog"
+                    ? "Razón Social / Contacto Comercial:"
+                    : "Nombre de quien reserva:"}
                 </label>
                 <input
                   type="text"
                   required
-                  placeholder="Ej: Carlos Mendoza"
+                  placeholder={
+                    demo.archetype === "gift-customizer"
+                      ? "Ej: Andrea Colmenares (Para: Mamá)"
+                      : demo.archetype === "wholesale-catalog"
+                      ? "Ej: Bodegón Santa Rita C.A."
+                      : "Ej: Carlos Mendoza"
+                  }
                   value={clientName}
                   onChange={(e) => setClientName(e.target.value)}
                   className="mt-1.5 w-full rounded-xl border border-white/15 bg-zinc-900 px-3.5 py-2 text-sm text-white placeholder-zinc-500 focus:border-amber-400 focus:outline-none"
@@ -296,7 +306,11 @@ export function InteractiveBooking({ demo, currency, onGenerateQrTicket }: Props
 
               <div>
                 <label className="text-xs font-medium text-zinc-400">
-                  WhatsApp para recibir el pase QR:
+                  {demo.archetype === "gift-customizer"
+                    ? "WhatsApp para confirmar el despacho:"
+                    : demo.archetype === "wholesale-catalog"
+                    ? "WhatsApp de compras / facturación:"
+                    : "WhatsApp para recibir el pase QR:"}
                 </label>
                 <input
                   type="tel"
@@ -310,11 +324,29 @@ export function InteractiveBooking({ demo, currency, onGenerateQrTicket }: Props
 
               <div>
                 <label className="text-xs font-medium text-zinc-400">
-                  Notas especiales (opcional):
+                  {demo.archetype === "gift-customizer"
+                    ? "Dedicatoria para la tarjeta & Dirección de entrega:"
+                    : demo.archetype === "wholesale-catalog"
+                    ? "RIF y Dirección del Comercio / Bodegón:"
+                    : demo.archetype === "item-builder"
+                    ? "Personalización de ingredientes / toppings:"
+                    : demo.archetype === "match-booking"
+                    ? "Partido a ver / notas de la mesa:"
+                    : "Notas especiales (opcional):"}
                 </label>
                 <input
                   type="text"
-                  placeholder="Ej: Es para un cumpleaños / mesa cerca de música"
+                  placeholder={
+                    demo.archetype === "gift-customizer"
+                      ? "Ej: '¡Feliz Cumpleaños Mamá! Te amamos'. Urb. La Coromoto Calle 165."
+                      : demo.archetype === "wholesale-catalog"
+                      ? "Ej: RIF J-40899120-1. Av. 4 Bella Vista con Calle 72."
+                      : demo.archetype === "item-builder"
+                      ? "Ej: Baño de chocolate oscuro + topping de almendras y coco."
+                      : demo.archetype === "match-booking"
+                      ? "Ej: Real Madrid vs Man City. Mesa frente al proyector principal."
+                      : "Ej: Es para un aniversario / mesa cerca de la ventana"
+                  }
                   value={clientNotes}
                   onChange={(e) => setClientNotes(e.target.value)}
                   className="mt-1.5 w-full rounded-xl border border-white/15 bg-zinc-900 px-3.5 py-2 text-sm text-white placeholder-zinc-500 focus:border-amber-400 focus:outline-none"
@@ -363,7 +395,7 @@ export function InteractiveBooking({ demo, currency, onGenerateQrTicket }: Props
                 {isSubmitting ? (
                   <span className="flex items-center gap-2">
                     <span className="h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent" />
-                    Generando Código QR...
+                    Generando Pase Digital...
                   </span>
                 ) : (
                   <>
@@ -380,7 +412,17 @@ export function InteractiveBooking({ demo, currency, onGenerateQrTicket }: Props
                         d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a2 2 0 110 4v3a2 2 0 002 2h14a2 2 0 002-2v-3a2 2 0 110-4V7a2 2 0 00-2-2H5z"
                       />
                     </svg>
-                    <span>Generar Pase Digital con QR</span>
+                    <span>
+                      {demo.archetype === "gift-customizer"
+                        ? "Generar Dedicatoria & Pase QR"
+                        : demo.archetype === "wholesale-catalog"
+                        ? "Generar Factura Proforma & Orden B2B"
+                        : demo.archetype === "item-builder"
+                        ? "Comandar Personalización con QR"
+                        : demo.archetype === "match-booking"
+                        ? "Asegurar Mesa de Partido & Pase QR"
+                        : "Generar Boleto Digital con QR"}
+                    </span>
                   </>
                 )}
               </button>

@@ -4,7 +4,11 @@ import { useState } from "react";
 import { BusinessDemo } from "@/data/demosData";
 import { motion, AnimatePresence } from "motion/react";
 
-type ModuleType = "table-ordering" | "vip-access" | "gourmet-booking" | "direct-delivery";
+type ModuleType =
+  | "table-ordering"
+  | "vip-access"
+  | "gourmet-booking"
+  | "direct-delivery";
 
 type Props = {
   demo: BusinessDemo;
@@ -59,8 +63,21 @@ const MODULES: {
 ];
 
 export function ModuleTabsSelector({ demo, onSelectModule }: Props) {
-  const defaultArchetype = demo.archetype || "table-ordering";
-  const [activeModule, setActiveModule] = useState<ModuleType>(defaultArchetype);
+  const getInitialModule = (): ModuleType => {
+    if (demo.archetype === "gift-customizer" || demo.archetype === "wholesale-catalog") {
+      return "direct-delivery";
+    }
+    if (demo.archetype === "item-builder") {
+      return "table-ordering";
+    }
+    if (demo.archetype === "match-booking") {
+      return "gourmet-booking";
+    }
+    return (demo.archetype as ModuleType) || "table-ordering";
+  };
+
+  const initialModule = getInitialModule();
+  const [activeModule, setActiveModule] = useState<ModuleType>(initialModule);
   const [activeToast, setActiveToast] = useState<string | null>(null);
 
   const handleTabClick = (mod: (typeof MODULES)[0]) => {
@@ -73,19 +90,20 @@ export function ModuleTabsSelector({ demo, onSelectModule }: Props) {
     }
 
     setActiveToast(`Módulo activo: ${mod.label} · 100% integrado a la WebApp`);
-    setTimeout(() => {
-      setActiveToast(null);
-    }, 4000);
+    setTimeout(() => setActiveToast(null), 3000);
   };
 
   return (
-    <section className="relative z-30 border-y border-white/10 bg-zinc-950/90 py-5 backdrop-blur-md">
-      <div className="mx-auto max-w-5xl px-4">
+    <section className="border-b border-white/10 bg-zinc-950/80 py-6">
+      <div className="mx-auto max-w-5xl px-4 sm:px-6">
         <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
+          {/* Título Informativo */}
           <div className="text-center md:text-left">
-            <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[11px] font-semibold text-zinc-300">
-              <span className="h-2 w-2 rounded-full animate-pulse" style={{ backgroundColor: demo.palette.accent }} />
-              Suite Modular ByteBridge
+            <div className="flex items-center justify-center gap-2 md:justify-start">
+              <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
+              <span className="text-xs font-bold uppercase tracking-wider text-emerald-400">
+                Suite Modular Interactiva
+              </span>
             </div>
             <p className="mt-1 text-xs text-zinc-400">
               Explora los 4 módulos operativos disponibles para <strong className="text-white">{demo.name}</strong>:
@@ -96,7 +114,7 @@ export function ModuleTabsSelector({ demo, onSelectModule }: Props) {
           <div className="flex flex-wrap items-center justify-center gap-2">
             {MODULES.map((mod) => {
               const isSelected = activeModule === mod.id;
-              const isDefault = defaultArchetype === mod.id;
+              const isDefault = initialModule === mod.id;
 
               return (
                 <button
