@@ -11,23 +11,29 @@ export function Scene3QrTickets() {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
 
-  const cardSpring = spring({
+  const headerSpring = spring({
     frame,
     fps,
-    config: { damping: 14, stiffness: 90 },
+    config: { damping: 14, stiffness: 95 },
   });
 
-  // Laser scanner animation
-  const laserY = interpolate(frame % 40, [0, 20, 40], [0, 100, 0], {
+  const ticketSpring = spring({
+    frame: frame - 10,
+    fps,
+    config: { damping: 13, stiffness: 90 },
+  });
+
+  // Laser scanner sweeping vertically across the QR code between frame 30 and 130
+  const laserProgress = interpolate(frame, [35, 120], [0, 100], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
 
-  // Verified Stamp popup spring after frame 36
-  const stampSpring = spring({
-    frame: frame - 36,
+  const isScanned = frame > 110;
+  const verifiedSpring = spring({
+    frame: frame - 110,
     fps,
-    config: { damping: 9, stiffness: 140 },
+    config: { damping: 10, stiffness: 140 },
   });
 
   return (
@@ -39,341 +45,343 @@ export function Scene3QrTickets() {
         justifyContent: "space-between",
         padding: "70px 45px 60px 45px",
         boxSizing: "border-box",
+        perspective: "1200px",
       }}
     >
       {/* Top Header */}
-      <div style={{ textAlign: "center", zIndex: 10 }}>
+      <div
+        style={{
+          opacity: headerSpring,
+          transform: `translateY(${(1 - headerSpring) * 25}px)`,
+          textAlign: "center",
+          zIndex: 10,
+        }}
+      >
         <div
           style={{
             display: "inline-flex",
             alignItems: "center",
             gap: "10px",
-            padding: "10px 30px",
+            padding: "8px 26px",
             borderRadius: "9999px",
-            backgroundColor: "#2ebd85",
-            color: "#052e20",
-            fontSize: "22px",
-            fontWeight: 900,
-            letterSpacing: "2px",
-            textTransform: "uppercase",
-            boxShadow: "0 8px 25px rgba(46, 189, 133, 0.4)",
+            backgroundColor: "rgba(46, 189, 133, 0.15)",
+            border: "1.5px solid rgba(46, 189, 133, 0.4)",
           }}
         >
-          <span>🎟️</span>
-          <span>02 · ENTRADAS & PASES VIP POR QR</span>
+          <span style={{ fontSize: "18px" }}>🎟️</span>
+          <span
+            style={{
+              fontSize: "20px",
+              fontWeight: 800,
+              color: "#36d698",
+              letterSpacing: "2px",
+              textTransform: "uppercase",
+            }}
+          >
+            PASES DIGITALES & CÓDIGOS QR
+          </span>
         </div>
 
         <h2
           style={{
-            fontSize: "58px",
+            fontSize: "48px",
             fontWeight: 900,
-            lineHeight: 1.15,
-            marginTop: "18px",
-            marginBottom: "8px",
             color: "#ffffff",
+            margin: "14px 0 0 0",
             textTransform: "uppercase",
             letterSpacing: "-1px",
           }}
         >
-          Validación Óptica en Menos de 1 Seg
+          Control de Acceso en Puerta{" "}
+          <span style={{ color: "#2ebd85" }}>en 1 Segundo</span>
         </h2>
-
-        <p
-          style={{
-            fontSize: "26px",
-            color: "#cbd5e1",
-            margin: 0,
-            fontWeight: 500,
-          }}
-        >
-          Elimina colas en la entrada y controla los accesos sin tickets de papel
-        </p>
       </div>
 
-      {/* Center: VIP Boarding Pass Card */}
+      {/* Center: Holographic VIP Boarding Pass Card */}
       <div
         style={{
-          transform: `scale(${0.92 + cardSpring * 0.08})`,
-          opacity: Math.min(1, Math.max(0, cardSpring)),
+          transform: `scale(${0.92 + ticketSpring * 0.08})`,
+          opacity: Math.min(1, Math.max(0, ticketSpring)),
           width: "720px",
-          borderRadius: "44px",
-          border: "6px solid #27272a",
-          backgroundColor: "#0c1311",
-          padding: "32px",
+          borderRadius: "36px",
+          backgroundColor: "#0d1411",
+          border: "3px solid rgba(46, 189, 133, 0.5)",
           boxShadow:
-            "0 35px 90px -15px rgba(0,0,0,0.9), 0 0 60px rgba(46, 189, 133, 0.25)",
-          boxSizing: "border-box",
+            "0 30px 80px rgba(0,0,0,0.85), 0 0 50px rgba(46, 189, 133, 0.3)",
+          overflow: "hidden",
           position: "relative",
-          zIndex: 5,
+          display: "flex",
+          flexDirection: "column",
         }}
       >
-        {/* Pass Top Bar */}
+        {/* Ticket Header */}
         <div
           style={{
+            padding: "26px 32px",
+            background: "linear-gradient(135deg, #13241b 0%, #0d1411 100%)",
+            borderBottom: "2px dashed rgba(46, 189, 133, 0.3)",
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
-            borderBottom: "1.5px solid rgba(255,255,255,0.12)",
-            paddingBottom: "20px",
           }}
         >
-          <div style={{ display: "flex", alignItems: "center", gap: "14px" }}>
-            <div
+          <div>
+            <span
               style={{
-                width: "52px",
-                height: "52px",
-                borderRadius: "16px",
-                backgroundColor: "rgba(46, 189, 133, 0.2)",
-                border: "2px solid #2ebd85",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                fontSize: "28px",
+                fontSize: "12px",
+                fontWeight: 800,
+                color: "#2ebd85",
+                letterSpacing: "2px",
+                textTransform: "uppercase",
               }}
             >
-              🎟️
-            </div>
-            <div>
-              <div style={{ fontSize: "26px", fontWeight: 900, color: "#ffffff" }}>
-                Pase VIP / Cover Digital
-              </div>
-              <div
-                style={{
-                  fontFamily: "monospace",
-                  fontSize: "17px",
-                  fontWeight: 800,
-                  color: "#36d698",
-                }}
-              >
-                #BB-PASS-9842 · ACCESO TOTAL
-              </div>
-            </div>
+              VIP PASS · RESERVACIÓN OFICIAL
+            </span>
+            <h3
+              style={{
+                margin: "4px 0 0 0",
+                fontSize: "30px",
+                fontWeight: 900,
+                color: "#ffffff",
+              }}
+            >
+              Hotel & Lounge Resort
+            </h3>
           </div>
 
           <div
             style={{
-              padding: "8px 20px",
+              padding: "8px 16px",
               borderRadius: "12px",
               backgroundColor: "rgba(46, 189, 133, 0.2)",
-              border: "1.5px solid #2ebd85",
-              color: "#36d698",
-              fontSize: "18px",
-              fontWeight: 900,
+              border: "1px solid #2ebd85",
+              fontSize: "14px",
+              fontWeight: 800,
+              color: "#34d399",
             }}
           >
-            ● ACTIVO
+            CONFIRMADO
           </div>
         </div>
 
-        {/* Pass Details Grid */}
+        {/* Ticket Body: Details + Holographic QR with Laser */}
         <div
           style={{
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr",
-            gap: "16px",
-            marginTop: "20px",
-          }}
-        >
-          <div
-            style={{
-              padding: "14px 18px",
-              borderRadius: "18px",
-              backgroundColor: "rgba(255,255,255,0.05)",
-            }}
-          >
-            <div
-              style={{
-                fontSize: "13px",
-                color: "#94a3b8",
-                textTransform: "uppercase",
-                fontWeight: 700,
-              }}
-            >
-              Titular del Pase
-            </div>
-            <div style={{ fontSize: "20px", fontWeight: 800, color: "#fff", marginTop: "2px" }}>
-              Carlos Mendoza
-            </div>
-          </div>
-
-          <div
-            style={{
-              padding: "14px 18px",
-              borderRadius: "18px",
-              backgroundColor: "rgba(255,255,255,0.05)",
-            }}
-          >
-            <div
-              style={{
-                fontSize: "13px",
-                color: "#94a3b8",
-                textTransform: "uppercase",
-                fontWeight: 700,
-              }}
-            >
-              Zona & Mesa
-            </div>
-            <div style={{ fontSize: "20px", fontWeight: 800, color: "#fff", marginTop: "2px" }}>
-              Lounge VIP (4 Pax)
-            </div>
-          </div>
-        </div>
-
-        {/* Crisp QR Box with Laser Scan Beam */}
-        <div
-          style={{
-            marginTop: "20px",
-            borderRadius: "26px",
-            backgroundColor: "#ffffff",
-            padding: "20px",
+            padding: "36px 32px",
             display: "flex",
-            flexDirection: "column",
             alignItems: "center",
-            justifyContent: "center",
-            position: "relative",
-            overflow: "hidden",
+            justifyContent: "space-between",
+            gap: "28px",
           }}
         >
+          {/* Details Column */}
+          <div style={{ display: "flex", flexDirection: "column", gap: "18px", flex: 1 }}>
+            <div>
+              <p style={{ margin: 0, fontSize: "13px", color: "#64748b", fontWeight: 700, textTransform: "uppercase" }}>
+                Titular del Pase
+              </p>
+              <p style={{ margin: "2px 0 0 0", fontSize: "22px", fontWeight: 800, color: "#ffffff" }}>
+                Carlos Mendoza
+              </p>
+            </div>
+
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "12px" }}>
+              <div>
+                <p style={{ margin: 0, fontSize: "13px", color: "#64748b", fontWeight: 700, textTransform: "uppercase" }}>
+                  Fecha
+                </p>
+                <p style={{ margin: "2px 0 0 0", fontSize: "18px", fontWeight: 800, color: "#e2e8f0" }}>
+                  Hoy · 8:30 PM
+                </p>
+              </div>
+              <div>
+                <p style={{ margin: 0, fontSize: "13px", color: "#64748b", fontWeight: 700, textTransform: "uppercase" }}>
+                  Mesa / Pax
+                </p>
+                <p style={{ margin: "2px 0 0 0", fontSize: "18px", fontWeight: 800, color: "#e2e8f0" }}>
+                  Zona VIP · 4 Pax
+                </p>
+              </div>
+            </div>
+
+            <div>
+              <p style={{ margin: 0, fontSize: "13px", color: "#64748b", fontWeight: 700, textTransform: "uppercase" }}>
+                Total Pagado
+              </p>
+              <p style={{ margin: "2px 0 0 0", fontSize: "24px", fontWeight: 900, color: "#34d399" }}>
+                $80.00 USD (Bs. 5.640,00)
+              </p>
+            </div>
+          </div>
+
+          {/* QR Code Container with Live Scanning Laser */}
           <div
             style={{
-              width: "200px",
-              height: "200px",
-              backgroundColor: "#090e0c",
-              borderRadius: "18px",
-              padding: "12px",
-              boxSizing: "border-box",
               position: "relative",
-              overflow: "hidden",
+              width: "250px",
+              height: "250px",
+              backgroundColor: "#ffffff",
+              borderRadius: "24px",
+              padding: "16px",
+              boxSizing: "border-box",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              boxShadow: "0 0 35px rgba(46, 189, 133, 0.35)",
             }}
           >
-            {/* SVG Crisp High-Tech QR */}
+            {/* Real Vector-Like QR Mockup Pattern */}
             <svg
               viewBox="0 0 100 100"
-              style={{ width: "100%", height: "100%", fill: "#ffffff" }}
-              shapeRendering="crispEdges"
+              style={{ width: "100%", height: "100%", fill: "#000000" }}
             >
-              <rect x="0" y="0" width="30" height="30" />
-              <rect x="5" y="5" width="20" height="20" fill="#090e0c" />
-              <rect x="10" y="10" width="10" height="10" fill="#2ebd85" />
+              {/* Outer Position Markers */}
+              <rect x="0" y="0" width="30" height="30" rx="6" />
+              <rect x="5" y="5" width="20" height="20" fill="#ffffff" rx="4" />
+              <rect x="10" y="10" width="10" height="10" rx="2" />
 
-              <rect x="70" y="0" width="30" height="30" />
-              <rect x="75" y="5" width="20" height="20" fill="#090e0c" />
-              <rect x="80" y="10" width="10" height="10" fill="#2ebd85" />
+              <rect x="70" y="0" width="30" height="30" rx="6" />
+              <rect x="75" y="5" width="20" height="20" fill="#ffffff" rx="4" />
+              <rect x="80" y="10" width="10" height="10" rx="2" />
 
-              <rect x="0" y="70" width="30" height="30" />
-              <rect x="5" y="75" width="20" height="20" fill="#090e0c" />
-              <rect x="10" y="80" width="10" height="10" fill="#2ebd85" />
+              <rect x="0" y="70" width="30" height="30" rx="6" />
+              <rect x="5" y="75" width="20" height="20" fill="#ffffff" rx="4" />
+              <rect x="10" y="80" width="10" height="10" rx="2" />
 
-              <rect x="35" y="5" width="5" height="15" />
-              <rect x="45" y="10" width="15" height="5" />
-              <rect x="35" y="25" width="25" height="5" />
-              <rect x="10" y="35" width="20" height="5" />
-              <rect x="35" y="35" width="10" height="10" fill="#2ebd85" />
-              <rect x="55" y="35" width="15" height="15" />
-              <rect x="80" y="35" width="15" height="10" />
-              <rect x="15" y="45" width="15" height="15" />
-              <rect x="35" y="50" width="15" height="5" />
-              <rect x="40" y="60" width="20" height="10" />
-              <rect x="65" y="55" width="10" height="20" />
-              <rect x="80" y="55" width="15" height="15" />
-              <rect x="35" y="75" width="10" height="20" />
-              <rect x="50" y="75" width="15" height="10" />
-              <rect x="70" y="80" width="25" height="15" />
-              <rect x="50" y="90" width="15" height="5" />
+              {/* Data Blocks */}
+              <rect x="38" y="10" width="8" height="8" />
+              <rect x="50" y="14" width="8" height="8" />
+              <rect x="36" y="24" width="14" height="6" />
+
+              <rect x="10" y="40" width="8" height="14" />
+              <rect x="24" y="44" width="12" height="8" />
+              <rect x="42" y="38" width="16" height="16" fill="#2ebd85" rx="3" />
+              <rect x="66" y="40" width="14" height="8" />
+              <rect x="84" y="44" width="8" height="12" />
+
+              <rect x="40" y="66" width="12" height="14" />
+              <rect x="58" y="70" width="8" height="8" />
+              <rect x="72" y="76" width="14" height="8" />
+              <rect x="88" y="84" width="6" height="8" />
             </svg>
 
-            {/* Laser Line Scanning Effect */}
-            <div
-              style={{
-                position: "absolute",
-                left: 0,
-                right: 0,
-                top: `${laserY}%`,
-                height: "6px",
-                background:
-                  "linear-gradient(90deg, transparent, #2ebd85, #36d698, #2ebd85, transparent)",
-                boxShadow: "0 0 20px #36d698, 0 0 10px #2ebd85",
-              }}
-            />
-          </div>
-
-          <div
-            style={{
-              marginTop: "10px",
-              fontFamily: "monospace",
-              fontSize: "15px",
-              fontWeight: 900,
-              color: "#0a0e0d",
-              letterSpacing: "2px",
-            }}
-          >
-            ESCÁNER ÓPTICO EN PUERTA · 0.8s
-          </div>
-
-          {/* Validation Stamp Pop */}
-          {frame > 35 && (
-            <div
-              style={{
-                transform: `scale(${Math.max(0.9, stampSpring)}) rotate(-5deg)`,
-                position: "absolute",
-                inset: "15px 30px",
-                borderRadius: "24px",
-                border: "6px solid #2ebd85",
-                backgroundColor: "rgba(5, 46, 32, 0.97)",
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                justifyContent: "center",
-                boxShadow:
-                  "0 25px 50px rgba(0,0,0,0.85), 0 0 45px rgba(46,189,133,0.7)",
-                zIndex: 20,
-              }}
-            >
-              <div style={{ fontSize: "48px" }}>✅</div>
+            {/* Sweeping Laser Beam */}
+            {!isScanned && (
               <div
                 style={{
-                  fontSize: "32px",
-                  fontWeight: 900,
-                  color: "#36d698",
-                  textTransform: "uppercase",
-                  letterSpacing: "1px",
-                  marginTop: "4px",
+                  position: "absolute",
+                  left: "8px",
+                  right: "8px",
+                  top: `${laserProgress}%`,
+                  height: "4px",
+                  backgroundColor: "#2ebd85",
+                  boxShadow:
+                    "0 0 15px #2ebd85, 0 0 30px #2ebd85, 0 0 50px rgba(46, 189, 133, 0.8)",
+                  borderRadius: "2px",
+                  pointerEvents: "none",
                 }}
-              >
-                Pase Validado
-              </div>
+              />
+            )}
+
+            {/* Verified Badge on Laser Scan Completion */}
+            {isScanned && (
               <div
                 style={{
-                  fontSize: "18px",
-                  fontWeight: 700,
-                  color: "#ffffff",
-                  marginTop: "2px",
+                  position: "absolute",
+                  inset: 0,
+                  backgroundColor: "rgba(16, 185, 129, 0.95)",
+                  borderRadius: "24px",
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  opacity: verifiedSpring,
+                  transform: `scale(${0.9 + verifiedSpring * 0.1})`,
+                  boxShadow: "0 0 40px rgba(16, 185, 129, 0.8)",
                 }}
               >
-                Acceso Concedido · Cero Colas
+                <span style={{ fontSize: "54px" }}>✅</span>
+                <p
+                  style={{
+                    margin: "8px 0 0 0",
+                    fontSize: "18px",
+                    fontWeight: 900,
+                    color: "#000000",
+                    letterSpacing: "1px",
+                  }}
+                >
+                  PASE VÁLIDO
+                </p>
+                <p
+                  style={{
+                    margin: 0,
+                    fontSize: "13px",
+                    fontWeight: 700,
+                    color: "rgba(0,0,0,0.8)",
+                  }}
+                >
+                  Acceso Concedido
+                </p>
               </div>
-            </div>
-          )}
+            )}
+          </div>
+        </div>
+
+        {/* Ticket Footer Banner */}
+        <div
+          style={{
+            padding: "16px 32px",
+            backgroundColor: "rgba(0,0,0,0.5)",
+            borderTop: "1px solid rgba(255,255,255,0.08)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+          }}
+        >
+          <span style={{ fontSize: "14px", color: "#94a3b8", fontWeight: 600 }}>
+            📲 Envío automático a WhatsApp con código QR
+          </span>
+          <span style={{ fontSize: "14px", color: "#2ebd85", fontWeight: 800 }}>
+            ByteBridge QR Engine
+          </span>
         </div>
       </div>
 
-      {/* Bottom Floating Pill */}
+      {/* Bottom Summary Tags */}
       <div
         style={{
+          opacity: headerSpring,
           display: "flex",
           alignItems: "center",
-          gap: "14px",
-          padding: "16px 36px",
-          borderRadius: "24px",
-          backgroundColor: "rgba(255, 255, 255, 0.06)",
-          border: "1px solid rgba(255, 255, 255, 0.12)",
-          backdropFilter: "blur(20px)",
+          gap: "16px",
           zIndex: 10,
         }}
       >
-        <span style={{ fontSize: "24px" }}>📲</span>
-        <span style={{ fontSize: "22px", fontWeight: 800, color: "#f1f5f9" }}>
-          Entrega instantánea con QR por WhatsApp directo al cliente
+        <span
+          style={{
+            padding: "8px 20px",
+            borderRadius: "9999px",
+            backgroundColor: "rgba(255,255,255,0.06)",
+            border: "1px solid rgba(255,255,255,0.15)",
+            fontSize: "18px",
+            fontWeight: 700,
+            color: "#cbd5e1",
+          }}
+        >
+          ⚡ Valida desde cualquier teléfono
+        </span>
+        <span
+          style={{
+            padding: "8px 20px",
+            borderRadius: "9999px",
+            backgroundColor: "rgba(46, 189, 133, 0.15)",
+            border: "1px solid rgba(46, 189, 133, 0.4)",
+            fontSize: "18px",
+            fontWeight: 800,
+            color: "#34d399",
+          }}
+        >
+          🚫 Cero Boletos de Papel
         </span>
       </div>
     </AbsoluteFill>

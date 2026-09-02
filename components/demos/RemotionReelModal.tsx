@@ -180,16 +180,19 @@ export function RemotionReelModal({ isOpen, onClose, demo }: Props) {
             </div>
           </div>
 
-          {/* Render Tip Box */}
-          <div className="mt-3 w-full rounded-2xl border border-white/10 bg-zinc-900/80 p-3 text-left">
-            <div className="flex items-center justify-between text-[11px] text-zinc-400">
-              <span className="font-semibold text-zinc-300">
-                📥 Descargar video en MP4 1080x1920 (Alta Calidad):
-              </span>
-            </div>
-            <code className="mt-1 block font-mono text-[10px] text-amber-300 bg-black/60 p-2 rounded-lg overflow-x-auto">
-              npm run render:reels {demo.slug}
-            </code>
+          {/* CTA de Contratación */}
+          <div className="mt-3 w-full rounded-2xl border border-emerald-500/20 bg-emerald-500/5 p-4 text-center">
+            <p className="text-xs font-semibold text-emerald-300">
+              ¿Quieres una WebApp así para tu negocio?
+            </p>
+            <a
+              href={`https://wa.me/584120308674?text=${encodeURIComponent(`Hola Paul David, vi el reel de ${demo.name} y quiero una WebApp similar para mi negocio.`)}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-2 inline-flex items-center gap-2 rounded-xl bg-emerald-500 px-5 py-2.5 text-xs font-bold text-black transition-all active:scale-95 hover:bg-emerald-400"
+            >
+              📞 Hablar con Paul David
+            </a>
           </div>
         </motion.div>
       </div>

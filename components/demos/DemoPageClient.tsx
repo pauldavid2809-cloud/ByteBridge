@@ -13,6 +13,11 @@ import { CartDrawer, CartItem } from "@/components/demos/CartDrawer";
 import { LocationCard } from "@/components/demos/LocationCard";
 import { RemotionReelModal } from "@/components/demos/RemotionReelModal";
 import { ModuleTabsSelector } from "@/components/demos/ModuleTabsSelector";
+import { DemoAboutDeveloper } from "@/components/demos/DemoAboutDeveloper";
+import { DemoPricing } from "@/components/demos/DemoPricing";
+import { DemoProcess } from "@/components/demos/DemoProcess";
+import { DemoFaq } from "@/components/demos/DemoFaq";
+import { DemoTestimonials } from "@/components/demos/DemoTestimonials";
 
 type BookingData = {
   option: BookingOption;
@@ -166,6 +171,23 @@ export function DemoPageClient({ demo }: Props) {
 
           {/* 5. Ubicación y Contacto */}
           <LocationCard demo={demo} />
+
+          {/* ═══ SECCIONES DE CONFIANZA ═══ */}
+
+          {/* 6. Cómo Funciona — Proceso en 3 Pasos */}
+          <DemoProcess demo={demo} />
+
+          {/* 7. Inversión Transparente — Precios Visibles */}
+          <DemoPricing demo={demo} />
+
+          {/* 8. Testimonios de Clientes Reales */}
+          <DemoTestimonials demo={demo} />
+
+          {/* 9. Preguntas Frecuentes Operativas */}
+          <DemoFaq demo={demo} />
+
+          {/* 10. Quién Está Detrás — Identidad del Desarrollador */}
+          <DemoAboutDeveloper demo={demo} />
 
           {/* Footer de la Demo */}
           <footer className="border-t border-white/10 bg-zinc-950 py-10 text-center text-xs text-zinc-500">

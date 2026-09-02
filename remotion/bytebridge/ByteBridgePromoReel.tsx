@@ -46,28 +46,28 @@ export function ByteBridgePromoReel() {
       {/* Audio Track / SFX (if provided) */}
       <ByteBridgeAudio />
 
-      {/* Escena 1: El Gancho & Logo Reveal (0.0s - 3.66s = frames 0 a 110) */}
-      <Sequence from={0} durationInFrames={110}>
+      {/* Escena 1: El Gancho Brutal & Pain Points (0.0s - 6.0s = frames 0 a 180) */}
+      <Sequence from={0} durationInFrames={180}>
         <Scene1Hook />
       </Sequence>
 
-      {/* Escena 2: QR en Mesa & Menú Multimoneda (3.66s - 7.5s = frames 110 a 225) */}
-      <Sequence from={110} durationInFrames={115}>
+      {/* Escena 2: Menú 3D en Mesa & Tasa BCV en Vivo (6.0s - 12.0s = frames 180 a 360) */}
+      <Sequence from={180} durationInFrames={180}>
         <Scene2QrTable />
       </Sequence>
 
-      {/* Escena 3: Entradas & Pases VIP por QR (7.5s - 11.33s = frames 225 a 340) */}
-      <Sequence from={225} durationInFrames={115}>
+      {/* Escena 3: Pase VIP y Validación QR Láser (12.0s - 18.0s = frames 360 a 540) */}
+      <Sequence from={360} durationInFrames={180}>
         <Scene3QrTickets />
       </Sequence>
 
-      {/* Escena 4: Landing Page & Panel Gerencial (11.33s - 15.16s = frames 340 a 455) */}
-      <Sequence from={340} durationInFrames={115}>
+      {/* Escena 4: Panel de Gerencia & Métricas en Vivo (18.0s - 24.0s = frames 540 a 720) */}
+      <Sequence from={540} durationInFrames={180}>
         <Scene4LandingDashboard />
       </Sequence>
 
-      {/* Escena 5: Outro & Llamado a la Acción (15.16s - 19.0s = frames 455 a 570) */}
-      <Sequence from={455} durationInFrames={115}>
+      {/* Escena 5: Oferta de Confianza & CTA ByteBridge (24.0s - 30.0s = frames 720 a 900) */}
+      <Sequence from={720} durationInFrames={180}>
         <Scene5OutroCta />
       </Sequence>
     </AbsoluteFill>

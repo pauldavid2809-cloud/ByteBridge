@@ -68,6 +68,19 @@ export function DemoHero({
           transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
           className="flex flex-wrap items-center justify-center gap-2.5"
         >
+          {/* Badge de Legitimidad ByteBridge */}
+          <a
+            href="https://byte-bridge-tau.vercel.app"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-[10px] font-medium text-zinc-400 backdrop-blur-md transition-colors hover:text-zinc-200 hover:border-white/20"
+          >
+            <svg className="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+            </svg>
+            <span>Propuesta diseñada por <span className="font-semibold text-zinc-300">ByteBridge</span></span>
+          </a>
+
           <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3.5 py-1.5 backdrop-blur-md">
             <span
               className="h-2 w-2 rounded-full animate-pulse"

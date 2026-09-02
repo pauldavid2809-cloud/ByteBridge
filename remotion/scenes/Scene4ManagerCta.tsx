@@ -294,7 +294,7 @@ export function Scene4ManagerCta({ demo }: Props) {
             margin: 0,
           }}
         >
-          bytebridge.cloud · Maracaibo, Venezuela
+          byte-bridge.vercel.app · Maracaibo, Venezuela
         </p>
       </div>
     </AbsoluteFill>

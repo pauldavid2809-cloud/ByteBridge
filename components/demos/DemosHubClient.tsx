@@ -22,6 +22,19 @@ export function DemosHubClient({ demos }: Props) {
   const [modalTab, setModalTab] = useState<"pitch" | "voice" | "admin">("pitch");
 
   const voiceScripts: Record<string, string> = {
+    // Dia 7
+    sybarisrest: "Hola equipo de Sybaris Restaurante, les habla Paul David de ByteBridge. En horas pico y fines de semana, coordinar reservas de terraza y requerimientos de cortes por WhatsApp colapsa el chat. Les construimos una WebApp con Reserva Gourmet de Mesas, Sommelier Digital y pase QR automático a tasa oficial BCV. Miren la demo en el link adjunto.",
+    srtruhan: "Qué tal, equipo de Sr. Truhán, les saluda Paul David de ByteBridge. En noches de música o stand-up comedy, los clientes se desesperan esperando mesoneros para pedir otra ronda de tragos. Con nuestra WebApp tienen Auto-Pedido por código QR en mesa directo a barra con división de cuenta inmediata. Vean la demo interactiva.",
+    crispys_ve: "Hola amigos de Crispy's, les habla Paul David de ByteBridge. Si las apps de delivery les descuentan hasta un 25% de comisión por cada combo vendido, les armamos una WebApp de Delivery Directo y Retiro Pick-Up sin intermediarios, con cálculo automático a tasa oficial BCV. Prueben la demo en el enlace.",
+    enigmacafe_sc: "Hola equipo de Enigma Café, les habla Paul David de ByteBridge. Cuando sus clientes quieren personalizar sus tostadas o bowls de açaí con ingredientes específicos, coordinarlo por chat toma demasiado tiempo. Les construimos una WebApp con 'Brunch & Bowl Builder' interactivo y pases co-working. Revisen la demo en el link.",
+    beaucoffee_sc: "Hola equipo de Beau Coffee, les habla Paul David de ByteBridge. Para evitar que la fila en mostrador se desborde en las mañanas, creamos una WebApp con Auto-Pedido QR en mesa donde sus clientes ven la vitrina de croissants del día, piden al instante y pagan sin levantarse. Miren la demo adjunta.",
+    bruselas_sc: "Hola equipo de Bruselas San Cristóbal, les saluda Paul David de ByteBridge. En las tardes, cuando sus comensales quieren armar sus wafles belgas con coberturas de chocolate y frutas o pedir fondues, coordinarlo por WhatsApp toma demasiados mensajes. Les construimos un Waffle Builder interactivo en 3 clics. Prueben la demo.",
+    momentossc: "Hola equipo de Momentos San Cristóbal, les habla Paul David de ByteBridge. Su espacio boutique es ideal para celebraciones íntimas. Para no perder horas cuadrando dedicatorias, globos y fechas de cumpleaños por chat, les armamos un Cotizador de Paquetes de Celebración y Desayunos Sorpresa con fecha garantizada. Miren la demo.",
+    fratellopizzas_sc: "Buenas noches equipo de Fratello Pizzas, les habla Paul David de ByteBridge. Los fines de semana el chat colapsa de mensajes pidiendo precios y tasa del día. Les diseñamos una WebApp de Delivery Directo y Auto-Pedido en Sala para ordenar pizzas al horno de piedra con tasa BCV automática sin pagar comisiones a terceros. Chequeen la demo.",
+    kala_cafesc: "Buenas tardes equipo de Kala Café, les habla Paul David de ByteBridge. Para que en las tardes de terraza llena sus comensales pidan sus cafés de altura, postres y sándwiches sin esperar que el salonero llegue a su mesa, les preparamos esta WebApp con Auto-Pedido por QR y pago al instante. Miren la demo en el enlace.",
+    pa_picar_mas: "Hola equipo de Pa' Picar Más, les saluda Paul David de ByteBridge. Cuando cotizan bandejas de pasapalos para fiestas de 50 o 100 personas, acordar cantidades, salsas y hora de despacho por chat toma horas. Les armamos un Cotizador de Pasapalos para Eventos con fecha y hora programadas. Prueben la demo interactiva.",
+
+    // Dia 6
     lolapopspaleteria: "Hola equipo de Lola Pops, les habla Paul David de ByteBridge. En horas pico, explicar sabores, baños y toppings por WhatsApp quita tiempo valioso. Les construimos una WebApp interactiva con 'Paleta Builder' donde sus clientes arman su combinación en 3 clics y cotizan el carrito de eventos con tasa BCV en tiempo real. Miren la demo en el enlace adjunto.",
     keponke_ve: "Hola equipo de Ke Ponke, les habla Paul David de ByteBridge. Cuadrar dedicatorias, sabores de ponquecitos y horas de entrega por WhatsApp puede volverse un dolor de cabeza. Creamos para ustedes una WebApp con 'Gift Customizer' donde sus clientes arman su caja, escriben la dedicatoria y agendan el delivery en un minuto. Pruébenla en el enlace.",
     dolcezza_ve: "Hola equipo de Dolcezza, les habla Paul David de ByteBridge. Preguntar por WhatsApp qué porciones quedan en vitrina hace perder ventas todos los días. Les diseñamos una WebApp de Delivery Directo y Encargos donde sus clientes ven las tortas disponibles, eligen porción o entera y pagan a tasa BCV al instante. Vean la demo en el link.",
@@ -49,6 +62,8 @@ export function DemosHubClient({ demos }: Props) {
     if (!matchesSearch) return false;
 
     if (filter === "all") return true;
+    if (filter === "dia7") return d.batch === "dia7";
+    if (filter === "dia6") return d.batch === "dia6";
     if (filter === "customizer") return d.archetype === "gift-customizer" || d.archetype === "item-builder";
     if (filter === "wholesale") return d.archetype === "wholesale-catalog";
     if (filter === "table-order") return d.archetype === "table-ordering";
@@ -58,6 +73,8 @@ export function DemosHubClient({ demos }: Props) {
     return true;
   });
 
+  const countDia7 = demos.filter((d) => d.batch === "dia7").length;
+  const countDia6 = demos.filter((d) => d.batch === "dia6").length;
   const countCustomizer = demos.filter((d) => d.archetype === "gift-customizer" || d.archetype === "item-builder").length;
   const countWholesale = demos.filter((d) => d.archetype === "wholesale-catalog").length;
   const countTableOrder = demos.filter((d) => d.archetype === "table-ordering").length;
@@ -75,13 +92,13 @@ export function DemosHubClient({ demos }: Props) {
           <div className="text-center">
             <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-400/30 bg-emerald-400/10 px-3.5 py-1 text-xs font-bold text-emerald-300">
               <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
-              10 Demos Comerciales Especializadas + Reels en Remotion
+              20 Demos Comerciales Especializadas + Reels en Remotion
             </span>
             <h1 className="mt-4 text-3xl font-extrabold tracking-tight sm:text-5xl">
               Propuestas & WebApps a Medida
             </h1>
             <p className="mt-3 max-w-2xl mx-auto text-sm text-zinc-400 sm:text-base">
-              Soluciones digitales adaptadas a cada modelo de negocio: Constructores de Regalos, Personalizador de Paletas & Pokes, Catálogo Mayorista B2B, Reservas Deportivas y Hospitalidad.
+              Soluciones digitales adaptadas a cada modelo de negocio: Constructores de Regalos, Personalizador de Paletas & Pokes, Catálogo Mayorista B2B, Reservas Deportivas, Pizzerías y Gastrobistrós.
             </p>
 
             {/* Buscador de Demos */}
@@ -111,10 +128,12 @@ export function DemosHubClient({ demos }: Props) {
             </div>
           </div>
 
-          {/* Filtros por Solución Especializada */}
+          {/* Filtros por Solución Especializada y por Lote */}
           <div className="mt-8 flex justify-center gap-2 overflow-x-auto pb-2 scrollbar-none">
             {[
               { id: "all", label: `Todas (${demos.length})` },
+              { id: "dia7", label: `🌟 Día 7 · Táchira & Mcbo (${countDia7})` },
+              { id: "dia6", label: `✨ Día 6 (${countDia6})` },
               { id: "customizer", label: `🎁 Regalos & Creadores (${countCustomizer})` },
               { id: "wholesale", label: `📦 Mayorista B2B (${countWholesale})` },
               { id: "vip-pass", label: `🎟️ Pases VIP & Hotel (${countVipPass})` },

@@ -38,7 +38,7 @@ export function ByteBridgeReelModal({ isOpen, onClose }: Props) {
   };
 
   const pitchCopy =
-    "🚀 Hola! Te comparto la propuesta y demo interactiva de ByteBridge: automatización con entradas y pases VIP por QR, soluciones de QR en mesa con pedidos directos, menú digital multimoneda con tasa oficial BCV y panel de gerencia en vivo.\n\nEscríbenos al WhatsApp oficial: +58 412-0308674 o visita https://bytebridge.cloud";
+    "🚀 Hola! Te comparto la propuesta y demo interactiva de ByteBridge: automatización con entradas y pases VIP por QR, soluciones de QR en mesa con pedidos directos, menú digital multimoneda con tasa oficial BCV y panel de gerencia en vivo.\n\nEscríbenos al WhatsApp oficial: +58 412-0308674 o visita https://byte-bridge.vercel.app";
 
   const handleCopyPitch = () => {
     navigator.clipboard.writeText(pitchCopy);
@@ -73,7 +73,7 @@ export function ByteBridgeReelModal({ isOpen, onClose }: Props) {
             <div className="flex items-center gap-2">
               <span className="h-2.5 w-2.5 rounded-full animate-ping bg-[#2ebd85]" />
               <span className="text-xs font-bold uppercase tracking-wider text-zinc-300">
-                Reel Oficial ByteBridge (19s HD) · Remotion
+                Reel Oficial ByteBridge (30s HD Master) · Remotion
               </span>
             </div>
             <button
@@ -94,7 +94,7 @@ export function ByteBridgeReelModal({ isOpen, onClose }: Props) {
               <Player
                 ref={playerRef}
                 component={ByteBridgePromoReel}
-                durationInFrames={570}
+                durationInFrames={900}
                 compositionWidth={1080}
                 compositionHeight={1920}
                 fps={30}

@@ -25,6 +25,16 @@ const SLUGS = [
   "pokemolokai",
   "barako_rest",
   "portovenerehotel",
+  "sybarisrest",
+  "srtruhan",
+  "crispys_ve",
+  "enigmacafe_sc",
+  "beaucoffee_sc",
+  "bruselas_sc",
+  "momentossc",
+  "fratellopizzas_sc",
+  "kala_cafesc",
+  "pa_picar_mas",
 ];
 
 async function main() {

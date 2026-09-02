@@ -6,11 +6,11 @@ import { ByteBridgePromoReel } from "./bytebridge/ByteBridgePromoReel";
 export function RemotionRoot() {
   return (
     <>
-      {/* Reel Promocional Oficial de ByteBridge */}
+      {/* Reel Promocional Oficial de ByteBridge (30s / 900 frames) */}
       <Composition
         id="ByteBridge-PromoReel"
         component={ByteBridgePromoReel}
-        durationInFrames={570}
+        durationInFrames={900}
         fps={30}
         width={1080}
         height={1920}
