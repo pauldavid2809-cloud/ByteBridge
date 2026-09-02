@@ -2065,7 +2065,7 @@ export const businessDemos: BusinessDemo[] = [
     "Sommelier en Sala",
     "Estacionamiento Privado con Valet"
   ],
-  "whatsappPitchCopy": "¡Hola equipo de Sybaris Restaurante! 🥩🍷 Admiramos la categoría y prestigio de su propuesta gastronómica en La Lago. Sabemos que los fines de semana las solicitudes de reservas de mesas en terraza y requerimientos especiales colapsan el chat de WhatsApp.\\n\\nLes construimos esta WebApp a medida con Reserva Gourmet de Mesas, Sommelier Digital de vinos y pase con código QR para confirmación instantánea.\\n\\nPueden probar la demo interactiva y ver su video comercial aquí:\\n👉 https://byte-bridge-tau.vercel.app/demos/sybarisrest",
+  "whatsappPitchCopy": "Hola equipo de Sybaris! 👋 ¿Cuántas reservas se les pierden los fines de semana cuando el chat de WhatsApp se llena y no dan abasto para responder a tiempo?\n\nLes preparé una prueba directa con su menú y cortes de carne para que sus clientes elijan su mesa en terraza y reciban su confirmación al instante:\n👉 https://byte-bridge-tau.vercel.app/demos/sybarisrest\n\n¿Les muestro en 5 minutos cómo funciona?",
   "address": "Calle 77 (5 de Julio) con Av. 3G, Sector La Lago, Maracaibo, Zulia",
   "mapsUrl": "https://maps.google.com/?q=Sybaris+Restaurant+Maracaibo",
   "hours": "Lunes a Domingo: 12:00 PM - 11:00 PM",
@@ -2290,7 +2290,7 @@ export const businessDemos: BusinessDemo[] = [
     "Mixología de Vanguardia",
     "Ambiente Climatizado & Terraza"
   ],
-  "whatsappPitchCopy": "¡Buenas noches equipo de Sr. Truhán! 🍸🔥 Sabemos lo activa y concurrida que se pone la sala en las noches de música y stand-up en San Cristóbal, donde pedir otra ronda de tragos o tapas puede demorarse cuando la sala está repleta.\\n\\nLes armamos una WebApp a medida con Auto-Pedido por QR en mesa: sus clientes escanean, piden cócteles directo al bartender y pagan a tasa BCV en tiempo real sin colas.\\n\\nPrueben la demo interactiva aquí:\\n👉 https://byte-bridge-tau.vercel.app/demos/srtruhan",
+  "whatsappPitchCopy": "Hola amigos de Sr. Truhán! 🍸 ¿Cuánto tiempo pierden sus clientes esperando que les tomen otra ronda de tragos cuando el local está lleno en plena noche de show?\n\nLes diseñé una prueba con sus tapas y cócteles para que cada mesa pida directo a la barra escaneando un código QR y divida la cuenta sin esperar mesoneros:\n👉 https://byte-bridge-tau.vercel.app/demos/srtruhan\n\n¿Les muestro cómo se siente en el teléfono en 5 minutos?",
   "address": "Sector Pueblo Nuevo / Barrio Obrero, San Cristóbal, Táchira",
   "mapsUrl": "https://maps.google.com/?q=Sr+Truhan+San+Cristobal",
   "hours": "Miércoles a Sábado: 6:00 PM - 2:00 AM",
@@ -2513,7 +2513,7 @@ export const businessDemos: BusinessDemo[] = [
     "Despacho Térmico Garantizado",
     "Tasa BCV Oficial en Vivo"
   ],
-  "whatsappPitchCopy": "¡Hola equipo de Crispy's! 🍗🔥 Somos fanáticos del crocante y calidad de su pollo frito en San Cristóbal. Sabemos que depender de apps de delivery que cobran hasta un 25% de comisión reduce mucho el margen de cada combo vendido.\\n\\nLes construimos una WebApp de Delivery Directo y Takeaway propia: sus clientes piden en 30 segundos, eligen salsas y combos familiares y la orden llega lista a su WhatsApp sin intermediarios.\\n\\nVean su demo lista aquí:\\n👉 https://byte-bridge-tau.vercel.app/demos/crispys_ve",
+  "whatsappPitchCopy": "Hola equipo de Crispy's! 🍗 ¿Cuánto margen están perdiendo al mes pagando hasta 25% de comisión por cada combo que despachan por apps de terceros?\n\nLes armé un ejemplo con sus tenders y combos familiares para que sus clientes pidan directo sin intermediarios y con total transparencia a tasa oficial:\n👉 https://byte-bridge-tau.vercel.app/demos/crispys_ve\n\n¿Les muestro en 5 minutos cómo se vería para su delivery?",
   "address": "Av. Principal Pueblo Nuevo, San Cristóbal, Táchira",
   "mapsUrl": "https://maps.google.com/?q=Crispys+San+Cristobal",
   "hours": "Martes a Domingo: 11:30 AM - 10:30 PM",
@@ -2735,7 +2735,7 @@ export const businessDemos: BusinessDemo[] = [
     "Baristas Certificados",
     "Espacio Pet Friendly & Co-Working"
   ],
-  "whatsappPitchCopy": "¡Hola equipo de Enigma Café! ☕✨ Su propuesta estética de brunch y café de especialidad en Barrio Obrero es de las más comentadas en San Cristóbal. Cuando los clientes quieren personalizar sus tostadas o bowls de açaí con ingredientes específicos, coordinarlo por chat genera retrasos.\\n\\nLes creamos una WebApp interactiva con 'Brunch & Bowl Builder': sus clientes arman su combinación en pantalla, piden su método de café y pagan con tasa BCV al día en un minuto.\\n\\nPueden probar la experiencia digital aquí:\\n👉 https://byte-bridge-tau.vercel.app/demos/enigmacafe_sc",
+  "whatsappPitchCopy": "Hola equipo de Enigma! ☕ ¿Cuántos mensajes y audios cruzan a diario solo para coordinar cómo un cliente quiere personalizar su tostada o bowl de açaí?\n\nLes preparé un ejemplo interactivo con sus desayunos y métodos de café para que el cliente arme su combinación en segundos desde el móvil:\n👉 https://byte-bridge-tau.vercel.app/demos/enigmacafe_sc\n\n¿Les muestro en 5 minutos cómo les ahorraría tiempo en el chat?",
   "address": "Carrera 21 con Calle 10, Barrio Obrero, San Cristóbal, Táchira",
   "mapsUrl": "https://maps.google.com/?q=Enigma+Cafe+San+Cristobal",
   "hours": "Lunes a Domingo: 8:00 AM - 9:00 PM",
@@ -2956,7 +2956,7 @@ export const businessDemos: BusinessDemo[] = [
     "Masa Madre 48h Fermentación",
     "Atención Ágil sin Filas"
   ],
-  "whatsappPitchCopy": "¡Hola equipo de Beau Coffee! 🥐☕ Su concepto minimalista y la calidad de sus croissants en Pueblo Nuevo han marcado tendencia en San Cristóbal. Al mediodía y en las mañanas, cuando se llena el salón, atender comensales uno a uno para tomar cafés y bollería satura al personal.\\n\\nLes preparamos una WebApp con Auto-Pedido QR en mesa: sus clientes escanean, ven la vitrina del día con fotos y piden al instante con cálculo a tasa oficial BCV.\\n\\nMiren su demo interactiva aquí:\\n👉 https://byte-bridge-tau.vercel.app/demos/beaucoffee_sc",
+  "whatsappPitchCopy": "Hola amigos de Beau Coffee! 🥐 En las mañanas cuando la vitrina se llena, ¿cuántos clientes pierden tiempo haciendo fila solo para pedir un croissant y un café?\n\nLes diseñé una prueba en vivo para que el cliente se siente en mesa, ordene al instante con código QR y pague a tasa oficial sin levantarse:\n👉 https://byte-bridge-tau.vercel.app/demos/beaucoffee_sc\n\n¿Les muestro en 5 minutos cómo funciona?",
   "address": "Av. Principal de Pueblo Nuevo, Edif. Boutique, San Cristóbal, Táchira",
   "mapsUrl": "https://maps.google.com/?q=Beau+Coffee+San+Cristobal",
   "hours": "Martes a Domingo: 7:30 AM - 8:30 PM",
@@ -3173,7 +3173,7 @@ export const businessDemos: BusinessDemo[] = [
     "Wafles Horneados al Minuto",
     "Opciones Saladas y Dulces"
   ],
-  "whatsappPitchCopy": "¡Hola equipo de Bruselas San Cristóbal! 🧇🍫 Adoramos el aroma a wafles recién horneados y la calidad de su chocolate. En horas de la tarde, cuando los clientes quieren combinar toppings, salsas y frutas, o pedir fondues para grupos, coordinar todo por chat toma demasiado tiempo.\\n\\nLes construimos una WebApp con 'Waffle & Crepe Builder': sus clientes personalizan su wafle en pantalla con cálculo a tasa oficial BCV y mandan la comanda lista a su cocina.\\n\\nPrueben la demo interactiva aquí:\\n👉 https://byte-bridge-tau.vercel.app/demos/bruselas_sc",
+  "whatsappPitchCopy": "Hola equipo de Bruselas! 🧇 En horas de merienda, ¿cuántos minutos pierden en WhatsApp cuadrando si el cliente quiere salsa belga, Nutella, fresas o helado en su wafle?\n\nLes preparé un ejemplo visual donde el cliente diseña su wafle paso a paso y la comanda les entra perfecta a cocina:\n👉 https://byte-bridge-tau.vercel.app/demos/bruselas_sc\n\n¿Les muestro cómo funciona en 5 minutos?",
   "address": "Sector Barrio Obrero, San Cristóbal, Táchira",
   "mapsUrl": "https://maps.google.com/?q=Bruselas+San+Cristobal",
   "hours": "Lunes a Domingo: 1:00 PM - 9:30 PM",
@@ -3393,7 +3393,7 @@ export const businessDemos: BusinessDemo[] = [
     "Decoración & Globos Incluidos",
     "Pagos Multimoneda Zelle y BCV"
   ],
-  "whatsappPitchCopy": "¡Hola equipo de Momentos San Cristóbal! ✨💖 Su espacio es el más hermoso y fotogénico para celebrar ocasiones especiales en la ciudad. Pero sabemos que coordinar detalles de cumpleaños, tortas, dedicatorias y disponibilidad de fechas por WhatsApp toma horas de mensajes y audios.\\n\\nLes creamos una WebApp con 'Event & Gift Customizer': sus clientes eligen el paquete de celebración, escriben su dedicatoria, reservan fecha y pagan a tasa oficial BCV de inmediato.\\n\\nPrueben la demo interactiva aquí:\\n👉 https://byte-bridge-tau.vercel.app/demos/momentossc",
+  "whatsappPitchCopy": "Hola gente de Momentos! ✨ Cuando un cliente les pide cotizar un desayuno sorpresa o cumpleaños, ¿cuántos mensajes tienen que intercambiar para cuadrar fecha, hora y dedicatoria?\n\nLes armé una propuesta interactiva con sus paquetes para que el cliente elija detalles, agende su día y reciba confirmación al momento:\n👉 https://byte-bridge-tau.vercel.app/demos/momentossc\n\n¿Les muestro en 5 minutos cómo les liberaría horas de chat?",
   "address": "Urbanización Las Lomas / Pueblo Nuevo, San Cristóbal, Táchira",
   "mapsUrl": "https://maps.google.com/?q=Momentos+San+Cristobal",
   "hours": "Lunes a Sábado: 9:00 AM - 8:00 PM (Bajo Reserva)",
@@ -3611,7 +3611,7 @@ export const businessDemos: BusinessDemo[] = [
     "Ingredientes de Calidad Superior",
     "Entrega Rápida en Empaque Térmico"
   ],
-  "whatsappPitchCopy": "¡Buenas noches equipo de Fratello Pizzas! 🍕🔥 Amamos la masa crocante y la calidad de sus pizzas en San Cristóbal. Sabemos que los viernes y sábados por la noche el chat de WhatsApp se satura de mensajes pidiendo el menú y preguntando por precios o tasas de cambio.\\n\\nLes desarrollamos una WebApp de Delivery Directo y Auto-Pedido en Sala: sus clientes seleccionan el tamaño, agregan ingredientes extras, ven la tasa oficial BCV en vivo y la orden entra directa y limpia a su cocina.\\n\\nVean la demo en vivo aquí:\\n👉 https://byte-bridge-tau.vercel.app/demos/fratellopizzas_sc",
+  "whatsappPitchCopy": "Buenas noches equipo de Fratello Pizzas! 🍕 Los fines de semana en la noche, ¿cuántos clientes se cansan de esperar respuesta en WhatsApp para saber qué pizzas tienen y cuánto es en bolívares?\n\nLes preparé un menú directo con sus pizzas para que el cliente pida en 3 clics y el pedido les llegue listo a cocina sin errores de cálculo:\n👉 https://byte-bridge-tau.vercel.app/demos/fratellopizzas_sc\n\n¿Les muestro en 5 minutos cómo les evitaría perder pedidos?",
   "address": "Av. 19 de Abril frente al Parque Quinimarí, San Cristóbal, Táchira",
   "mapsUrl": "https://maps.google.com/?q=Fratello+Pizzas+San+Cristobal",
   "hours": "Miércoles a Lunes: 5:00 PM - 11:00 PM",
@@ -3829,7 +3829,7 @@ export const businessDemos: BusinessDemo[] = [
     "Pastelería Recién Horneada",
     "Terraza con Vista a la Montaña"
   ],
-  "whatsappPitchCopy": "¡Buenas tardes equipo de Kala Café! 🌿☕ Admiramos la calidez de su espacio y el respeto que tienen por el café de origen tachirense. En las tardes de terraza llena, tomar pedidos mesa por mesa puede generar demoras en los pedidos de café y meriendas.\\n\\nLes diseñamos una WebApp con Auto-Pedido QR en mesa: sus clientes ordenan sus lattes, postres y bocadillos desde el teléfono, con tasa oficial BCV y pago directo sin levantarse.\\n\\nPueden probar la experiencia digital aquí:\\n👉 https://byte-bridge-tau.vercel.app/demos/kala_cafesc",
+  "whatsappPitchCopy": "Buenas tardes equipo de Kala Café! 🌿 Cuando la terraza se llena en la tarde, ¿cuántos comensales se quedan esperando varios minutos a que alguien les acerque la carta?\n\nLes preparé una prueba con sus cafés de altura y repostería para que el comensal pida directo desde su mesa escaneando un código QR:\n👉 https://byte-bridge-tau.vercel.app/demos/kala_cafesc\n\n¿Les muestro en 5 minutos cómo agiliza la rotación de mesas?",
   "address": "Sector Pirineos / Pueblo Nuevo, San Cristóbal, Táchira",
   "mapsUrl": "https://maps.google.com/?q=Kala+Cafe+San+Cristobal",
   "hours": "Martes a Domingo: 2:00 PM - 9:30 PM",
@@ -4050,7 +4050,7 @@ export const businessDemos: BusinessDemo[] = [
     "Ingredientes de Calidad Superior",
     "Cotización Automática por Cantidad"
   ],
-  "whatsappPitchCopy": "¡Buenas tardes equipo de Pa' Picar Más! 🥟🎉 Admiramos el éxito y sabor de sus bandejas de pasapalos en San Cristóbal. Sabemos que cuando un cliente pide cotización para una fiesta de 30, 50 o 100 personas, coordinar qué pasapalos incluye, las salsas y la hora de entrega por WhatsApp toma muchísimos mensajes.\\n\\nLes creamos una WebApp interactiva con 'Catering & Box Customizer': el cliente elige el número de invitados, arma su bandeja surtida y agenda la fecha de entrega con tasa oficial BCV al instante.\\n\\nPrueben la demo interactiva aquí:\\n👉 https://byte-bridge-tau.vercel.app/demos/pa_picar_mas",
+  "whatsappPitchCopy": "Hola amigos de Pa' Picar Más! 🥟 Cuando les piden cotización para una fiesta o reunión, ¿cuántos audios y mensajes tienen que cruzar para ponerse de acuerdo en cantidades, salsas y hora de despacho?\n\nLes armé un cotizador con sus bandejas para que el cliente calcule su fiesta y agende la entrega en 3 clics:\n👉 https://byte-bridge-tau.vercel.app/demos/pa_picar_mas\n\n¿Les muestro en 5 minutos cómo les facilitaría cotizar eventos?",
   "address": "Zona Metropolitana de San Cristóbal / Táriba, Táchira",
   "mapsUrl": "https://maps.google.com/?q=Pa+Picar+San+Cristobal",
   "hours": "Lunes a Domingo: 8:00 AM - 8:00 PM (Pedidos con 24h anticipación)",
