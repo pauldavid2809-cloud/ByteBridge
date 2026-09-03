@@ -1,5 +1,5 @@
 import React from "react";
-import { AbsoluteFill, interpolate, spring, useCurrentFrame, useVideoConfig } from "remotion";
+import { AbsoluteFill, Img, interpolate, spring, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
 
 export function Scene5Cta() {
   const frame = useCurrentFrame();
@@ -43,62 +43,56 @@ export function Scene5Cta() {
       <div
         style={{
           position: "absolute",
-          width: "700px",
-          height: "700px",
+          width: "750px",
+          height: "750px",
           borderRadius: "50%",
-          background: "radial-gradient(circle, rgba(6, 182, 212, 0.2) 0%, rgba(16, 185, 129, 0.15) 50%, rgba(0,0,0,0) 75%)",
-          filter: "blur(70px)",
+          background: "radial-gradient(circle, rgba(46, 189, 133, 0.25) 0%, rgba(6, 182, 212, 0.15) 50%, rgba(0,0,0,0) 75%)",
+          filter: "blur(80px)",
         }}
       />
 
-      {/* Logo byte/bridge */}
+      {/* Official byte/bridge Vector Logo */}
       <div
         style={{
           transform: `scale(${logoSpring})`,
+          position: "relative",
           display: "flex",
           alignItems: "center",
-          gap: "18px",
-          marginBottom: "36px",
+          justifyContent: "center",
+          marginBottom: "40px",
           zIndex: 5,
         }}
       >
         <div
           style={{
-            width: "80px",
-            height: "80px",
-            borderRadius: "22px",
-            background: "linear-gradient(135deg, #06B6D4 0%, #10B981 100%)",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            fontSize: "42px",
-            boxShadow: "0 10px 30px rgba(6, 182, 212, 0.4)",
+            position: "absolute",
+            width: "500px",
+            height: "160px",
+            borderRadius: "50%",
+            background: "radial-gradient(circle, rgba(46, 189, 133, 0.4) 0%, rgba(0,0,0,0) 70%)",
+            filter: "blur(40px)",
+            pointerEvents: "none",
           }}
-        >
-          ⚡
-        </div>
-        <div
+        />
+        <Img
+          src={staticFile("bytebridge-logo.svg")}
           style={{
-            color: "#FFFFFF",
-            fontSize: "58px",
-            fontWeight: 900,
-            letterSpacing: "-1px",
-            fontFamily: "monospace",
+            width: "520px",
+            height: "auto",
+            filter: "drop-shadow(0 0 30px rgba(46, 189, 133, 0.5))",
           }}
-        >
-          byte<span style={{ color: "#06B6D4" }}>/</span>bridge
-        </div>
+        />
       </div>
 
       {/* Headline principal */}
       <h2
         style={{
           color: "#FFFFFF",
-          fontSize: "50px",
+          fontSize: "52px",
           fontWeight: 900,
-          lineHeight: 1.25,
-          letterSpacing: "-1px",
-          maxWidth: "850px",
+          lineHeight: 1.22,
+          letterSpacing: "-1.5px",
+          maxWidth: "880px",
           margin: "0 0 40px 0",
           zIndex: 5,
         }}
@@ -121,7 +115,7 @@ export function Scene5Cta() {
         style={{
           transform: `scale(${cardSpring})`,
           display: "flex",
-          gap: "16px",
+          gap: "18px",
           marginBottom: "50px",
           zIndex: 5,
         }}
@@ -130,26 +124,26 @@ export function Scene5Cta() {
           style={{
             backgroundColor: "rgba(255, 255, 255, 0.05)",
             border: "1px solid rgba(255, 255, 255, 0.15)",
-            padding: "16px 24px",
-            borderRadius: "18px",
+            padding: "18px 28px",
+            borderRadius: "20px",
             textAlign: "left",
           }}
         >
-          <div style={{ color: "#94A3B8", fontSize: "14px", fontWeight: 700 }}>LANDING EXPRESS</div>
-          <div style={{ color: "#38BDF8", fontSize: "28px", fontWeight: 900 }}>$100–180</div>
+          <div style={{ color: "#94A3B8", fontSize: "14px", fontWeight: 700, letterSpacing: "1px" }}>LANDING EXPRESS</div>
+          <div style={{ color: "#38BDF8", fontSize: "30px", fontWeight: 900, marginTop: "4px" }}>$100–180</div>
         </div>
 
         <div
           style={{
             backgroundColor: "rgba(16, 185, 129, 0.1)",
-            border: "1px solid rgba(16, 185, 129, 0.3)",
-            padding: "16px 24px",
-            borderRadius: "18px",
+            border: "1px solid rgba(16, 185, 129, 0.35)",
+            padding: "18px 28px",
+            borderRadius: "20px",
             textAlign: "left",
           }}
         >
-          <div style={{ color: "#6EE7B7", fontSize: "14px", fontWeight: 700 }}>SISTEMA A MEDIDA</div>
-          <div style={{ color: "#10B981", fontSize: "28px", fontWeight: 900 }}>Desde $400</div>
+          <div style={{ color: "#6EE7B7", fontSize: "14px", fontWeight: 700, letterSpacing: "1px" }}>SISTEMA A MEDIDA</div>
+          <div style={{ color: "#10B981", fontSize: "30px", fontWeight: 900, marginTop: "4px" }}>Desde $400</div>
         </div>
       </div>
 
@@ -157,10 +151,11 @@ export function Scene5Cta() {
       <div
         style={{
           color: "#E2E8F0",
-          fontSize: "36px",
+          fontSize: "38px",
           fontWeight: 800,
           marginBottom: "40px",
-          maxWidth: "800px",
+          maxWidth: "820px",
+          lineHeight: 1.25,
           zIndex: 5,
         }}
       >
@@ -173,11 +168,11 @@ export function Scene5Cta() {
           transform: `scale(${buttonSpring * pulse})`,
           backgroundColor: "#10B981",
           color: "#000000",
-          padding: "24px 60px",
-          borderRadius: "26px",
-          fontSize: "32px",
+          padding: "24px 64px",
+          borderRadius: "28px",
+          fontSize: "34px",
           fontWeight: 900,
-          boxShadow: "0 15px 40px rgba(16, 185, 129, 0.4)",
+          boxShadow: "0 15px 45px rgba(16, 185, 129, 0.45)",
           letterSpacing: "0.5px",
           zIndex: 5,
         }}
@@ -185,18 +180,19 @@ export function Scene5Cta() {
         👉 Escríbeme al DM o WhatsApp
       </div>
 
-      {/* Autor */}
+      {/* Subtítulo institucional sin nombre personal */}
       <div
         style={{
           marginTop: "40px",
           color: "#64748B",
           fontSize: "22px",
-          fontWeight: 600,
-          letterSpacing: "1px",
+          fontWeight: 700,
+          letterSpacing: "2px",
+          textTransform: "uppercase",
           zIndex: 5,
         }}
       >
-        Paul David · byte/bridge Venezuela
+        byte/bridge · Soluciones Digitales
       </div>
     </AbsoluteFill>
   );
