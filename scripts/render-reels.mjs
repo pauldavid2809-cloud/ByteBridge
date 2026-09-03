@@ -35,6 +35,15 @@ const SLUGS = [
   "fratellopizzas_sc",
   "kala_cafesc",
   "pa_picar_mas",
+  "rutarestaurante",
+  "vistabarccs",
+  "vizio_ristorante",
+  "crepusculobistro",
+  "humosbistro_bar",
+  "lafelicittave",
+  "aprile_ccs",
+  "rutac4_",
+  "tepuy_360",
 ];
 
 async function main() {

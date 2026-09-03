@@ -22,6 +22,17 @@ export function DemosHubClient({ demos }: Props) {
   const [modalTab, setModalTab] = useState<"pitch" | "voice" | "admin">("pitch");
 
   const voiceScripts: Record<string, string> = {
+    // Dia 8
+    rutarestaurante: "Hola equipo de RUTA Restaurante, les habla Paul David. ¿Cuántos comensales se impacientan en mesa esperando que un mesonero les tome otra ronda de cervezas o hamburguesas cuando el salón se llena en horas pico? Les armé una solución directa con su menú para que cada mesa pida con código QR, vea el total en bolívares a tasa oficial y la orden les llegue lista a cocina. ¿Les muestro cómo se vería en 5 minutos?",
+    vistabarccs: "Hola equipo de Vista Bar Caracas, les habla Paul David. ¿Cuántos clientes VIP se les quedan sin mesa para el atardecer o la noche de fin de semana porque el chat de WhatsApp se satura y no dan abasto para confirmar? Les armé una propuesta donde el cliente reserva su mesa en primera fila frente al Ávila, recibe su pase digital con código QR y entra sin colas. ¿Les muestro en 5 minutos cómo funciona?",
+    vizio_ristorante: "Hola equipo de Vizio Ristorante, les habla Paul David. ¿Cuántas reservas de cenas familiares o de negocios se les quedan sin atender los fines de semana cuando el chat de WhatsApp se llena? Les armé una propuesta donde sus comensales reservan su mesa, exploran las pastas frescas con maridaje de vinos y reciben confirmación automática con pase digital. ¿Les muestro en 5 minutos cómo funciona?",
+    crepusculobistro: "Hola equipo de Crepúsculo Bistró, les habla Paul David. En las mañanas de desayuno o en la tarde cuando la terraza se llena, ¿cuántos clientes se impacientan esperando que el mesonero les acerque la carta o tome su pedido de café y tostadas? Les preparé una prueba directa para que el comensal ordene desde su mesa con código QR y pague a tasa oficial sin esperas. ¿Les muestro cómo funciona en 5 minutos?",
+    humosbistro_bar: "Hola equipo de Humos Bistro & Bar, les habla Paul David. ¿Cuánto tiempo pierden sus clientes en mesa esperando otra ronda de tragos o carnes cuando la sala y la terraza se llenan los fines de semana? Les preparé un ejemplo con sus carnes ahumadas para que cada mesa pida con código QR directo a parrilla y divida la cuenta al instante. ¿Les muestro en 5 minutos cómo funciona?",
+    lafelicittave: "Hola equipo de La Felicittà, les habla Paul David. ¿Cuántos clientes se van o pierden tiempo en la fila de vitrina los fines de semana preguntando qué sabores quedan o cómo armar sus copas y cajas de helado? Les creé un personalizador visual para que sus clientes elijan sabores y barquillas desde el teléfono y retiren sin hacer cola. ¿Les muestro cómo funciona en 5 minutos?",
+    aprile_ccs: "Estimado equipo de Aprile Ristorante, les habla Paul David. ¿Cuántas solicitudes de almuerzos corporativos o cenas en salones privados se demoran en coordinar por mensajes de texto entre asistentes y el maitre? Les preparé una propuesta digital sobria donde sus clientes ejecutivos eligen su salón privado y confirman con pase formal con código QR. ¿Cuándo tendrían 5 minutos para ver cómo funciona?",
+    rutac4_: "Hola equipo de Ruta C4, les habla Paul David. ¿Cuánto dinero se les va al mes en comisiones de apps de delivery o cuántos clientes se van porque tardan en responder el WhatsApp en pleno fin de semana? Les preparé un catálogo directo con sus burgers para que el cliente pida en 30 segundos a tasa oficial y el pedido les llegue listo a WhatsApp sin intermediarios. ¿Les muestro en 5 minutos cómo funciona?",
+    tepuy_360: "Hola equipo de Tepuy 360, les habla Paul David. ¿Cuántos clientes que suben al mirador se quedan sin mesa o se van frustrados porque el chat de reservas colapsa y no confirman a tiempo los turnos de atardecer? Les preparé una solución donde sus visitantes eligen su mesa con vista 360 garantizada y reciben su pase con código QR para entrar directo. ¿Les muestro en 5 minutos cómo funciona?",
+
     // Dia 7
     sybarisrest: "Hola equipo de Sybaris, les habla Paul David. Una pregunta rápida: ¿cuántas reservas de terraza se les quedan en el aire un viernes o sábado simplemente porque el WhatsApp colapsa en horas pico? Les armé un ejemplo exacto con sus cortes y menú para que sus comensales reserven su mesa solos y reciban su confirmación de inmediato sin que ustedes pierdan ventas por no contestar a tiempo. ¿Les muestro cómo se vería en 5 minutos?",
     srtruhan: "Qué tal, gente de Sr. Truhán, les habla Paul David. En noches de comedia o música con la sala llena, ¿cuánto tiempo pierden sus clientes esperando que un mesonero les tome otra ronda de tragos o tapas? Les monté un ejemplo con su propia carta donde cada mesa pide directo al bartender por código QR sin colas ni demoras. ¿Les muestro cómo se vería en 5 minutos?",
@@ -62,6 +73,7 @@ export function DemosHubClient({ demos }: Props) {
     if (!matchesSearch) return false;
 
     if (filter === "all") return true;
+    if (filter === "dia8") return d.batch === "dia8";
     if (filter === "dia7") return d.batch === "dia7";
     if (filter === "dia6") return d.batch === "dia6";
     if (filter === "customizer") return d.archetype === "gift-customizer" || d.archetype === "item-builder";
@@ -73,6 +85,7 @@ export function DemosHubClient({ demos }: Props) {
     return true;
   });
 
+  const countDia8 = demos.filter((d) => d.batch === "dia8").length;
   const countDia7 = demos.filter((d) => d.batch === "dia7").length;
   const countDia6 = demos.filter((d) => d.batch === "dia6").length;
   const countCustomizer = demos.filter((d) => d.archetype === "gift-customizer" || d.archetype === "item-builder").length;
@@ -92,7 +105,7 @@ export function DemosHubClient({ demos }: Props) {
           <div className="text-center">
             <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-400/30 bg-emerald-400/10 px-3.5 py-1 text-xs font-bold text-emerald-300">
               <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
-              20 Demos Comerciales Especializadas + Reels en Remotion
+              {demos.length} Demos Comerciales Especializadas + Reels en Remotion
             </span>
             <h1 className="mt-4 text-3xl font-extrabold tracking-tight sm:text-5xl">
               Propuestas & WebApps a Medida
@@ -132,6 +145,7 @@ export function DemosHubClient({ demos }: Props) {
           <div className="mt-8 flex justify-center gap-2 overflow-x-auto pb-2 scrollbar-none">
             {[
               { id: "all", label: `Todas (${demos.length})` },
+              { id: "dia8", label: `🔥 Día 8 · Ccs & Bqto (${countDia8})` },
               { id: "dia7", label: `🌟 Día 7 · Táchira & Mcbo (${countDia7})` },
               { id: "dia6", label: `✨ Día 6 (${countDia6})` },
               { id: "customizer", label: `🎁 Regalos & Creadores (${countCustomizer})` },
