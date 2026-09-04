@@ -1,5 +1,7 @@
 import { NextResponse } from "next/server";
 
+export const dynamic = "force-dynamic";
+
 export async function POST(request: Request) {
   try {
     const body = await request.json();
@@ -19,24 +21,41 @@ export async function POST(request: Request) {
     const telegramChatId = process.env.TELEGRAM_CHAT_ID;
 
     if (telegramBotToken && telegramChatId) {
-      const telegramText =
-        `🚨 *¡Alerta en Caliente ByteBridge!*\n\n` +
-        `El prospecto *${name || slug}* acaba de abrir su demo en vivo.\n\n` +
-        `📱 *Dispositivo:* ${device || "Móvil"}\n` +
-        `🕒 *Hora Caracas:* ${timeStr}\n` +
-        `🔗 *Ver Demo:* https://byte-bridge-tau.vercel.app/demos/${slug}`;
+      const escapeHtml = (str: string) =>
+        (str || "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 
-      fetch(`https://api.telegram.org/bot${telegramBotToken}/sendMessage`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          chat_id: telegramChatId,
-          text: telegramText,
-          parse_mode: "Markdown",
-        }),
-      }).catch((err) => {
-        console.error("Error enviando alerta a Telegram:", err);
-      });
+      const safeName = escapeHtml(name || slug);
+      const safeDevice = escapeHtml(device || "Móvil");
+      const safeTime = escapeHtml(timeStr);
+      const safeSlug = encodeURIComponent(slug);
+
+      const htmlText =
+        `🚨 <b>¡Alerta en Caliente ByteBridge!</b>\n\n` +
+        `El prospecto <b>${safeName}</b> acaba de abrir su demo en vivo.\n\n` +
+        `📱 <b>Dispositivo:</b> ${safeDevice}\n` +
+        `🕒 <b>Hora Caracas:</b> ${safeTime}\n` +
+        `🔗 <b>Ver Demo:</b> https://byte-bridge-tau.vercel.app/demos/${safeSlug}`;
+
+      try {
+        const tgRes = await fetch(`https://api.telegram.org/bot${telegramBotToken}/sendMessage`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            chat_id: telegramChatId,
+            text: htmlText,
+            parse_mode: "HTML",
+          }),
+        });
+
+        const tgData = await tgRes.json();
+        if (!tgData.ok) {
+          console.error("❌ Error de Telegram Bot API:", tgData);
+        } else {
+          console.log(`✅ Alerta de Telegram enviada con éxito para ${name || slug}`);
+        }
+      } catch (tgErr) {
+        console.error("❌ Error de red conectando con Telegram API:", tgErr);
+      }
     }
 
     // 2. Webhook genérico opcional (Discord / Slack / Make)
