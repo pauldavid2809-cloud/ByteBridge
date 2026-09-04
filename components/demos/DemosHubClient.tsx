@@ -7,7 +7,6 @@ import { motion, AnimatePresence } from "motion/react";
 import { BusinessDemo } from "@/data/demosData";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
-import { RemotionReelModal } from "@/components/demos/RemotionReelModal";
 
 type Props = {
   demos: BusinessDemo[];
@@ -17,7 +16,6 @@ export function DemosHubClient({ demos }: Props) {
   const [copiedSlug, setCopiedSlug] = useState<string | null>(null);
   const [filter, setFilter] = useState<string>("all");
   const [searchQuery, setSearchQuery] = useState<string>("");
-  const [activeReelDemo, setActiveReelDemo] = useState<BusinessDemo | null>(null);
   const [selectedPitchDemo, setSelectedPitchDemo] = useState<BusinessDemo | null>(null);
   const [modalTab, setModalTab] = useState<"pitch" | "voice" | "admin">("pitch");
 
@@ -119,7 +117,7 @@ export function DemosHubClient({ demos }: Props) {
           <div className="text-center">
             <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-400/30 bg-emerald-400/10 px-3.5 py-1 text-xs font-bold text-emerald-300">
               <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
-              {demos.length} Demos Comerciales Especializadas + Reels en Remotion
+              {demos.length} Demos Comerciales Especializadas en Vivo
             </span>
             <h1 className="mt-4 text-3xl font-extrabold tracking-tight sm:text-5xl">
               Propuestas & WebApps a Medida
@@ -225,15 +223,6 @@ export function DemosHubClient({ demos }: Props) {
                           </span>
                         </div>
                       </div>
-
-                      {/* Botón rápido para abrir el Reel */}
-                      <button
-                        onClick={() => setActiveReelDemo(demo)}
-                        className="flex h-9 w-9 items-center justify-center rounded-xl border border-amber-400/30 bg-amber-400/10 text-amber-300 shadow transition-all active:scale-90 hover:bg-amber-400/20"
-                        title="Ver Reel en Video"
-                      >
-                        <span className="text-xs">▶️</span>
-                      </button>
                     </div>
 
                     <div className="mt-4 flex items-center gap-2 flex-wrap">
@@ -342,30 +331,20 @@ export function DemosHubClient({ demos }: Props) {
                             clipRule="evenodd"
                           />
                         </svg>
-                        <span>Reel en Video + Modo Gerente</span>
+                        <span>Menú Digital + Modo Gerente</span>
                       </div>
                     </div>
                   </div>
 
                   {/* Acciones de la Tarjeta */}
                   <div className="mt-6 flex flex-col gap-2.5 border-t border-white/10 pt-4">
-                    <div className="grid grid-cols-2 gap-2">
-                      <Link
-                        href={`/demos/${demo.slug}`}
-                        className="flex items-center justify-center gap-1.5 rounded-xl bg-white py-2.5 text-xs font-bold text-black shadow transition-all active:scale-[0.97] hover:bg-zinc-200"
-                      >
-                        <span>Abrir Demo</span>
-                        <span>→</span>
-                      </Link>
-
-                      <button
-                        onClick={() => setActiveReelDemo(demo)}
-                        className="flex items-center justify-center gap-1.5 rounded-xl border border-amber-400/40 bg-amber-400/10 py-2.5 text-xs font-bold text-amber-300 transition-all active:scale-[0.97] hover:bg-amber-400/20"
-                      >
-                        <span>▶️</span>
-                        <span>Ver Reel</span>
-                      </button>
-                    </div>
+                    <Link
+                      href={`/demos/${demo.slug}`}
+                      className="flex items-center justify-center gap-2 rounded-2xl bg-white py-3 text-xs font-black text-black shadow-lg transition-all active:scale-[0.98] hover:bg-zinc-200"
+                    >
+                      <span>Abrir Demo Interactiva</span>
+                      <span>→</span>
+                    </Link>
 
                     <div className="grid grid-cols-2 gap-2">
                       <button
@@ -395,15 +374,6 @@ export function DemosHubClient({ demos }: Props) {
           </div>
         </div>
       </main>
-
-      {/* Modal de Remotion Player activo */}
-      {activeReelDemo && (
-        <RemotionReelModal
-          isOpen={!!activeReelDemo}
-          onClose={() => setActiveReelDemo(null)}
-          demo={activeReelDemo}
-        />
-      )}
 
       {/* Modal para ver el Outreach Kit (Copy WhatsApp, Guión de Voz 20s, y Admin Follow-up) */}
       <AnimatePresence>
