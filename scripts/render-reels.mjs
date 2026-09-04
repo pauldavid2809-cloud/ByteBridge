@@ -56,11 +56,29 @@ const SLUGS = [
   "humboldtrestaurant",
 ];
 
+const BATCH9_SLUGS = [
+  "ilduomodeisapori",
+  "urrutia_rest",
+  "restaurantsanpietro",
+  "corderoccs",
+  "casacanela_ve",
+  "modoccs",
+  "lacastanuelave",
+  "casapuglia_ve",
+  "miso_ccs",
+  "humboldtrestaurant",
+];
+
 async function main() {
   const targetSlug = process.argv[2];
   let slugsToRender = SLUGS;
 
-  if (targetSlug && targetSlug !== "all") {
+  if (
+    targetSlug &&
+    ["batch9", "dia9", "nuevos", "caracas"].includes(targetSlug.toLowerCase())
+  ) {
+    slugsToRender = BATCH9_SLUGS;
+  } else if (targetSlug && targetSlug !== "all") {
     slugsToRender = SLUGS.filter((s) => s.toLowerCase() === targetSlug.toLowerCase());
   }
 
