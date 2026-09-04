@@ -226,6 +226,61 @@ export function CartDrawer({
               </div>
             )}
 
+            {/* Visualizador de Ticket Térmico en Vivo */}
+            {items.length > 0 && (
+              <div className="mb-4 rounded-xl border border-dashed border-amber-300/60 bg-gradient-to-b from-amber-50 to-amber-100/95 p-3.5 text-zinc-900 font-mono text-[11px] shadow-lg">
+                <div className="text-center pb-2 border-b border-dashed border-zinc-400">
+                  <div className="font-extrabold uppercase tracking-wider text-xs text-black">
+                    🧾 {demo.name}
+                  </div>
+                  <div className="text-[10px] text-zinc-600 font-semibold">
+                    COMANDA DIGITAL · WHATSAPP DIRECTO
+                  </div>
+                  <div className="text-[9px] text-zinc-500 mt-0.5">
+                    Cliente: {clientName || "Comensal"} · {tableOrNote || "Mesa / Salón"}
+                  </div>
+                </div>
+
+                {/* Desglose de ítems */}
+                <div className="py-2 space-y-1 border-b border-dashed border-zinc-400">
+                  {items.map(({ item, quantity }) => (
+                    <div key={item.id} className="flex justify-between items-center text-[10px]">
+                      <span className="truncate pr-2 font-medium">
+                        {quantity}x {item.name}
+                      </span>
+                      <span className="font-bold text-black shrink-0">
+                        ${(item.priceUSD * quantity).toFixed(2)}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Totales y Tasa Oficial */}
+                <div className="pt-2 text-[10px] space-y-0.5">
+                  <div className="flex justify-between font-bold text-black text-xs">
+                    <span>TOTAL USD:</span>
+                    <span>${totalUSD}</span>
+                  </div>
+                  <div className="flex justify-between text-zinc-700 text-[10px]">
+                    <span>TASA BCV OFICIAL:</span>
+                    <span>{BCV_RATE} Bs/$</span>
+                  </div>
+                  <div className="flex justify-between font-extrabold text-emerald-800">
+                    <span>TOTAL BS:</span>
+                    <span>Bs. {totalVES.toLocaleString("es-VE", { maximumFractionDigits: 2 })}</span>
+                  </div>
+                  <div className="flex justify-between text-[9px] text-zinc-500 pt-1">
+                    <span>MÉTODO:</span>
+                    <span>{paymentMethod}</span>
+                  </div>
+                </div>
+
+                <div className="mt-2 text-center text-[9px] font-bold text-emerald-700 bg-emerald-100/80 rounded py-1">
+                  ⚡ 0% Comisiones · Entrada limpia sin tipear a mano
+                </div>
+              </div>
+            )}
+
             {/* Total */}
             <div className="rounded-xl border border-white/10 bg-zinc-900 p-3">
               <div className="flex items-center justify-between text-xs text-zinc-400">
@@ -247,7 +302,7 @@ export function CartDrawer({
               <button
                 onClick={handleSendOrder}
                 disabled={items.length === 0}
-                className="flex w-full items-center justify-center gap-2 rounded-xl bg-emerald-500 py-3 text-xs font-bold text-black shadow-lg shadow-emerald-500/20 transition-all active:scale-[0.97] disabled:opacity-40"
+                className="flex w-full items-center justify-center gap-2 rounded-xl bg-emerald-500 py-3 text-xs font-black text-black shadow-lg shadow-emerald-500/20 transition-all active:scale-[0.97] hover:bg-emerald-400 disabled:opacity-40"
               >
                 <svg
                   className="h-4 w-4"
@@ -262,7 +317,7 @@ export function CartDrawer({
                     d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
                   />
                 </svg>
-                <span>Enviar Comanda por WhatsApp</span>
+                <span>📲 Probar Envío Directo a WhatsApp</span>
               </button>
 
               {items.length > 0 && (

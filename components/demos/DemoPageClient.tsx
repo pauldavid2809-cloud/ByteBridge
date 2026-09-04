@@ -3,10 +3,12 @@
 import { useState, useEffect } from "react";
 import { BusinessDemo, CurrencyMode, MenuItem, BookingOption } from "@/data/demosData";
 import { DemoHeader } from "@/components/demos/DemoHeader";
+import { OwnerModeBanner } from "@/components/demos/OwnerModeBanner";
 import { DemoHero } from "@/components/demos/DemoHero";
 import { DemoIntro } from "@/components/demos/DemoIntro";
 import { InteractiveBooking } from "@/components/demos/InteractiveBooking";
 import { DigitalMenu } from "@/components/demos/DigitalMenu";
+import { DemoLossAudit } from "@/components/demos/DemoLossAudit";
 import { ManagerDashboard } from "@/components/demos/ManagerDashboard";
 import { QrTicketModal } from "@/components/demos/QrTicketModal";
 import { CartDrawer, CartItem } from "@/components/demos/CartDrawer";
@@ -49,8 +51,26 @@ export function DemoPageClient({ demo }: Props) {
       if (params.get("admin") === "true" || params.get("gerente") === "true") {
         setIsManagerMode(true);
       }
+
+      // Telemetría en tiempo real: Lead View Alert
+      try {
+        const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+        fetch("/api/lead-view", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            slug: demo.slug,
+            name: demo.name,
+            device: isMobile ? "Móvil (Smartphone)" : "Escritorio (PC)",
+            referrer: document.referrer || "WhatsApp Directo",
+            timestamp: Date.now(),
+          }),
+        }).catch(() => {});
+      } catch {
+        // Silencioso
+      }
     }
-  }, []);
+  }, [demo.slug, demo.name]);
 
   const toggleCurrency = () => {
     setCurrency((prev) => (prev === "USD" ? "VES" : "USD"));
@@ -107,6 +127,13 @@ export function DemoPageClient({ demo }: Props) {
 
   return (
     <div className="min-h-screen bg-black text-white selection:bg-amber-400 selection:text-black">
+      {/* Barra Superior Modo Propietario (Comensal vs Dueño) */}
+      <OwnerModeBanner
+        demo={demo}
+        isManagerMode={isManagerMode}
+        onToggleManagerMode={toggleManagerMode}
+      />
+
       {/* Cabecera Adaptativa con Marca */}
       <DemoHeader
         demo={demo}
@@ -172,9 +199,12 @@ export function DemoPageClient({ demo }: Props) {
           {/* 5. Ubicación y Contacto */}
           <LocationCard demo={demo} />
 
+          {/* 6. Micro-Calculadora de Fuga de Ingresos (Loss-Audit & ROI) */}
+          <DemoLossAudit demo={demo} />
+
           {/* ═══ SECCIONES DE CONFIANZA ═══ */}
 
-          {/* 6. Cómo Funciona — Proceso en 3 Pasos */}
+          {/* 7. Cómo Funciona — Proceso en 3 Pasos */}
           <DemoProcess demo={demo} />
 
           {/* 7. Inversión Transparente — Precios Visibles */}

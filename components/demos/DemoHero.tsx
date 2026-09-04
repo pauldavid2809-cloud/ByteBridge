@@ -93,10 +93,13 @@ export function DemoHero({
 
           <button
             onClick={onOpenReel}
-            className="group inline-flex items-center gap-2 rounded-full border border-amber-400/40 bg-amber-400/15 px-3.5 py-1.5 text-xs font-bold text-amber-300 backdrop-blur-md transition-all active:scale-95 hover:bg-amber-400/25 hover:border-amber-400"
+            className="group relative inline-flex items-center gap-2 rounded-full border border-amber-400/60 bg-gradient-to-r from-amber-500/20 via-amber-400/25 to-amber-500/20 px-4 py-1.5 text-xs font-black text-amber-300 shadow-lg shadow-amber-500/20 backdrop-blur-md transition-all active:scale-95 hover:scale-105 hover:border-amber-400"
           >
-            <span className="flex h-2 w-2 rounded-full bg-amber-400 animate-ping" />
-            <span>▶️ Ver Reel Comercial (15s)</span>
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75" />
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-amber-400" />
+            </span>
+            <span>🎥 Ver Reel Comercial Listo (15s) ▶</span>
           </button>
         </motion.div>
 
