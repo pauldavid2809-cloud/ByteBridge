@@ -14,14 +14,39 @@ export async function POST(request: Request) {
       `🔔 [LEAD ALERT] (${timeStr}) ¡El prospecto "${name || slug}" (${slug}) está viendo su demo en vivo desde ${device || "móvil"}! [Ref: ${referrer || "WhatsApp"}]`
     );
 
-    // Si el usuario configura un Webhook en variables de entorno (ej: Telegram o Discord), se despacha silenciosamente
+    // 1. Notificación a Telegram Bot (si TELEGRAM_BOT_TOKEN y TELEGRAM_CHAT_ID están configurados)
+    const telegramBotToken = process.env.TELEGRAM_BOT_TOKEN;
+    const telegramChatId = process.env.TELEGRAM_CHAT_ID;
+
+    if (telegramBotToken && telegramChatId) {
+      const telegramText =
+        `🚨 *¡Alerta en Caliente ByteBridge!*\n\n` +
+        `El prospecto *${name || slug}* acaba de abrir su demo en vivo.\n\n` +
+        `📱 *Dispositivo:* ${device || "Móvil"}\n` +
+        `🕒 *Hora Caracas:* ${timeStr}\n` +
+        `🔗 *Ver Demo:* https://byte-bridge-tau.vercel.app/demos/${slug}`;
+
+      fetch(`https://api.telegram.org/bot${telegramBotToken}/sendMessage`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          chat_id: telegramChatId,
+          text: telegramText,
+          parse_mode: "Markdown",
+        }),
+      }).catch((err) => {
+        console.error("Error enviando alerta a Telegram:", err);
+      });
+    }
+
+    // 2. Webhook genérico opcional (Discord / Slack / Make)
     const webhookUrl = process.env.LEAD_ALERT_WEBHOOK_URL;
     if (webhookUrl) {
       fetch(webhookUrl, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          content: `🚨 **¡Alerta de Prospección ByteBridge!**\n**Negocio:** ${name} (\`${slug}\`)\n**Dispositivo:** ${device}\n**Hora Caracas:** ${timeStr}`,
+          content: `🚨 **¡Alerta de Prospección ByteBridge!**\n**Negocio:** ${name} (\`${slug}\`)\n**Dispositivo:** ${device}\n**Hora Caracas:** ${timeStr}\n**Demo:** https://byte-bridge-tau.vercel.app/demos/${slug}`,
         }),
       }).catch(() => {});
     }
