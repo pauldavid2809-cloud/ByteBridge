@@ -22,6 +22,18 @@ export function DemosHubClient({ demos }: Props) {
   const [modalTab, setModalTab] = useState<"pitch" | "voice" | "admin">("pitch");
 
   const voiceScripts: Record<string, string> = {
+    // Dia 9 - Caracas Íconos Top Tier
+    ilduomodeisapori: "Hola Chef Tony y equipo de Il Duomo Dei Sapori, les habla Paul David. ¿Cuántas reservas para la cena se les quedan sin responder un viernes o sábado cuando la cocina abierta y el salón están a tope y entran 10 mensajes juntos al WhatsApp? Les armé una propuesta interactiva con sus pastas de autor donde el comensal reserva su mesa, escoge el turno y confirma su maridaje en 1 solo clic. ¿Les parece si le echan un vistazo de 2 minutos?",
+    urrutia_rest: "Estimado equipo del Restaurante Urrutia, les habla Paul David. Con más de 60 años de tradición en Sabana Grande, ¿cuántos almuerzos ejecutivos o mesas familiares se demoran en coordinar por mensajes de texto entre comensales y el salón? Les preparé una propuesta donde sus clientes habituales reservan su mesa para degustar sus pimientos de piquillo y cordero lechal, y reciben su confirmación formal con código QR. ¿Cuándo tendrían 2 minutos para ver cómo funciona?",
+    restaurantsanpietro: "Hola equipo de San Pietro, les habla Paul David. Los fines de semana cuando el salón en Altamira está lleno, ¿cuántas reservas de grupos familiares o amantes de la cocina toscana se pierden porque el chat de WhatsApp se satura en horas punta? Les diseñé una propuesta con su estética y sus pastas artesanales para que el comensal reserve mesa, seleccione turno y reciba su pase digital al instante. ¿Les muestro cómo funciona en 2 minutos?",
+    corderoccs: "Hola Chef Renzo Garibaldi y equipo de Cordero Caracas, les saluda Paul David. Siendo un referente internacional en la Guía 50 Best en Tolón Fashion Mall, ¿cuánto tiempo invierte el equipo respondiendo mensajes en WhatsApp sobre turnos de degustación y maridaje? Les armé una experiencia a la altura de su concepto donde el cliente reserva su menú por pasos, asegura su mesa en sala o barra y recibe su pase VIP sin fricciones. ¿Les parece si la revisan en 2 minutos?",
+    casacanela_ve: "Hola equipo de Casa Canela, les habla Paul David. En las mañanas de brunch y los fines de semana cuando las mesas en Los Palos Grandes están llenas, ¿cuántos clientes se impacientan esperando carta o haciendo fila para llevar tortas y bollería? Les preparé una solución donde sus clientes piden y pagan desde la mesa con código QR o encargan sus postres a tasa oficial en 30 segundos. ¿Les parece si le echan un ojo en 2 minutos?",
+    modoccs: "Hola equipo de MoDo Caracas, les habla Paul David. En un espacio multiconcepto de más de mil metros en Chacao, ¿cuántos pedidos de pizzas, sushi y tragos se retrasan entre barras y pistas de bowling los viernes y sábados por la noche? Les armé una WebApp donde cada mesa o pista pide directo a cocina o barra por QR, y reservan sus canchas de bowling con pase digital. ¿Les muestro cómo se vería en 2 minutos?",
+    lacastanuelave: "Estimado equipo de La Castañuela, les habla Paul David. Con décadas siendo el ícono de la cocina española en Las Mercedes, ¿cuántos comensales ejecutivos y mesas familiares esperan confirmación de salón privado o cava por WhatsApp los fines de semana? Les armé una propuesta sobria y elegante para que reserven su mesa para paella y cochinillo con confirmación automática y pase QR. ¿Les parece bien si la ven en 2 minutos?",
+    casapuglia_ve: "Hola equipo de Casa Puglia, les habla Paul David. Los domingos cuando la terraza en Los Chorros se llena de familias buscando pastas al horno de leña, ¿cuántos clientes se van o se impacientan porque el chat no da abasto para confirmar mesas? Les preparé una propuesta donde sus comensales eligen salón o terraza y reservan en 1 clic con total claridad. ¿Les parece si le echan un vistazo en 2 minutos?",
+    miso_ccs: "Hola equipo de Miso Caracas, les saluda Paul David. Los fines de semana al atardecer en el rooftop de Altamira, ¿cuántas mesas VIP y cenas de sushi se quedan en el aire porque los clientes no reciben confirmación rápida en WhatsApp? Les diseñé un sistema donde sus clientes reservan su mesa con vista panorámica al Ávila, escogen su lounge y reciben su pase de acceso digital con código QR. ¿Les muestro cómo funciona en 2 minutos?",
+    humboldtrestaurant: "Estimado equipo del Restaurante Humboldt, les saluda Paul David. Subir al Ávila a 2.140 metros requiere una coordinación impecable de traslados y teleférico; ¿cuántas solicitudes de mesas panorámicas o cenas en La Boite colapsan el WhatsApp los viernes y sábados? Les armé una solución exclusiva donde el visitante reserva su mesa con vista al mar o a Caracas, coordina su acceso y recibe su credencial digital VIP en 1 minuto. ¿Cuándo tendrían 2 minutos para verla?",
+
     // Dia 8
     rutarestaurante: "Hola equipo de RUTA Restaurante, les habla Paul David. ¿Cuántos comensales se impacientan en mesa esperando que un mesonero les tome otra ronda de cervezas o hamburguesas cuando el salón se llena en horas pico? Les armé una solución directa con su menú para que cada mesa pida con código QR, vea el total en bolívares a tasa oficial y la orden les llegue lista a cocina. ¿Les muestro cómo se vería en 5 minutos?",
     vistabarccs: "Hola equipo de Vista Bar Caracas, les habla Paul David. ¿Cuántos clientes VIP se les quedan sin mesa para el atardecer o la noche de fin de semana porque el chat de WhatsApp se satura y no dan abasto para confirmar? Les armé una propuesta donde el cliente reserva su mesa en primera fila frente al Ávila, recibe su pase digital con código QR y entra sin colas. ¿Les muestro en 5 minutos cómo funciona?",
@@ -73,6 +85,7 @@ export function DemosHubClient({ demos }: Props) {
     if (!matchesSearch) return false;
 
     if (filter === "all") return true;
+    if (filter === "dia9") return d.batch === "dia9";
     if (filter === "dia8") return d.batch === "dia8";
     if (filter === "dia7") return d.batch === "dia7";
     if (filter === "dia6") return d.batch === "dia6";
@@ -85,6 +98,7 @@ export function DemosHubClient({ demos }: Props) {
     return true;
   });
 
+  const countDia9 = demos.filter((d) => d.batch === "dia9").length;
   const countDia8 = demos.filter((d) => d.batch === "dia8").length;
   const countDia7 = demos.filter((d) => d.batch === "dia7").length;
   const countDia6 = demos.filter((d) => d.batch === "dia6").length;
@@ -145,6 +159,7 @@ export function DemosHubClient({ demos }: Props) {
           <div className="mt-8 flex justify-center gap-2 overflow-x-auto pb-2 scrollbar-none">
             {[
               { id: "all", label: `Todas (${demos.length})` },
+              { id: "dia9", label: `🌟 Día 9 · Caracas Íconos (${countDia9})` },
               { id: "dia8", label: `🔥 Día 8 · Ccs & Bqto (${countDia8})` },
               { id: "dia7", label: `🌟 Día 7 · Táchira & Mcbo (${countDia7})` },
               { id: "dia6", label: `✨ Día 6 (${countDia6})` },

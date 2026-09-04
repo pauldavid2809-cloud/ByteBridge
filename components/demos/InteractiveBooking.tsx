@@ -46,7 +46,7 @@ export function InteractiveBooking({ demo, currency, onGenerateQrTicket }: Props
   const dateOptions = ["Hoy", "Mañana", "Viernes", "Sábado", "Domingo"];
 
   const totalUSD =
-    selectedOption.unit.includes("persona")
+    selectedOption.unit?.includes("persona")
       ? selectedOption.priceUSD * pax
       : selectedOption.priceUSD;
 
@@ -158,7 +158,7 @@ export function InteractiveBooking({ demo, currency, onGenerateQrTicket }: Props
                           <span className="text-lg font-black text-white sm:text-xl">
                             {priceFormatted}
                           </span>
-                          <p className="text-[11px] text-zinc-400">{opt.unit}</p>
+                          <p className="text-[11px] text-zinc-400">{opt.unit || "por reserva"}</p>
                         </div>
                       </div>
 

@@ -44,6 +44,16 @@ const SLUGS = [
   "aprile_ccs",
   "rutac4_",
   "tepuy_360",
+  "ilduomodeisapori",
+  "urrutia_rest",
+  "restaurantsanpietro",
+  "corderoccs",
+  "casacanela_ve",
+  "modoccs",
+  "lacastanuelave",
+  "casapuglia_ve",
+  "miso_ccs",
+  "humboldtrestaurant",
 ];
 
 async function main() {
