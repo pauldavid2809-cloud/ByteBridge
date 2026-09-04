@@ -10,7 +10,6 @@ type Props = {
   onScrollToBooking: () => void;
   onScrollToMenu: () => void;
   onScrollToLocation: () => void;
-  onOpenReel?: () => void;
 };
 
 export function DemoHero({
@@ -18,7 +17,6 @@ export function DemoHero({
   onScrollToBooking,
   onScrollToMenu,
   onScrollToLocation,
-  onOpenReel,
 }: Props) {
   const [imageError, setImageError] = useState(false);
 
@@ -91,18 +89,15 @@ export function DemoHero({
             </span>
           </div>
 
-          {onOpenReel && (
-            <button
-              onClick={onOpenReel}
-              className="group relative inline-flex items-center gap-2 rounded-full border border-amber-400/60 bg-gradient-to-r from-amber-500/20 via-amber-400/25 to-amber-500/20 px-4 py-1.5 text-xs font-black text-amber-300 shadow-lg shadow-amber-500/20 backdrop-blur-md transition-all active:scale-95 hover:scale-105 hover:border-amber-400"
-            >
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-amber-400" />
-              </span>
-              <span>🎥 Ver Reel Comercial Listo (15s) ▶</span>
-            </button>
-          )}
+          <a
+            href={`/reels/${demo.slug}.mp4`}
+            download={`${demo.slug}_reel.mp4`}
+            className="group relative inline-flex items-center gap-2 rounded-full border border-amber-400/60 bg-gradient-to-r from-amber-500/20 via-amber-400/25 to-amber-500/20 px-4 py-1.5 text-xs font-black text-amber-300 shadow-lg shadow-amber-500/20 backdrop-blur-md transition-all active:scale-95 hover:scale-105 hover:border-amber-400"
+            title="Descargar Video MP4 del Reel Comercial"
+          >
+            <span>⬇️</span>
+            <span>Descargar Reel Comercial (MP4)</span>
+          </a>
         </motion.div>
 
         {/* Título Principal de la Demo */}

@@ -338,13 +338,25 @@ export function DemosHubClient({ demos }: Props) {
 
                   {/* Acciones de la Tarjeta */}
                   <div className="mt-6 flex flex-col gap-2.5 border-t border-white/10 pt-4">
-                    <Link
-                      href={`/demos/${demo.slug}`}
-                      className="flex items-center justify-center gap-2 rounded-2xl bg-white py-3 text-xs font-black text-black shadow-lg transition-all active:scale-[0.98] hover:bg-zinc-200"
-                    >
-                      <span>Abrir Demo Interactiva</span>
-                      <span>→</span>
-                    </Link>
+                    <div className="grid grid-cols-2 gap-2">
+                      <Link
+                        href={`/demos/${demo.slug}`}
+                        className="flex items-center justify-center gap-1.5 rounded-xl bg-white py-2.5 text-xs font-bold text-black shadow transition-all active:scale-[0.97] hover:bg-zinc-200"
+                      >
+                        <span>Abrir Demo</span>
+                        <span>→</span>
+                      </Link>
+
+                      <a
+                        href={`/reels/${demo.slug}.mp4`}
+                        download={`${demo.slug}_reel.mp4`}
+                        className="flex items-center justify-center gap-1.5 rounded-xl border border-amber-400/40 bg-amber-400/10 py-2.5 text-xs font-bold text-amber-300 transition-all active:scale-[0.97] hover:bg-amber-400/20"
+                        title="Descargar Video MP4 para WhatsApp"
+                      >
+                        <span>⬇️</span>
+                        <span>Descargar Reel</span>
+                      </a>
+                    </div>
 
                     <div className="grid grid-cols-2 gap-2">
                       <button
@@ -468,6 +480,15 @@ export function DemosHubClient({ demos }: Props) {
                       </span>
                     </button>
                     <a
+                      href={`/reels/${selectedPitchDemo.slug}.mp4`}
+                      download={`${selectedPitchDemo.slug}_reel.mp4`}
+                      className="flex items-center justify-center gap-1.5 rounded-xl border border-amber-400/40 bg-amber-400/10 px-4 py-3 text-xs font-bold text-amber-300 shadow transition-all active:scale-95 hover:bg-amber-400/20"
+                      title="Descargar Video MP4"
+                    >
+                      <span>⬇️</span>
+                      <span>Descargar Reel</span>
+                    </a>
+                    <a
                       href={`https://wa.me/?text=${encodeURIComponent(
                         selectedPitchDemo.whatsappPitchCopy
                       )}`}
@@ -507,6 +528,15 @@ export function DemosHubClient({ demos }: Props) {
                           : "Copiar Guión de Audio"}
                       </span>
                     </button>
+                    <a
+                      href={`/reels/${selectedPitchDemo.slug}.mp4`}
+                      download={`${selectedPitchDemo.slug}_reel.mp4`}
+                      className="flex items-center justify-center gap-1.5 rounded-xl border border-white/20 bg-white/10 px-4 py-3 text-xs font-bold text-white shadow transition-all active:scale-95 hover:bg-white/20"
+                      title="Descargar Video MP4 para enviar con el audio"
+                    >
+                      <span>⬇️</span>
+                      <span>Descargar Reel</span>
+                    </a>
                   </div>
                 </div>
               )}
