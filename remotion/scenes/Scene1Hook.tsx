@@ -17,24 +17,37 @@ export function Scene1Hook({ demo }: Props) {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
 
+  // Animación de la notificación de dolor de WhatsApp (Fase 1: frames 0 a 45)
+  const painNotificationY = spring({
+    frame,
+    fps,
+    config: { damping: 12, stiffness: 100 },
+  });
+  const painNotificationOpacity = interpolate(frame, [0, 8, 38, 48], [0, 1, 1, 0], {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+  });
+
+  // Transición a la Solución WebApp (Fase 2: frames 42 a 115)
+  const solutionOpacity = interpolate(frame, [42, 55], [0, 1], {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+  });
+  const solutionY = interpolate(frame, [42, 55], [30, 0], {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+  });
+
   // Animación del teléfono entrando desde abajo con rebote suave
   const phoneY = spring({
-    frame,
+    frame: frame - 25,
     fps,
     config: { damping: 14, stiffness: 90 },
   });
 
-  // Animación del título superior
-  const titleOpacity = interpolate(frame, [5, 25], [0, 1], {
-    extrapolateRight: "clamp",
-  });
-  const titleY = interpolate(frame, [5, 25], [40, 0], {
-    extrapolateRight: "clamp",
-  });
-
   // Logo zoom pop
   const logoPop = spring({
-    frame: frame - 15,
+    frame: frame - 35,
     fps,
     config: { damping: 10, stiffness: 120 },
   });
@@ -60,85 +73,188 @@ export function Scene1Hook({ demo }: Props) {
       {/* Top Header Section */}
       <div
         style={{
-          opacity: titleOpacity,
-          transform: `translateY(${titleY}px)`,
+          position: "relative",
+          width: "100%",
           textAlign: "center",
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          zIndex: 10,
+          zIndex: 15,
+          minHeight: "220px",
         }}
       >
-        {/* ByteBridge Badge */}
-        <div
-          style={{
-            display: "inline-flex",
-            alignItems: "center",
-            gap: "12px",
-            padding: "12px 32px",
-            borderRadius: "9999px",
-            backgroundColor: "rgba(255, 255, 255, 0.08)",
-            border: "1.5px solid rgba(255, 255, 255, 0.2)",
-            backdropFilter: "blur(20px)",
-            boxShadow: "0 10px 30px rgba(0,0,0,0.5)",
-          }}
-        >
-          <span
+        {/* FASE 1: GANCHO DE DOLOR OPERATIVO (Frames 0 a 45) */}
+        {frame < 48 && (
+          <div
             style={{
-              width: "14px",
-              height: "14px",
-              borderRadius: "9999px",
-              backgroundColor: demo.palette.accent,
-              boxShadow: `0 0 15px ${demo.palette.accent}`,
-            }}
-          />
-          <span
-            style={{
-              fontSize: "24px",
-              fontWeight: 800,
-              letterSpacing: "3px",
-              color: "#e2e8f0",
-              textTransform: "uppercase",
+              position: "absolute",
+              top: 0,
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              opacity: painNotificationOpacity,
+              transform: `translateY(${(1 - painNotificationY) * 50}px)`,
+              width: "100%",
             }}
           >
-            BYTEBRIDGE · PROPUESTA EXCLUSIVA
-          </span>
-        </div>
+            {/* Warning Pill */}
+            <div
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "10px",
+                padding: "10px 28px",
+                borderRadius: "9999px",
+                backgroundColor: "rgba(239, 68, 68, 0.18)",
+                border: "1.5px solid #ef4444",
+                backdropFilter: "blur(20px)",
+                boxShadow: "0 10px 30px rgba(239, 68, 68, 0.3)",
+              }}
+            >
+              <span
+                style={{
+                  width: "12px",
+                  height: "12px",
+                  borderRadius: "9999px",
+                  backgroundColor: "#ef4444",
+                  boxShadow: "0 0 12px #ef4444",
+                }}
+              />
+              <span
+                style={{
+                  fontSize: "22px",
+                  fontWeight: 900,
+                  letterSpacing: "2px",
+                  color: "#fca5a5",
+                  textTransform: "uppercase",
+                }}
+              >
+                ⚠️ HORA PICO EN WHATSAPP
+              </span>
+            </div>
 
-        {/* Big Main Headline */}
-        <h1
-          style={{
-            fontSize: "68px",
-            fontWeight: 900,
-            lineHeight: 1.15,
-            marginTop: "24px",
-            marginBottom: "0px",
-            textTransform: "uppercase",
-            letterSpacing: "-1px",
-            color: "#ffffff",
-          }}
-        >
-          La Nueva WebApp de{" "}
-          <span
+            {/* Simulación Notificación WhatsApp iOS */}
+            <div
+              style={{
+                marginTop: "16px",
+                width: "90%",
+                maxWidth: "780px",
+                backgroundColor: "rgba(24, 24, 27, 0.95)",
+                border: "1.5px solid rgba(255, 255, 255, 0.15)",
+                borderRadius: "28px",
+                padding: "20px 28px",
+                boxShadow: "0 25px 50px rgba(0,0,0,0.8)",
+                display: "flex",
+                flexDirection: "column",
+                gap: "8px",
+                backdropFilter: "blur(25px)",
+              }}
+            >
+              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+                <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                  <span style={{ fontSize: "24px" }}>💬</span>
+                  <span style={{ fontSize: "20px", fontWeight: 800, color: "#22c55e" }}>WhatsApp · Nuevo Mensaje</span>
+                </div>
+                <span style={{ fontSize: "16px", color: "#a1a1aa" }}>Ahora</span>
+              </div>
+              <p style={{ margin: 0, fontSize: "24px", color: "#f4f4f5", fontWeight: 600, textAlign: "left" }}>
+                "Buenas noches! ¿Tienen mesa disponible para hoy a las 8:30 PM?"
+              </p>
+              <div style={{ display: "flex", alignItems: "center", gap: "8px", marginTop: "4px" }}>
+                <span style={{ fontSize: "17px", color: "#ef4444", fontWeight: 800, backgroundColor: "rgba(239, 68, 68, 0.15)", padding: "4px 12px", borderRadius: "8px" }}>
+                  ⏳ 45 min sin respuesta · Cliente buscando otro local ❌
+                </span>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* FASE 2: LA SOLUCIÓN DEFINITIVA (Frames 42 a 115) */}
+        {frame >= 40 && (
+          <div
             style={{
-              color: demo.palette.accent,
-              textShadow: `0 0 50px ${demo.palette.glow}`,
+              position: "absolute",
+              top: 0,
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              opacity: solutionOpacity,
+              transform: `translateY(${solutionY}px)`,
+              width: "100%",
             }}
           >
-            {demo.name}
-          </span>
-        </h1>
+            {/* Solución Pill */}
+            <div
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "12px",
+                padding: "10px 28px",
+                borderRadius: "9999px",
+                backgroundColor: "rgba(34, 197, 94, 0.15)",
+                border: "1.5px solid #22c55e",
+                backdropFilter: "blur(20px)",
+                boxShadow: "0 10px 30px rgba(34, 197, 94, 0.3)",
+              }}
+            >
+              <span
+                style={{
+                  width: "12px",
+                  height: "12px",
+                  borderRadius: "9999px",
+                  backgroundColor: "#22c55e",
+                  boxShadow: "0 0 12px #22c55e",
+                }}
+              />
+              <span
+                style={{
+                  fontSize: "22px",
+                  fontWeight: 900,
+                  letterSpacing: "2.5px",
+                  color: "#86efac",
+                  textTransform: "uppercase",
+                }}
+              >
+                ✨ LA SOLUCIÓN EN 1 CLIC
+              </span>
+            </div>
 
-        <p
-          style={{
-            fontSize: "28px",
-            color: "#94a3b8",
-            marginTop: "12px",
-            fontWeight: 500,
-          }}
-        >
-          {demo.tagline}
-        </p>
+            {/* Headline Solución */}
+            <h1
+              style={{
+                fontSize: "64px",
+                fontWeight: 900,
+                lineHeight: 1.15,
+                marginTop: "16px",
+                marginBottom: "0px",
+                textTransform: "uppercase",
+                letterSpacing: "-1px",
+                color: "#ffffff",
+              }}
+            >
+              La WebApp de{" "}
+              <span
+                style={{
+                  color: demo.palette.accent,
+                  textShadow: `0 0 50px ${demo.palette.glow}`,
+                }}
+              >
+                {demo.name}
+              </span>
+            </h1>
+
+            <p
+              style={{
+                fontSize: "24px",
+                color: "#cbd5e1",
+                marginTop: "8px",
+                fontWeight: 600,
+              }}
+            >
+              Confirmación Automática · Tasa Oficial · Sin Esperas
+            </p>
+          </div>
+        )}
       </div>
 
       {/* Center: Realistic 3D Smartphone Frame Mockup */}

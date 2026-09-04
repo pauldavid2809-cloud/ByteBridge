@@ -253,32 +253,34 @@ export function Scene4ManagerCta({ demo }: Props) {
             Automatiza reservaciones, agiliza pedidos y fideliza a tus clientes.
           </p>
 
-          {/* WhatsApp Direct Action Button with Updated Phone */}
+          {/* Direct Chat Link CTA Button */}
           <div
             style={{
               marginTop: "28px",
               width: "100%",
-              padding: "22px 32px",
-              borderRadius: "22px",
-              backgroundColor: "#22c55e",
-              boxShadow: "0 15px 35px rgba(34, 197, 94, 0.4)",
+              padding: "24px 32px",
+              borderRadius: "24px",
+              background: "linear-gradient(135deg, #22c55e 0%, #16a34a 100%)",
+              boxShadow: "0 20px 45px rgba(34, 197, 94, 0.45)",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
               gap: "14px",
               boxSizing: "border-box",
+              border: "2px solid rgba(255,255,255,0.25)",
             }}
           >
-            <span style={{ fontSize: "32px" }}>📲</span>
+            <span style={{ fontSize: "36px" }}>👉</span>
             <span
               style={{
-                fontSize: "26px",
+                fontSize: "25px",
                 fontWeight: 900,
                 color: "#000000",
                 letterSpacing: "0.5px",
+                textTransform: "uppercase",
               }}
             >
-              WhatsApp Oficial: 04120308674
+              Toca el link en el chat para probarla
             </span>
           </div>
         </div>
@@ -294,7 +296,7 @@ export function Scene4ManagerCta({ demo }: Props) {
             margin: 0,
           }}
         >
-          byte-bridge.vercel.app · Maracaibo, Venezuela
+          byte-bridge-tau.vercel.app · Caracas · Maracaibo · Latam
         </p>
       </div>
     </AbsoluteFill>
