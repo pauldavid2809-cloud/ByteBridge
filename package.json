@@ -12,6 +12,12 @@
     "linkedin:login": "node scripts/linkedin-bot.mjs --login",
     "linkedin:dry": "node scripts/linkedin-bot.mjs --dry-run",
     "linkedin:run": "node scripts/linkedin-bot.mjs",
+    "linkedin:priority": "node scripts/linkedin-bot.mjs --priority",
+    "linkedin:agency": "node scripts/linkedin-bot.mjs --segment agency",
+    "linkedin:consulting": "node scripts/linkedin-bot.mjs --segment consulting",
+    "linkedin:startup": "node scripts/linkedin-bot.mjs --segment startup",
+    "linkedin:devs": "node scripts/linkedin-bot.mjs --segment developer",
+    "linkedin:ecommerce": "node scripts/linkedin-bot.mjs --segment ecommerce",
     "linkedin:check": "node scripts/linkedin-bot.mjs --check"
   },
   "dependencies": {

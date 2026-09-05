@@ -1,0 +1,94 @@
+{
+  "segments": [
+    {
+      "id": "agency",
+      "priority": 1,
+      "name": "Agencias de Marketing y Diseño",
+      "pain": "Falta de equipo de desarrollo propio / necesidad de subcontratar WebApps y landings sin inflar nómina",
+      "searchKeywords": ["agencia marketing digital", "agencia diseño", "branding agency", "creative agency"],
+      "targetTitles": ["Founder", "CEO", "Director Creativo", "Agency Owner", "Co-Founder", "Director General"],
+      "searchUrls": {
+        "standard": "https://www.linkedin.com/search/results/people/?keywords=(Founder%20OR%20CEO%20OR%20%22Agency%20Owner%22%20OR%20%22Director%20Creativo%22)%20AND%20(%22agencia%20marketing%22%20OR%20%22agencia%20dise%C3%B1o%22)",
+        "salesNavigator": "https://www.linkedin.com/sales/search/people?query=(recentSearchParam%3A(id%3A0))"
+      },
+      "connectionNoteVariations": [
+        "Hola {{firstName}} 👋 Vi el trabajo de {{companyName}}. Ayudamos a agencias creativas a entregar WebApps y landings a medida para sus clientes sin inflar nómina técnica. Me gustaría conectar. Un saludo!",
+        "Hola {{firstName}}! Gran portafolio en {{companyName}}. Somos el partner de desarrollo frontend/Next.js para agencias que necesitan capacidad técnica extra sin contratar programadores fijos. Saludos!",
+        "Qué tal {{firstName}} 👋 Un gusto. Colaboramos con agencias como {{companyName}} resolviendo la parte de software y WebApps marca blanca con entrega en 1-2 semanas. Conectemos!"
+      ],
+      "followUpTemplate": "Hola {{firstName}}, un gusto conectar 🙌\n\nTe escribo directo: muchas agencias de marketing y diseño con las que hablamos pierden clientes o proyectos web rentables porque no tienen equipo de desarrollo in-house, o los freelancers tradicionales suelen demorarse o desaparecer.\n\nEn ByteBridge operamos como su partner técnico marca blanca (white-label):\n• Desarrollamos WebApps, cotizadores, portales y landings ultra-rápidas en Next.js.\n• Trabajamos bajo tu propia marca con entregas en 1 a 2 semanas.\n• Te cotizamos a costo de partner para que mantengas tu margen intacto sin costos fijos.\n\n¿Tendrías 10 minutos esta semana para una llamada rápida y ver cómo sumar capacidad técnica a {{companyName}}?"
+    },
+    {
+      "id": "consulting",
+      "priority": 2,
+      "name": "Consultoras y Servicios Profesionales",
+      "pain": "Clínicas, estudios jurídicos, inmobiliarias y contadores con cuellos de botella en citas o reservas",
+      "searchKeywords": ["estudio juridico", "clinica", "inmobiliaria", "firma contable", "consultoria"],
+      "targetTitles": ["Managing Partner", "Socio Director", "Director General", "Fundador", "Gerente de Operaciones"],
+      "searchUrls": {
+        "standard": "https://www.linkedin.com/search/results/people/?keywords=(%22Managing%20Partner%22%20OR%20%22Socio%20Director%22%20OR%20Fundador)%20AND%20(%22estudio%20juridico%22%20OR%20clinica%20OR%20inmobiliaria%20OR%20consultora)",
+        "salesNavigator": "https://www.linkedin.com/sales/search/people?query=(recentSearchParam%3A(id%3A0))"
+      },
+      "connectionNoteVariations": [
+        "Hola {{firstName}} 👋 Veo la trayectoria de {{companyName}}. Desarrollamos sistemas de reservas y portales de gestión para consultoras y clínicas que buscan automatizar citas sin colapsar WhatsApp. Saludos!",
+        "Hola {{firstName}}! Un gusto. Diseñamos software y WebApps a medida para firmas como {{companyName}}, reemplazando formularios manuales y agendando clientes en segundos. Conectemos!",
+        "Estimado/a {{firstName}} 👋 Ayudamos a servicios profesionales a eliminar la fricción de agendamiento y cálculo de honorarios con plataformas digitales personalizadas. Saludos cordiales!"
+      ],
+      "followUpTemplate": "Buenas tardes {{firstName}}, gracias por conectar 🙌\n\nEn servicios profesionales y consultoría, sabemos que perder horas coordinando citas por WhatsApp o traspasando datos de clientes a Excel genera cuellos de botella constantes.\n\nEn ByteBridge desarrollamos plataformas y WebApps privadas a medida para firmas como {{companyName}}:\n• Agendamiento inteligente con confirmación y recordatorio automático.\n• Intake y recepción digital de expedientes/pacientes.\n• Cálculo de presupuestos y pagos a tasa oficial en tiempo real.\n• Todo en tu propio dominio y sin pagar mensualidades abusivas a plataformas genéricas.\n\n¿Te interesaría una llamada de 10 min para mostrarte un prototipo de cómo se vería para tu firma?"
+    },
+    {
+      "id": "startup",
+      "priority": 3,
+      "name": "Founders de Startups (Etapa Temprana)",
+      "pain": "Necesidad de lanzar un MVP funcional en 2-3 semanas para validar tracción o mostrar a inversores",
+      "searchKeywords": ["startup", "early stage", "venture", "tech founder", "saas"],
+      "targetTitles": ["Founder", "Co-Founder", "CEO", "CTO"],
+      "searchUrls": {
+        "standard": "https://www.linkedin.com/search/results/people/?keywords=(Founder%20OR%20Co-Founder%20OR%20CEO)%20AND%20(startup%20OR%20%22early%20stage%22%20OR%20saas)",
+        "salesNavigator": "https://www.linkedin.com/sales/search/people?query=(recentSearchParam%3A(id%3A0))"
+      },
+      "connectionNoteVariations": [
+        "Hola {{firstName}} 👋 Vi lo que estás construyendo con {{companyName}}. Ayudamos a founders a pasar de idea a MVP en producción en 2-3 semanas con Next.js y Supabase. Me encantaría conectar!",
+        "Qué tal {{firstName}}! Siguiendo de cerca el roadmap de {{companyName}}. Desarrollamos MVPs rápidos y escalables para startups que necesitan validar tracción sin demorarse meses. Conectemos!",
+        "Hola {{firstName}} 👋 Impresionante la visión de {{companyName}}. Nos especializamos en arquitectura frontend y desarrollo de producto ágil para startups en etapa temprana. Saludos!"
+      ],
+      "followUpTemplate": "Hola {{firstName}}, un gusto conectar 🙌\n\nSé lo crítico que es la velocidad en etapa temprana: perder 4 a 6 meses esperando un MVP mata el momentum y consume el runway.\n\nEn ByteBridge construimos MVPs listos para producción en 2 a 3 semanas:\n• Stack moderno y escalable: Next.js 15, TypeScript, Supabase/PostgreSQL y Tailwind.\n• Autenticación, pagos, base de datos y diseño UI/UX de nivel profesional incluidos.\n• Ownership total: el repositorio y el código son 100% tuyos desde el día 1.\n\n¿En qué fase de desarrollo está {{companyName}} actualmente? ¿Tendrías 10 minutos esta semana para intercambiar ideas de producto?"
+    },
+    {
+      "id": "developer",
+      "priority": 4,
+      "name": "Desarrolladores y Freelancers Saturados",
+      "pain": "Exceso de demanda de clientes / necesidad de delegar frontend o módulos secundarios sin contratar",
+      "searchKeywords": ["freelance developer", "full stack developer", "consultor software", "desarrollador web"],
+      "targetTitles": ["Freelance Developer", "Full Stack Developer", "Software Consultant", "Tech Lead", "Desarrollador Web"],
+      "searchUrls": {
+        "standard": "https://www.linkedin.com/search/results/people/?keywords=(%22Freelance%20Developer%22%20OR%20%22Full%20Stack%20Developer%22%20OR%20%22Consultor%20Software%22)",
+        "salesNavigator": "https://www.linkedin.com/sales/search/people?query=(recentSearchParam%3A(id%3A0))"
+      },
+      "connectionNoteVariations": [
+        "Hola {{firstName}} 👋 Vi tu perfil como dev. Colaboramos con colegas saturados para absorber carga de frontend y landings en Next.js sin que pierdas clientes. Me gustaría conectar!",
+        "Hola {{firstName}}! Colega desarrollador por acá. Si alguna vez tienes picos de demanda o clientes que no das abasto para atender, estamos para hacer sinergia y tercerizar frontend limpio. Saludos!",
+        "Qué tal {{firstName}} 👋 Un gusto conectar con otros devs. Trabajamos como soporte técnico para freelancers que necesitan delegar partes de proyectos sin bajar la calidad del código."
+      ],
+      "followUpTemplate": "Hola {{firstName}}, qué bueno conectar entre colegas devs 💻\n\nTe escribo directo: sabemos lo común que es tener meses con más clientes y proyectos de los que da el día, y da dolor rechazar proyectos o quemarse trabajando 14 horas diarias.\n\nNosotros hacemos sinergia con otros desarrolladores y agencias unipersonales:\n• Nos encargamos del frontend, maquetación pixel-perfect o módulos específicos en React/Next.js.\n• Código TypeScript estricto, componentes testeados y entrega puntual.\n• Tú lideras la relación con tu cliente y mantienes tu fee; nosotros te cobramos tarifa de dev partner por hito.\n\nSi en este momento o en las próximas semanas te entra un proyecto que no quieras rechazar pero no tengas tiempo de tipear, cuenta con nosotros. ¿Cómo viene tu carga de trabajo este mes?"
+    },
+    {
+      "id": "ecommerce",
+      "priority": 5,
+      "name": "E-commerce Pequeño-Mediano con Web Genérica",
+      "pain": "Tiendas lentas en Shopify básico o WooCommerce viejo que no convierten bien en móvil",
+      "searchKeywords": ["tienda online", "ecommerce", "marca ropa", "retail online"],
+      "targetTitles": ["E-commerce Manager", "Founder", "Director E-commerce", "Dueño", "Brand Owner"],
+      "searchUrls": {
+        "standard": "https://www.linkedin.com/search/results/people/?keywords=(Founder%20OR%20%22E-commerce%22%20OR%20%22Due%C3%B1o%22)%20AND%20(%22tienda%20online%22%20OR%20ecommerce%20OR%20retail)",
+        "salesNavigator": "https://www.linkedin.com/sales/search/people?query=(recentSearchParam%3A(id%3A0))"
+      },
+      "connectionNoteVariations": [
+        "Hola {{firstName}} 👋 Vi los productos de {{companyName}}. Reemplazamos tiendas lentas de WooCommerce/Shopify por WebApps a medida ultra rápidas que duplican la conversión móvil. Conectemos!",
+        "Hola {{firstName}}! Gran catálogo en {{companyName}}. Ayudamos a marcas de e-commerce a optimizar velocidad y checkout en móvil sin depender de plantillas pesadas. Un gusto conectar!",
+        "Qué tal {{firstName}} 👋 Desarrollamos tiendas online a medida con carga en 0.8s y pedidos directos sin comisiones por transacción para marcas como {{companyName}}. Saludos!"
+      ],
+      "followUpTemplate": "Hola {{firstName}}, un placer conectar 🙌\n\nRevisando {{companyName}} me pareció excelente su catálogo de productos. El mayor dolor que vemos hoy en e-commerce es el abandono en móvil cuando una plantilla de Shopify o WooCommerce tarda más de 3 segundos en cargar o el checkout tiene demasiadas pantallas.\n\nEn ByteBridge desarrollamos tiendas como WebApps ultraligeras (carga en 0.8s reales):\n• Checkout express en 1 pantalla (directo a WhatsApp o pasarela de pago).\n• 0% de comisiones por transacción.\n• Personalizadores de producto visuales que aumentan el ticket promedio.\n\n¿Estarías abierto a que te prepare un diagnóstico rápido de velocidad y conversión de {{companyName}} sin costo?"
+    }
+  ]
+}

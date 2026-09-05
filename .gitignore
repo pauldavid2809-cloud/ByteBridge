@@ -47,3 +47,4 @@ next-env.d.ts
 # linkedin automation session and local storage
 .linkedin_session.json
 .linkedin_data/
+.linkedin_profile/
