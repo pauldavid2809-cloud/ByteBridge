@@ -22,12 +22,27 @@ export function OwnerModeBanner({
       <div className="mx-auto flex max-w-5xl flex-wrap items-center justify-between gap-2.5 sm:px-4">
         {/* Identificación de Propuesta */}
         <div className="flex items-center gap-2">
-          <span className="flex h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
+          <span
+            className={`flex h-2 w-2 rounded-full animate-pulse ${
+              demo.slug === "demo-restaurante" ? "bg-amber-400" : "bg-emerald-400"
+            }`}
+          />
           <span className="text-[11px] font-bold text-zinc-300 sm:text-xs">
-            Propuesta exclusiva para{" "}
-            <span className="text-white underline decoration-emerald-400/50">
-              {demo.name}
-            </span>
+            {demo.slug === "demo-restaurante" ? (
+              <span>
+                <span className="text-amber-400 font-extrabold tracking-wider">
+                  PROTOTIPO UNIVERSAL:
+                </span>{" "}
+                Adaptable a la carta y marca de tu restaurante en 48h
+              </span>
+            ) : (
+              <span>
+                Propuesta exclusiva para{" "}
+                <span className="text-white underline decoration-emerald-400/50">
+                  {demo.name}
+                </span>
+              </span>
+            )}
           </span>
         </div>
 

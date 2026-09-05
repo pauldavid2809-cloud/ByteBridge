@@ -106,6 +106,225 @@ export type BusinessDemo = {
 export const BCV_RATE = 70.5; // Tasa de cambio referencial Bs / USD
 
 export const businessDemos: BusinessDemo[] = [
+  // 🌟 DEMO GENÉRICA UNIVERSAL — Para Prospección B2B y Outreach en Frío
+  {
+    "slug": "demo-restaurante",
+    "batch": "dia9",
+    "archetype": "gourmet-booking",
+    "name": "Tu Restaurante (Demo)",
+    "handle": "tu_restaurante",
+    "category": "Prototipo Universal · Alta Cocina, Bistro & Gastrobar",
+    "badgeText": "Prototipo Interactivo Oficial · Adaptable a tu Marca en 48h",
+    "tagline": "Prototipo digital interactivo para restaurantes y gastrobares. Reservas automatizadas con QR, menú digital en mesa y comanda a tasa oficial BCV.",
+    "heroTitle": "La WebApp Interactiva para",
+    "heroHighlight": "Tu Restaurante",
+    "heroSubtitle": "Comprueba en vivo cómo tus comensales reservan mesa, exploran la carta por QR y ordenan sin colapsar tu WhatsApp ni calcular la tasa del día a mano.",
+    "logo": "/marcas/bytebridge.jpg",
+    "coverImage": "/marcas/bytebridge-cover.jpg",
+    "palette": {
+      "primary": "#E5A93C",
+      "primaryHover": "#CA8A2A",
+      "secondary": "#27272A",
+      "accent": "#F59E0B",
+      "darkBg": "#09090B",
+      "cardBg": "#18181B",
+      "textLight": "#FFFFFF",
+      "textMuted": "#A1A1AA",
+      "border": "rgba(229, 169, 60, 0.3)",
+      "glow": "rgba(229, 169, 60, 0.4)"
+    },
+    "typography": {
+      "fontDisplay": "font-serif",
+      "fontBody": "font-sans"
+    },
+    "introText": "Esta es una demostración interactiva construida por ByteBridge. Imagina esta misma WebApp con el logotipo, colores, fotografías y la carta de tu restaurante: tus clientes escanean el QR en mesa o abren tu enlace en Instagram/WhatsApp, eligen sus platos o reservan su mesa en 30 segundos, y la orden entra limpia y calculada a tu cocina o teléfono.",
+    "introStats": [
+      { "label": "Ahorro en Comisiones", "value": "0%", "detail": "Sin pagar comisiones del 25% por pedido a terceros" },
+      { "label": "Tiempo de Reserva", "value": "30 seg", "detail": "Sin esperas manuales por confirmación en chat" },
+      { "label": "Cálculo en Bolívares", "value": "Tasa BCV", "detail": "Actualizada automáticamente en tiempo real" }
+    ],
+    "trustBadges": [
+      "Adaptable a tu negocio en 48 horas",
+      "Cálculo automático a tasa oficial BCV",
+      "Panel gerencial de comandas y reservas",
+      "0% de comisiones por pedidos"
+    ],
+    "whatsappPitchCopy": "Hola! Vi la propuesta gastronómica de su negocio y les preparé un prototipo interactivo para que vean cómo un comensal reserva mesa, revisa la carta o hace pedidos a tasa oficial en 30 segundos sin que el WhatsApp colapse en horas pico: https://byte-bridge-tau.vercel.app/demos/demo-restaurante?source=whatsapp ¿Les parece si lo prueban en 1 minuto desde el celular?",
+    "address": "Caracas / Maracaibo / Toda Venezuela & Latinoamérica",
+    "mapsUrl": "https://maps.google.com",
+    "hours": "Martes a Domingo: 12:00 PM – 11:30 PM",
+    "phone": "+58 412-0308674",
+    "instagramUrl": "https://instagram.com/bytebridge.dev",
+    "bcvRate": 70.5,
+    "bookingType": "table-reservation",
+    "bookingTitle": "Reserva de Mesa en Segundos",
+    "bookingSubtitle": "Elige tu zona favorita (Salón, Terraza o Salón VIP) y recibe tu confirmación formal con código QR al instante.",
+    "bookingOptions": [
+      {
+        "id": "salon-principal",
+        "name": "Salón Principal Climatizado",
+        "description": "Mesa estándar en sala principal, ambiente confortable con música y atención de mesonero.",
+        "priceUSD": 0,
+        "badge": "Más Solicitada",
+        "features": ["Confirmación inmediata por WhatsApp", "Sin costo de reserva", "Mesa garantizada por 15 min"],
+        "maxCapacity": 8
+      },
+      {
+        "id": "terraza-aire-libre",
+        "name": "Terraza al Aire Libre",
+        "description": "Mesa en terraza exterior con iluminación ambiental, ideal para parejas o grupos de amigos.",
+        "priceUSD": 0,
+        "badge": "Ambiente Relax",
+        "features": ["Ubicación preferencial", "Atención directa de barra", "Mesa garantizada"],
+        "maxCapacity": 6
+      },
+      {
+        "id": "salon-vip-cava",
+        "name": "Salón VIP & Cava Privada",
+        "description": "Espacio exclusivo para cenas ejecutivas, cumpleaños o aniversarios con sommelier dedicado.",
+        "priceUSD": 50,
+        "unit": "consumo mín.",
+        "badge": "Experiencia Exclusiva",
+        "features": ["Consumo 100% acreditable a la cuenta", "Servicio y copa de bienvenida", "Atención prioritaria"],
+        "maxCapacity": 12
+      }
+    ],
+    "categories": [
+      { "id": "entradas", "name": "Entradas & Tapas para Compartir", "icon": "🍤", "description": "Para abrir el apetito al centro de la mesa" },
+      { "id": "cortes-pastas", "name": "Cortes Premium & Pastas", "icon": "🥩", "description": "Platos principales preparados al término y al dente" },
+      { "id": "burgers-pizzas", "name": "Burgers de Autor & Pizzas", "icon": "🍔", "description": "Recetas artesanales con ingredientes selectos" },
+      { "id": "cocteleria", "name": "Coctelería & Bebidas", "icon": "🍸", "description": "Tragos de autor, vinos y bebidas refrescantes" },
+      { "id": "postres", "name": "Postres de la Casa", "icon": "🍰", "description": "El toque dulce para cerrar la velada" }
+    ],
+    "menuItems": [
+      {
+        "id": "demo-item-1",
+        "name": "Carpaccio de Res con Parmigiano Reggiano",
+        "category": "entradas",
+        "description": "Finas láminas de solomo sellado, lascas de parmesano de 24 meses, alcaparras baby y aceite de oliva virgen extra trufado.",
+        "priceUSD": 14,
+        "badge": "Chef Choice",
+        "popular": true,
+        "tags": ["Entrada Fría", "Gourmet"]
+      },
+      {
+        "id": "demo-item-2",
+        "name": "Tequeños Artesanales con Nata Criolla (8 uds)",
+        "category": "entradas",
+        "description": "Masa hojaldrada crujiente rellena de queso blanco semiduro llanero, servidos con nata batida de la casa y salsa tártara.",
+        "priceUSD": 9,
+        "popular": true,
+        "tags": ["Clásico", "Para Compartir"]
+      },
+      {
+        "id": "demo-item-3",
+        "name": "Ribeye Prime Angus 400g a la Brasa",
+        "category": "cortes-pastas",
+        "description": "Corte importado de alta terneza asado a la parrilla con sal en escamas, mantequilla de trufa negra y vegetales glaseados.",
+        "priceUSD": 28,
+        "badge": "Plato Estrella",
+        "popular": true,
+        "tags": ["Carnes", "Parrilla"]
+      },
+      {
+        "id": "demo-item-4",
+        "name": "Fettuccine al Funghi Porcini & Tartufo",
+        "category": "cortes-pastas",
+        "description": "Pasta fresca hecha a mano salteada con hongos porcini silvestres, crema de trufa negra, reducción de vino blanco y parmigiano.",
+        "priceUSD": 18,
+        "popular": true,
+        "tags": ["Pastas", "Artesanal"]
+      },
+      {
+        "id": "demo-item-5",
+        "name": "Burger Doble Smash Cheddar Madurado",
+        "category": "burgers-pizzas",
+        "description": "Doble carne angus smash crujiente, queso cheddar inglés madurado, bacon caramelizado y salsa secreta en pan brioche artesanal tostado con mantequilla.",
+        "priceUSD": 12,
+        "popular": true,
+        "tags": ["Smash Burger", "Favorito"]
+      },
+      {
+        "id": "demo-item-6",
+        "name": "Pizza Margherita Napolitana al Horno",
+        "category": "burgers-pizzas",
+        "description": "Masa fermentada 48 horas con bordes aireados, salsa pomodoro San Marzano, fior di latte fresco y albahaca orgánica.",
+        "priceUSD": 13,
+        "popular": true,
+        "tags": ["Horno de Leña", "Vegetariano"]
+      },
+      {
+        "id": "demo-item-7",
+        "name": "Smoke Old Fashioned de Autor",
+        "category": "cocteleria",
+        "description": "Bourbon reposado, bitter aromático de naranja, syrup de canela y piel de cítricos perfumada con humo de madera de roble.",
+        "priceUSD": 10,
+        "badge": "Coctelería",
+        "popular": true,
+        "tags": ["Cóctel", "Whisky"]
+      },
+      {
+        "id": "demo-item-8",
+        "name": "Gin Tonic Botánico del Ávila",
+        "category": "cocteleria",
+        "description": "Ginebra premium infusionada con enebro silvestre, tónica artesanal, pepino fresco y ramita de romero encendida.",
+        "priceUSD": 9,
+        "tags": ["Refrescante", "Gin"]
+      },
+      {
+        "id": "demo-item-9",
+        "name": "Tarta de Queso Vasca Cremosa",
+        "category": "postres",
+        "description": "Horneada a alta temperatura con superficie tostada y centro fluido de queso crema suave, servida con frutos rojos silvestres.",
+        "priceUSD": 8,
+        "popular": true,
+        "tags": ["Postre", "Favorito"]
+      },
+      {
+        "id": "demo-item-10",
+        "name": "Volcán de Chocolate con Helado de Vainilla",
+        "category": "postres",
+        "description": "Bizcocho tibio de chocolate 70% cacao con volcán fundente en su interior, acompañado de helado de vainilla de Madagascar.",
+        "priceUSD": 9,
+        "tags": ["Chocolate", "Gourmet"]
+      }
+    ],
+    "managerKpis": {
+      "activeReservations": 16,
+      "capacityPercentage": 85,
+      "todaySalesUSD": 1480,
+      "avgTicketUSD": 38
+    },
+    "sampleBookings": [
+      {
+        "id": "demo-bk-1",
+        "clientName": "Carlos Mendoza (Cliente Ejemplo)",
+        "details": "Terraza al Aire Libre · 4 Personas",
+        "time": "08:30 PM",
+        "status": "confirmada",
+        "pax": 4,
+        "totalUSD": 120
+      },
+      {
+        "id": "demo-bk-2",
+        "clientName": "Dra. Valentina Ruiz (Cliente Ejemplo)",
+        "details": "Salón VIP & Cava · 2 Personas",
+        "time": "09:00 PM",
+        "status": "en_mesa",
+        "pax": 2,
+        "totalUSD": 95
+      },
+      {
+        "id": "demo-bk-3",
+        "clientName": "Roberto Silva (Cliente Ejemplo)",
+        "details": "Salón Principal · 6 Personas",
+        "time": "07:30 PM",
+        "status": "pendiente",
+        "pax": 6,
+        "totalUSD": 180
+      }
+    ]
+  },
   // 🌟 DÍA 6 — 10 Soluciones Comerciales Especializadas
   {
   "slug": "lolapopspaleteria",

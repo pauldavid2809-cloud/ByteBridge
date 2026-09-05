@@ -216,6 +216,39 @@ export function DemoPageClient({ demo }: Props) {
           {/* 10. Quién Está Detrás — Identidad del Desarrollador */}
           <DemoAboutDeveloper demo={demo} />
 
+          {/* Banner de Conversión Directa para Demo Universal */}
+          {demo.slug === "demo-restaurante" && (
+            <section className="mx-auto max-w-5xl px-4 py-8">
+              <div className="relative overflow-hidden rounded-3xl border border-amber-400/40 bg-gradient-to-br from-amber-500/15 via-zinc-950 to-amber-900/20 p-6 sm:p-10 shadow-2xl">
+                <div className="flex flex-col items-center text-center">
+                  <span className="inline-flex items-center gap-2 rounded-full border border-amber-400/30 bg-amber-400/10 px-4 py-1.5 text-xs font-bold text-amber-300">
+                    <span className="h-2 w-2 rounded-full bg-amber-400 animate-ping" />
+                    ⚡ Implementación Express en 48 Horas
+                  </span>
+                  <h3 className="mt-4 text-2xl font-black text-white sm:text-3xl">
+                    ¿Te gustaría tener esta WebApp con la carta y logo de tu restaurante?
+                  </h3>
+                  <p className="mt-3 max-w-2xl text-sm leading-relaxed text-zinc-300 sm:text-base">
+                    Te entregamos la plataforma lista para usar: con tus platos, fotos, zonas de mesas, cálculo automático a tasa oficial BCV y pedidos directos a tu WhatsApp con 0% de comisiones.
+                  </p>
+                  <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
+                    <a
+                      href={`https://wa.me/584120308674?text=${encodeURIComponent(
+                        "Hola Paul David! Estuve navegando la demo universal de ByteBridge y me gustaría adaptar esta WebApp para mi restaurante."
+                      )}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 rounded-2xl bg-amber-400 px-6 py-3.5 text-sm font-black text-black shadow-lg shadow-amber-500/25 transition-all hover:scale-105 active:scale-95 hover:bg-amber-300"
+                    >
+                      <span>💬</span>
+                      <span>Solicitar Adaptación por WhatsApp</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </section>
+          )}
+
           {/* Footer de la Demo */}
           <footer className="border-t border-white/10 bg-zinc-950 py-10 text-center text-xs text-zinc-500">
             <div className="mx-auto max-w-5xl px-4 space-y-2">

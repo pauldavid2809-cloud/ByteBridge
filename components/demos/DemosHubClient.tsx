@@ -20,6 +20,7 @@ export function DemosHubClient({ demos }: Props) {
   const [modalTab, setModalTab] = useState<"pitch" | "voice" | "admin">("pitch");
 
   const voiceScripts: Record<string, string> = {
+    "demo-restaurante": "Hola, un gusto saludarte, te habla Paul David de ByteBridge. Una pregunta puntual: ¿cuántos pedidos o reservas se les quedan fríos los fines de semana cuando el WhatsApp se llena de mensajes preguntando precios y la tasa del día? Te armé un prototipo interactivo para que veas cómo tus comensales ordenan o reservan en 30 segundos sin que tu equipo pierda horas respondiendo a mano. Dale un vistazo en el enlace y dime qué te parece.",
     // Dia 9 - Caracas Íconos Top Tier
     ilduomodeisapori: "Hola Chef Tony y equipo de Il Duomo Dei Sapori, les habla Paul David. ¿Cuántas reservas para la cena se les quedan sin responder un viernes o sábado cuando la cocina abierta y el salón están a tope y entran 10 mensajes juntos al WhatsApp? Les armé una propuesta interactiva con sus pastas de autor donde el comensal reserva su mesa, escoge el turno y confirma su maridaje en 1 solo clic. ¿Les parece si le echan un vistazo de 2 minutos?",
     urrutia_rest: "Estimado equipo del Restaurante Urrutia, les habla Paul David. Con más de 60 años de tradición en Sabana Grande, ¿cuántos almuerzos ejecutivos o mesas familiares se demoran en coordinar por mensajes de texto entre comensales y el salón? Les preparé una propuesta donde sus clientes habituales reservan su mesa para degustar sus pimientos de piquillo y cordero lechal, y reciben su confirmación formal con código QR. ¿Cuándo tendrían 2 minutos para ver cómo funciona?",
@@ -194,7 +195,11 @@ export function DemosHubClient({ demos }: Props) {
                   initial={{ opacity: 0, y: 15 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.3 }}
-                  className="flex flex-col justify-between overflow-hidden rounded-3xl border border-white/10 bg-zinc-900/60 p-6 backdrop-blur-md transition-all hover:border-white/20 hover:bg-zinc-900/90 shadow-xl"
+                  className={`flex flex-col justify-between overflow-hidden rounded-3xl p-6 backdrop-blur-md transition-all shadow-xl ${
+                    demo.slug === "demo-restaurante"
+                      ? "border-2 border-amber-400/60 bg-gradient-to-b from-amber-500/15 via-zinc-900/90 to-zinc-950 hover:border-amber-400"
+                      : "border border-white/10 bg-zinc-900/60 hover:border-white/20 hover:bg-zinc-900/90"
+                  }`}
                 >
                   <div>
                     {/* Cabecera de la Tarjeta */}
@@ -214,9 +219,15 @@ export function DemosHubClient({ demos }: Props) {
                             <h2 className="text-base font-bold text-white tracking-tight">
                               {demo.name}
                             </h2>
-                            <span className="inline-flex items-center rounded-full border border-amber-400/40 bg-amber-400/15 px-2 py-0.5 text-[10px] font-bold text-amber-300">
-                              🌟 Solución a Medida
-                            </span>
+                            {demo.slug === "demo-restaurante" ? (
+                              <span className="inline-flex items-center rounded-full border border-amber-400/60 bg-amber-400/20 px-2.5 py-0.5 text-[10px] font-black text-amber-300 animate-pulse">
+                                ⭐ PROTOTIPO UNIVERSAL
+                              </span>
+                            ) : (
+                              <span className="inline-flex items-center rounded-full border border-amber-400/40 bg-amber-400/15 px-2 py-0.5 text-[10px] font-bold text-amber-300">
+                                🌟 Solución a Medida
+                              </span>
+                            )}
                           </div>
                           <span className="text-xs text-zinc-400">
                             @{demo.handle}
