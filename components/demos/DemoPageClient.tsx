@@ -53,6 +53,8 @@ export function DemoPageClient({ demo }: Props) {
       // Telemetría en tiempo real: Lead View Alert
       try {
         const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+        const sourceParam = params.get("source");
+        const originSource = sourceParam ? `Campaña ${sourceParam.toUpperCase()}` : (document.referrer ? document.referrer : "Directo / WhatsApp");
         fetch("/api/lead-view", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -60,7 +62,8 @@ export function DemoPageClient({ demo }: Props) {
             slug: demo.slug,
             name: demo.name,
             device: isMobile ? "Móvil (Smartphone)" : "Escritorio (PC)",
-            referrer: document.referrer || "WhatsApp Directo",
+            referrer: originSource,
+            source: sourceParam || "direct",
             timestamp: Date.now(),
           }),
         }).catch(() => {});

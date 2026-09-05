@@ -11,7 +11,8 @@
     "linkedin:status": "node scripts/linkedin-bot.mjs --status",
     "linkedin:login": "node scripts/linkedin-bot.mjs --login",
     "linkedin:dry": "node scripts/linkedin-bot.mjs --dry-run",
-    "linkedin:run": "node scripts/linkedin-bot.mjs"
+    "linkedin:run": "node scripts/linkedin-bot.mjs",
+    "linkedin:check": "node scripts/linkedin-bot.mjs --check"
   },
   "dependencies": {
     "@remotion/captions": "^4.0.520",

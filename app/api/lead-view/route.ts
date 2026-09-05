@@ -27,12 +27,14 @@ export async function POST(request: Request) {
       const safeName = escapeHtml(name || slug);
       const safeDevice = escapeHtml(device || "Móvil");
       const safeTime = escapeHtml(timeStr);
+      const safeReferrer = escapeHtml(referrer || "Directo");
       const safeSlug = encodeURIComponent(slug);
 
       const htmlText =
         `🚨 <b>¡Alerta en Caliente ByteBridge!</b>\n\n` +
         `El prospecto <b>${safeName}</b> acaba de abrir su demo en vivo.\n\n` +
         `📱 <b>Dispositivo:</b> ${safeDevice}\n` +
+        `📍 <b>Origen / Campaña:</b> ${safeReferrer}\n` +
         `🕒 <b>Hora Caracas:</b> ${safeTime}\n` +
         `🔗 <b>Ver Demo:</b> https://byte-bridge-tau.vercel.app/demos/${safeSlug}`;
 

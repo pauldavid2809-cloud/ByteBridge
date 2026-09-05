@@ -454,6 +454,92 @@ async function runBot(options) {
   await browser.close();
 }
 
+// Verificar si los leads con estado "invited" han aceptado la conexión
+async function checkAccepted(options) {
+  const { headless = false } = options;
+  console.log("\n=======================================================");
+  console.log("🔍 COMPROBACIÓN DE INVITACIONES ACEPTADAS EN LINKEDIN");
+  console.log("=======================================================\n");
+
+  const liAt = getStoredCookie();
+  if (!liAt) {
+    console.log("❌ No se encontró la cookie de sesión `li_at`.");
+    console.log("👉 Ejecuta: npm.cmd run linkedin:login primero.");
+    process.exit(1);
+  }
+
+  const leads = loadLeads();
+  const invitedLeads = leads.filter((l) => l.status === "invited");
+
+  if (invitedLeads.length === 0) {
+    console.log("ℹ️ No hay leads con estado 'invited' pendientes de verificación.");
+    return;
+  }
+
+  console.log(`📋 Verificando ${invitedLeads.length} leads previamente invitados...\n`);
+
+  const executablePath = getBrowserPath();
+  const browser = await puppeteer.launch({
+    executablePath,
+    headless: headless ? "new" : false,
+    defaultViewport: null,
+    args: [
+      "--no-sandbox",
+      "--disable-setuid-sandbox",
+      "--disable-blink-features=AutomationControlled",
+      "--window-size=1280,900",
+    ],
+  });
+
+  const page = await browser.newPage();
+  await page.setCookie({
+    name: "li_at",
+    value: liAt,
+    domain: ".www.linkedin.com",
+    path: "/",
+    httpOnly: true,
+    secure: true,
+  });
+
+  let newlyConnected = 0;
+
+  for (const lead of invitedLeads) {
+    console.log(`🔎 Revisando: ${lead.targetName} (${lead.restaurant})...`);
+    try {
+      await page.goto(lead.profileUrl, { waitUntil: "domcontentloaded", timeout: 30000 });
+      await sleep(3500);
+
+      const isConnected = await page.evaluate(() => {
+        const buttons = Array.from(document.querySelectorAll("button"));
+        const hasMsgBtn = buttons.some((b) => {
+          const t = (b.innerText || "").trim().toLowerCase();
+          return t === "mensaje" || t === "message";
+        });
+        const isFirstDegree = document.body.innerText.includes("1er") || document.body.innerText.includes("1st");
+        return hasMsgBtn || isFirstDegree;
+      });
+
+      if (isConnected) {
+        lead.status = "connected";
+        lead.connectedAt = new Date().toISOString();
+        saveLeads(leads);
+        newlyConnected++;
+        console.log(`🎉 ¡CONFIRMADO! ${lead.targetName} ya es contacto de 1er grado.`);
+        console.log(`💬 Mensaje de seguimiento listo:\n${lead.followUpMessage}\n`);
+      } else {
+        console.log(`⏳ Aún no ha aceptado o invitación pendiente.`);
+      }
+
+      await sleep(randomBetween(5000, 10000));
+    } catch (e) {
+      console.error(`Error revisando a ${lead.targetName}:`, e.message);
+    }
+  }
+
+  console.log(`\n🏁 Verificación terminada. Nuevos contactos conectados: ${newlyConnected}`);
+  await browser.close();
+}
+
 // Procesar argumentos de CLI
 async function main() {
   const args = process.argv.slice(2);
@@ -465,6 +551,12 @@ async function main() {
 
   if (args.includes("--login")) {
     await runLogin();
+    return;
+  }
+
+  if (args.includes("--check") || args.includes("--check-accepted")) {
+    const headless = args.includes("--headless");
+    await checkAccepted({ headless });
     return;
   }
 
