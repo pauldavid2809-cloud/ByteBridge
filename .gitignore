@@ -43,3 +43,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# linkedin automation session and local storage
+.linkedin_session.json
+.linkedin_data/
